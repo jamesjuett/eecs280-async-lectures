@@ -19480,7 +19480,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(3645);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".lobster-ex-file-name {\n    display: none;\n}\n\n.lobster-ex-init-code {\n    display: none;\n}\n\n.lobster-ex-project-name {\n    display: none;\n}\n\n.lobster-ex-complete-message {\n    display: none;\n}\n\n.lobster-checkpoint-complete-icon {\n    /* color: #1acf1a; */\n    font-size: large;\n    /* text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); */\n}\n\n.lobster-checkpoint-incomplete-icon {\n    /* color: #c75f5f; */\n    font-size: large;\n    /* text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); */\n}\n\n.lobster-checkpoint-thinking-icon {\n    display: inline-block;\n    /* color: #eee34f; */\n    font-size: large;\n    /* text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); */\n    animation: rotation 2s infinite linear;\n    padding-bottom: 0.12em; /* Makes rotation centered */\n}\n\n@keyframes rotation {\n    from {\n      transform: rotate(0deg);\n    }\n    to {\n      transform: rotate(359deg);\n    }\n}\n\n.lobster-checkpoint {\n    display: inline-block;\n    padding: 5px 10px;\n}", ""]);
+exports.push([module.id, ".lobster-ex-file-name {\n    display: none;\n}\n\n.lobster-ex-init-code {\n    display: none;\n}\n\n.lobster-ex-project-name {\n    display: none;\n}\n\n.lobster-ex-complete-message {\n    display: none;\n}\n\n.lobster-checkpoint-complete-icon {\n    /* color: #1acf1a; */\n    font-size: large;\n    /* text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); */\n}\n\n.lobster-checkpoint-incomplete-icon {\n    /* color: #c75f5f; */\n    font-size: large;\n    /* text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); */\n}\n\n.lobster-checkpoint-thinking-icon {\n    display: inline-block;\n    /* color: #eee34f; */\n    font-size: large;\n    /* text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); */\n    animation: rotation 2s infinite linear;\n    padding-bottom: 0.12em; /* Makes rotation centered */\n}\n\n@keyframes rotation {\n    from {\n      transform: rotate(0deg);\n    }\n    to {\n      transform: rotate(359deg);\n    }\n}\n\n.lobster-checkpoint {\n    display: inline-block;\n    padding: 5px 10px;\n}\n\n.lobster-embedded-height-control {\n    overflow: hidden;\n    height: calc(100vh - 200px);\n}\n\n.lobster-embedded-height-control.lobster-ex-no-checkpoints {\n    height: calc(100vh - 75px);\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -78106,8 +78106,8 @@ FileEditor.instances = [];
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.createRunestoneExerciseOutlet = void 0;
-function createRunestoneExerciseOutlet(id) {
+exports.createEmbeddedExerciseOutlet = void 0;
+function createEmbeddedExerciseOutlet(id) {
     return $(`
         <ul style="position: relative;" class="lobster-simulation-outlet-tabs nav nav-tabs">
             <li><a data-toggle="tab" href="#lobster-ex-${id}-compilation-pane">Compilation</a></li>
@@ -78116,7 +78116,7 @@ function createRunestoneExerciseOutlet(id) {
 
         </ul>
 
-        <div class="tab-content" style="height: calc(100vh - 200px); overflow: hidden;">
+        <div class="tab-content lobster-embedded-height-control">
             <div id="lobster-ex-${id}-compilation-pane" class="lobster-compilation-pane tab-pane fade" style="height: 100%; overflow-y: scroll;">
                 
             </div>
@@ -78213,7 +78213,7 @@ function createRunestoneExerciseOutlet(id) {
 
     `);
 }
-exports.createRunestoneExerciseOutlet = createRunestoneExerciseOutlet;
+exports.createEmbeddedExerciseOutlet = createEmbeddedExerciseOutlet;
 
 
 /***/ }),
@@ -80078,7 +80078,7 @@ $(() => {
     let exID = 1;
     $(".lobster-ex").each(function () {
         var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p;
-        $(this).append((0, embeddedExerciseOutlet_1.createRunestoneExerciseOutlet)("" + exID));
+        $(this).append((0, embeddedExerciseOutlet_1.createEmbeddedExerciseOutlet)("" + exID));
         let filename = (_b = (_a = $(this).find(".lobster-ex-file-name").html()) === null || _a === void 0 ? void 0 : _a.trim()) !== null && _b !== void 0 ? _b : "file.cpp";
         let exKey = (_f = (_d = (_c = $(this).find(".lobster-ex-key").html()) === null || _c === void 0 ? void 0 : _c.trim()) !== null && _d !== void 0 ? _d : (_e = $(this).find(".lobster-ex-project-name").html()) === null || _e === void 0 ? void 0 : _e.trim()) !== null && _f !== void 0 ? _f : "UnnamedProject";
         let exerciseSpec = (_g = (0, exercises_1.getExerciseSpecification)(exKey)) !== null && _g !== void 0 ? _g : exercises_1.DEFAULT_EXERCISE;
@@ -80092,6 +80092,9 @@ $(() => {
         }
         let project = new Project_1.Project(exKey, undefined, [{ name: filename, code: exerciseSpec.starterCode, isTranslationUnit: true }], new Project_1.Exercise(exerciseSpec));
         project.turnOnAutoCompile(500);
+        if (exerciseSpec.checkpoints.length === 0) {
+            $(this).find(".lobster-embedded-height-control").addClass("lobster-ex-no-checkpoints");
+        }
         let exOutlet = new SimpleExerciseLobsterOutlet_1.SimpleExerciseLobsterOutlet($(this), project);
         ++exID;
     });

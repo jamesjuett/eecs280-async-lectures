@@ -35,10 +35,6 @@ export const LECTURE_02 = Exam.create({
         margin-left: auto;
         margin-right: auto;
       }
-      
-      iframe.lobster-iframe.no-checkpoints {
-        height: 600px;
-      }
 
     </style>
   `,
@@ -66,6 +62,7 @@ export const LECTURE_02 = Exam.create({
       section_id: "section_2_2",
       title: "Functions and The Call Stack",
       mk_description: dedent`
+        
         The memory allocated for each function is generally called an **activation record** or (more commonly) a **stack frame**. Each function takes up a certain amount of memory that depends on how many local variables it may need to store, and this memory is allocated and freed as needed during the program.
 
         Because of the way that functions call work (i.e. the called function has to finish and return before you can start back up in the original function), it's natural to use a stack to represent the memory frames for each function. Whichever function is called most recently is added to the top of the stack, and will always be removed before any other functions that were already on the stack (this is called the "Last In First Out" or "LIFO" property).
@@ -74,23 +71,19 @@ export const LECTURE_02 = Exam.create({
           <iframe class="lec-video" src="https://www.youtube.com/embed/jT077RVOUgk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
-
-        TODO REMOVE <img style="width: 80%" src="assets/test.png" />
-
-        **Exercise**
-
-        Consider the following code. Trace through the code either manually or using the Lobster simulation and answer the questions below.
-
-        <div style="text-align: center;">
-          <iframe class="lobster-iframe no-checkpoints" style="height: 750px" src="assets/call_stack.html"></iframe>
-        </div>
       `,
       questions: [
         {
           question_id: "lec2_stack_frames",
           title: "Exercise: Stack Frames",
           points: 3,
-          mk_description: "",
+          mk_description: dedent`
+            Consider the following code. Trace through the code either manually or using the Lobster simulation and answer the questions below.
+
+            <div style="text-align: center;">
+              <iframe class="lobster-iframe" style="height: 625px;" src="assets/call_stack.html"></iframe>
+            </div>
+          `,
           response: {
             kind: "fill_in_the_blank",
             content: dedent`
@@ -108,106 +101,137 @@ export const LECTURE_02 = Exam.create({
               
               ]]
 
-              How many different stack frames are created for the \`min()\` function throughout the execution of the program??
+              How many different stack frames are created for the \`min()\` function throughout the execution of the program?
 
               [[BOX
               
               
               ]]
             `,
-            sample_solution: [
+          },
+          mk_postscript: dedent`
+            You're also welcome to check out this **walkthrough** video where I talk through the questions. 
 
-            ]
-          }
+            <div style="text-align: center;">
+              <iframe class="lec-video" src="https://www.youtube.com/embed/N6e_IA6GaKo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <br />
+          `
         }
       ],
     },
     {
       section_id: "section_2_3",
-      title: "Exams and Grading",
+      title: "Parameter Passing",
       mk_description: dedent`
-        It's not terribly exciting, but let's take a bit of time to discuss assignment weights, evaluation, and overall grading in the course.
+        Two primary mechanisms for parameter passing are pass-by-value and pass-by-reference. Let's take a look at the differences between the two, as well as how they relate to function stack frames.
+
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/lHyme2D9ZwI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/xetnP9gQXEY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
       `,
-      questions: [ ]
+      questions: [
+        {
+          question_id: "lec2_parameter_passing",
+          title: "Exercise: Parameter Passing",
+          points: 3,
+          mk_description: dedent`
+            Consider this code that defines a function with both pass-by-value and pass-by-reference parameters.
+            
+            <div style="text-align: center;">
+              <iframe class="lobster-iframe" style="height: 500px;" src="assets/parameter_passing.html"></iframe>
+            </div>
+            
+            What are the values of each variable at the end of the main function? (You can also use the Lobster simulation to check.)
+
+          `,
+          response: {
+            kind: "fill_in_the_blank",
+            content: dedent`
+              **\`a\`**: _BLANK___ &nbsp;&nbsp;&nbsp;&nbsp; **\`b\`**: _BLANK___ &nbsp;&nbsp;&nbsp;&nbsp;**\`c\`**: _BLANK___ &nbsp;&nbsp;&nbsp;&nbsp;**\`d\`**: _BLANK___
+            `
+          },
+          mk_postscript: dedent`
+            <details>
+              <summary>Sample solution...</summary>
+              <p markdown="1">
+              **\`a\`**: 1 &nbsp;&nbsp;&nbsp;&nbsp; **\`b\`**: 3 &nbsp;&nbsp;&nbsp;&nbsp;**\`c\`**: 3 &nbsp;&nbsp;&nbsp;&nbsp;**\`d\`**: 4
+              </p>
+            </details>
+          `,
+        }
+      ],
     },
     {
       section_id: "section_2_4",
-      title: "Lab Groups and Exercises",
+      title: "Procedural Abstraction",
       mk_description: dedent`
-        Lectures are followed up with labs, where you work with a small group of other students to explore and pratice the material further.
+        Turning now to our second, higher-level point, how can we use functions to implement effective procedural abstractions that make our code easier to write, understand, and maintain?
         
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/WnKxucMSYDs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/WVqOirVNBqI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
 
         Feedback from former students generally indicates that lab is sometimes where the "real" learning happens. We do the best we can in lecture, but often the hands-on experience in lab is what makes things click.
       `,
-      questions: [ ]
-    },
-    {
-      section_id: "section_2_7",
-      title: "Variables and References",
-      mk_description: dedent`
-        It's time to dive into our first course material! Let's take a look at the connections between the code we write and what the program does at runtime. In particular:
+      questions: [
+        {
+          question_id: "lec2_interface_vs_implementation",
+          title: "Exercise: Interface vs. Implementation",
+          points: 3,
+          mk_description: dedent`
+            Consider the following code. Trace through the code either manually or using the Lobster simulation and answer the questions below.
 
-        - How do variables correspond to data in memory?
-        - What is a reference, and how does it differ from a regular variable?
+            Categorize each of the following according to whether they are part of the interface or implementation (write "interface" or "implementation" in each box).
+          `,
+          response: {
+            kind: "fill_in_the_blank",
+            content: dedent`
+              _BLANK__________________ Function declaration in \`.h\` file
 
-        <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/mpAO5F1rrlw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <br />
-        <br />
-        <br />
-        
-        <table style="max-width: 700px; margin-left: auto; margin-right: auto;">
-          <tr>
-            <td>
-            Here's a quick exercise for you. Click the "Memory Diagram" button below and set it to "ON". Then, modify the code in <code>main</code> so that it generates a memory diagram like the one shown here, using variable and/or reference declarations as appropriate.
-            </td>
-            <td>
-              <img src="diagram.png" style="width: 300px;">
-            </td>
-          </tr>
-        </table>
-
-        <br />
-
-        <div style="text-align: center;">
-          <iframe class="lobster-iframe" style="height: 1000px;" src="test_exercise.html"></iframe>
-        </div>
-      `,
-      questions: [ ]
-    },
-    {
-      section_id: "section_2_8",
-      title: "Scope and Lifetimes",
-      mk_description: dedent`
-        Let's ask some more questions, which all turn out to be related!
-         - Why does the compiler have such strict rules on variable scope?
-         - How long does the data stored in a variable "hang around" at runtime?
-         - What is "memory junk" and where does it come from?
-         
-        <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/95KtAgkkHQU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <br />
-      `,
-      questions: [ ]
+              _BLANK__________________ Function definition in \`.cpp\` file
+              
+              _BLANK__________________ Code inside the function's curly braces
+              
+              _BLANK__________________ Which input values are valid or invalid for the function
+              
+              _BLANK__________________ Comments inside the function to clarify tricky lines of code
+              
+              _BLANK__________________ RME comment before the function declaration in \`.h\` file
+            `,
+            sample_solution: [
+              "interface",
+              "implementation",
+              "implementation",
+              "interface",
+              "implementation",
+              "interface",
+            ]
+          },
+          mk_postscript: dedent`
+            <details>
+              <summary>Sample solution...</summary>
+              <p><input type="text" value="interface" readonly</input> Function declaration in <code>.h</code> file</p>
+              <p><input type="text" value="implementation" readonly</input> Function definition in <code>.cpp</code> file</p>
+              <p><input type="text" value="implementation" readonly</input> Code inside the function's curly braces</p>
+              <p><input type="text" value="interface" readonly</input> Which input values are valid or invalid for the function</p>
+              <p><input type="text" value="implementation" readonly</input> Comments inside the function to clarify tricky lines of code</p>
+              <p><input type="text" value="interface" readonly</input> RME comment before the function declaration in <code>.h</code> file</p>
+            </details>
+          `,
+        }
+      ],
     },
     {
       section_id: "section_2_5",
-      title: "Projects and Autograder",
+      title: "Project 1 File Structure",
       mk_description: dedent`
-        You get to exercise the skills you learn in lecture and lab in five large-scale programming projects throughout the course, designed to solidify your understanding and give you a chance to build some neat applications with real-world appeal!
-        
+        The file structure in project 1 is a great example of implementing several different modules in our code and using procedural abstractions as the bridge between those modules.
+
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/CY21lS9FQtA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/a26xmgSPE6U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
       `,
@@ -215,39 +239,55 @@ export const LECTURE_02 = Exam.create({
     },
     {
       section_id: "section_2_6",
-      title: "Collaboration and Honor Code",
+      title: "RMEs for Interface Specification",
       mk_description: dedent`
-        We want you to learn with and from each other! Enjoying the class with others and having a network you can reach out to for help is highly encouraged. At the same time, we want to make sure everyone has an opportunity to learn for themselves and that nobody takes credit for someone else's work. We follow the UM CoE Honor Code.
-        
+        It's useful to adopt a common patten for comments that specify function interfaces. In EECS 280, we'll use RMEs:
+         - \`REQUIRES\` Are there restrictions on the allowed inputs to the function?
+         - \`MODIFIES\` Does the function change our program state when it is run?
+         - \`EFFECTS\` What does the function do? What (if any) result does it return?
+
+        <br />
+         
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/nxYgqqXjIhc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/pQKP0SucFgY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
-
-        Let's have a conversation about how all this applies in 280. Linked here is a form with examples of several different scenarios that students might run into - what are your thoughts? How do we evaluate them with dual goals of collaboration and academic integrity?
-
-        <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSdCuRr919prkQG1xPKevc62MRYihYp9v9zPciVKJTFqSKNgKg/viewform?usp=sf_link"><b>Honor Code Scenarios</b></a>
-        
-        After you fill out the form, you can see how others responded here:
-        
-        <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSdCuRr919prkQG1xPKevc62MRYihYp9v9zPciVKJTFqSKNgKg/viewanalytics"><b>Responses</b></a>
-
-        While we encourage students to use their best judgement about what might be "too much" help from someone else, we also don't want to scare you away from helping each other learn! Let me reassure you - the cases we routinely report to the honor council always involve clear, straightforward copying or plagiarism.
       `,
       questions: [ ]
     },
     {
-      section_id: "section_2_9",
-      title: "Wrapping Up",
+      section_id: "section_2_7",
+      title: "Testing",
       mk_description: dedent`
-        Just a few parting thoughts.
-         
+        Finally, let's take a bit of time to talk about testing. We need to make sure the code we write actually works.
+        
+        In particular, we'll look at **unit testing** as a strategy for making sure that the implementation we write for a function actually works according to the interface we've decided for it to have. We'll look at some examples and general strateiges for writing good tests. 
+        
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/TlsM1jxpKDQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/mpmqISAUacI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
       `,
-      questions: [ ]
+
+      // <div style="text-align: center;">
+      //   <iframe class="lobster-iframe" style="height: 625px;" src="assets/testing.html"></iframe>
+      // </div>
+      questions: [
+        {
+          question_id: "lec2_testing",
+          title: "Exercise: Testing",
+          points: 3,
+          mk_description: dedent`
+            TODO
+          `,
+          response: {
+            kind: "iframe",
+            src: "assets/main.html",
+            element_class: "lobster-iframe",
+            element_style: "height: 625px;",
+          },
+        }
+      ],
     },
   ],
 });

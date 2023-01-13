@@ -19480,7 +19480,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(3645);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".lobster-ex-file-name {\n    display: none;\n}\n\n.lobster-ex-init-code {\n    display: none;\n}\n\n.lobster-ex-project-name {\n    display: none;\n}\n\n.lobster-ex-complete-message {\n    display: none;\n}\n\n.lobster-checkpoint-complete-icon {\n    /* color: #1acf1a; */\n    font-size: large;\n    /* text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); */\n}\n\n.lobster-checkpoint-incomplete-icon {\n    /* color: #c75f5f; */\n    font-size: large;\n    /* text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); */\n}\n\n.lobster-checkpoint-thinking-icon {\n    display: inline-block;\n    /* color: #eee34f; */\n    font-size: large;\n    /* text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); */\n    animation: rotation 2s infinite linear;\n    padding-bottom: 0.12em; /* Makes rotation centered */\n}\n\n@keyframes rotation {\n    from {\n      transform: rotate(0deg);\n    }\n    to {\n      transform: rotate(359deg);\n    }\n}\n\n.lobster-checkpoint {\n    display: inline-block;\n    padding: 5px 10px;\n}", ""]);
+exports.push([module.id, ".lobster-ex-file-name {\n    display: none;\n}\n\n.lobster-ex-init-code {\n    display: none;\n}\n\n.lobster-ex-project-name {\n    display: none;\n}\n\n.lobster-ex-complete-message {\n    display: none;\n}\n\n.lobster-checkpoint-complete-icon {\n    /* color: #1acf1a; */\n    font-size: large;\n    /* text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); */\n}\n\n.lobster-checkpoint-incomplete-icon {\n    /* color: #c75f5f; */\n    font-size: large;\n    /* text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); */\n}\n\n.lobster-checkpoint-thinking-icon {\n    display: inline-block;\n    /* color: #eee34f; */\n    font-size: large;\n    /* text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); */\n    animation: rotation 2s infinite linear;\n    padding-bottom: 0.12em; /* Makes rotation centered */\n}\n\n@keyframes rotation {\n    from {\n      transform: rotate(0deg);\n    }\n    to {\n      transform: rotate(359deg);\n    }\n}\n\n.lobster-checkpoint {\n    display: inline-block;\n    padding: 5px 10px;\n}\n\n.lobster-embedded-height-control {\n    overflow: hidden;\n    height: calc(100vh - 200px);\n}\n\n.lobster-embedded-height-control.lobster-ex-no-checkpoints {\n    height: calc(100vh - 75px);\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -49963,6 +49963,7 @@ const Expression_1 = __webpack_require__(2776);
 const RuntimeExpression_1 = __webpack_require__(8355);
 const ExpressionOutlets_1 = __webpack_require__(8379);
 const expressions_1 = __webpack_require__(626);
+const ImplicitConversion_1 = __webpack_require__(6674);
 class InitializerListExpression extends Expression_1.Expression {
     constructor(context, ast, elements) {
         super(context, ast);
@@ -49979,10 +49980,13 @@ class InitializerListExpression extends Expression_1.Expression {
             return;
         }
         let eltType = elements[0].type;
-        if (!elements.every(arg => arg.type.sameType(eltType))) {
-            this.addNote(errors_1.CPPError.declaration.init.list_same_type(this));
-            this.attachAll(this.elements = elements);
-            return;
+        if (!elements.every(arg => arg.type.similarType(eltType))) {
+            // HACK - for differing types, just convert everything to double
+            eltType = types_1.Double.DOUBLE;
+            elements = elements.map(elt => elt.type.similarType(eltType) ? elt : (0, ImplicitConversion_1.standardConversion)(elt, eltType));
+            // this.addNote(CPPError.declaration.init.list_same_type(this));
+            // this.attachAll(this.elements = elements);
+            // return;
         }
         if (!eltType.isArithmeticType()) {
             this.addNote(errors_1.CPPError.declaration.init.list_arithmetic_type(this));
@@ -58310,7 +58314,43 @@ int main() {
             //     // return isEqual(elts, [])
             // })
         ]
+    },
+    "eecs280_lec2_ex_testing": {
+        starterCode: `#include <iostream>
+#include <vector>
+using namespace std;
+
+double sum(const vector<double> &v) {
+    int total = 0;
+    for(size_t i = 0; i < v.size(); ++i) {
+        total += v[i];
     }
+    return total;
+}
+
+void test_mean_basic() {
+  vector<double> data = {1, 2, 3};
+  double expected = 2;
+  double actual = mean(data);
+  assert(actual == expected);
+}
+
+int main() {
+  test_mean_basic();
+  test_mean_edge();
+  test_median_basic();
+  ...
+}`,
+        checkpoints: [
+            new checkpoints_1.StaticAnalysisCheckpoint("Add 3 more test cases (6 total)", (program) => {
+                let main = (0, analysis_1.findFirstConstruct)(program, predicates_1.Predicates.byFunctionName("main"));
+                if (!main) {
+                    return false;
+                }
+                return (0, analysis_1.findConstructs)(main, predicates_1.Predicates.byKind("magic_function_call_expression")).filter(call => call.functionName === "assert").length >= 6;
+            })
+        ]
+    },
 };
 
 
@@ -60085,7 +60125,19 @@ public:
         @vector::vector_int_elt;
     }
     
-    vector(initializer_list<${element_type}> elts) {
+    vector(initializer_list<int> elts) {
+        @vector::vector_initializer_list;
+    }
+    
+    vector(initializer_list<double> elts) {
+        @vector::vector_initializer_list;
+    }
+    
+    vector(initializer_list<char> elts) {
+        @vector::vector_initializer_list;
+    }
+    
+    vector(initializer_list<bool> elts) {
         @vector::vector_initializer_list;
     }
 
@@ -60236,7 +60288,12 @@ function allocateNewArray(rt, rec, newCapacity) {
         // size set in member initializer list
         let n_raw = n.rawValue;
         for (let i = 0; i < n_raw; ++i) {
-            arr.getArrayElemSubobject(i).writeValue(elems[i].getValue());
+            let list_elt_value = elems[i].getValue();
+            let dest_elt_type = arr.getArrayElemSubobject(i).type;
+            let newRawValue = dest_elt_type.similarType(types_1.Bool.BOOL)
+                ? (list_elt_value.rawValue === 0 ? 0 : 1)
+                : list_elt_value.rawValue;
+            arr.getArrayElemSubobject(i).writeValue(elems[i].getValue().clone(newRawValue));
         }
     }
 });
@@ -78106,8 +78163,8 @@ FileEditor.instances = [];
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.createRunestoneExerciseOutlet = void 0;
-function createRunestoneExerciseOutlet(id) {
+exports.createEmbeddedExerciseOutlet = void 0;
+function createEmbeddedExerciseOutlet(id) {
     return $(`
         <ul style="position: relative;" class="lobster-simulation-outlet-tabs nav nav-tabs">
             <li><a data-toggle="tab" href="#lobster-ex-${id}-compilation-pane">Compilation</a></li>
@@ -78116,7 +78173,7 @@ function createRunestoneExerciseOutlet(id) {
 
         </ul>
 
-        <div class="tab-content" style="height: calc(100vh - 200px); overflow: hidden;">
+        <div class="tab-content lobster-embedded-height-control">
             <div id="lobster-ex-${id}-compilation-pane" class="lobster-compilation-pane tab-pane fade" style="height: 100%; overflow-y: scroll;">
                 
             </div>
@@ -78213,7 +78270,7 @@ function createRunestoneExerciseOutlet(id) {
 
     `);
 }
-exports.createRunestoneExerciseOutlet = createRunestoneExerciseOutlet;
+exports.createEmbeddedExerciseOutlet = createEmbeddedExerciseOutlet;
 
 
 /***/ }),
@@ -80078,7 +80135,7 @@ $(() => {
     let exID = 1;
     $(".lobster-ex").each(function () {
         var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p;
-        $(this).append((0, embeddedExerciseOutlet_1.createRunestoneExerciseOutlet)("" + exID));
+        $(this).append((0, embeddedExerciseOutlet_1.createEmbeddedExerciseOutlet)("" + exID));
         let filename = (_b = (_a = $(this).find(".lobster-ex-file-name").html()) === null || _a === void 0 ? void 0 : _a.trim()) !== null && _b !== void 0 ? _b : "file.cpp";
         let exKey = (_f = (_d = (_c = $(this).find(".lobster-ex-key").html()) === null || _c === void 0 ? void 0 : _c.trim()) !== null && _d !== void 0 ? _d : (_e = $(this).find(".lobster-ex-project-name").html()) === null || _e === void 0 ? void 0 : _e.trim()) !== null && _f !== void 0 ? _f : "UnnamedProject";
         let exerciseSpec = (_g = (0, exercises_1.getExerciseSpecification)(exKey)) !== null && _g !== void 0 ? _g : exercises_1.DEFAULT_EXERCISE;
@@ -80092,7 +80149,19 @@ $(() => {
         }
         let project = new Project_1.Project(exKey, undefined, [{ name: filename, code: exerciseSpec.starterCode, isTranslationUnit: true }], new Project_1.Exercise(exerciseSpec));
         project.turnOnAutoCompile(500);
+        if (exerciseSpec.checkpoints.length === 0) {
+            $(this).find(".lobster-embedded-height-control").addClass("lobster-ex-no-checkpoints");
+        }
         let exOutlet = new SimpleExerciseLobsterOutlet_1.SimpleExerciseLobsterOutlet($(this), project);
+        // setInterval(() => {
+        //   try {
+        //     if ((<any>window).updateIframeCode) {
+        //       (<any>window).updateIframeCode(exOutlet.project.sourceFiles[0].text);
+        //     }
+        //   }
+        //   catch(e) {
+        //   }
+        // }, 1000);
         ++exID;
     });
 });
