@@ -15,7 +15,7 @@ export const LECTURE_04 = Exam.create({
   mk_intructions: dedent`
     
     <div markdown=1 class="alert alert-info">
-      The official course title for EECS 280 is *"Programming and Introductory Data Structures"*. The second half of this, **data structures**, is the study of how to represent containers or sequences of data in your programs in a way that makes the data easily (for you) and efficiently (for the computer) accessible.
+      The official course title for EECS 280 is *"Programming and Introductory Data Structures"*. The second half of this, **data structures**, is the study of how to represent containers or sequences of data in a way that makes the data easily (for you) and efficiently (for the computer) accessible.
       
       There are many different standard data structures, each well-suited for different kinds of tasks. We'll take a look at several throughout the course, realized via C++ implementations. The same sorts of data structures are applicable in most any programming language and thinking through which data structures to use for a particular problem is one of the fundamentals of good programming.
 
