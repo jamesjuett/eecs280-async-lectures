@@ -120,7 +120,7 @@ int main() {
           },
           mk_postscript: dedent`
             <hr />
-            You're welcome to check your answers with this **walkthrough** video:
+            You're welcome to check your solution with this **walkthrough** video:
 
             <div style="text-align: center;">
               <iframe class="lec-video" src="https://www.youtube.com/embed/1isxB18kdlY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -166,9 +166,11 @@ int main() {
           response: {
             kind: "fill_in_the_blank",
             content: dedent`
-               \`x\` _BLANK____ &nbsp;&nbsp;&nbsp;&nbsp;  \`ptr\` _BLANK____ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  \`&x\` _BLANK____ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  \`*&x\` _BLANK____ &nbsp;&nbsp;&nbsp;
+              What values are printed for each of the expressions sent to \`cout\` at the end of the program?
 
-               \`y\` _BLANK____ &nbsp;&nbsp;&nbsp;  \`*ptr\` _BLANK____ &nbsp;&nbsp;&nbsp;  \`&ptr\` _BLANK____ &nbsp;&nbsp;&nbsp;  \`&*ptr\` _BLANK____ &nbsp;&nbsp;&nbsp;
+              \`x\` _BLANK____ &nbsp;&nbsp;&nbsp;&nbsp;  \`ptr\` _BLANK____ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  \`&x\` _BLANK____ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  \`*&x\` _BLANK____ &nbsp;&nbsp;&nbsp;
+
+              \`y\` _BLANK____ &nbsp;&nbsp;&nbsp;  \`*ptr\` _BLANK____ &nbsp;&nbsp;&nbsp;  \`&ptr\` _BLANK____ &nbsp;&nbsp;&nbsp;  \`&*ptr\` _BLANK____ &nbsp;&nbsp;&nbsp;
             `,
             sample_solution: [
               "3",
@@ -370,7 +372,7 @@ int main() {
           },
           mk_postscript: dedent`
             <hr />
-            You're welcome to check your answers with this **walkthrough** video:
+            You're welcome to check your solution with this **walkthrough** video:
 
             <div style="text-align: center;">
               <iframe class="lec-video" src="https://www.youtube.com/embed/3PDShlC7wr4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
