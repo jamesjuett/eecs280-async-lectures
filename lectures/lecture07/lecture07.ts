@@ -49,7 +49,7 @@ export const LECTURE_07 = Exam.create({
   sections: [
     {
       section_id: "section_7_1",
-      title: "C-Style Strings",
+      title: "Introduction to ADTs in C",
       mk_description: dedent`
         Structs form the foundation of ADTs in C, acting as a **data representation** that allows us to model heterogeneous real-world objects. What makes a full ADT is the introduction of associated **behaviors** (i.e. functions) as well as plain **data**. We implement these behaviors as associated functions, which operate on an ADT struct via a pointer parameter.
 
@@ -62,8 +62,8 @@ export const LECTURE_07 = Exam.create({
       `,
       questions: [
         {
-          question_id: "lec5_person_birthday",
-          title: "Exercise: Functions and \`struct\`s",
+          question_id: "lec7_triangle_scale",
+          title: "Exercise: `Triangle_scale()`",
           points: 3,
           mk_description: dedent`
             Let's say we want to add a function to scale a triangle by a given factor. Here's an example:
@@ -266,6 +266,7 @@ void Triangle_scale(Triangle tri, double s) {
                 tri->b *= s;
                 tri->c *= s;
               }
+              \`\`\`
 
               \`\`\`cpp
               // Implementation #5
@@ -285,231 +286,245 @@ void Triangle_scale(Triangle tri, double s) {
     },
     {
       section_id: "section_7_2",
-      title: "Processing C-style Strings",
+      title: "ADT Initialization and Representation Invariants",
       mk_description: dedent`
-        For almost any operation we would like to perform on a cstring, the basic idea is that we set up a traversal by pointer loop that iterates until it happens upon the null character. As the pointer walks through the string, we perform whatever data processing or modifications we need by dereferencing the pointer to work with individual characters.
+        An essential component of proper ADT design is the use of **representation invariants** to express conditions that differentiate valid data (e.g. a Triangle with sides 3, 4, and 5) from invalid, nonsense values (e.g. one of the side lengths is -10).
 
-        It's generally a good idea to wrap up this kind of work in a function that can be reused wherever we need it. Let's take a look at how this plays out in code with a few examples.
-        
         <div style="text-align: center;">
           <iframe class="lec-video" src="https://www.youtube.com/embed/lhoW6iwCl9M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
+
+        There are two main perspectives on representation invariants when you're implementing code:
+        1. There's a responsibility to ensure the invariants are followed and aren't broken by bad code (e.g. don't allow creating an invalid \`Triangle\` with negative side lengths).
+        2. You may assume the invariants are true when implementing ADT functions, kind of like an implicit \`REQUIRES\` clause (e.g. when implementing \`Triangle_scale()\` we don't need to worry about "what if the sides are negative??").
+
+        \\#1 is a bit of extra work we put in so that we can rely on \\#2.
       `,
       questions: [
         {
-          question_id: "lec7_strcpy",
-          title: "Exercise: \`strcpy()\`",
+          question_id: "lec7_matrix_image_representation_invariants",
+          title: "Exercise: `Matrix`/`Image` Representation Invariants",
           points: 3,
-          mk_description: dedent`
-            Write the function \`strcpy()\` described at the end of the video above.
-          `,
+          mk_description: "",
           response: {
-            kind: "iframe",
-            src: "assets/strcpy.html",
-            element_class: "lobster-iframe",
-            element_style: "height: 825px;",
+            kind: "fill_in_the_blank",
+            content: dedent`
+              Brainstorm three representation invariants for the Matrix ADT from project 2. (At least one of these should involve the data array.)
+
+              **Data Representation**
+
+              \`\`\`cpp
+              const int MAX_MATRIX_WIDTH = 500;
+              const int MAX_MATRIX_HEIGHT = 500;
+              
+              struct Matrix{
+                int width;
+                int height;
+                int data[MAX_MATRIX_WIDTH * MAX_MATRIX_HEIGHT];
+              };
+              \`\`\`
+              
+              **Representation Invariants**
+              [[BOX
+              
+              
+              
+              
+              ]]
+
+              Additionally, brainstorm three representation invariants for the Image ADT from project 2. (At least one of these should involve the channel members.)
+
+              **Data Representation**
+
+              \`\`\`cpp
+              const int MAX_INTENSITY = 255;
+
+              struct Image {
+                int width;
+                int height;
+                Matrix red_channel;
+                Matrix green_channel;
+                Matrix blue_channel;
+              }
+              \`\`\`
+              
+              **Representation Invariants**
+              [[BOX
+              
+              
+              
+              
+              ]]
+            `,
           },
           mk_postscript: dedent`
             <hr />
-            You're welcome to check your solution with this **walkthrough** video:
+            Generally, question walkthrough videos are optional - but **I recommend watching this one in particular** since since the solution is used to introduce some partially new concepts/examples that we'll build on later in the couse.
 
             <div style="text-align: center;">
-              <iframe class="lec-video" src="https://www.youtube.com/embed/KOS5Oe2FvO0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe class="lec-video" src="https://www.youtube.com/embed/Wl4e6fAJs-U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <br />
-          `,
+          `
         }
       ],
     },
     {
       section_id: "section_7_3",
-      title: "C-Style Strings vs. C++ \`string\`",
+      title: "Interfaces and Implementations",
       mk_description: dedent`
-        Because cstrings are just built on fundamental types like arrays, \`char\`, and pointers, you don't need to include any libraries to use them. However, many common operations for cstrings are available as functions in the \`<cstring>\` Library, which you can \`#include\` at the top of your files if you need them. You can find documentation for these in a number of places, but online resources like [http://www.cplusplus.com/reference/cstring/](http://www.cplusplus.com/reference/cstring/>) are generally a good place to start.
 
-        You may have worked with the C++ \`string\` type in your intro programming course or other previous experience. If not, or if you're primarily familiar with strings from a different language, we encourage you to check out one of several tutorials or documentation resources available online. (If you didn't take one of the intro courses here at UM, please also feel free to reach out and I can connect you with the material on \`string\` from one of those courses.)
+      Just a few high level comments on the relationship between interfaces and implementations in ADT design...
 
-        In general, you should prefer to use C++ \`string\` where you can. It's an easier datatype to work with than a cstring and supports intuitive string operators like \`==\`, \`<\`, \`+\`, \`=\`, etc. Basically it works well and doesn't have some of the unpredictable quirks. (Contrast this to the fact that by its nature as an array of characters, cstring variables won't work with any of the operators just mentioned.)
-        
-        Why are we learning about cstrings if they're so...un-useful?
-        
-        - Sometimes you need to use them, for example, command-line arguments (see below) rely on cstrings.
-        - It's an interesting look into a low-level representation of a string, very much similar to the way a C++ \`string\` is actually implemented internally.
-        - The notion of a sentinel-terminated sequence generalizes and will show up elsewhere.
-        - More practice with pointers! Yay. :)
+      <div style="text-align: center;">
+        <iframe class="lec-video" src="https://www.youtube.com/embed/GSjBT7UusRU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <br />
       `,
       questions: [],
     },
     {
       section_id: "section_7_4",
-      title: "Input and Output Streams",
+      title: "Composing ADTs",
       mk_description: dedent`
         
-        **Streams** are the fundamental mechanism for text-based I/O (input/output) in C++, whether it's printing messages and taking input from the user via the terminal, reading and writing to files, or a number of other applications.
+        We can build more complex ADTs that contain other ADTs. Let's look at a few examples...
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/CLW-DIZ5AOw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/WO91KyakW-I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
-
-        For reference, here is the final example from the video:
-
-        \`\`\`cpp
-        #include <iostream>
-        #include <string>
-        #include <fstream>
-        
-        using namespace std;
-        
-        int main() {
-        
-          string inName = "in.txt";
-          string outName = "out.txt";
-        
-          cout << "Copying from " << inName << " to " << outName << endl;
-        
-          string wordToRemove;
-          cout << "What word would you like to remove? ";
-          cin >> wordToRemove;
-        
-          ifstream fin(inName);
-          ofstream fout(outName);
-          if ( !fin.is_open() ) {
-            cout << "Unable to open " << inName << endl;
-            return 1;
-          }
-          
-          if ( !fout.is_open() ) {
-            cout << "Unable to open " << outName << endl;
-            return 1;
-          }
-        
-          string word;
-          while (fin >> word) {
-            if (word != wordToRemove) { fout << word << " "; }
-            else { fout << "*****" << " "; }
-          }
-        
-          fin.close();
-          fout.close();
-        }
-        \`\`\`
-
-        Here's another example, which also showcases the \`stoi()\` function, which converts from a \`string\` to the \`int\` value that it represents. In this case, we want to read a sequence of numbers from the user via \`cin\` and add them together. The user may enter as many numbers as they like and then types \`"done"\` to indicate they are finished. Because we need to accommodate both numbers and a string, we use the most general type - \`string\` and then convert to an \`int\` where appropriate using \`stoi\`.
-
-        \`\`\`cpp
-        #include <iostream>
-        #include <string>
-        
-        using namespace std;
-        
-        int main() {
-          int sum = 0;
-          string word;
-          while (cin >> word && word != "done") {
-            sum += stoi(word);
-          }
-          cout << "sum is " << sum << endl;
-        }
-        \`\`\`
       `,
       
       questions: [],
     },
     {
       section_id: "section_7_5",
-      title: "Command Line Arguments",
+      title: "Unit Testing ADTs",
       mk_description: dedent`
-        One last place we might like to take in input - when the program is originally launched from the terminal. For example, if we're running the "redact" program from the previous section, perhaps we'd like to specify the word to redact, the input/output files, and the number of "*****" to use as extra arguments we first run the program:
+        Of course, just as we write unit tests for functions (which are the realization of procedural abstractions in our code), we should also write tests for ADTs to ensure that the behavior of their implementation matches with their specified interface.
 
-        \`\`\`console
-        ./redact bee in.txt out.txt 10
-        \`\`\`
-
-        Let's take a look at how this works in C++:
+        Let's take a look at this with some examples for testing the \`Matrix\` ADT, including some specifics for testing C-Style ADTs without breaking their interface.
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/mXJA13Go9qk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/pUla-V9vLGw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
-
-        To get an argument out of \`argv\`, you generally just use indexing, e.g. \`argv[x]\` where \`x\` is the index of the argument you want. Remember that the argument at index \`0\` is just the name of the executable, so your "real" arguments will start indexed at \`1\`.
-
-        Once you have an argument, there are three things you might want to do with it:
-
-        1. \`string wordToRemove = argv[1];\`  
-           Immediately convert it to a C++ string (e.g. by storing in a \`string\` variable). C++ strings are MUCH easier to work with and support convenient operators like \`==\`.  
-           
-        2. \`ifstream fin(argv[2]);\`  
-           \`ofstream fout(argv[3]);\`  
-           Use it directly somewhere that a cstring is readily accepted. For example, an \`ifstream\` or \`ofstream\` can be constructed from a cstring with the name of an input/output file.  
-
-        3. \`int redactLength = atoi(argv[4]);\`  
-           For arguments you want to interpret as a number (rather than a "string of digits"), convert it to an \`int\` using \`atoi()\` or to a \`double\` using \`atof()\`. (Or, if you already converted to a C++ \`string\`, use \`stoi()\` or \`stod()\`.)  
-
-        If you like, you can always start with option #1. It's almost never a bad idea to go ahead and switch over to a C++ \`string\` where you can.
-
-        Again, for reference, here's the final code for the "redact" example, modified to use command line arguments as shown in the video.
-
-        \`\`\`cpp
-        #include <iostream>
-        #include <string>
-        #include <fstream>
-        
-        using namespace std;
-        
-        int main(int argc, char *argv[]) {
-        
-          // Usage message shown if the user runs with incorrect command line args
-          if (argc != 5) {
-            cout << "Usage: redact WORD INFILE OUTFILE NUM_STARS" << endl;
-            return 1;
-          }
-        
-          string inName = argv[2];
-          string outName = argv[3];
-        
-          cout << "Copying from " << inName << " to " << outName << endl;
-        
-          string wordToRemove = argv[1];
-          int numStars = atoi(argv[4]); // to double - atof()
-          string replacement(numStars, '*'); // e.g. numStars is 3, makes ***
-        
-          ifstream fin(inName);
-          ofstream fout(outName);
-          if ( !fin.is_open() ) {
-            cout << "Unable to open " << inName << endl;
-            return 1;
-          }
-          
-          if ( !fout.is_open() ) {
-            cout << "Unable to open " << outName << endl;
-            return 1;
-          }
-        
-          string word;
-          while (fin >> word) {
-            if (word != wordToRemove) { fout << word << " "; }
-            else { fout << replacement << " "; }
-          }
-        
-          fin.close();
-          fout.close();
-        }
-        
-        \`\`\`
       `,
       questions: [],
     },
     {
       section_id: "section_7_6",
-      title: "The Structure of \`argv\`",
+      title: "Testing with `stringstream`s",
       mk_description: dedent`
-        Finally, let's talk about the way \`argv\` is structured in memory, which is an interesting (and somewhat complex) combination of many of the different types we've seen so far.
+        If you're writing a function that performs input/output, how can you write automated unit tests?
+        
+        For example - if the function is supposed to take some input from the user, it's not like you can have someone sit there and type in the input every time you run your tests. Or, if the function writes output to a file, do you need to open up the file and read it back in to make sure the output was successful? That seems a bit excessive.
+
+        Generally, the C++ approach to testing functions like these is to use \`stringstream\`s, which are special stream objects that can essentially "fake" input/output operations:
+        - **Input**: Instead of reading from \`cin\` or a file-based \`ifstream\`, we pass the function an \`istringstream\` that has been pre-loaded with a string containing the planned input for testing.
+        - **Output**: Instead of writing output to \`cout\` or to a file-based \`ofstream\`, we ask the function to write to an \`ostringstream\` that stores the output as a string that we can check in the rest of our testing code.
+
+        The video below covers some preliminary information on streams in general and then walks through a few examples of using \`stringstream\`s for testing.
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/fRfxPaOX7b4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/7EBHrVxDe0w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
+      `,
+      questions: [
+        {
+          question_id: "lec7_triangle_print_stringstream",
+          title: "Exercise: Testing a `Triangle_print()` Function",
+          points: 3,
+          mk_description: dedent`
+            Let's add a \`Triangle_print\` function for the \`Triangle\` ADT.
+
+            \`\`\`cpp
+            struct Triangle {
+              double a;
+              double b;
+              double c;
+            };
+            
+            void Triangle_print(const Triangle * tri, ostream &os) {
+              os << "Triangle:" << endl;
+              os << " side a: " << tri->a << endl;
+              os << " side b: " << tri->b << endl;
+              os << " side c: " << tri->c << endl;
+            }
+            \`\`\`
+            
+            For example, for a triangle with side lengths of 3, 4, and 5, the function would print:
+            
+            \`\`\`text
+            Triangle:
+             side a: 3
+             side b: 4
+             side c: 5
+            \`\`\`
+
+            Write a test for \`Triangle_print()\` that creates a \`Triangle\` with side lengths 3, 4, and 5 and uses a \`ostringstream\` to verify the output produced by a call to \`Triangle_print()\` is exactly the same as the example output shown above.
+          `,
+          response: {
+            kind: "code_editor",
+            codemirror_mime_type: "text/x-c++src",
+            code_language: "cpp",
+            header: dedent`
+              #include <sstream>
+
+              TEST(test_triangle_print_basic) {
+            `,
+            footer: dedent`
+              }
+
+              TEST_MAIN()
+            `,
+            starter: "",
+            sample_solution: dedent`
+              #include <sstream>
+
+              TEST(test_triangle_print_basic) {
+
+                Triangle t;
+                Triangle_init(&t, 3, 4, 5);
+
+                string expected = "Triangle:\n side a: 3\n side b: 4\n side c: 5\n";
+
+                ostringstream oss;
+                Triangle_print(&t, oss);
+                ASSERT_EQUAL(oss.str(), expected);
+
+              }
+
+              TEST_MAIN()
+            `
+          },
+          mk_postscript: dedent`
+            <hr />
+            You're welcome to check your solution with this **walkthrough** video:
+
+            <div style="text-align: center;">
+              <iframe class="lec-video" src="https://www.youtube.com/embed/uyGsgTXdosw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <br />
+          `
+        }
+      ],
+    },
+    {
+      section_id: "section_7_7",
+      title: "Test-Driven Development",
+      mk_description: dedent`
+        This section is optional - it includes an extended example of test-driven development for a complex C-Style ADT, but doesn't introduce any new material.
+
+        You might consider watching this video if you:
+        - Get really excited about testing code and just love it so much.
+        - Don't think testing code is important. Then maybe you need to watch it :).
+
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/KmuSmyR-3Bk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
       `,
