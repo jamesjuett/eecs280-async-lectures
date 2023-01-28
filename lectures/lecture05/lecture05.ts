@@ -207,11 +207,11 @@ export const LECTURE_05 = Exam.create({
         - We can define a new compound object _type_ via a **struct definition** (e.g. \`Person\`).
         - The \`struct\` definition contains **member variable declarations**. (e.g. what components does a \`Person\` have?)
         - We define objects as **instances** of that type and use them in the program.
-        - Individual members are accessed via the \`.\` operator (also called the "member access operator").
+        - Individual members are accessed via the \`.\` operator (also called the "**member access operator**").
 
-        If you've got a \`struct\` object that is const-qualified, that forbids assignment to the struct as a whole and also forbids assignment to its individual members. That fits with the idea of \`const\` as "this shouldn't change".
+        If you've got **a \`struct\` object that is const-qualified**, that forbids assignment to the struct as a whole and also forbids assignment to its individual members. That fits with the idea of \`const\` as "this shouldn't change".
 
-        Finally, we can work with structs via pointers. If you're doing that, the syntax for member access changes. For example, assume \`obj\` is a \`Person\` object and \`ptr\` is a \`Person*\` pointer that points to that object. Then you would access the person's age as either:
+        Finally, we can **work with structs via pointers**. If you're doing that, the syntax for member access changes. For example, assume \`obj\` is a \`Person\` object and \`ptr\` is a \`Person*\` pointer that points to that object. Then you would access the person's age as either:
         - \`obj.age\`
         - \`ptr->age\`
 
@@ -252,7 +252,7 @@ export const LECTURE_05 = Exam.create({
               };
 
               int main() {
-                // Task 2.1: Define and initialize a Sandwich variable as described below:
+                // Task 2: Define and initialize a Sandwich variable as described below:
                 // - You may name the variable whatever you like.
                 // - The variable should be declared as const.
                 // - Use the "= {}" notation to give each member a value.
@@ -272,33 +272,28 @@ export const LECTURE_05 = Exam.create({
     },
     {
       section_id: "section_5_4",
-      title: "Traversal by Pointer",
+      title: "Functions and \`struct\`s",
       mk_description: dedent`
-        There are two fundamental ways to approach sequential access of the elements in an array using a loop, which we might also call "traversal" or "iteration" through the array's elements:
-
-        - **Traversal by Index**: Start an index variable (e.g. \`i\`) at \`0\`, increase it by 1 on each iteration of the loop, and plug \`i\` into an indexing operation to find each element of the array.
-        - **Traversal by Pointer**: Start a pointer (e.g. \`ptr\`) at the beginning of an array, move it forward one space in memory on each iteration, and dereference it along the way to visit each element of the array.
+        We'll want to package up complex operations on \`struct\`s into functions to form abstractions. Let's take a look...
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/NtnOo1MNoCE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/GNupNtyHiBA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
         
-        Neither traversal by pointer nor traversal by index is fundamentally better or more efficient for arrays. You might hear someone say that traversal by index is slower, but this is generally not true given that modern compilers can optimize both approaches into the same machine code. You should use the one that feels more natural to you or that matches the generally accepted pattern for the code you're writing. In most cases, that's probably traversal by index.
-
-        However, we're taking a look at traversal by pointer now because:
-
-        1. It's another interesting thing you can do with pointers.
-        2. It is customarily used in certain contexts, like with C-style strings, which we'll look at in a future lecture.
-        3. It's conceptually similar to traversal by *iterator*, which we'll learn about later on in the course.
+        This is a good time to review the general best practices for parameter passing:
+        - If you need to modify the original object, use **pass-by-pointer** or **pass-by-reference**.
+        - If you don't modify the original object, use **pass-by-pointer-to-const** or **pass-by-reference-to-const**. This protects against accidental modification but more importantly also ensures your function can actually be called on const objects.
+        - Only use **pass-by-value** for fundamental objects (e.g. \`int\`, \`double\`, etc.) or very small compound objects. If the objects are large (e.g. \`string\`, \`vector\`, your own custom \`struct\`s, etc.), pass-by-value makes an expensive and unnecessary copy.
       `,
+      
       questions: [
         {
-          question_id: "lec5_traversal_by_pointer",
-          title: "Exercise: Traversal By Pointer",
+          question_id: "lec5_person_birthday",
+          title: "Exercise: Functions and \`struct\`s",
           points: 3,
           mk_description: dedent`
-            Which of the following code snippets correctly implement traversal by pointer? For each, indicate whether it is correct or has a bug. If it has a bug, describe what's wrong. Is it a compile error or a runtime error? How would you fix it?
+            Each of the following implementations of \`Person_birthday()\` has a problem - some will not compile while others will run but ultimately not work as expected. Describe what the problem is and one way to fix it.
           `,
           response: {
             kind: "fill_in_the_blank",
@@ -309,10 +304,9 @@ export const LECTURE_05 = Exam.create({
     <div markdown="1">
       
 \`\`\`cpp
-int arr[5] = {1,2,3,4,5};
-
-for(int *ptr = 0; ptr < 5; ++ptr) {
-  cout << *ptr << endl;
+// Version 1
+void Person_birthday(const Person *p) {
+  ++p->age;
 }
 \`\`\`
     </div>
@@ -333,10 +327,9 @@ for(int *ptr = 0; ptr < 5; ++ptr) {
     <div markdown="1">
       
 \`\`\`cpp
-int arr[5] = {1,2,3,4,5};
-
-for(int *ptr = arr; ptr < arr + 5; ++ptr) {
-  cout << ptr << endl;
+// Version 2
+void Person_birthday(Person p) {
+  ++p.age;
 }
 \`\`\`
     </div>
@@ -357,10 +350,33 @@ for(int *ptr = arr; ptr < arr + 5; ++ptr) {
     <div markdown="1">
       
 \`\`\`cpp
-int arr[5] = {1,2,3,4,5};
-
-for(int *ptr = arr; ptr < ptr + 5; ++ptr) {
-  cout << *ptr << endl;
+// Version 3
+void Person_birthday(Person *p) {
+  *(p.age)++;
+}
+\`\`\`
+    </div>
+    </td>
+    <td>
+    <div>
+      [[BOX
+      
+      
+      
+      
+      ]]
+    </div>
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="width: 350px; padding-right: 15px;">
+    <div markdown="1">
+      
+\`\`\`cpp
+// Version 4
+void Person_birthday(Person &p) {
+  ++p->age;
 }
 \`\`\`
     </div>
@@ -381,60 +397,65 @@ for(int *ptr = arr; ptr < ptr + 5; ++ptr) {
           },
           mk_postscript: dedent`
             <hr />
-            Surprise! Each of the code snippets above contains at least one mistake. If you didn't find this, double check the ones you marked as correct, or take a look this **walkthrough** video:
+            <details>
+              <summary>Sample solution...</summary>
+              
+              \`\`\`cpp
+              // Version 1
+              // There shouldn't be a const in the parameter,
+              // since this function IS intended to change
+              // the Person it's called on.
+              void Person_birthday(const Person *p) {
+                ++p->age;
+              }
+              \`\`\`
 
-            <div style="text-align: center;">
-              <iframe class="lec-video" src="https://www.youtube.com/embed/PEgsl2a30Sc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <br />
+              \`\`\`cpp
+              // Version 2
+              // The pass-by-value parameter should be pass-by-reference,
+              // otherwise, we can't adjust the original Person's age.
+              void Person_birthday(Person p) {
+                ++p.age;
+              }
+              \`\`\`
+
+              \`\`\`cpp
+              // Version 3
+              // The parentheses here are misplaced. They need to be
+              // placed as (*p).age++, otherwise the compiler attempts
+              // to do the ++ before the *, which won't work.
+              void Person_birthday(Person *p) {
+                *(p.age)++;
+              }
+              \`\`\`
+
+              \`\`\`cpp
+              // Version 4
+              // The -> operator can be used as a convenient shorthand
+              // for member variable access through a pointer, but not
+              // through a reference. For a reference, just use the .
+              // operator directly like: ++p.age
+              void Person_birthday(Person &p) {
+                ++p->age;
+              }
+              \`\`\`
+            </details>
           `
         }
       ],
     },
     {
       section_id: "section_5_5",
-      title: "Array Parameters and Functions",
+      title: "Composing Data Types",
       mk_description: dedent`
-        When working with arrays, it's often helpful to write helper functions that process the arrays in some way, perhaps using a loop to iterate through each element and perform some operation.
-
-        An example of this would be a function that prints out an array...
+        Finally, let's take a quick look at the way we can compose more complex data types from each of the different kinds of objects we've seen.
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/esTbqG1K24U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/UalcvZP9gB4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
-        
-        Two big takeaways here:
-
-        1. The compiler turns array parameters into pass-by-pointer behind the scenes. That gives us a pointer we can use to access the original array. This is similar to pass-by-reference, but technically different.
-
-        2. Because of this, the only thing passed into an array function is a pointer to the first element. That means we have to pass the size of the original array as a separate parameter.
       `,
-      questions: [
-        {
-          question_id: "lec5_maxValue",
-          title: "Exercise: Pass-by-Pointer",
-          points: 3,
-          mk_description: dedent`
-            Write a function called \`maxValue\` that uses **traversal-by-pointer** to find the value of the maximum element in an array.
-          `,
-          response: {
-            kind: "iframe",
-            src: "assets/maxValue.html",
-            element_class: "lobster-iframe",
-            element_style: "height: 825px;",
-          },
-          mk_postscript: dedent`
-            <hr />
-            You're welcome to check your solution with this **walkthrough** video:
-
-            <div style="text-align: center;">
-              <iframe class="lec-video" src="https://www.youtube.com/embed/lJ7cLJwddYI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <br />
-          `,
-        }
-      ],
+      questions: [],
     },
   ],
 });
