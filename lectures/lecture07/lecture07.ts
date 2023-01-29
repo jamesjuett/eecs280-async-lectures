@@ -517,7 +517,7 @@ void Triangle_scale(Triangle tri, double s) {
       section_id: "section_7_7",
       title: "Test-Driven Development",
       mk_description: dedent`
-        This section is optional - it includes an extended example of test-driven development for a complex C-Style ADT, but doesn't introduce any new material.
+        This section is optional - it includes an extended example of test-driven development for a complex C-Style ADT, but it doesn't introduce any new material.
 
         You might consider watching this video if you:
         - Get really excited about testing code and just love it so much.
