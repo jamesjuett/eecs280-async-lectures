@@ -3,7 +3,7 @@ import { ExamGenerator } from "examma-ray/dist/ExamGenerator";
 import { readFileSync } from "fs";
 import dedent from "ts-dedent";
 
-import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE } from "../../common/messages";
+import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_MESSAGE } from "../../common/messages";
 
 
 
@@ -35,7 +35,7 @@ export const LECTURE_05 = Exam.create({
 
     </style>
   `,
-  mk_questions_message: "",
+  mk_questions_message: MK_QUESTIONS_MESSAGE,
   mk_bottom_message: MK_BOTTOM_MESSAGE,
   mk_download_message: MK_DOWNLOAD_MESSAGE,
   mk_saver_message: MK_SAVER_MESSAGE,

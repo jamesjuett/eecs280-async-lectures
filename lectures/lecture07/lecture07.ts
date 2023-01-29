@@ -3,7 +3,7 @@ import { ExamGenerator } from "examma-ray/dist/ExamGenerator";
 import { readFileSync } from "fs";
 import dedent from "ts-dedent";
 
-import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE } from "../../common/messages";
+import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_MESSAGE } from "../../common/messages";
 
 
 
@@ -15,15 +15,15 @@ export const LECTURE_07 = Exam.create({
   mk_intructions: dedent`
     
     <div markdown=1 class="alert alert-info">
-      As we start to work with larger, more complex programs, we'll leverage abstraction to help manage that complexity. We've already discussed *procedural abstraction*, i.e. using functions to break down the flow of our program into manageable sub-tasks.
+      As we start to work with larger, more complex programs, abstraction helps manage that complexity. We've already discussed *procedural abstraction*, i.e. using functions to break down the flow of our program into manageable sub-tasks.
       
       Today, we'll begin a series of lectures that cover **Abstract Data Types (ADTs)**, which serve as a combined abstraction for data and the functions that operate on that data.
 
-      Specifically, we'll define some conventions for ADTs as they could be implemented in the C language (which is both the precursor to C++ and also a language that still sees use in lower-level systems development to this day). We're starting here for a few reasons:
+      Specifically, we'll define some conventions for ADTs as they could be implemented in the C language (which is both the precursor to C++ and also a contemporary language that used in lower-level systems development to this day). We're starting here for a few reasons:
       
-      - The C style will expose more plainly some of the basic fundamentals of ADTs
+      - The C style will expose more plainly some of the basic fundamentals of ADTs.
       - More practice with pointers! (spoiler alert, we'll be using pointers)
-      - Additional language features we'll see for C++ style ADTs will naturally build on the conventions we define first in the C style
+      - Additional language features we'll see for C++ style ADTs will naturally build on the conventions we define first in the C style.
     </div>
     <style>
       .lec-video {
@@ -41,7 +41,7 @@ export const LECTURE_07 = Exam.create({
 
     </style>
   `,
-  mk_questions_message: "",
+  mk_questions_message: MK_QUESTIONS_MESSAGE,
   mk_bottom_message: MK_BOTTOM_MESSAGE,
   mk_download_message: MK_DOWNLOAD_MESSAGE,
   mk_saver_message: MK_SAVER_MESSAGE,
