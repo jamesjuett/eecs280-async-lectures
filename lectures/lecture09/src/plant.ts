@@ -92,28 +92,51 @@ $(() => {
     let exerciseSpec = <ExerciseSpecification>{
       starterCode: dedent`
         #include <iostream>
+        #include <string>
         using namespace std;
 
-        // REQUIRES: src NULL-terminated C-string
-        //           dest is big enough to hold a copy of src
-        // MODIFIES: dest
-        // EFFECTS:  place a copy of src in dest
-        void strcpy(char *dst, const char *src){
-          
-          // WRITE YOUR CODE HERE
-          
-        }
+        class Plant {
+        private:
+          int height;
+
+        public:
+          Plant(int height_in)
+           : height(height_in) { }
+
+          void print() const {
+            cout << "h=" << height << endl;
+          }
+
+          void grow(int growth) {
+            height += growth;
+          }
+        };
+
+        // Define the Flower class here
+        class Flower : public Plant {
+        private:
+          int num_blooms;
+
+        public:
+          Flower(int height_in)
+           : Plant(height_in), num_blooms(0) { }
+
+          void print() const {
+            cout << "h=" << height << endl;
+            cout << "blooms=" << num_blooms << endl;
+          }
+
+          void bloom() {
+            num_blooms += 1;
+          }
+        };
 
         int main(){
-          char word1[5] = "frog";
-          char word2[7] = "lizard";
-          strcpy(word2, word1); // copy "frog" from word1 to word2
-          
-          cout << word1 << endl;
-          cout << word2 << endl;
-          // Checkpoint verifies the correct output:
-          //   frog
-          //   frog
+          Flower f(5);
+          f.print();
+          f.grow(2);
+          f.bloom();
+          f.print();
         }
       `,
       checkpoints: [

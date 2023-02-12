@@ -1,7 +1,7 @@
 import { decode } from "he";
 
 import { createEmbeddedExerciseOutlet } from "lobster-vis/dist/js/view/embeddedExerciseOutlet"
-import { COMPLETION_LAST_CHECKPOINT, Exercise, Project } from "lobster-vis/dist/js/core/Project";
+import { COMPLETION_ALL_CHECKPOINTS, Exercise, Project } from "lobster-vis/dist/js/core/Project";
 import { DEFAULT_EXERCISE, getExerciseSpecification } from "lobster-vis/dist/js/exercises";
 
 import "lobster-vis/dist/js/lib/standard";
@@ -58,7 +58,7 @@ $(() => {
             }
           `,
           checkpoints: [],
-          completionCriteria: COMPLETION_LAST_CHECKPOINT,
+          completionCriteria: COMPLETION_ALL_CHECKPOINTS,
           completionMessage: "Nice work! Exercise complete!"
         };
 
@@ -84,50 +84,7 @@ $(() => {
 
         let exOutlet = new SimpleExerciseLobsterOutlet($(this), project);
 
-        window.addEventListener("message", (event) => {
-          // ignore messages from anywhere other than parent
-          if (event.source !== window.parent) {
-            return;
-          }
-          
-          // ignore spurious messages
-          if (!event.data["examma_ray_message"]) {
-            return;
-          }
-          let msg = event.data["examma_ray_message"];
-          if (msg.message_kind === "set_submission") {
-            exOutlet.project.setFileContents(<SourceFile> {
-              name: "exercise.cpp",
-              text: msg.submission,
-            });
-          }
-
-        });
-
-        setInterval(() => {
-          try {
-            window.parent?.postMessage({
-              examma_ray_message: {
-                message_kind: "update",
-                submission: exOutlet.project.sourceFiles[0].text,
-              }
-            }, "*");
-          }
-          catch(e) {
-
-          }
-        }, 1000);
     });
 
-    try {
-      window.parent?.postMessage({
-        examma_ray_message: {
-          message_kind: "ready",
-        }
-      }, "*");
-    }
-    catch(e) {
-
-    }
 
 });

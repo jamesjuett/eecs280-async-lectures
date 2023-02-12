@@ -8,6 +8,9 @@ import { LECTURE_05 } from "./lecture05/lecture05";
 import { LECTURE_06 } from "./lecture06/lecture06";
 import { LECTURE_07 } from "./lecture07/lecture07";
 import { LECTURE_08 } from "./lecture08/lecture08";
+import { LECTURE_09 } from "./lecture09/lecture09";
+import { LECTURE_10 } from "./lecture10/lecture10";
+
 
 export const LECTURES = [
   LECTURE_01,
@@ -18,6 +21,8 @@ export const LECTURES = [
   LECTURE_06,
   LECTURE_07,
   LECTURE_08,
+  LECTURE_09,
+  LECTURE_10,
 ];
 
 

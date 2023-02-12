@@ -1,7 +1,7 @@
 import { decode } from "he";
 
 import { createEmbeddedExerciseOutlet } from "lobster-vis/dist/js/view/embeddedExerciseOutlet"
-import { COMPLETION_LAST_CHECKPOINT, Exercise, Project } from "lobster-vis/dist/js/core/Project";
+import { COMPLETION_ALL_CHECKPOINTS, Exercise, Project } from "lobster-vis/dist/js/core/Project";
 import { DEFAULT_EXERCISE, getExerciseSpecification } from "lobster-vis/dist/js/exercises";
 
 import "lobster-vis/dist/js/lib/standard";
@@ -57,7 +57,7 @@ $(() => {
             }
           `,
           checkpoints: [],
-          completionCriteria: COMPLETION_LAST_CHECKPOINT,
+          completionCriteria: COMPLETION_ALL_CHECKPOINTS,
           completionMessage: "Nice work! Exercise complete!"
         };
 
