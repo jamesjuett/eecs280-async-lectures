@@ -93,7 +93,7 @@ $(() => {
           `,
           checkpoints: [
             new OutputCheckpoint("- Subtraction Operator", (output: string, project: Project) => {
-              return output.indexOf("sq diff: 531") !== 0;
+              return output.indexOf("sq diff: 531") !== -1;
             }),
             new OutputCheckpoint("<< Output Operator", (output: string, project: Project) => {
               return ["rgb","174","129","255","166","226","46"].every(str => output.indexOf(str) !== -1);

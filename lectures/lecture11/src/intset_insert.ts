@@ -13,7 +13,7 @@ import "lobster-vis/dist/css/frontend.css"
 
 
 import { SimpleExerciseLobsterOutlet } from "lobster-vis/dist/js/view/SimpleExerciseLobsterOutlet"
-import { OutputCheckpoint, StaticAnalysisCheckpoint } from "lobster-vis/dist/js/analysis/checkpoints";
+import { EndOfMainStateCheckpoint, OutputCheckpoint, StaticAnalysisCheckpoint } from "lobster-vis/dist/js/analysis/checkpoints";
 import { Program, SourceFile } from "lobster-vis/dist/js/core/compilation/Program";
 import { Predicates } from "lobster-vis/dist/js/analysis/predicates";
 import { findConstructs, findFirstConstruct } from "lobster-vis/dist/js/analysis/analysis";
@@ -24,6 +24,7 @@ import { isMemberFunctionContext, isMemberSpecificationContext } from "lobster-v
 import { CompilerNote, NoteKind } from "lobster-vis/dist/js/core/compilation/errors";
 import { CtorInitializer } from "lobster-vis/dist/js/core/constructs/initializers/CtorInitializer";
 import { Double, Int } from "lobster-vis/dist/js/core/compilation/types";
+import { Simulation } from "lobster-vis/dist/js/core/runtime/Simulation";
 
 
 
@@ -41,63 +42,97 @@ $(() => {
             #include <iostream>
             using namespace std;
             
-            class Pixel {
+            // Maximum capacity of a set.
+            const int ELTS_CAPACITY = 10;
+            class IntSet {
             public:
-              const int r;
-              const int g;
-              const int b;
+
+              // IntSet constructor - creates an empty set.
+              IntSet() : elts_size(0) { }
+
+              // EFFECTS: returns whether v is in the set
+              bool contains(int v) const {
+                return indexOf(v) != -1;
+              }
               
-              Pixel(int r, int g, int b)
-                : r(r), g(g), b(b) { }
+              // REQUIRES: size() < ELTS_CAPACITY
+              // EFFECTS:  adds v to the set if not already present
+              void insert(int v) {
+                // TODO: your code here
+              }
+
+              // EFFECTS: removes v from the set
+              void remove(int v) {
+                // (See 2nd exercise below)
+              }
+
+              // EFFECTS: returns the number of elements
+              int size() const {
+                return elts_size;
+              }
+
+              // EFFECTS: prints out the set
+              void print(ostream &os) const {
+                os << "{" << " ";
+                if (elts_size > 0) {
+                  os << elts[0];
+                }
+                for(int i = 1; i < elts_size; ++i) {
+                  os << ", " << elts[i];
+                }
+                os << " }" << endl;
+              }
               
+            private:
+              int elts[10];
+              int elts_size;
+              
+              // EFFECTS: Returns the index of the v in the elts
+              //          array. If not present, returns -1.
+              int indexOf(int v) const {
+                for(int i = 0; i < elts_size; ++i){
+                  if(elts[i] == v){
+                    return i;
+                  }
+                }
+                return -1;
+              }
             };
-            
-            int squared_difference(const Pixel &p1, const Pixel &p2);
-            
-            // TASK 1: Add an overloaded operator- that
-            // returns the squared difference between two
-            // pixels (you can just call squared_difference
-            // in your implementation)
-            
-            
-            
-            
-            
-            // TASK 2: Add an overloaded operator<< that
-            // prints out the pixel in this format:
-            //   rgb({R},{G},{B})
-            
-            
-            
-            
-            
-            int main() {
-              Pixel p1(174, 129, 255);
-              Pixel p2(166, 226, 46);
-              
-              cout << "p1: " << p1 << endl; // p1: rgb(174,129,255)
-              cout << "p2: " << p2 << endl; // p2: rgb(166,226,46)
-              
-              cout << "sq diff: " << p2 - p1 << endl; // sq diff: 531
+
+            ostream &operator<<(ostream &os, const IntSet &s) {
+              s.print(os);
+              return os;
             }
-            
-            // From processing.cpp in P2 starter code
-            int squared_difference(const Pixel &p1, const Pixel &p2) {
-              int dr = p2.r - p1.r;
-              int dg = p2.g - p1.g;
-              int db = p2.b - p1.b;
-              // Divide by 100 is to avoid possible overflows
-              // later on in the algorithm.
-              return (dr*dr + dg*dg + db*db) / 100;
+
+            int main() {
+              IntSet set;
+              
+              // Test cases for insert
+              set.insert(7);
+              set.insert(32);
+              set.insert(32);
+              set.insert(2);
+              cout << set << endl;
+              assert(set.size() == 3);
+              assert(set.contains(7));
+              assert(set.contains(32));
+              assert(set.contains(2));
+              
+              // Test cases for remove
+              // (See 2nd exercise below)
+              // set.remove(32);
+              // assert(set.size() == 2);
+              // set.remove(4); // does nothing
+              // assert(set.size() == 2);
+              // set.remove(32); // does nothing
+              // assert(set.size() == 2);
+              // cout << set << endl;
             }
           `,
           checkpoints: [
-            new OutputCheckpoint("- Subtraction Operator", (output: string, project: Project) => {
-              return output.indexOf("sq diff: 531") !== 0;
-            }),
-            new OutputCheckpoint("<< Output Operator", (output: string, project: Project) => {
-              return ["rgb","174","129","255","166","226","46"].every(str => output.indexOf(str) !== -1);
-            }),
+            new EndOfMainStateCheckpoint("Passes Test Cases", (sim: Simulation) => {
+              return !sim.hasAnyEventOccurred
+            }, "", 5000),
           ],
           completionCriteria: COMPLETION_ALL_CHECKPOINTS,
           completionMessage: "Nice work! Exercise complete!"
