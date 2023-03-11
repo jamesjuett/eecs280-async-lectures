@@ -30,30 +30,47 @@ $(() => {
 
         $(this).append(createEmbeddedExerciseOutlet("single"));
 
-        let filename = "exercise.cpp";
+        let filename = "code";
         let exerciseSpec = {
           starterCode: dedent`
             #include <iostream>
             using namespace std;
-            
+
+            class Bird {
+            private:
+              int ID;
+            public:
+              Bird(int id_in) // custom constructor
+               : ID(id_in) {
+                cout << "Bird ctor: " << ID << endl;
+              }
+              
+              ~Bird() { // custom destructor
+                cout << "Bird dtor: " << ID << endl;
+              }
+              
+              void talk() {
+                cout << "tweet" << endl;
+              }
+            };
+
+            Bird b_global(0);
+
             int main() {
-              int arr[5] = {6, 3, 2, 4, 5};
-              int *a = arr;
-              int *b = arr + 2;
-              int *c = b + 1;
-              int *d = &arr[1];
-            
-              ++a;
-              --b;
-              c = d;
-              c += 2;
-            
-              cout << *a << endl;
-              cout << *(a + 2) << endl;
-              cout << (a - d) << endl;
-              cout << (b - c) << endl;
-              cout << b[2] << endl;
-              cout << *(arr+5) << endl;
+              Bird b1(1);
+              for (int i = 0; i < 3; ++i) {
+                Bird b2(2);
+                b2.talk();
+              }
+              b1.talk();
+              if (100 < 2) {
+                Bird b3(3);
+                b3.talk();
+              }
+              else {
+                Bird *ptrToB1 = &b1;
+                ptrToB1->talk();
+              }
             }
           `,
           checkpoints: [],
@@ -82,7 +99,6 @@ $(() => {
         }
 
         let exOutlet = new SimpleExerciseLobsterOutlet($(this), project);
-
     });
 
 });
