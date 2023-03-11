@@ -79137,7 +79137,7 @@ function dedent(templ) {
 
 /***/ }),
 
-/***/ 3163:
+/***/ 9421:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -79157,153 +79157,168 @@ __webpack_require__(9991);
 __webpack_require__(3659);
 const SimpleExerciseLobsterOutlet_1 = __webpack_require__(5588);
 const checkpoints_1 = __webpack_require__(7939);
+const predicates_1 = __webpack_require__(7227);
+const analysis_1 = __webpack_require__(1112);
 const ts_dedent_1 = __importDefault(__webpack_require__(1893));
 $(() => {
     var _a;
     $(".lobster-ex").each(function () {
         var _a, _b, _c, _d, _e, _f, _g;
         $(this).append((0, embeddedExerciseOutlet_1.createEmbeddedExerciseOutlet)("single"));
+        $(this).find(".lobster-ex-checkpoints")
+            .detach().prependTo($(this))
+            .css("position", "sticky")
+            .css("top", "0")
+            .css("background-color", "white")
+            .css("z-index", "100000");
         let filename = "code";
         let exerciseSpec = {
             starterCode: (0, ts_dedent_1.default) `
-            #include <iostream>
-            using namespace std;
-
-            // NOTE: This isn't UnsortedSet<T> because Lobster
-            //       doesn't yet support templates.
-
-            const int DEFAULT_CAPACITY = 2;
-
-            class UnsortedIntSet {
-            public:
-              
-              UnsortedIntSet()
-                : elts(new int[DEFAULT_CAPACITY]),
-                  capacity(DEFAULT_CAPACITY),
-                  elts_size(0) {}
-              
-              ~UnsortedIntSet() {
-                delete[] elts;
+          #include <iostream>
+          using namespace std;
+          
+          // NOTE: This isn't UnsortedSet<T> because Lobster
+          //       doesn't yet support templates.
+          
+          const int DEFAULT_CAPACITY = 2;
+          
+          class UnsortedIntSet {
+          public:
+            
+            UnsortedIntSet()
+              : elts(new int[DEFAULT_CAPACITY]),
+                capacity(DEFAULT_CAPACITY),
+                elts_size(0) {}
+            
+            // EXERCISE - Implement a custom copy constructor here
+            
+            
+            
+            
+            
+            
+            
+            ~UnsortedIntSet() {
+              delete[] elts;
+            }
+          
+            
+            // EFFECTS: adds v to the set
+            void insert(int v) {
+              if (contains(v)) {
+                return;
               }
               
-              // EFFECTS: adds v to the set
-              void insert(int v) {
-                if (contains(v)) { return; }
-                
-                // Increase capacity if needed
-                if (elts_size == capacity) { grow(); }
-                
-                elts[elts_size] = v;
-                ++elts_size;
+              // Increase capacity if needed
+              if (elts_size == capacity) {
+                grow();
               }
               
-              // EFFECTS: removes v from the set
-              void remove(int v) {
-                if (!contains(v)) { return; }
-                elts[indexOf(v)] = elts[elts_size - 1];
-                --elts_size;
-              };
-              
-              // EFFECTS: returns whether v is in the set
-              bool contains(int v) const{
-                return indexOf(v) != -1;
+              elts[elts_size] = v;
+              ++elts_size;
+          
+            }
+             
+            // EFFECTS: removes v from the set
+            void remove(int v) {
+              if (!contains(v)) {
+                return;
               }
-              
-              // EFFECTS: returns the number of elements
-              int size() const{
-                return elts_size;
-              }
-              
-              // Implemented for you. You're welcome :)
-              void print(ostream &os) const {
-                os << "{" << " ";
-                if (elts_size > 0){
-                  os << elts[0];
-                }
-                for(int i = 1; i < elts_size; ++i){
-                  os << ", " << elts[i];
-                }
-                os << " }" << endl;
-              }
-              
-            private:
-              // NOTE: In the old version, the array was held directly
-              //       as an actual member of the class, meaning its
-              //       lifetime was bound to the object as a whole. Thus,
-              //       we were stuck with a single array (and a single size).
-              //       
-              //       This is now a pointer that will point to the
-              //       beginning of a dynamic array, which can have an
-              //       independent lifetime. That means we can swap in a
-              //       bigger array at runtime (see grow function) if needed.
-              int *elts;
-              
-              // Represents the current number of valid elements in the set
-              int elts_size;
-              
-              // Represents the current capacity of the underlying array
-              int capacity;
-              
-              // 1. Make a new array with twice as much capacity
-              // 2. Copy elements over
-              // 3. Update capacity
-              // 4. Destroy old array
-              // 5. Point elts to the new array
-              void grow() {
-                
-                //TODO: Implement this function!
-
-              }
-              
-              // EFFECTS: Returns the index of the v in the elts
-              //          array. If not present, returns -1.
-              int indexOf(int v) const{
-                for(int i = 0; i < elts_size; ++i){
-                  if(elts[i] == v){
-                    return i;
-                  }
-                }
-                return -1;
-              }
+              elts[indexOf(v)] = elts[elts_size - 1];
+              --elts_size;
             };
-
-              
-            ostream &operator<<(ostream &os, const UnsortedIntSet &s) {
-              s.print(os);
-              return os;
+            
+            // EFFECTS: returns whether v is in the set
+            bool contains(int v) const{
+              return indexOf(v) != -1;
             }
-
-            int main() {
-              UnsortedIntSet set;
-              set.insert(2);
-              set.insert(3);
-              set.insert(4);
-              set.insert(5);
-              set.insert(1);
-              
-              // Set should print as { 2, 3, 4, 5, 1 }
-              cout << set << endl;
-
-              // Should have grown twice. 2 -> 4 and 4 -> 8.
-              // Underlying array has final size of 8.
+            
+            // EFFECTS: returns the number of elements
+            int size() const{
+              return elts_size;
             }
-          `,
+            
+            // Implemented for you. You're welcome :)
+            void print(ostream &os) const {
+              os << "{ ";
+              if (elts_size > 0){
+                os << elts[0];
+              }
+              for(int i = 1; i < elts_size; ++i){
+                os << ", " << elts[i];
+              }
+              os << " }";
+            }
+              
+          private:
+            // Points to a dynamically allocated array on the heap
+            int *elts;
+            
+            // Represents the current number of valid elements in the set
+            int elts_size;
+            
+            // Represents the current capacity of the underlying array
+            int capacity;
+            
+            // Allocates a new dynamic array with twice the capacity.
+            // Then, copies over the elements from the old array.
+            // Finally, frees the memory for the old array and
+            // points the elts pointer to the new array.
+            void grow() {
+              int *newArr = new int[2 * capacity];
+              for (int i = 0; i < elts_size; ++i) {
+                newArr[i] = elts[i];
+              }
+              capacity *= 2;
+              delete[] elts;
+              elts = newArr;
+            }
+          
+            
+            // EFFECTS: Returns the index of the v in the elts
+            //          array. If not present, returns -1.
+            int indexOf(int v) const{
+              for(int i = 0; i < elts_size; ++i){
+                if(elts[i] == v){
+                  return i;
+                }
+              }
+              return -1;
+            }
+          };
+          
+          
+          ostream &operator<<(ostream &os, const UnsortedIntSet &s) {
+            s.print(os);
+            return os;
+          }
+          
+          
+          int main() {
+            UnsortedIntSet s1;
+            
+            s1.insert(2);
+            s1.insert(3);
+            
+            UnsortedIntSet s2 = s1; // use copy ctor
+            // The line above is equivalent to UnsortedIntSet s2(s1);
+            
+            s2.remove(3);
+            s2.insert(5);
+          
+            cout << s1 << endl; // prints { 2, 3 }
+            cout << s2 << endl; // prints { 2, 5 }
+          }`,
             checkpoints: [
-                new checkpoints_1.OutputCheckpoint("Correct Set Output", (output) => {
-                    return output.indexOf("{ 2, 3, 4, 5, 1 }") !== -1;
+                new checkpoints_1.StaticAnalysisCheckpoint("Copy Ctor Signature", (program) => {
+                    var _a;
+                    let set_class = (0, analysis_1.findConstructs)(program.translationUnits["code"], predicates_1.Predicates.byKind("class_definition")).find(c => c.name === "UnsortedIntSet");
+                    return !!((_a = set_class === null || set_class === void 0 ? void 0 : set_class.constCopyConstructor) === null || _a === void 0 ? void 0 : _a.isUserDefined);
                 }),
-                new checkpoints_1.EndOfMainStateCheckpoint("Final Array Size 8", (sim) => {
-                    var _a, _b;
-                    let set = (_b = (_a = sim.topFunction()) === null || _a === void 0 ? void 0 : _a.stackFrame) === null || _b === void 0 ? void 0 : _b.localObjectsByName["set"];
-                    if (!set) {
-                        return false;
-                    }
-                    let elts = (set.getMemberObject("elts"));
-                    if (!elts) {
-                        return false;
-                    }
-                    return elts.type.arrayObject.type.numElems == 8;
-                }, "", 5000),
+                new checkpoints_1.OutputCheckpoint("Correct Output", (output) => {
+                    return output.indexOf("{ 2, 3 }") !== -1
+                        && output.indexOf("{ 2, 5 }") !== -1;
+                }),
                 new checkpoints_1.EndOfMainStateCheckpoint("No Undefined Behavior", (sim) => {
                     return !sim.hasAnyEventOccurred;
                 }, "", 5000),
@@ -79488,7 +79503,7 @@ $(() => {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __webpack_require__(3163);
+/******/ 	var __webpack_exports__ = __webpack_require__(9421);
 /******/ 	
 /******/ })()
 ;

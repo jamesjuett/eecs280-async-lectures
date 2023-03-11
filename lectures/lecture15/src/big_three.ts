@@ -40,46 +40,50 @@ $(() => {
         let filename = "code";
         let exerciseSpec = {
           starterCode: dedent`
-            #include <iostream>
-            using namespace std;
+          #include <string>
+          #include <iostream>
+          using namespace std;
+          
+          class MyClass {
 
-            class Bird {
-            private:
-              int ID;
-            public:
-              Bird(int id_in) // custom constructor
-               : ID(id_in) {
-                cout << "Bird ctor: " << ID << endl;
-              }
-              
-              ~Bird() { // custom destructor
-                cout << "Bird dtor: " << ID << endl;
-              }
-              
-              void talk() {
-                cout << "tweet" << endl;
-              }
-            };
-
-            Bird b_global(0);
-
-            int main() {
-              Bird b1(1);
-              for (int i = 0; i < 3; ++i) {
-                Bird b2(2);
-                b2.talk();
-              }
-              b1.talk();
-              if (100 < 2) {
-                Bird b3(3);
-                b3.talk();
-              }
-              else {
-                Bird *ptrToB1 = &b1;
-                ptrToB1->talk();
-              }
+          private:
+            string s;
+          
+          public:
+            MyClass(const string &s_in) : s(s_in) {
+              cout << "ctor " << s << endl;
             }
-          `,
+          
+            MyClass(const MyClass &other) : s(other.s) {
+              cout << "copy ctor " << s << endl;
+            }
+            
+            MyClass &operator=(const MyClass &rhs){
+              cout << "assign " << s
+                    << " to be " << rhs.s << endl;
+              s = rhs.s;
+              return *this;
+            }
+            ~MyClass() {
+              cout << "dtor " << s << endl;
+            }
+          };
+          
+          void func(MyClass &x, MyClass y) {
+            MyClass z = x;
+          }
+          
+          int main() {
+            MyClass a("apple");
+            MyClass b("banana");
+            MyClass c("craisin");
+           
+            func(a, b);
+          
+            MyClass c2 = c;
+          
+            c2 = c;
+          }`,
           checkpoints: [],
           completionCriteria: COMPLETION_ALL_CHECKPOINTS,
           completionMessage: "Nice work! Exercise complete!"
@@ -106,6 +110,7 @@ $(() => {
         }
 
         let exOutlet = new SimpleExerciseLobsterOutlet($(this), project);
+
     });
 
 });

@@ -10,14 +10,12 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 export const LECTURE_15 = Exam.create({
-  exam_id: "lec_15_raii_growable_containers",
-  title: "RAII and Growable Containers",
+  exam_id: "lec_15_deep_copies_and_the_big_three",
+  title: "Deep Copies and The Big Three",
   mk_intructions: dedent`
     
     <div markdown=1 class="alert alert-info">
-      Let's take a look at two common strategies for managing dynamic memory:
-      1. **RAII** - The use of constructors and destructors to manage dynamic resources within a class-based ADT.
-      2. **Growable Containers** - Dynamic memory enables a data structure to allocate additional space for elements as needed.
+      TODO
     </div>
     <style>
       .lec-video {
@@ -68,7 +66,7 @@ export const LECTURE_15 = Exam.create({
               ]]
 
               <div style="text-align: center;">
-                <iframe class="lobster-iframe" style="height: 600px;" src="assets/main.html"></iframe>
+                <iframe class="lobster-iframe" style="height: 600px;" src="assets/shallow_copy.html"></iframe>
               </div>
             `,
           },
@@ -236,7 +234,7 @@ int main() {
     },
     {
       section_id: "section_15_3",
-      title: "Growable Containers",
+      title: "Deep Copy Constructors",
       mk_description: dedent`
 
         Previously, we implemented containers with a fixed-capacity restriction. Using dynamic memory, we can instead implement growable containers that start with a small amount of dynamic memory and allocate more as needed.
@@ -249,17 +247,23 @@ int main() {
       `,
       questions: [
         {
-          question_id: "lec15_unsortedintset_grow",
-          title: "Exercise: \`UnsortedIntSet::grow()\`",
+          question_id: "lec15_unsortedintset_copy_ctor",
+          title: "Exercise: \`UnsortedIntSet\` Copy Constructor",
           points: 3,
           mk_description: dedent`
-            Fill in the code for the \`grow()\` function for \`UnsortedIntSet\` using the algorithm described in the video (it is also repeated in the comments above the function in the code below).
+            Implement a custom copy constructor for \`UnsortedIntSet\`. Your implementation should ensure that a deep copy of the dynamically allocated array is made, following these steps:
+
+            1. Initialize the "regular" members (\`capacity\` and \`elts_size\`) of the new set to match the original set.
+            2. Initialize \`elts\` to point to a new dynamically allocated array, with the same capacity as the array from the original set.
+            3. Copy over each element from the original set into the new set's dynamic array.
+
+            _(Hint: Steps 1 and 2 should be done in the member-initializer-list, and 3 uses a loop in the body of the constructor.)_
 
             The \`main()\` function provided includes testing code to verify your implementation.
           `,
           response: {
             kind: "iframe",
-            src: "assets/unsortedintset_grow.html",
+            src: "assets/unsortedintset_copy_ctor.html",
             element_class: "lobster-iframe",
             element_style: "height: 675px;",
           },
@@ -267,10 +271,8 @@ int main() {
             <hr />
             You're welcome to check your solution with this **walkthrough** video:
 
-            Note that the walkthrough is for a templated class with type \`T\` whereas the exercise used \`int\` specifically. The concept is the same otherwise.
-
             <div style="text-align: center;">
-              <iframe class="lec-video" src="https://www.youtube.com/embed/5li19qh2TX8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe class="lec-video" src="TODO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <br />
           `
@@ -279,7 +281,7 @@ int main() {
     },
     {
       section_id: "section_15_4",
-      title: "Dynamic Resource Invariants",
+      title: "Deep Copy Assignment",
       mk_description: dedent`
 
         Let's take just a moment to formally reason about the management of dynamic resources by an ADT and sketch out a rough strategy for proving they don't leak memory or run into other memory errors.
@@ -289,7 +291,86 @@ int main() {
         </div>
         <br />
       `,
-      questions: [ ],
+      questions: [
+        {
+          question_id: "lec15_unsortedintset_assignment_op",
+          title: "Exercise: \`UnsortedIntSet\` Assignment Operator",
+          points: 3,
+          mk_description: dedent`
+            Implement a custom copy constructor for \`UnsortedIntSet\`. Your implementation should ensure that a deep copy of the dynamically allocated array is made, following these steps:
+
+            1. If the assignment is a self-assignment, simply \`return *this;\`.
+            2. Free the original dynamically allocated array using \`delete\`.
+            3. Copy over the "regular" members (\`capacity\` and \`elts_size\`) from the \`rhs\` set.
+            4. Make a deep copy by setting \`elts\` to point to a new dynamically allocated array, with the same capacity as the array from the \`rhs\` set.
+            5. Copy over each element from the \`rhs\` set into the new dynamic array.
+            6. \`return *this;\`
+
+            The \`main()\` function provided includes testing code to verify your implementation.
+          `,
+          response: {
+            kind: "iframe",
+            src: "assets/main.html",
+            element_class: "lobster-iframe",
+            element_style: "height: 675px;",
+          },
+          mk_postscript: dedent`
+            <hr />
+            You're welcome to check your solution with this **walkthrough** video:
+
+            <div style="text-align: center;">
+              <iframe class="lec-video" src="TODO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <br />
+          `
+        },
+      ],
+    },
+    {
+      section_id: "section_15_5",
+      title: "The Big Three",
+      mk_description: "",
+      questions: [
+        {
+          question_id: "lec15_big_three",
+          title: "Exercise: The Big Three",
+          points: 3,
+          mk_description: "",
+          response: {
+            kind: "fill_in_the_blank",
+            content: dedent`
+              
+              Determine what is printed by the following code. To do this, you'll need to think about where each of the Big Three are used by the code in the main program. You can also step through the code on Lobster (L16.2_BigThree) to check your work.
+
+              <table>
+                <tr>
+                  <td style="width: 80%">
+                    <div style="text-align: center;">
+                      <iframe class="lobster-iframe" style="height: 600px;" src="assets/main.html"></iframe>
+                    </div>
+                  </td>
+                  <td>
+                    [[BOX
+                    
+                    
+                    
+                    ]]
+                  </td>
+                </tr>
+              </table>
+            `,
+          },
+          mk_postscript: dedent`
+            <hr />
+            You're welcome to check your solution with this **walkthrough** video:
+
+            <div style="text-align: center;">
+              <iframe class="lec-video" src="https://www.youtube.com/embed/sPqOvZb0c5A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <br />
+          `
+        }
+      ],
     },
   ],
 });

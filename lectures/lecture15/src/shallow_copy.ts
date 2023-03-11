@@ -30,7 +30,14 @@ $(() => {
 
         $(this).append(createEmbeddedExerciseOutlet("single"));
 
-        let filename = "exercise.cpp";
+        $(this).find(".lobster-ex-checkpoints")
+          .detach().prependTo($(this))
+          .css("position", "sticky")
+          .css("top", "0")
+          .css("background-color", "white")
+          .css("z-index", "100000");
+
+        let filename = "code";
         let exerciseSpec = {
           starterCode: dedent`
           #include <iostream>

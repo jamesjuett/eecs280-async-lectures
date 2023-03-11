@@ -79011,7 +79011,7 @@ function dedent(templ) {
 
 /***/ }),
 
-/***/ 4929:
+/***/ 8729:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -79047,45 +79047,128 @@ $(() => {
           #include <iostream>
           using namespace std;
           
-          class MyClass {
-
-          private:
-            string s;
+          // NOTE: This isn't UnsortedSet<T> because Lobster
+          //       doesn't yet support templates.
           
+          const int DEFAULT_CAPACITY = 2;
+          
+          class UnsortedIntSet {
           public:
-            MyClass(const string &s_in) : s(s_in) {
-              cout << "ctor " << s << endl;
-            }
-          
-            MyClass(const MyClass &other) : s(other.s) {
-              cout << "copy ctor " << s << endl;
+            
+            UnsortedIntSet()
+              : elts(new int[DEFAULT_CAPACITY]),
+                capacity(DEFAULT_CAPACITY),
+                elts_size(0) {}
+             
+            ~UnsortedIntSet() {
+              delete[] elts;
             }
             
-            MyClass &operator=(const MyClass &rhs){
-              cout << "assign " << s
-                    << " to be " << rhs.s << endl;
-              s = rhs.s;
-              return *this;
+            // EFFECTS: adds v to the set
+            void insert(int v) {
+              if (contains(v)) {
+                return;
+              }
+              
+              // Increase capacity if needed
+              if (elts_size == capacity) {
+                grow();
+              }
+              
+              elts[elts_size] = v;
+              ++elts_size;
+          
             }
-            ~MyClass() {
-              cout << "dtor " << s << endl;
+             
+            // EFFECTS: removes v from the set
+            void remove(int v) {
+              if (!contains(v)) {
+                return;
+              }
+              elts[indexOf(v)] = elts[elts_size - 1];
+              --elts_size;
+            };
+            
+            // EFFECTS: returns whether v is in the set
+            bool contains(int v) const{
+              return indexOf(v) != -1;
             }
+            
+            // EFFECTS: returns the number of elements
+            int size() const{
+              return elts_size;
+            }
+            
+            // Implemented for you. You're welcome :)
+            void print(ostream &os) const {
+              os << "{" << " ";
+              if (elts_size > 0){
+                os << elts[0];
+              }
+              for(int i = 1; i < elts_size; ++i){
+                os << ", " << elts[i];
+              }
+              os << " }" << endl;
+            }
+              
+          private:
+            // NOTE: In the old version, the array was held directly
+            //       as an actual member of the class, meaning its
+            //       lifetime was bound to the object as a whole. Thus,
+            //       we were stuck with a single array (and a single size).
+            //       
+            //       This is now a pointer that will point to the
+            //       beginning of a dynamic array, which can have an
+            //       independent lifetime. That means we can swap in a
+            //       bigger array at runtime (see grow function) if needed.
+            int *elts;
+            
+            // Represents the current number of valid elements in the set
+            int elts_size;
+            
+            // Represents the current capacity of the underlying array
+            int capacity;
+            
+            // Allocates a new dynamic array with twice the capacity.
+            // Then, copies over the elements from the old array.
+            // Finally, frees the memory for the old array and
+            // points the elts pointer to the new array.
+            void grow() {
+              
+              //TODO: Implement this function!
+          
+            }
+            
+            // EFFECTS: Returns the index of the v in the elts
+            //          array. If not present, returns -1.
+            int indexOf(int v) const{
+              for(int i = 0; i < elts_size; ++i){
+                if(elts[i] == v){
+                  return i;
+                }
+              }
+              return -1;
+            }
+            
           };
           
-          void func(MyClass &x, MyClass y) {
-            MyClass z = x;
+            
+          ostream &operator<<(ostream &os, const UnsortedIntSet &s) {
+            s.print(os);
+            return os;
           }
           
           int main() {
-            MyClass a("apple");
-            MyClass b("banana");
-            MyClass c("craisin");
-           
-            func(a, b);
+            UnsortedIntSet s1;
+            s1.insert(2);
+            s1.insert(3);
           
-            MyClass c2 = c;
+            UnsortedIntSet s2 = s1;
           
-            c2 = c;
+            // s2.remove(3);
+            // s2.insert(30);
+            // cout << "s1: " << s1 << endl;
+            // cout << "s2: " << s2 << endl;
           }`,
             checkpoints: [],
             completionCriteria: Project_1.COMPLETION_ALL_CHECKPOINTS,
@@ -79212,7 +79295,7 @@ $(() => {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __webpack_require__(4929);
+/******/ 	var __webpack_exports__ = __webpack_require__(8729);
 /******/ 	
 /******/ })()
 ;

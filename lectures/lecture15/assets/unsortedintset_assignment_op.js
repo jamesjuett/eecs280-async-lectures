@@ -20302,6 +20302,132 @@ exports.isUpdateAssignment = isUpdateAssignment;
 
 /***/ }),
 
+/***/ 7939:
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.StaticAnalysisCheckpoint = exports.EndOfMainStateCheckpoint = exports.outputComparator = exports.OutputCheckpoint = exports.removeWhitespace = exports.IsCompiledCheckpoint = exports.Checkpoint = void 0;
+const Simulation_1 = __webpack_require__(2895);
+const simulationRunners_1 = __webpack_require__(138);
+class Checkpoint {
+    constructor(name) {
+        this.name = name;
+    }
+}
+exports.Checkpoint = Checkpoint;
+class IsCompiledCheckpoint extends Checkpoint {
+    evaluate(project) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return project.program.isCompiled();
+        });
+    }
+}
+exports.IsCompiledCheckpoint = IsCompiledCheckpoint;
+function removeWhitespace(str) {
+    return str.replace(/\s+/g, '');
+}
+exports.removeWhitespace = removeWhitespace;
+// TODO: reduce duplication with EndOfMainStateCheckpoint
+class OutputCheckpoint extends Checkpoint {
+    constructor(name, expected, input = "", stepLimit = 1000) {
+        super(name);
+        this.expected = expected;
+        this.input = input;
+        this.stepLimit = stepLimit;
+    }
+    // May throw if interrupted during async running
+    evaluate(project) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (this.runner) {
+                this.runner.pause();
+                delete this.runner;
+            }
+            let program = project.program;
+            if (!program.isRunnable()) {
+                return false;
+            }
+            let sim = new Simulation_1.Simulation(program);
+            if (this.input !== "") {
+                sim.cin.addToBuffer(this.input);
+            }
+            let runner = this.runner = new simulationRunners_1.AsynchronousSimulationRunner(sim);
+            // may throw if interrupted
+            yield runner.stepToEnd(0, this.stepLimit, true);
+            return sim.atEnd && this.expected(sim.allOutput, project);
+        });
+    }
+}
+exports.OutputCheckpoint = OutputCheckpoint;
+function outputComparator(desiredOutput, ignoreWhitespace = false) {
+    if (ignoreWhitespace) {
+        return (output) => {
+            return removeWhitespace(output) === removeWhitespace(desiredOutput);
+        };
+    }
+    else {
+        return (output) => {
+            return output === desiredOutput;
+        };
+    }
+}
+exports.outputComparator = outputComparator;
+class EndOfMainStateCheckpoint extends Checkpoint {
+    constructor(name, criteria, input = "", stepLimit = 1000) {
+        super(name);
+        this.criteria = criteria;
+        this.input = input;
+        this.stepLimit = stepLimit;
+    }
+    // May throw if interrupted during async running
+    evaluate(project) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (this.runner) {
+                this.runner.pause();
+                delete this.runner;
+            }
+            let program = project.program;
+            if (!program.isRunnable()) {
+                return false;
+            }
+            let sim = new Simulation_1.Simulation(program);
+            if (this.input !== "") {
+                sim.cin.addToBuffer(this.input);
+            }
+            let runner = this.runner = new simulationRunners_1.AsynchronousSimulationRunner(sim);
+            // may throw if interrupted
+            yield runner.stepToEndOfMain(0, this.stepLimit, true);
+            return sim.atEndOfMain() && this.criteria(sim);
+        });
+    }
+}
+exports.EndOfMainStateCheckpoint = EndOfMainStateCheckpoint;
+class StaticAnalysisCheckpoint extends Checkpoint {
+    constructor(name, criterion) {
+        super(name);
+        this.criterion = criterion;
+    }
+    evaluate(project) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.criterion(project.program, project);
+        });
+    }
+}
+exports.StaticAnalysisCheckpoint = StaticAnalysisCheckpoint;
+//# sourceMappingURL=checkpoints.js.map
+
+/***/ }),
+
 /***/ 7227:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -79011,7 +79137,7 @@ function dedent(templ) {
 
 /***/ }),
 
-/***/ 4929:
+/***/ 9048:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -79030,8 +79156,12 @@ __webpack_require__(5005);
 __webpack_require__(9991);
 __webpack_require__(3659);
 const SimpleExerciseLobsterOutlet_1 = __webpack_require__(5588);
+const checkpoints_1 = __webpack_require__(7939);
+const predicates_1 = __webpack_require__(7227);
+const analysis_1 = __webpack_require__(1112);
 const ts_dedent_1 = __importDefault(__webpack_require__(1893));
 $(() => {
+    var _a;
     $(".lobster-ex").each(function () {
         var _a, _b, _c, _d, _e, _f, _g;
         $(this).append((0, embeddedExerciseOutlet_1.createEmbeddedExerciseOutlet)("single"));
@@ -79041,53 +79171,179 @@ $(() => {
             .css("top", "0")
             .css("background-color", "white")
             .css("z-index", "100000");
-        let filename = "exercise.cpp";
+        let filename = "code";
         let exerciseSpec = {
             starterCode: (0, ts_dedent_1.default) `
           #include <iostream>
           using namespace std;
           
-          class MyClass {
-
-          private:
-            string s;
+          // NOTE: This isn't UnsortedSet<T> because Lobster
+          //       doesn't yet support templates.
           
+          const int DEFAULT_CAPACITY = 2;
+          
+          class UnsortedIntSet {
           public:
-            MyClass(const string &s_in) : s(s_in) {
-              cout << "ctor " << s << endl;
+            
+            UnsortedIntSet()
+              : elts(new int[DEFAULT_CAPACITY]),
+                capacity(DEFAULT_CAPACITY),
+                elts_size(0) {}
+            
+            // EXERCISE - Implement a custom assignment operator here
+            
+            
+            
+            
+            
+            
+            
+            ~UnsortedIntSet() {
+              delete[] elts;
             }
           
-            MyClass(const MyClass &other) : s(other.s) {
-              cout << "copy ctor " << s << endl;
+            
+            // EFFECTS: adds v to the set
+            void insert(int v) {
+              if (contains(v)) {
+                return;
+              }
+              
+              // Increase capacity if needed
+              if (elts_size == capacity) {
+                grow();
+              }
+              
+              elts[elts_size] = v;
+              ++elts_size;
+          
+            }
+             
+            // EFFECTS: removes v from the set
+            void remove(int v) {
+              if (!contains(v)) {
+                return;
+              }
+              elts[indexOf(v)] = elts[elts_size - 1];
+              --elts_size;
+            };
+            
+            // EFFECTS: returns whether v is in the set
+            bool contains(int v) const{
+              return indexOf(v) != -1;
             }
             
-            MyClass &operator=(const MyClass &rhs){
-              cout << "assign " << s
-                    << " to be " << rhs.s << endl;
-              s = rhs.s;
-              return *this;
+            // EFFECTS: returns the number of elements
+            int size() const{
+              return elts_size;
             }
-            ~MyClass() {
-              cout << "dtor " << s << endl;
+            
+            // Implemented for you. You're welcome :)
+            void print(ostream &os) const {
+              os << "{ ";
+              if (elts_size > 0){
+                os << elts[0];
+              }
+              for(int i = 1; i < elts_size; ++i){
+                os << ", " << elts[i];
+              }
+              os << " }";
+            }
+              
+          private:
+            // Points to a dynamically allocated array on the heap
+            int *elts;
+            
+            // Represents the current number of valid elements in the set
+            int elts_size;
+            
+            // Represents the current capacity of the underlying array
+            int capacity;
+            
+            // Allocates a new dynamic array with twice the capacity.
+            // Then, copies over the elements from the old array.
+            // Finally, frees the memory for the old array and
+            // points the elts pointer to the new array.
+            void grow() {
+              int *newArr = new int[2 * capacity];
+              for (int i = 0; i < elts_size; ++i) {
+                newArr[i] = elts[i];
+              }
+              capacity *= 2;
+              delete[] elts;
+              elts = newArr;
+            }
+          
+            
+            // EFFECTS: Returns the index of the v in the elts
+            //          array. If not present, returns -1.
+            int indexOf(int v) const{
+              for(int i = 0; i < elts_size; ++i){
+                if(elts[i] == v){
+                  return i;
+                }
+              }
+              return -1;
             }
           };
           
-          void func(MyClass &x, MyClass y) {
-            MyClass z = x;
+          
+          ostream &operator<<(ostream &os, const UnsortedIntSet &s) {
+            s.print(os);
+            return os;
           }
           
+          
           int main() {
-            MyClass a("apple");
-            MyClass b("banana");
-            MyClass c("craisin");
-           
-            func(a, b);
+            UnsortedIntSet s1;
+            
+            s1.insert(2);
+            s1.insert(3);
+            
+            UnsortedIntSet s2;
+            s2.insert(42);
+            s2 = s1;
+            
+            s2.remove(3);
+            s2.insert(5);
           
-            MyClass c2 = c;
-          
-            c2 = c;
+            cout << s1 << endl; // prints { 2, 3 }
+            cout << s2 << endl; // prints { 2, 5 }
           }`,
-            checkpoints: [],
+            checkpoints: [
+                new checkpoints_1.StaticAnalysisCheckpoint("Assignment Operator Signature", (program) => {
+                    let set_class = (0, analysis_1.findConstructs)(program.translationUnits["code"], predicates_1.Predicates.byKind("class_definition")).find(c => c.name === "UnsortedIntSet");
+                    if (!set_class) {
+                        return false;
+                    }
+                    let function_group = set_class.lookupAssignmentOperator(true, false);
+                    if ((function_group === null || function_group === void 0 ? void 0 : function_group.declarationKind) !== "function") {
+                        return false;
+                    }
+                    let assnOp = function_group.overloads[0];
+                    if (!assnOp) {
+                        return false;
+                    }
+                    if (!assnOp.isUserDefined) {
+                        return false;
+                    }
+                    if (!assnOp.type.returnType.isReferenceToCompleteType()) {
+                        return false;
+                    }
+                    if (!assnOp.type.returnType.refTo.sameType(set_class === null || set_class === void 0 ? void 0 : set_class.type)) {
+                        return false;
+                    }
+                    ;
+                    return true;
+                }),
+                new checkpoints_1.OutputCheckpoint("Correct Output", (output) => {
+                    return output.indexOf("{ 2, 3 }") !== -1
+                        && output.indexOf("{ 2, 5 }") !== -1;
+                }),
+                new checkpoints_1.EndOfMainStateCheckpoint("No Undefined Behavior", (sim) => {
+                    return !sim.hasAnyEventOccurred;
+                }, "", 5000),
+            ],
             completionCriteria: Project_1.COMPLETION_ALL_CHECKPOINTS,
             completionMessage: "Nice work! Exercise complete!"
         };
@@ -79099,13 +79355,69 @@ $(() => {
         if (initCode) {
             exerciseSpec.starterCode = initCode;
         }
-        let project = new Project_1.Project("project", undefined, [{ name: filename, code: exerciseSpec.starterCode, isTranslationUnit: true }], new Project_1.Exercise(exerciseSpec));
+        let extras = [(program) => {
+                // let rect_class = findConstructs(program.translationUnits["code"], Predicates.byKind("class_definition")).find(c => c.name === "Rectangle");
+                // if (!rect_class) {
+                //     return false;
+                // }
+                // rect_class.constructors.forEach(ctor => {
+                //   const decl = ctor.firstDeclaration;
+                //   if (isMemberSpecificationContext(decl.context) && decl.context.accessLevel == "private") {
+                //     decl.addNote(
+                //       new CompilerNote(
+                //         decl, NoteKind.STYLE, "lec9.rectangle.1",
+                //         `Make sure to declare constructors in the public section, otherwise they won't be usable from outside the class.`
+                //       )
+                //     );
+                //   }
+                // });
+            }];
+        let project = new Project_1.Project("project", undefined, [{ name: filename, code: exerciseSpec.starterCode, isTranslationUnit: true }], new Project_1.Exercise(exerciseSpec), extras);
         project.turnOnAutoCompile(500);
         if (exerciseSpec.checkpoints.length === 0) {
             $(this).find(".lobster-embedded-height-control").addClass("lobster-ex-no-checkpoints");
         }
         let exOutlet = new SimpleExerciseLobsterOutlet_1.SimpleExerciseLobsterOutlet($(this), project);
+        window.addEventListener("message", (event) => {
+            // ignore messages from anywhere other than parent
+            if (event.source !== window.parent) {
+                return;
+            }
+            // ignore spurious messages
+            if (!event.data["examma_ray_message"]) {
+                return;
+            }
+            let msg = event.data["examma_ray_message"];
+            if (msg.message_kind === "set_submission") {
+                exOutlet.project.setFileContents({
+                    name: "code",
+                    text: msg.submission,
+                });
+            }
+        });
+        setInterval(() => {
+            var _a;
+            try {
+                (_a = window.parent) === null || _a === void 0 ? void 0 : _a.postMessage({
+                    examma_ray_message: {
+                        message_kind: "update",
+                        submission: exOutlet.project.sourceFiles[0].text,
+                    }
+                }, "*");
+            }
+            catch (e) {
+            }
+        }, 1000);
     });
+    try {
+        (_a = window.parent) === null || _a === void 0 ? void 0 : _a.postMessage({
+            examma_ray_message: {
+                message_kind: "ready",
+            }
+        }, "*");
+    }
+    catch (e) {
+    }
 });
 
 
@@ -79212,7 +79524,7 @@ $(() => {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __webpack_require__(4929);
+/******/ 	var __webpack_exports__ = __webpack_require__(9048);
 /******/ 	
 /******/ })()
 ;

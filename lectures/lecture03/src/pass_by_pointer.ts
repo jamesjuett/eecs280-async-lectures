@@ -34,6 +34,13 @@ $(() => {
 
         $(this).append(createEmbeddedExerciseOutlet("single"));
 
+        $(this).find(".lobster-ex-checkpoints")
+          .detach().prependTo($(this))
+          .css("position", "sticky")
+          .css("top", "0")
+          .css("background-color", "white")
+          .css("z-index", "100000");
+
         let filename = "exercise.cpp";
         let exerciseSpec = <ExerciseSpecification>{
           starterCode: dedent`
