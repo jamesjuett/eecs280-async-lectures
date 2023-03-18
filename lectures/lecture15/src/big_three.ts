@@ -40,32 +40,30 @@ $(() => {
         let filename = "code";
         let exerciseSpec = {
           starterCode: dedent`
-          #include <string>
           #include <iostream>
           using namespace std;
           
           class MyClass {
-
           private:
-            string s;
+            char c;
           
           public:
-            MyClass(const string &s_in) : s(s_in) {
-              cout << "ctor " << s << endl;
+            MyClass(char c_in) : c(c_in) {
+              cout << "ctor " << c << endl;
             }
           
-            MyClass(const MyClass &other) : s(other.s) {
-              cout << "copy ctor " << s << endl;
+            MyClass(const MyClass &other) : c(other.c) {
+              cout << "copy ctor " << c << endl;
             }
             
             MyClass &operator=(const MyClass &rhs){
-              cout << "assign " << s
-                    << " to be " << rhs.s << endl;
-              s = rhs.s;
+              cout << "assign " << c
+                   << " to be " << rhs.c << endl;
+              c = rhs.c;
               return *this;
             }
             ~MyClass() {
-              cout << "dtor " << s << endl;
+              cout << "dtor " << c << endl;
             }
           };
           
@@ -74,9 +72,9 @@ $(() => {
           }
           
           int main() {
-            MyClass a("apple");
-            MyClass b("banana");
-            MyClass c("craisin");
+            MyClass a('a');
+            MyClass b('b');
+            MyClass c('c');
            
             func(a, b);
           

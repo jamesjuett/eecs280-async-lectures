@@ -15,7 +15,7 @@ export const LECTURE_15 = Exam.create({
   mk_intructions: dedent`
     
     <div markdown=1 class="alert alert-info">
-      TODO
+      In this lecture, we'll introduce the idea of **shallow copies** vs. **deep copies**, its connection to dynamic resource management, and the way these concepts are realized specifically in C++ via the **Big Three**.
     </div>
     <style>
       .lec-video {
@@ -75,7 +75,7 @@ export const LECTURE_15 = Exam.create({
             You're welcome to check your solution with this **walkthrough** video:
 
             <div style="text-align: center;">
-              <iframe class="lec-video" src="https://www.youtube.com/embed/sPqOvZb0c5A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe class="lec-video" src="https://www.youtube.com/embed/xwEFRufV6lw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <br />
           `
@@ -87,19 +87,12 @@ export const LECTURE_15 = Exam.create({
       title: "The Shallow Copy Problem",
       mk_description: dedent`
 
-        We've seen a few strategies for managing dynamic memory so far. Let's consider one more, which is to use constructors and destructors for a class to manage the allocation and deletion of dynamically allocated memory.
-        
-        This strategy is often called **"Resource Acquisition Is Initialization (RAII)"**. Here's some motivation and the details:
+        Let's take a look at the built-in copying behavior we get in C++ for compound objects (i.e. \`struct\` or \`class\`) and the way this leads to a "shallow copy" by default.
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/uljsiNouVuY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/FlDsWfh4Wrk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
-
-        To recap, the strategy is essentially:
-        - **Allocate** dynamic resources in a **constructor**, as part of initializing a class object.
-        - Track the dynamic memory using a **pointer** stored as a \`private\` member variable, provide access as desired through \`public\` member functions.
-        - When the class object dies (e.g. goes out of scope), its **destructor** ensures the dynamically allocated resources are properly **deleted**.
       `,
       questions: [
         {
@@ -225,7 +218,7 @@ int main() {
             You're welcome to check your solution with this **walkthrough** video:
 
             <div style="text-align: center;">
-              <iframe class="lec-video" src="https://www.youtube.com/embed/6s5tvv3aDE4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe class="lec-video" src="https://www.youtube.com/embed/kCi8LeXB40s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <br />
           `
@@ -237,10 +230,10 @@ int main() {
       title: "Deep Copy Constructors",
       mk_description: dedent`
 
-        Previously, we implemented containers with a fixed-capacity restriction. Using dynamic memory, we can instead implement growable containers that start with a small amount of dynamic memory and allocate more as needed.
+        The semantically correct way to copy an \`UnsortedSet\` object (or any class that manages a dynamic resource, like the underlying array for the set) is to implement a deep copy. We can do this by defining our own custom copy constructor for the class.
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/NM9ONBQzM8c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/RLa4ALJDJw4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
 
@@ -272,7 +265,7 @@ int main() {
             You're welcome to check your solution with this **walkthrough** video:
 
             <div style="text-align: center;">
-              <iframe class="lec-video" src="TODO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe class="lec-video" src="https://www.youtube.com/embed/z7KUYFb9YU4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <br />
           `
@@ -284,10 +277,12 @@ int main() {
       title: "Deep Copy Assignment",
       mk_description: dedent`
 
-        Let's take just a moment to formally reason about the management of dynamic resources by an ADT and sketch out a rough strategy for proving they don't leak memory or run into other memory errors.
+        Copies are also made when we perform assignment on already-existing objects (as opposed to declaring a completely new object as a copy of another). The key difference is that in this case, the assigned-to object will already have some prior dynamic resources that need to be cleaned up before the deep copy is made.
+
+        Additionally, to implement the deep copy properly in C++, we can conveniently overload the \`=\` operator.
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/iB6QhLSM6pM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/05d0cmi7TSA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
       `,
@@ -310,7 +305,7 @@ int main() {
           `,
           response: {
             kind: "iframe",
-            src: "assets/main.html",
+            src: "assets/unsortedintset_assignment_op.html",
             element_class: "lobster-iframe",
             element_style: "height: 675px;",
           },
@@ -319,7 +314,7 @@ int main() {
             You're welcome to check your solution with this **walkthrough** video:
 
             <div style="text-align: center;">
-              <iframe class="lec-video" src="TODO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe class="lec-video" src="https://www.youtube.com/embed/Y-wIMnDcjlk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <br />
           `
@@ -329,7 +324,15 @@ int main() {
     {
       section_id: "section_15_5",
       title: "The Big Three",
-      mk_description: "",
+      mk_description: dedent`
+
+        Finally, let's take a look at the connection between dynamic resource management with destructors and the necessity for a deep copy via a custom copy constructor and assignment operator. Affectionately, these are called "the big three" - and it turns out that they come as a package deal. Here's some more details:
+
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/Gnl-5mr5uhU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
+      `,
       questions: [
         {
           question_id: "lec15_big_three",
@@ -340,18 +343,19 @@ int main() {
             kind: "fill_in_the_blank",
             content: dedent`
               
-              Determine what is printed by the following code. To do this, you'll need to think about where each of the Big Three are used by the code in the main program. You can also step through the code on Lobster (L16.2_BigThree) to check your work.
+              Determine what is printed by the following code. To do this, you'll need to think about where each of the Big Three are used by the code in the main program. Record your prediction in the box at the right. You can use the simulation to double check your answer.
 
               <table>
                 <tr>
-                  <td style="width: 80%">
+                  <td style="width: 65%">
                     <div style="text-align: center;">
-                      <iframe class="lobster-iframe" style="height: 600px;" src="assets/main.html"></iframe>
+                      <iframe class="lobster-iframe" style="height: 600px; width: 100%;" src="assets/big_three.html"></iframe>
                     </div>
                   </td>
                   <td>
+                    Record your predicted output here.
                     [[BOX
-                    
+                    \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
                     
                     
                     ]]
@@ -365,7 +369,7 @@ int main() {
             You're welcome to check your solution with this **walkthrough** video:
 
             <div style="text-align: center;">
-              <iframe class="lec-video" src="https://www.youtube.com/embed/sPqOvZb0c5A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe class="lec-video" src="https://www.youtube.com/embed/4qua-DItFY0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <br />
           `
