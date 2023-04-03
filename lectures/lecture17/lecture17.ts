@@ -322,43 +322,152 @@ Ironically - the description above is quite abstract, and may not make intuitive
           title: "Exercise: Generic \`length()\` Function Template with Iterators",
           points: 3,
           mk_description: dedent`
-            Implement the \`print()\` member function, using traversal via \`next\` pointers.
+            Consider a generic \`length()\` function that takes in begin/end iterators and computes the length of the sequence they point to (using traversal by iterator and counting the number of steps). We would like the \`length()\` function to be useable with any container that supports an iterator interface.
+            
+            For example, we could use it like this:
+
+            \`\`\`cpp
+            int main() {
+              List<int> list; // assume it's filled with some numbers
+              cout << length(list.begin(), list.end()) << endl;
+            }
+            \`\`\`
+            
+            Or like this!
+
+            \`\`\`cpp
+            int main() {
+              std::vector<Card> cards; // assume it's filled with some cards
+              cout << length(cards.begin(), cards.end()) << endl;
+            }
+            \`\`\`
           `,
           response: {
-            kind: "code_editor",
-            codemirror_mime_type: "text/x-c++src",
-            code_language: "cpp",
-            header: dedent`
-              class IntList {
-              private:
-                struct Node {
-                  int datum;
-                  Node *next;
-                };
-                Node *first;
-              
-              public:
-                // MODIFIES: os
-                // EFFECTS:  prints the list to os
-                void print(ostream &os) const {
-            `,
-            footer: dedent`
-                }
-              };
-            `,
-            starter: "",
-            sample_solution: dedent`
-              for(Node *ptr = first; ptr; ptr = ptr->next) {
-                cout << ptr->datum << endl;
-              }
-            `
+            kind: "fill_in_the_blank",
+            content: `
+Determine which of the following potential implementations of \`length()\` are correct. Write "correct" or "incorrect". If they are not correct, additionally describe what's wrong with them.
+
+<table style="width: 100%; border: none;">
+  <tr>
+    <td style="width: 350px; padding-right: 15px;">
+    <div markdown="1">
+      
+\`\`\`cpp
+// Implementation A
+template <typename Iter_type>
+int length(Iter_type begin, Iter_type end) {
+  int count = 0;
+  List<int>::iterator it = begin;
+  while(it != end) {
+    ++count;
+    ++it;
+  }
+  return count;
+}
+\`\`\`
+    </div>
+    </td>
+    <td>
+    <div>
+      [[BOX
+      
+      
+      
+      
+      ]]
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 350px; padding-right: 15px;">
+    <div markdown="1">
+      
+\`\`\`cpp
+// Implementation B
+template <typename Iter_type>
+int length(Iter_type begin, Iter_type end) {
+  int count = 0;
+  for(Iter_type it = begin; it < end; ++it) {
+    ++count;
+  }
+  return count;
+}
+\`\`\`
+    </div>
+    </td>
+    <td>
+    <div>
+      [[BOX
+      
+      
+      
+      
+      ]]
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 350px; padding-right: 15px;">
+    <div markdown="1">
+      
+\`\`\`cpp
+// Implementation C
+template <typename Iter_type>
+int length(Iter_type begin, Iter_type end) {
+  int count = 0;
+  while(begin != end) {
+    ++count;
+    ++begin;
+  }
+  return count;
+}
+\`\`\`
+    </div>
+    </td>
+    <td>
+    <div>
+      [[BOX
+      
+      
+      
+      
+      ]]
+    </div>
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="width: 350px; padding-right: 15px;">
+    <div markdown="1">
+      
+\`\`\`cpp
+// Implementation D
+template <typename Iter_type>
+int length(Iter_type begin, Iter_type end) {
+  return end - begin;
+}
+\`\`\`
+    </div>
+    </td>
+    <td>
+    <div>
+      [[BOX
+      
+      
+      
+      
+      ]]
+    </div>
+    </td>
+  </tr>
+</table>`
           },
           mk_postscript: dedent`
             <hr />
             You're welcome to check your solution with this **walkthrough** video:
 
             <div style="text-align: center;">
-              <iframe class="lec-video" src="https://www.youtube.com/embed/yzL0w-hhUl4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe class="lec-video" src="https://www.youtube.com/embed/BWCJpKM-fD8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <br />
           `
@@ -367,16 +476,13 @@ Ironically - the description above is quite abstract, and may not make intuitive
     },
     {
       section_id: "section_17_5",
-      title: "Managing Memory, Doubly-Linked Lists, and Templates",
+      title: "Iterator Validity",
       mk_description: dedent`
 
-        A few more miscellaneous topics:
-        - Since we're using dynamically allocated nodes, we need to ensure proper **dynamic memory management** using RAII and custom implementations of the Big Three.
-        - We'll upgrade to a **doubly-linked** list (with both \`next\` and \`prev\` pointers) to enable working with the list from both ends, reverse traversal, etc.
-        - We can create a linked list class **template** with minimal changes, which will allow creating linked lists of different types.
+        One last thing... Iterators are kind of like "fancy pointers", and we've got the concept of a "dangling pointer" (a pointer to an object that's no longer safe to use). We have a parallel concept for iterators, referred to as an "invalid", "invalidated", or "dangling" iterator.
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/7mkpKCce6Mk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/BLqkNZEMjEs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
 

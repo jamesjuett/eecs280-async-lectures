@@ -17,6 +17,10 @@ import { LECTURE_14 } from "./lecture14/lecture14";
 import { LECTURE_15 } from "./lecture15/lecture15";
 import { LECTURE_16 } from "./lecture16/lecture16";
 import { LECTURE_17 } from "./lecture17/lecture17";
+import { LECTURE_18 } from "./lecture18/lecture18";
+import { LECTURE_19 } from "./lecture19/lecture19";
+import { LECTURE_20 } from "./lecture20/lecture20";
+import { LECTURE_21 } from "./lecture21/lecture21";
 
 
 export const LECTURES = [
@@ -37,6 +41,10 @@ export const LECTURES = [
   LECTURE_15,
   LECTURE_16,
   LECTURE_17,
+  LECTURE_18,
+  LECTURE_19,
+  LECTURE_20,
+  LECTURE_21,
 ];
 
 
