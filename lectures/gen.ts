@@ -21,7 +21,7 @@ import { LECTURE_18 } from "./lecture18/lecture18";
 import { LECTURE_19 } from "./lecture19/lecture19";
 import { LECTURE_20 } from "./lecture20/lecture20";
 import { LECTURE_21 } from "./lecture21/lecture21";
-
+import { LECTURE_22 } from "./lecture22/lecture22";
 
 export const LECTURES = [
   LECTURE_01,
@@ -45,6 +45,7 @@ export const LECTURES = [
   LECTURE_19,
   LECTURE_20,
   LECTURE_21,
+  LECTURE_22,
 ];
 
 
