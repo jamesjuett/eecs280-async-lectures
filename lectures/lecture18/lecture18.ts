@@ -10,17 +10,17 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 export const LECTURE_18 = Exam.create({
-  exam_id: "lec_18_recursion_and_tail_recursion",
-  title: "Recursion and Tail Recursion",
+  exam_id: "lec_18_functors",
+  title: "Functors and Impostor Syndrome",
   mk_intructions: `
 <div markdown=1 class="alert alert-info">
-Today, we'll look at a fundamentally new way of developing algorithms and writing code using **recursion**.
+This lecture covers **functors** in C++, including their use in **higher-order functions** as **predicates** and **comparators**.
 
-Recursion occurs when a function that calls itself. It's a bit hard to describe why this is useful until you get a feel for it, but here's two high level points that eventually resonate:
+With functors, we're also fully equipped to consider the implementation of \`Map.h\` from EECS 280 project 5.
 
-- Recursion offers a different approach to "repetition" in code without using loops. Perhaps surprisingly, this can be more intuitive for some problems.
-- Recursion allows us to model the self-similar structure that naturally exists in many interesting problems and data structures.
+Finally, we cover **impostor syndrome** - a concept not directly related to programming but that is nevertheless relevant for many in our community.
 </div>
+
 <style>
   .lec-video {
     width: 80%;
@@ -45,200 +45,367 @@ Recursion occurs when a function that calls itself. It's a bit hard to describe 
   sections: [
     {
       section_id: "section_18_1",
-      title: "Introduction to Recursion",
+      title: "Iterator Review, Motivating Example",
       mk_description: dedent`
-
-        To start, let's take a look at the basic mechanism by which a function can call itself recursively and a quick example of where this is actually useful.
+        We'll start by briefly reviewing iterators and setting up the motivation for the main content of today's lecture.
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/XU33Xp1yXWk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/zLEsU8Ja5PM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
-      `,
-      questions: [],
-    },
-    {
-      section_id: "section_18_2",
-      title: "Solving Problems with Recursion",
-      mk_description: dedent`
-
-        Here we'll try to build build an understanding of what sorts of problems are approachable using a recursive approach, how to extract a recurrence relation from a problem definition, and how to turn that into code.
-
-        <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/mc16okENpfs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <br />
-
-        Funny story... I recorded this video a couple years ago and in the background of that video you can clearly hear (e.g. @ 0:20) my son running around downstairs playing with this:
-
-        <div style="text-align: center">
-          <img src="assets/duck.png" style="width: 200px;">
-        </div>
-        <br />
-
-        Oh well, at least it's somewhat related to the duck exercise.
-
       `,
       questions: [
         {
-          question_id: "lec18_ducks_1",
-          title: "Exercise: Counting Ducks, Part 1",
+          question_id: "lec18_any_of_even",
+          title: "Exercise: \`any_of_even()\`",
           points: 3,
           mk_description: dedent`
+            Implement a function template \`any_of_even()\`, which takes in two iterators (of any kind) and determines whether any of the elements in the range they define are even-valued. The function will be very similar to \`any_of_odd()\` from the previous video.
+          `,
+          
+          response: {
+            kind: "code_editor",
+            codemirror_mime_type: "text/x-c++src",
+            code_language: "cpp",
+            starter: "",
+            sample_solution: dedent`
+              template <typename Iter_type>
+              bool any_of_even(Iter_type begin, Iter_type end) {
+                for (Iter_type it = begin; it != end; ++it) {
+                  if (*it % 2 == 0) { return true; }
+                }
+                return false;
+              }
+            `
+          },
+          mk_postscript: dedent`
+            <hr />
+            <details>
+              <summary>Sample solution...</summary>
+              
+              \`\`\`cpp
+              template <typename Iter_type>
+              bool any_of_even(Iter_type begin, Iter_type end) {
+                for (Iter_type it = begin; it != end; ++it) {
+                  if (*it % 2 == 0) { return true; }
+                }
+                return false;
+              }
+              \`\`\`
+            </details>
+          `
+        },
+      ],
+    },
+    {
+      section_id: "section_18_2",
+      title: "Function Pointers",
+      mk_description: dedent`
+        Building on the previous section and exercise - what if we wanted to check for other criteria besides even and odd numbers?
+        
+        Instead of writing mostly the same code over and over again, let's come up with a generic \`any_of()\` function and just tell it what we're looking for when we use it.
+        
+        There are a few different approaches to specify "what we're looking for" - we'll first try using **function pointers**, which are not quite the right answer in C++, but are a reasonable place to start.
 
-            Here's a copy of the duck exercise slide from the previous video:
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/TCVBwKOqLvo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
+        
+        So, we can use a function pointer to specify which function (e.g. \`is_prime()\`)should act as a **predicate** for a **higher-order function** like \`any_of()\`, telling it what to look for. But, there are some limitations to this approach...
+
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/6Y9bRkjPjlI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
+      `,
+      questions: [
+        {
+          question_id: "lec18_function_pointer_ideas",
+          title: "Exercise: Function Pointer Limitations",
+          points: 3,
+          mk_description: dedent`
+            Here's a copy of the slide with the question from the video:
 
             <div style="text-align: center">
-              <img src="assets/ducks_exercise.png" style="width: 600px;">
+              <img src="assets/function_pointer_exercise.png" style="width: 700px;">
             </div>
             <br />
           `,
           response: {
             kind: "fill_in_the_blank",
             content: dedent`
-              We already know the value of $$ducks(0)$$ is $$5$$, because that's the number of ducklings we start with (i.e. "after 0 months").
-
-              Write a recurrence relation for the number of ducks after $$n$$ months, $$ducks(n) = ~ ???$$. Your recurrence should depend on the value(s) of the two previous months, e.g. $$ducks(n-1)$$ and $$ducks(n-2)$$.
+              
+              What do you think? Are any of these good ideas?
 
               [[BOX
-
-
+              
+              
+              
+              
               ]]
-            `
-          },
-          mk_postscript: dedent`
-            The walkthrough for this exercise is included with the walkthrough video for the second exercise below.
-          `
-        },
-        
-        {
-          question_id: "lec18_ducks_2",
-          title: "Exercise: Counting Ducks, Part 2",
-          points: 3,
-          mk_description: dedent`
-            Translate your recurrence relation from Part 1 to code.
-          `,
-          response: {
-            kind: "iframe",
-            src: "assets/ducks.html",
-            element_class: "lobster-iframe",
-            element_style: "height: 675px;",
+            `,
           },
           mk_postscript: dedent`
             <hr />
-            You're welcome to check your solution with this **walkthrough** video.
+            <details>
+              <summary>Sample solution...</summary>
+              
+              It turns out none of these will work correctly.
 
-            Note that this video covers BOTH part 1 and part 2 of the exercise. If you're here for part 1, you can pause partway through and come back.
+              Option A might work, but would be a bit clunky and error prone. We generally try to avoid global variables. We'll see better options soon...
 
-            <div style="text-align: center;">
-              <iframe class="lec-video" src="https://www.youtube.com/embed/lYcApEDtQX4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <br />
+              Option B doesn't work, because the implementation \`any_of()\` function would need to pass in this extra parameter, but that wouldn't make sense if it was used with other predicates that don't expect a random extra parameter.
+
+              Option C follows from option B, but is flawed for the same reason. A higher-order function like \`any_of()\` should simply take in a predicate that is self-contained and does not require juggling extra parameters.
+
+              If only we could create customized \`greater()\` functions as we needed them, plugging in the specific threshold value we want... see the next section for details!
+            </details>
           `
         }
       ],
     },
     {
       section_id: "section_18_3",
-      title: "Reversing an Array with Recursion",
+      title: "Functors",
       mk_description: dedent`
 
-        Let's consider an example of using recursion to processing a data structure - reversing an array.
-        
-        We could do this iteratively with a loop, but what does it look like using recursion?
+        Regular functions in C++ are not "first-class objects" - they cannot be created and customized at runtime. This inherently restricts the use of functions and function pointers for generic coding.
+
+        However, we can do something just as good - we can make a regular class-type object act like a function by overloading its \`()\` operator. These "function objects" are often called **functors**. Because functors are also regular C++ objects, they can be created at runtime, can be customized however we want, and can even store data in member variables!
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/GmNvmhOGeDo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/FJ_EbApHZyg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
-
       `,
       questions: [
         {
-          question_id: "lec18_array_reverse_1",
-          title: "Exercise: Recursive Array Reverse, Part 1",
+          question_id: "lec18_in_range",
+          title: "Exercise: \`InRange\` Predicate Functor",
           points: 3,
-          mk_description: dedent`
-
-            Let's do a bit of brainstorming to come up with a recursive algorithm.
-          `,
+          mk_description: "",
           response: {
             kind: "fill_in_the_blank",
             content: dedent`
-              What base case could we use for reversing an array? What's the "simplest" possible array? What do you need to do to reverse it (if anything)?
+              Fill in the implementation of the \`InRange\` functor, which is constructed with two thresholds for lower and upper bounds of a range. Its function call operator takes in a value and returns true if that value is within the range (inclusive). Assume the numbers in question are doubles.
 
-              [[BOX
+              \`\`\`cpp
+              class InRange {
+              public:
               
-              
-              ]]
+                // Constructor
+                [[BOX_______________________________________________________________
+                
+                
+                
+                ]]
+                
+                // Function Call Operator
+                [[BOX_______________________________________________________________
+                
+                
+                
+                ]]
+                
+              private:
+                // Member Variables
+                [[BOX_______________________________________________________________
+                
+                
+                
+                ]]
+              };
+              \`\`\`
 
-              What "subarray" would you reverse using the "recursive leap of faith"?
+              Fill in the blanks to complete the implementation of \`count_if()\`.
 
-              [[BOX
-              
-              
-              ]]
+              \`\`\`cpp
+              // REQUIRES: 'begin' is before or equal to 'end'
+              // EFFECTS:  Returns the number of elements in the sequence that satisfy 'pred'.
+              template <typename IterType, _BLANK__________________________>
+              int count_if(IterType begin, IterType end, _BLANK_________________ pred) {
+                [[BOX_______________________________________________________________
+                
+                
+                
+                
+                
+                
+                
+                
+                ]]
 
-              What do you need to do to finish the problem, assuming the subarray is reversed successfully?
+              }
+              \`\`\`
 
-              [[BOX
-              
-              
-              ]]
-            `
+              Add code to the \`main()\` function below that uses \`InRange\` and \`count_if()\` to determine the number of elements between 5 and 15, inclusive, in the vector \`vec\`. Some comments are provided to guide you.
+
+              \`\`\`cpp
+              int main() {
+
+                vector<int> vec = {1, 6, 2, 8, 17, 23, 12};
+
+                // Create an InRange functor with the appropriate thresholds
+                [[BOX_______________________________________________________________
+                
+                
+                ]]
+
+
+                // Call count_if with begin/end iterators from the vector
+                // and the InRange functor you created above. (Make sure
+                // that you don't call the functor here, just pass it in!)
+                [[BOX_______________________________________________________________
+                
+                
+                ]]
+              }
+              \`\`\`
+            `,
           },
           mk_postscript: dedent`
             <hr />
-            You're welcome to check your solution with this **walkthrough** video.
+            <details>
+              <summary>Sample solution...</summary>
+              
+              \`\`\`cpp
+              class InRange {
+              public:
+              
+                // Constructor
+                InRange(double lower_in, double upper_in)
+                 : lower(lower_in), upper(upper_in) { }
+                
+                // Function Call Operator
+                bool operator()(double val) const {
+                  return lower <= val && val <= upper;
+                }
+                
+              private:
+                // Member Variables
+                double lower;
+                double upper;
+              };
+              \`\`\`
 
-            <div style="text-align: center;">
-              <iframe class="lec-video" src="https://www.youtube.com/embed/3X7hruWsXJI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <br />
-          `
-        },
-        
-        {
-          question_id: "lec18_array_reverse_2",
-          title: "Exercise: Recursive Array Reverse, Part 2",
-          points: 3,
-          mk_description: dedent`
-            Translate your recurrence relation from Part 1 to code.
-          `,
-          response: {
-            kind: "iframe",
-            src: "assets/array_reverse.html",
-            element_class: "lobster-iframe",
-            element_style: "height: 675px;",
-          },
-          mk_postscript: dedent`
-            <hr />
-            You're welcome to check your solution with this **walkthrough** video.
+              Fill in the blanks to complete the implementation of \`count_if()\`.
 
-            <div style="text-align: center;">
-              <iframe class="lec-video" src="https://www.youtube.com/embed/hLCJO2VdiMo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <br />
+              \`\`\`cpp
+              // REQUIRES: 'begin' is before or equal to 'end'
+              // EFFECTS:  Returns the number of elements in the sequence that satisfy 'pred'.
+              template <typename IterType, typename Predicate>
+              int count_if(IterType begin, IterType end, Predicate pred) {
+                int count = 0;
+                while(begin != end) {
+                  if (pred(*begin)) {
+                    ++count;
+                  }
+                  ++begin;
+                }
+                return count;
+
+              }
+              \`\`\`
+
+              Add code to the \`main()\` function below that uses \`InRange\` and \`count_if()\` to determine the number of elements between 5 and 15, inclusive, in the vector \`vec\`. Some comments are provided to guide you.
+
+              \`\`\`cpp
+              int main() {
+
+                vector<int> vec = {1, 6, 2, 8, 17, 23, 12};
+
+                // Create an InRange functor with the appropriate thresholds
+                InRange in_range(5, 15);
+
+
+                // Call count_if with begin/end iterators from the vector
+                // and the InRange functor you created above. (Make sure
+                // that you don't call the functor here, just pass it in!)
+                int n = count_if(vec.begin(), vec.end(), in_range);
+              }
+              \`\`\`
+            </details>
           `
         }
       ],
     },
     {
       section_id: "section_18_4",
-      title: "Tail Recursion",
+      title: "Comparators",
       mk_description: dedent`
-
-        It turns out that recursion can be less memory-efficient than iteration in some cases due to a proliferation of stack frames. Let's take a look at a strategy called **tail recursion** that allows the compiler to perform optimizations to eliminate the inefficiency (in some cases).
+        Another common use for functors is to define multiple different ways of comparing objects. The functor overloads the \`()\` to take in two objects, compare them, and return true if the first is less than the second ("less than" is the conventional direction of comparison, at least). Such a functor is called a **comparator**.
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/ioW9LOCr00o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/v2ZhdD3DBTU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
 
-        In some cases, like the tail-recursive \`reverse()\` implementation, there's a natural approach to solve the problem using tail recursion. In other cases, like for \`factorial()\`, a more deliberate approach is necessary, including additional work to "pass a computed result forward" rather than computing a result as the call stack unwinds. Here's an example of an alternate approach that involves an extra accumlator parameter to implement a tail-recursive \`factorial()\` function.
+        Comparators have many uses! Higher-order functions can take in a comparator to determine how they search for the smallest element, sort a particular sequence, or any process that depends on ordering. Or, a data structure like a binary search tree could also allow a custom comparator to be used to determine the ordering of elements it contains. 
+
+      `,
+      questions: [],
+    },
+    {
+      section_id: "section_18_5",
+      title: "for_each()",
+      mk_description: dedent`
+        Here's one more example of a higher-order function for you to consider. 
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/hqHgiKwEF9o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/FzIGCJir_J4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
+
+        The \`for_each()\` function essentially provides a high-level abstraction for using iterators and functors to perform the same tasks we might regularly write out with more verbose code using a loop.
+
+        <br />
+
+      `,
+      questions: [],
+    },
+    {
+      section_id: "section_18_6",
+      title: "Impostor Syndrome",
+      mk_description: dedent`
+        Let's take a break from functors to discuss something just as important...
+        
+        Impostor syndrome is the name given to a feeling of self-doubt, often accompanied by a difficulty accepting one's own accomplishments or a fear of being exposed as a fraud.
+
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/guTZo28LC6E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
+
+        I mentioned a poll in the video above - here's a set of results from a previous term.
+        
+        We asked, _"Have you felt like an impostor in your classes here at UM?"_
+        
+        <div style="text-align: center">
+          <img src="assets/impostor_syndrome_poll.png" style="width: 400px;">
+        </div>
+        <br />
+      `,
+      questions: [],
+    },
+    {
+      section_id: "section_18_7",
+      title: "`Map.h` Tips for Project 5",
+      mk_description: dedent`
+        Finally, a few practical tips and tricks for \`Map.h\` from project 5. I saved this until now because an understanding of functors is essential here.
+
+        Let's take a tour of each component in the \`Map\` class, including the BST member variable (i.e. the "has-a" pattern), the template parameters, and a custom comparator to compare key-value pairs in the BST based on the keys only.
+
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/Feou0OEHEPQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
+
+        
+        Here's also an overview of what each of the three main \`Map\` functions (\`find\`, \`insert\`, and \`operator[]\`) should do. You'll use each in various places thoughout the project 5 driver.
+
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/DlBMShisMkQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
       `,

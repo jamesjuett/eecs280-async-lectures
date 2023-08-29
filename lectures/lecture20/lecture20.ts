@@ -10,14 +10,13 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 export const LECTURE_20 = Exam.create({
-  exam_id: "lec_20_bsts_sets_and_maps",
-  title: "Binary Search Trees, Sets, and Maps",
+  exam_id: "lec_20_structural_recursion",
+  title: "Structural Recursion",
   mk_intructions: `
 <div markdown=1 class="alert alert-info">
-This lecture covers **Binary Search Trees (BSTs)**, which are a special kind of binary tree that maintains a sorting invariant on its elements. It combines the advantages of a sorted array (i.e. fast lookup with binary search) with the flexibility of a linked list (i.e. efficient insert/remove operations anywhere in the data structure).
+Recursion is well-suited for problems that have an intrinsic **recursive structure**. This also applies directly for many data structures, including **linked lists** (which we've seen before) and **trees** (which we introduce today). It will also turn out that for some operations, a recursive approach is natural while an iterative approach requires significant additional work.
 
-BSTs are the foundation of "industry-strength" implementations of several application-oriented data structures, including sets and maps. We'll particularly focus on maps, since we haven't discussed them previously and they are a key part of project 5 in EECS 280.
-
+By the way, I want to give a big thanks to **Ashvin**, who recorded walkthrough videos for this lecture.
 </div>
 <style>
   .lec-video {
@@ -43,42 +42,231 @@ BSTs are the foundation of "industry-strength" implementations of several applic
   sections: [
     {
       section_id: "section_20_1",
-      title: "Intro to Binary Search Trees",
+      title: "Recursion on Linked Lists",
       mk_description: dedent`
 
-        In essence, a binary search tree is a regular binary tree where each node's left subtree contains lower values and right subtree contains higher values. Let's take a look at some specifics as well as the reason this leads to efficient performance.
+        As an initial example, let's consider the recursive structure implicit in a linked list as well as strategies for recursively processing the data stored in the list.
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/8w_0IkymhhY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/oLDv_mYmvGc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
       `,
-      questions: [],
+      questions: [
+        {
+          question_id: "lec20_recursive_list_functions",
+          title: "Exercise: Recursive List Functions",
+          points: 3,
+          mk_description: dedent`
+
+            <table class="table w-auto">
+              <tr>
+                <td style="border: none;">
+                  Determine base cases and recurrence relations for the list functions below. Some portions are already given to help you get started. Use the abstract terms in the picture at right, but don't worry too much about precise notation.
+                  <br />
+                  <br />
+                  This exercise is challenging! Recursion is a totally different kind of thinking than we use in our normal lives. We promise it gets easier. If you get stuck, check the walkthrough video.
+                </td>
+                <td style="border: none;">
+                  <img src="assets/list_abstract.png" style="width: 200px;">
+                </td>
+              </tr>
+            </table>
+          `,
+          response: {
+            kind: "fill_in_the_blank",
+            content: dedent`
+              **\`length(list)\`**  
+              Finds the number of elements in \`list\`.
+
+              <table style="width: 100%; border: none;">
+                <tr>
+                  <td style="width: 175px; text-align: right;">
+                    <b>Base Case</b>
+                  </td>
+                  <td>
+                    <div style="height: 5em; border: solid 1px #ccc; width: 100%; margin: 2px 3px; padding: 0.25em; font-family: monospace; color: #333;">
+                      if empty, length(list) = 0
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="width: 175px; text-align: right;">
+                    <b>Recurrence Relation</b>
+                  </td>
+                  <td>
+                    <div style="height: 5em; border: solid 1px #ccc; width: 100%; margin: 2px 3px; padding: 0.25em; font-family: monospace; color: #333;">
+                      length(list) = 1 + length(rest)
+                    </div>
+                  </td>
+                </tr>
+              </table>
+
+              <br />
+              **\`sum(list)\`**  
+              Finds the sum of element values in \`list\`.
+
+              <table style="width: 100%; border: none;">
+                <tr>
+                  <td style="width: 175px; text-align: right;">
+                    <b>Base Case</b>
+                  </td>
+                  <td>
+                    [[BOX
+                    
+                    
+                    
+                    ]]
+                  </td>
+                </tr>
+                <tr>
+                  <td style="width: 175px; text-align: right;">
+                    <b>Recurrence Relation</b>
+                  </td>
+                  <td>
+                    [[BOX
+                    
+                    
+                    
+                    ]]
+                  </td>
+                </tr>
+              </table>
+
+              <br />
+              **\`last(list)\`**  
+              Finds the last element in \`list\`.<br />
+              \`REQUIRES:\` \`list\` is not empty
+
+              <table style="width: 100%; border: none;">
+                <tr>
+                  <td style="width: 175px; text-align: right;">
+                    <b>Base Case</b>
+                  </td>
+                  <td>
+                    <div style="height: 5em; border: solid 1px #ccc; width: 100%; margin: 2px 3px; padding: 0.25em; font-family: monospace; color: #333;">
+                      if rest is empty, last(list) = x<br />
+                      (Base case is a single element list)
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="width: 175px; text-align: right;">
+                    <b>Recurrence Relation</b>
+                  </td>
+                  <td>
+                    [[BOX
+                    
+                    
+                    
+                    ]]
+                  </td>
+                </tr>
+              </table>
+
+              <br />
+              **\`count(list, n)\`**  
+              Finds the number of times \`n\` appears in \`list\`.
+
+              <table style="width: 100%; border: none;">
+                <tr>
+                  <td style="width: 175px; text-align: right;">
+                    <b>Base Case</b>
+                  </td>
+                  <td>
+                    [[BOX
+                    
+                    
+                    
+                    ]]
+                  </td>
+                </tr>
+                <tr>
+                  <td style="width: 175px; text-align: right;">
+                    <b>Recurrence Relation</b><br />
+                    <span style="font-style: italic;">Hint: Use an if-else here!</span>
+                  </td>
+                  <td>
+                    [[BOX
+                    
+                    
+                    
+                    ]]
+                  </td>
+                </tr>
+              </table>
+
+              <br />
+              **\`max(list)\`**  
+              Finds the largest value in \`list\`.<br />
+              \`REQUIRES:\` \`list\` is not empty<br />
+              <span style="font-style: italic;">Hint: Use a helper function \`max(int,int)\`</span>
+
+
+              <table style="width: 100%; border: none;">
+                <tr>
+                  <td style="width: 175px; text-align: right;">
+                    <b>Base Case</b>
+                  </td>
+                  <td>
+                    [[BOX
+                    
+                    
+                    
+                    ]]
+                  </td>
+                </tr>
+                <tr>
+                  <td style="width: 175px; text-align: right;">
+                    <b>Recurrence Relation</b>
+                  </td>
+                  <td>
+                    [[BOX
+                    
+                    
+                    
+                    ]]
+                  </td>
+                </tr>
+              </table>
+            `
+          },
+          mk_postscript: dedent`
+            <hr />
+            You're welcome to check your solution with this **walkthrough** video.
+
+            <div style="text-align: center;">
+              <iframe class="lec-video" src="https://www.youtube.com/embed/qj1c_BU3EBo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <br />
+          `
+        },
+      ],
     },
     {
       section_id: "section_20_2",
-      title: "Recursive Functions on BSTs",
+      title: "Coding Recursive List Functions",
       mk_description: dedent`
 
-        We can work with binary search trees using a similar recursive approach to regular binary trees, except that we can make an informed decision about which subtree to explore based on the sorting invariant.
+        Next, we'll take a quick look at coding up an implementation of a recursive list function. As usual, we primarily follow the conceptual base case and recurrence relation we've already worked out, but there are a few more details to consider once we get to the actual code.
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/dBZQHTba1Ps" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/ybgmPmWsgf0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
 
       `,
       questions: [
         {
-          question_id: "lec20_bst_contains",
-          title: "Exercise: \`bst_contains()\`",
+          question_id: "lec20_list_max",
+          title: "Exercise: Coding \`list_max()\`",
           points: 3,
           mk_description: dedent`
-            Implement the \`bst_contains()\` function, introduced at the end of the video above.
+            Implement the \`list_max()\` function based on the base case and recurrence relation from earlier.
           `,
           response: {
             kind: "iframe",
-            src: "assets/bst_contains.html",
+            src: "assets/list_max.html",
             element_class: "lobster-iframe",
             element_style: "height: 675px;",
           },
@@ -87,7 +275,7 @@ BSTs are the foundation of "industry-strength" implementations of several applic
             You're welcome to check your solution with this **walkthrough** video.
 
             <div style="text-align: center;">
-              <iframe class="lec-video" src="https://www.youtube.com/embed/KH2OQcbJAoM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe class="lec-video" src="https://www.youtube.com/embed/3H6qPjwzwXU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <br />
           `
@@ -96,46 +284,262 @@ BSTs are the foundation of "industry-strength" implementations of several applic
     },
     {
       section_id: "section_20_3",
-      title: "BST Implementation on Project 5",
+      title: "Recursion on Trees",
       mk_description: dedent`
 
-        It's also worth a bit of time to take a look at how a binary search tree could be realized as a C++ class, including some of the specifics for the implementation you'll work with in EECS 280 project 5.
+        Now, let's take a look at a new data structure, the binary tree. It turns out that binary trees underly many of the most efficient implementations of a variety of data structures, including sets and maps, which we'll talk about next time.
+        
+        Because trees are also a naturally recursive data structure, we'll apply recursion here as well.
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/T-RWJ_-Mt6E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/4XJgvfQsvwo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
       `,
-      questions: [],
+      questions: [
+        {
+          question_id: "lec20_recursive_tree_functions",
+          title: "Exercise: Recursive Tree Functions",
+          points: 3,
+          mk_description: dedent`
+
+            <table class="table w-auto">
+              <tr>
+                <td style="border: none;">
+                  Determine base cases and recurrence relations for the tree functions below. Some portions are already given to help you get started. Use the abstract terms in the picture at right, but don't worry too much about precise notation.
+                  <br />
+                  <br />
+                  This exercise is challenging! Recursion is a totally different kind of thinking than we use in our normal lives. We promise it gets easier. If you get stuck, check the walkthrough video.
+                </td>
+                <td style="border: none;">
+                  <img src="assets/tree_abstract.png" style="width: 200px;">
+                </td>
+              </tr>
+            </table>
+          `,
+          response: {
+            kind: "fill_in_the_blank",
+            content: dedent`
+              **\`size(tree)\`**  
+              Finds the number of elements in \`tree\`.
+
+              <table style="width: 100%; border: none;">
+                <tr>
+                  <td style="width: 175px; text-align: right;">
+                    <b>Base Case</b>
+                  </td>
+                  <td>
+                    <div style="height: 5em; border: solid 1px #ccc; width: 100%; margin: 2px 3px; padding: 0.25em; font-family: monospace; color: #333;">
+                      if empty, size(tree) = 0
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="width: 175px; text-align: right;">
+                    <b>Recurrence Relation</b>
+                  </td>
+                  <td>
+                    <div style="height: 5em; border: solid 1px #ccc; width: 100%; margin: 2px 3px; padding: 0.25em; font-family: monospace; color: #333;">
+                      size(tree) = 1 + size(left) + size(right)
+                    </div>
+                  </td>
+                </tr>
+              </table>
+
+              <br />
+              **\`height(tree)\`**  
+              Finds the height of \`tree\`.<br />
+              <span style="font-style: italic;">Hint: Use a helper function \`max(int,int)\`</span>
+
+              <table style="width: 100%; border: none;">
+                <tr>
+                  <td style="width: 175px; text-align: right;">
+                    <b>Base Case</b>
+                  </td>
+                  <td>
+                    [[BOX
+                    
+                    
+                    
+                    ]]
+                  </td>
+                </tr>
+                <tr>
+                  <td style="width: 175px; text-align: right;">
+                    <b>Recurrence Relation</b>
+                  </td>
+                  <td>
+                    [[BOX
+                    
+                    
+                    
+                    ]]
+                  </td>
+                </tr>
+              </table>
+
+              <br />
+              **\`sum(tree)\`**  
+              Finds the sum of element values in \`tree\`.
+
+              <table style="width: 100%; border: none;">
+                <tr>
+                  <td style="width: 175px; text-align: right;">
+                    <b>Base Case</b>
+                  </td>
+                  <td>
+                    [[BOX
+                    
+                    
+                    
+                    ]]
+                  </td>
+                </tr>
+                <tr>
+                  <td style="width: 175px; text-align: right;">
+                    <b>Recurrence Relation</b>
+                  </td>
+                  <td>
+                    [[BOX
+                    
+                    
+                    
+                    ]]
+                  </td>
+                </tr>
+              </table>
+
+              <br />
+              **\`num_leaves(tree)\`**  
+              Finds the number of leaf nodes in \`tree\`.
+
+              <table style="width: 100%; border: none;">
+                <tr>
+                  <td style="width: 175px; text-align: right;">
+                    <b>Base Case</b><br />
+                    <span style="font-style: italic;">Hint: there are two base cases here!</span>
+                  </td>
+                  <td>
+                    [[BOX
+                    
+                    
+                    
+                    ]]
+                  </td>
+                </tr>
+                <tr>
+                  <td style="width: 175px; text-align: right;">
+                    <b>Recurrence Relation</b>
+                  </td>
+                  <td>
+                    <div style="height: 5em; border: solid 1px #ccc; width: 100%; margin: 2px 3px; padding: 0.25em; font-family: monospace; color: #333;">
+                      num_leaves(tree) = num_leaves(left) + num_leaves(right)
+                    </div>
+                  </td>
+                </tr>
+              </table>
+
+              <br />
+              **\`contains(tree, n)\`**  
+              Returns true if \`tree\` contains the value \`n\`, and false otherwise.
+
+              <table style="width: 100%; border: none;">
+                <tr>
+                  <td style="width: 175px; text-align: right;">
+                    <b>Base Case</b><br />
+                    <span style="font-style: italic;">Hint: there are two base cases here!</span>
+                  </td>
+                  <td>
+                    [[BOX
+                    
+                    
+                    
+                    ]]
+                  </td>
+                </tr>
+                <tr>
+                  <td style="width: 175px; text-align: right;">
+                    <b>Recurrence Relation</b>
+                  </td>
+                  <td>
+                    [[BOX
+                    
+                    
+                    
+                    ]]
+                  </td>
+                </tr>
+              </table>
+            `
+          },
+          mk_postscript: dedent`
+            <hr />
+            You're welcome to check your solution with this **walkthrough** video.
+
+            <div style="text-align: center;">
+              <iframe class="lec-video" src="https://www.youtube.com/embed/GggjCqNt9eU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <br />
+          `
+        },
+      ],
     },
     {
       section_id: "section_20_4",
-      title: "Building a Set on a BST",
+      title: "Coding Recursive Tree Functions",
       mk_description: dedent`
-        Now, let's turn to some useful data structures implemented via a binary search tree.
-        First, we'll consider a BST-based set, which will outperform the other array-based implementations we've seen previously.
+        Let's take a look at a specific representation of trees in code, using a \`Node\` structure much like we had used for linked lists. We'll also work through a quick example of code that processes a tree recursively.
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/jSiwdyPCz_A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/OinWaXbmkm0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
 
       `,
-      questions: [],
+      questions: [
+        {
+          question_id: "lec20_tree_height",
+          title: "Exercise: Coding \`tree_height()\`",
+          points: 3,
+          mk_description: dedent`
+            Implement the \`tree_height()\` function based on the base case and recurrence relation from earlier. Note that \`max()\` helper function provided.
+          `,
+          response: {
+            kind: "iframe",
+            src: "assets/tree_height.html",
+            element_class: "lobster-iframe",
+            element_style: "height: 675px;",
+          },
+          mk_postscript: dedent`
+            <hr />
+            You're welcome to check your solution with this **walkthrough** video.
+
+            <div style="text-align: center;">
+              <iframe class="lec-video" src="https://www.youtube.com/embed/aPbU04V-87Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <br />
+          `
+        },
+      ],
     },
     {
       section_id: "section_20_5",
-      title: "Building a Map on a BST",
+      title: "Tree Traversals",
       mk_description: dedent`
-        In this video, we'll introduce the idea of a map as an associative container where we can store and retrieve *values* according to a particular *key*. Then we'll look at the fundamental approach we could use to implement a map with a BST.
+        To traverse and process each element in the tree, there are several possible orderings. (Contrast this to a linear data structure like a linked list where there is only one straightforward traversal.)
+
+        Let's take a look at each:
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/8cdFFouBjvs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/7bd-YBzEj7o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
-        
-        We'll return back in a future lecture to some more details on the actual implementation of the map, including how we can sort entries (i.e. pairs of keys and values) in the underlying binary search tree appropriately (i.e. based only on the key, not the value).
 
+        Here's a copy of the slide with all the traversals:
+
+        <div style="text-align: center">
+          <img src="assets/tree_traversals.png" style="width: 600px;">
+        </div>
         <br />
 
       `,
@@ -143,33 +547,15 @@ BSTs are the foundation of "industry-strength" implementations of several applic
     },
     {
       section_id: "section_20_6",
-      title: "Map Example + Miscellaneous",
+      title: "Types of Recursion",
       mk_description: dedent`
-        I'd like to build up to an example of using a \`std::map<string,int>\` to count the number of times each individual word occurs in a string of text. Each word will act as a key into the map, associated with a value representing its frequency.
-        
-        But, before we get there, let me introduce a few miscellaneous C++ features that will make the code a bit more elegant.
-
-        First, the \`auto\` keyword, which tells the compiler to deduce the type of a variable for us - this can be useful with types like iterators that are a pain to write out by hand.
+        Finally, let's take a look at several qualitatively different kinds of recursion we've seen so far. Generally, the distinguishing factors are the number and placement of the recursive calls.
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/R5fQKw69np0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/veFwW_oDpd8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
 
-        
-        Next, *range-based for loops*, which allow convenient iteration over any container that supports an iterator interface.
-
-        <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/JJ3dH0WsE4U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <br />
-
-        Finally, back to the word-counting example...
-
-        <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/RqFV6PqvJuI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <br />
       `,
       questions: [],
     },
