@@ -69,9 +69,7 @@ jobs:
         run: npm run build
       
       - name: Prepare _site
-        run: |
-          mv lectures/out _site
-          mv site/* _site/
+        run: mv lectures/out _site
 
       # Upload the _site directory created in the above step for use by
       # GitHub Pages.
