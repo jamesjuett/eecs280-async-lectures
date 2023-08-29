@@ -17,6 +17,11 @@ export const LECTURE_01 = Exam.create({
     <div markdown=1 class="alert alert-info">
       Welcome to **EECS 280**! This lecture presents our motivations and big-picture goals, some course logistics, and an initial conceptual model of C++ programs.
     </div>
+    
+    <div markdown=1 class="alert alert-danger">
+      If you're visiting during the internet and online services outage at the start of the Fall 2023 term, you can access our website and all course content at <a href="eecs280staff.github.io/eecs280.org" target="_blank">eecs280staff.github.io/eecs280.org</a>.
+    </div>
+
     <style>
       .lec-video {
         width: 80%;
