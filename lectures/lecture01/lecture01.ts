@@ -59,7 +59,7 @@ export const LECTURE_01 = Exam.create({
     },
     {
       section_id: "section_1_2",
-      title: "Course Essentials and Grading",
+      title: "Course Essentials",
       mk_description: dedent`
         Let's take a look at the major parts of the course, including resources and websites you'll use to engage with the course and how the overall course is graded.
 
