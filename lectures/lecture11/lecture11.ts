@@ -278,7 +278,7 @@ Two of the implementations above for \`remove()\` work correctly. Which one is t
             }
             \`\`\`
 
-            The \`+=\` operator can be implemented either as a member function overload or a non-member function overload. Consider each of the the potential implementations of \`+=\` below. For each, indicate whether the \`operator+=\` overload function is being defined as a member or non-member, and whether or not it is implemented correctly.
+            The \`+=\` operator can be implemented either as a member function overload or a non-member function overload. Consider each of the potential implementations of \`+=\` below. For each, indicate whether the \`operator+=\` overload function is being defined as a member or non-member, and whether or not it is implemented correctly.
           `,
           response: {
             kind: "fill_in_the_blank",
