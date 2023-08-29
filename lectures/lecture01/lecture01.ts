@@ -69,11 +69,11 @@ export const LECTURE_01 = Exam.create({
     },
     {
       section_id: "section_1_3",
-      title: "Exams and Grading",
+      title: "Evaluation and Grading",
       mk_description: dedent`
-        It's not terribly exciting, but let's take a bit of time to discuss assignment weights, evaluation, and overall grading in the course.
+        It's not terribly exciting, but let's take a bit of time to discuss assignment weights, exams, and overall grading in the course.
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/lHyme2D9ZwI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/https://youtu.be/9q_tGX4h2XY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
       `,
