@@ -168,9 +168,9 @@ int main() {
             content: dedent`
               What values are printed for each of the expressions sent to \`cout\` at the end of the program?
 
-              \`x\` _BLANK____ &nbsp;&nbsp;&nbsp;&nbsp;  \`ptr\` _BLANK____ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  \`&x\` _BLANK____ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  \`*&x\` _BLANK____ &nbsp;&nbsp;&nbsp;
+              \`x\` _BLANK______ &nbsp;&nbsp;&nbsp;&nbsp;  \`ptr\` _BLANK______ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  \`&x\` _BLANK______ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  \`*&x\` _BLANK______ &nbsp;&nbsp;&nbsp;
 
-              \`y\` _BLANK____ &nbsp;&nbsp;&nbsp;  \`*ptr\` _BLANK____ &nbsp;&nbsp;&nbsp;  \`&ptr\` _BLANK____ &nbsp;&nbsp;&nbsp;  \`&*ptr\` _BLANK____ &nbsp;&nbsp;&nbsp;
+              \`y\` _BLANK______ &nbsp;&nbsp;&nbsp;  \`*ptr\` _BLANK______ &nbsp;&nbsp;&nbsp;  \`&ptr\` _BLANK______ &nbsp;&nbsp;&nbsp;  \`&*ptr\` _BLANK______ &nbsp;&nbsp;&nbsp;
             `,
             sample_solution: [
               "3",
