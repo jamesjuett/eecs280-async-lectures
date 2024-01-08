@@ -52,7 +52,7 @@ $(() => {
         //  "price"   The cost to buy the sandiwch, e.g. 7.99
         
         int main() {
-          // Task 2.1: Define and initialize a Sandwich variable as described below:
+          // Task 2: Define and initialize a Sandwich variable as described below:
           // - You may name the variable whatever you like.
           // - The variable should be declared as const.
           // - Use the "= {}" notation to give each member a value.

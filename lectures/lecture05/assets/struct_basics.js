@@ -21599,6 +21599,9 @@ function isAnythingConstruct(construct) {
     if ((ac === null || ac === void 0 ? void 0 : ac.construct_type) === "block" && ac.statements.length === 1 && isAnythingConstruct(ac.statements[0])) {
         return true;
     }
+    if ((ac === null || ac === void 0 ? void 0 : ac.construct_type) === "expression_statement" && isAnythingConstruct(ac.expression)) {
+        return true;
+    }
     return false;
 }
 exports.isAnythingConstruct = isAnythingConstruct;
@@ -79176,7 +79179,7 @@ $(() => {
         //  "price"   The cost to buy the sandiwch, e.g. 7.99
         
         int main() {
-          // Task 2.1: Define and initialize a Sandwich variable as described below:
+          // Task 2: Define and initialize a Sandwich variable as described below:
           // - You may name the variable whatever you like.
           // - The variable should be declared as const.
           // - Use the "= {}" notation to give each member a value.
@@ -79266,7 +79269,7 @@ $(() => {
                 return !!((_a = (0, analysis_1.findFirstConstruct)(main_fn, predicates_1.Predicates.byKind("arrow_expression"))) === null || _a === void 0 ? void 0 : _a.isSuccessfullyCompiled());
             }),
         ],
-        completionCriteria: Project_1.COMPLETION_LAST_CHECKPOINT,
+        completionCriteria: Project_1.COMPLETION_ALL_CHECKPOINTS,
         completionMessage: "Nice work! Exercise complete!",
     };
     let completionMessage = (_b = (_a = ex_elem.find(".lobster-ex-completion-message").html()) === null || _a === void 0 ? void 0 : _a.trim()) !== null && _b !== void 0 ? _b : (_c = ex_elem.find(".lobster-ex-complete-message").html()) === null || _c === void 0 ? void 0 : _c.trim();
