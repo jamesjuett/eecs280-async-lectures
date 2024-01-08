@@ -10,7 +10,7 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 export const LECTURE_07 = Exam.create({
-  exam_id: "lec_7_adts_in_c",
+  exam_id: "lec_07_adts_in_c",
   title: "Abstract Data Types in C",
   mk_intructions: dedent`
     
@@ -48,7 +48,7 @@ export const LECTURE_07 = Exam.create({
   assets_dir: __dirname + `/assets`,
   sections: [
     {
-      section_id: "section_7_1",
+      section_id: "section_07_1",
       title: "Introduction to ADTs in C",
       mk_description: dedent`
         Structs form the foundation of ADTs in C, acting as a **data representation** that allows us to model heterogeneous real-world objects. What makes a full ADT is the introduction of associated **behaviors** (i.e. functions) as well as plain **data**. We implement these behaviors as associated functions, which operate on an ADT struct via a pointer parameter.
@@ -62,7 +62,7 @@ export const LECTURE_07 = Exam.create({
       `,
       questions: [
         {
-          question_id: "lec7_triangle_scale",
+          question_id: "lec07_triangle_scale",
           title: "Exercise: `Triangle_scale()`",
           points: 3,
           mk_description: dedent`
@@ -285,7 +285,7 @@ void Triangle_scale(Triangle tri, double s) {
       ],
     },
     {
-      section_id: "section_7_2",
+      section_id: "section_07_2",
       title: "ADT Initialization and Representation Invariants",
       mk_description: dedent`
         An essential component of proper ADT design is the use of **representation invariants** to express conditions that differentiate valid data (e.g. a Triangle with sides 3, 4, and 5) from invalid, nonsense values (e.g. one of the side lengths is -10).
@@ -303,7 +303,7 @@ void Triangle_scale(Triangle tri, double s) {
       `,
       questions: [
         {
-          question_id: "lec7_matrix_image_representation_invariants",
+          question_id: "lec07_matrix_image_representation_invariants",
           title: "Exercise: `Matrix`/`Image` Representation Invariants",
           points: 3,
           mk_description: "",
@@ -371,7 +371,7 @@ void Triangle_scale(Triangle tri, double s) {
       ],
     },
     {
-      section_id: "section_7_3",
+      section_id: "section_07_3",
       title: "Interfaces and Implementations",
       mk_description: dedent`
 
@@ -385,7 +385,7 @@ void Triangle_scale(Triangle tri, double s) {
       questions: [],
     },
     {
-      section_id: "section_7_4",
+      section_id: "section_07_4",
       title: "Composing ADTs",
       mk_description: dedent`
         
@@ -400,7 +400,7 @@ void Triangle_scale(Triangle tri, double s) {
       questions: [],
     },
     {
-      section_id: "section_7_5",
+      section_id: "section_07_5",
       title: "Unit Testing ADTs",
       mk_description: dedent`
         Of course, just as we write unit tests for functions (which are the realization of procedural abstractions in our code), we should also write tests for ADTs to ensure that the behavior of their implementation matches with their specified interface.
@@ -415,7 +415,7 @@ void Triangle_scale(Triangle tri, double s) {
       questions: [],
     },
     {
-      section_id: "section_7_6",
+      section_id: "section_07_6",
       title: "Testing with `stringstream`s",
       mk_description: dedent`
         If you're writing a function that performs input/output, how can you write automated unit tests?
@@ -435,7 +435,7 @@ void Triangle_scale(Triangle tri, double s) {
       `,
       questions: [
         {
-          question_id: "lec7_triangle_print_stringstream",
+          question_id: "lec07_triangle_print_stringstream",
           title: "Exercise: Testing a `Triangle_print()` Function",
           points: 3,
           mk_description: dedent`
@@ -514,7 +514,7 @@ void Triangle_scale(Triangle tri, double s) {
       ],
     },
     {
-      section_id: "section_7_7",
+      section_id: "section_07_7",
       title: "Test-Driven Development",
       mk_description: dedent`
         This section is optional - it includes an extended example of test-driven development for a complex C-Style ADT, but it doesn't introduce any new material.

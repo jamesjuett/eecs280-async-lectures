@@ -10,7 +10,7 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 export const LECTURE_01 = Exam.create({
-  exam_id: "lec_1_intro_and_machine_model",
+  exam_id: "lec_01_intro_and_machine_model",
   title: "Introduction and Machine Model",
   mk_intructions: dedent`
     
@@ -45,7 +45,7 @@ export const LECTURE_01 = Exam.create({
   assets_dir: __dirname + `/assets`,
   sections: [
     {
-      section_id: "section_1_1",
+      section_id: "section_01_1",
       title: "The Big Picture",
       mk_description: dedent`
         What's EECS 280 all about? Why are we here? Why do we care?
@@ -58,7 +58,7 @@ export const LECTURE_01 = Exam.create({
       questions: [ ]
     },
     {
-      section_id: "section_1_2",
+      section_id: "section_01_2",
       title: "Course Essentials",
       mk_description: dedent`
         Let's take a look at the major parts of the course, including resources and websites you'll use to engage with the course and how the overall course is graded.
@@ -73,7 +73,7 @@ export const LECTURE_01 = Exam.create({
       questions: [ ]
     },
     {
-      section_id: "section_1_3",
+      section_id: "section_01_3",
       title: "Evaluation and Grading",
       mk_description: dedent`
         It's not terribly exciting, but let's take a bit of time to discuss assignment weights, exams, and overall grading in the course.
@@ -85,7 +85,7 @@ export const LECTURE_01 = Exam.create({
       questions: [ ]
     },
     {
-      section_id: "section_1_4",
+      section_id: "section_01_4",
       title: "Lab Groups and Exercises",
       mk_description: dedent`
         Lectures are followed up with labs, where you work with a small group of other students to explore and pratice the material further.
@@ -100,7 +100,7 @@ export const LECTURE_01 = Exam.create({
       questions: [ ]
     },
     {
-      section_id: "section_1_5",
+      section_id: "section_01_5",
       title: "Variables and References",
       mk_description: dedent`
         It's time to dive into our first course material! Let's take a look at the connections between the code we write and what the program does at runtime. In particular:
@@ -135,7 +135,7 @@ export const LECTURE_01 = Exam.create({
       questions: [ ],
     },
     {
-      section_id: "section_1_6",
+      section_id: "section_01_6",
       title: "Scope and Lifetimes",
       mk_description: dedent`
         Let's ask some more questions, which all turn out to be related!
@@ -151,7 +151,7 @@ export const LECTURE_01 = Exam.create({
       questions: [ ]
     },
     {
-      section_id: "section_1_7",
+      section_id: "section_01_7",
       title: "Projects and Autograder",
       mk_description: dedent`
         You get to exercise the skills you learn in lecture and lab in five large-scale programming projects throughout the course, designed to solidify your understanding and give you a chance to build some neat applications with real-world appeal!
@@ -164,7 +164,7 @@ export const LECTURE_01 = Exam.create({
       questions: [ ]
     },
     {
-      section_id: "section_1_8",
+      section_id: "section_01_8",
       title: "Collaboration and Honor Code",
       mk_description: dedent`
         We want you to learn with and from each other! Enjoying the class with others and having a network you can reach out to for help is highly encouraged. At the same time, we want to make sure everyone has an opportunity to learn for themselves and that nobody takes credit for someone else's work. We follow the UM CoE Honor Code.
@@ -187,7 +187,7 @@ export const LECTURE_01 = Exam.create({
       questions: [ ]
     },
     {
-      section_id: "section_1_9",
+      section_id: "section_01_9",
       title: "Wrapping Up",
       mk_description: dedent`
         Just a few parting thoughts.

@@ -10,7 +10,7 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 export const LECTURE_03 = Exam.create({
-  exam_id: "lec_3_pointers",
+  exam_id: "lec_03_pointers",
   title: "Pointers",
   mk_intructions: dedent`
     
@@ -44,7 +44,7 @@ export const LECTURE_03 = Exam.create({
   assets_dir: __dirname + `/assets`,
   sections: [
     {
-      section_id: "section_3_1",
+      section_id: "section_03_1",
       title: "Addresses and Pointers",
       mk_description: dedent`
         First, let's take a look at how we can find out the address of variables/objects in our program using the \`&\` operator.
@@ -57,7 +57,7 @@ export const LECTURE_03 = Exam.create({
       `,
       questions: [
         {
-          question_id: "lec3_addresses_and_pointers",
+          question_id: "lec03_addresses_and_pointers",
           title: "Exercise: Addresses and Pointers",
           points: 3,
           mk_description: "",
@@ -131,7 +131,7 @@ int main() {
       ],
     },
     {
-      section_id: "section_3_2",
+      section_id: "section_03_2",
       title: "Using Pointers and The Dereference Operator",
       mk_description: dedent`
         Now that we've got addresses, let's take a look at how to use those addresses to get back to the original object. This is called "dereferencing" a pointer - if we imagine a pointer as an arrow pointing to an object, dereferencing is just following the arrow.
@@ -148,7 +148,7 @@ int main() {
       `,
       questions: [
         {
-          question_id: "lec3_using_pointers",
+          question_id: "lec03_using_pointers",
           title: "Exercise: Using Pointers",
           points: 3,
           mk_description: dedent`
@@ -195,7 +195,7 @@ int main() {
       ],
     },
     {
-      section_id: "section_3_3",
+      section_id: "section_03_3",
       title: "Null and Uninitialized Pointers",
       mk_description: dedent`
         A regular pointer contains the address of some other object in your program, and will lead you to that object when you dereference it. But there are a few exceptional cases we should consider:
@@ -253,7 +253,7 @@ int main() {
       `,
       questions: [
         {
-          question_id: "lec3_null_and_uninitialized_pointers",
+          question_id: "lec03_null_and_uninitialized_pointers",
           title: "Exercise: Null and Uninitialized Pointers",
           points: 3,
           mk_description: dedent`
@@ -383,7 +383,7 @@ int main() {
       ],
     },
     {
-      section_id: "section_3_4",
+      section_id: "section_03_4",
       title: "Pass-by-Pointer Parameters",
       mk_description: dedent`
         We can achieve an effect similar to pass-by-reference by using a pointer instead. Here's the basic idea - just like with pass-by-reference, we want to work with the original object (e.g. in a \`main()\` function) without making a copy when we pass it in as a parameter. So, instead of passing the original object, we pass its address as a pointer parameter. That parameter is technically copied, but who cares! A copy of an address will still get you back to the original location.
@@ -395,7 +395,7 @@ int main() {
       `,
       questions: [
         {
-          question_id: "lec4_pass_by_pointer",
+          question_id: "lec04_pass_by_pointer",
           title: "Exercise: Pass-by-Pointer",
           points: 3,
           mk_description: dedent`
@@ -411,7 +411,7 @@ int main() {
       ],
     },
     {
-      section_id: "section_3_5",
+      section_id: "section_03_5",
       title: "Pointer Mischief",
       mk_description: dedent`
         Take a look at the code below. It uses a dubious function to get the address of the variable \`a\`, calls a random function to print \`42\` (this is definitely not a trick :D ), and then prints out \`a\` through the address we got earlier. But all is not as it seems! What happens?

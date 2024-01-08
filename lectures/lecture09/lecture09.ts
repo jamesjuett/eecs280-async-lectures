@@ -10,7 +10,7 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 export const LECTURE_09 = Exam.create({
-  exam_id: "lec_9_inheritance",
+  exam_id: "lec_09_inheritance",
   title: "Inheritance",
   mk_intructions: dedent`
     
@@ -40,7 +40,7 @@ export const LECTURE_09 = Exam.create({
   assets_dir: __dirname + `/assets`,
   sections: [
     {
-      section_id: "section_9_1",
+      section_id: "section_09_1",
       title: "Delegating Constructors",
       mk_description: dedent`
         First, a miscellaneous topic that we didn't get to last time. **Delegating constructors** allow one constructor to call another to promote code reuse and overall elegant design.
@@ -52,7 +52,7 @@ export const LECTURE_09 = Exam.create({
       `,
       questions: [
         {
-          question_id: "lec9_rectangle",
+          question_id: "lec09_rectangle",
           title: "Exercise: \`Rectangle\` Constructors",
           points: 3,
           mk_description: dedent`
@@ -99,7 +99,7 @@ export const LECTURE_09 = Exam.create({
       ],
     },
     {
-      section_id: "section_9_2",
+      section_id: "section_09_2",
       title: "Introduction to Inheritance",
       mk_description: dedent`
         Let's start with a bit of motivation for inheritance and a brief introduction to the way it's available as a fundamental language feature in C++.
@@ -125,7 +125,7 @@ export const LECTURE_09 = Exam.create({
       questions: [],
     },
     {
-      section_id: "section_9_3",
+      section_id: "section_09_3",
       title: "Inheritance Details",
       mk_description: dedent`
 

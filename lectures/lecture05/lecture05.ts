@@ -10,7 +10,7 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 export const LECTURE_05 = Exam.create({
-  exam_id: "lec_5_compound_objects",
+  exam_id: "lec_05_compound_objects",
   title: "Compound Objects",
   mk_intructions: dedent`
     
@@ -42,7 +42,7 @@ export const LECTURE_05 = Exam.create({
   assets_dir: __dirname + `/assets`,
   sections: [
     {
-      section_id: "section_5_1",
+      section_id: "section_05_1",
       title: "The `const` Keyword",
       mk_description: dedent`
         The \`const\` keyword is a _type qualifier_ that we can add to declarations to tell the compiler that we don't intend for some value to change or be changeable. For it's part, the compiler then double checks for us that we don't accidentally try to do this and gives an error if we do!
@@ -54,7 +54,7 @@ export const LECTURE_05 = Exam.create({
       `,
       questions: [
         {
-          question_id: "lec5_const_basics",
+          question_id: "lec05_const_basics",
           title: "The `const` Keyword",
           points: 1,
           mk_description: "",
@@ -109,7 +109,7 @@ export const LECTURE_05 = Exam.create({
       ],
     },
     {
-      section_id: "section_5_2",
+      section_id: "section_05_2",
       title: "`const` Conversions",
       mk_description: dedent`
         The compiler also needs to decide where implicit conversions involving \`const\` should be allowed. The motivating principle is that we should never leave the program "less safe" than it was before in terms of protecting \`const\` objects. Let's take a look at a few examples...
@@ -125,7 +125,7 @@ export const LECTURE_05 = Exam.create({
       `,
       questions: [
         {
-          question_id: "lec5_const_function_parameters",
+          question_id: "lec05_const_function_parameters",
           title: "`const` in Function Parameters",
           points: 1,
           mk_description: "",
@@ -193,7 +193,7 @@ export const LECTURE_05 = Exam.create({
       ],
     },
     {
-      section_id: "section_5_3",
+      section_id: "section_05_3",
       title: "Compound Objects using `struct`s",
       mk_description: dedent`
         Now, back to our main event... defining and using compound objects.
@@ -219,7 +219,7 @@ export const LECTURE_05 = Exam.create({
       `,
       questions: [
         {
-          question_id: "lec5_struct_practice",
+          question_id: "lec05_struct_practice",
           title: "Exercise: Practice with \`structs\`",
           points: 3,
           mk_description: dedent`
@@ -271,7 +271,7 @@ export const LECTURE_05 = Exam.create({
       ],
     },
     {
-      section_id: "section_5_4",
+      section_id: "section_05_4",
       title: "Functions and \`struct\`s",
       mk_description: dedent`
         We'll want to package up complex operations on \`struct\`s into functions to form abstractions. Let's take a look...
@@ -289,7 +289,7 @@ export const LECTURE_05 = Exam.create({
       
       questions: [
         {
-          question_id: "lec5_person_birthday",
+          question_id: "lec05_person_birthday",
           title: "Exercise: Functions and \`struct\`s",
           points: 3,
           mk_description: dedent`
@@ -445,7 +445,7 @@ void Person_birthday(Person &p) {
       ],
     },
     {
-      section_id: "section_5_5",
+      section_id: "section_05_5",
       title: "Composing Data Types",
       mk_description: dedent`
         Finally, let's take a quick look at the way we can compose more complex data types from each of the different kinds of objects we've seen.

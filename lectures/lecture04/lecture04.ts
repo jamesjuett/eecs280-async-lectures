@@ -10,7 +10,7 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 export const LECTURE_04 = Exam.create({
-  exam_id: "lec_4_arrays",
+  exam_id: "lec_04_arrays",
   title: "Arrays",
   mk_intructions: dedent`
     
@@ -49,7 +49,7 @@ export const LECTURE_04 = Exam.create({
   assets_dir: __dirname + `/assets`,
   sections: [
     {
-      section_id: "section_4_1",
+      section_id: "section_04_1",
       title: "Addresses and Pointers",
       mk_description: dedent`
         Arrays are a low-level abstraction over a sequence of objects in memory that we can fit into the memory model we've been building up so far...
@@ -61,7 +61,7 @@ export const LECTURE_04 = Exam.create({
       `,
       questions: [
         {
-          question_id: "lec4_arrays_and_memory",
+          question_id: "lec04_arrays_and_memory",
           title: "Exercise: Addresses and Pointers",
           points: 1,
           mk_description: "",
@@ -100,7 +100,7 @@ export const LECTURE_04 = Exam.create({
       ],
     },
     {
-      section_id: "section_4_2",
+      section_id: "section_04_2",
       title: "Arrays, Pointers, and Pointer Arithmetic",
       mk_description: dedent`
         Because an array is essentially just a sequence of objects (one for each element in the array) that are laid out contiguously in memory, we can leverage pointers (i.e. addresses) to work with arrays. Here's one example, informally:
@@ -120,7 +120,7 @@ export const LECTURE_04 = Exam.create({
       `,
       questions: [
         {
-          question_id: "lec4_pointer_arithmetic",
+          question_id: "lec04_pointer_arithmetic",
           title: "Exercise: Pointer Arithmetic",
           points: 1,
           mk_description: dedent`
@@ -169,7 +169,7 @@ export const LECTURE_04 = Exam.create({
       ],
     },
     {
-      section_id: "section_4_3",
+      section_id: "section_04_3",
       title: "Pointer Comparison Operators",
       mk_description: dedent`
         Just like we can do arithmetic with pointers by considering offsets and distances between locations in memory, we can also understand pointer comparisons naturally in terms of addresses.
@@ -185,7 +185,7 @@ export const LECTURE_04 = Exam.create({
       `,
       questions: [
         {
-          question_id: "lec4_pointer_comparison",
+          question_id: "lec04_pointer_comparison",
           title: "Exercise: Pointer Comparison",
           points: 1,
           mk_description: dedent`
@@ -241,7 +241,7 @@ export const LECTURE_04 = Exam.create({
       ],
     },
     {
-      section_id: "section_4_4",
+      section_id: "section_04_4",
       title: "Traversal by Pointer",
       mk_description: dedent`
         There are two fundamental ways to approach sequential access of the elements in an array using a loop, which we might also call "traversal" or "iteration" through the array's elements:
@@ -264,7 +264,7 @@ export const LECTURE_04 = Exam.create({
       `,
       questions: [
         {
-          question_id: "lec4_traversal_by_pointer",
+          question_id: "lec04_traversal_by_pointer",
           title: "Exercise: Traversal By Pointer",
           points: 3,
           mk_description: dedent`
@@ -362,7 +362,7 @@ for(int *ptr = arr; ptr < ptr + 5; ++ptr) {
       ],
     },
     {
-      section_id: "section_4_5",
+      section_id: "section_04_5",
       title: "Array Parameters and Functions",
       mk_description: dedent`
         When working with arrays, it's often helpful to write helper functions that process the arrays in some way, perhaps using a loop to iterate through each element and perform some operation.
@@ -382,7 +382,7 @@ for(int *ptr = arr; ptr < ptr + 5; ++ptr) {
       `,
       questions: [
         {
-          question_id: "lec4_maxValue",
+          question_id: "lec04_maxValue",
           title: "Exercise: Pass-by-Pointer",
           points: 3,
           mk_description: dedent`

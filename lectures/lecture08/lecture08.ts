@@ -10,7 +10,7 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 export const LECTURE_08 = Exam.create({
-  exam_id: "lec_8_adts_in_cpp",
+  exam_id: "lec_08_adts_in_cpp",
   title: "Abstract Data Types in C++",
   mk_intructions: dedent`
     
@@ -50,14 +50,14 @@ export const LECTURE_08 = Exam.create({
   assets_dir: __dirname + `/assets`,
   sections: [
     {
-      section_id: "section_8_1",
+      section_id: "section_08_1",
       title: "Warm Up Exercise",
       mk_description: dedent`
         Let's start today with a quick exercise that helps motivate the transition we'll make from C-Style to C++ Style ADTs.
       `,
       questions: [
         {
-          question_id: "lec8_warm_up",
+          question_id: "lec08_warm_up",
           title: "Exercise: Warm Up",
           points: 3,
           mk_description: dedent`
@@ -158,7 +158,7 @@ export const LECTURE_08 = Exam.create({
       ],
     },
     {
-      section_id: "section_8_2",
+      section_id: "section_08_2",
       title: "Introduction to Classes and Member Functions",
       mk_description: dedent`
         The C++ builds on the C language by adding language features to formalize several of the patterns for ADTs that we've used so far. We'll call this the "C++ Style" for ADTs and generally switch to using \`class\` rather than \`struct\`.
@@ -172,7 +172,7 @@ export const LECTURE_08 = Exam.create({
       `,
       questions: [
         {
-          question_id: "lec8_halfPerimeter",
+          question_id: "lec08_halfPerimeter",
           title: "Exercise: `halfPerimeter()`",
           points: 3,
           mk_description: dedent`
@@ -267,7 +267,7 @@ export const LECTURE_08 = Exam.create({
       ],
     },
     {
-      section_id: "section_8_3",
+      section_id: "section_08_3",
       title: "Member Accessibility and Constructors",
       mk_description: dedent`
         The C++ style also involves separating member declarations into different access levels (**\`public\`** vs. **\`private\`**) and providing **constructors** as a formal mechanism for initialization.
@@ -279,7 +279,7 @@ export const LECTURE_08 = Exam.create({
       `,
       questions: [
         {
-          question_id: "lec8_coffee",
+          question_id: "lec08_coffee",
           title: "Exercise: `Coffee` class",
           points: 3,
           mk_description: dedent`
@@ -435,7 +435,7 @@ c5.print();
       ],
     },
     {
-      section_id: "section_8_4",
+      section_id: "section_08_4",
       title: "Composing C++ ADTs (Classes as Members)",
       mk_description: dedent`
         
@@ -450,7 +450,7 @@ c5.print();
       
       questions: [
         {
-          question_id: "lec8_professor",
+          question_id: "lec08_professor",
           title: "Exercise: `Professor` Constructors",
           points: 3,
           mk_description: dedent`
@@ -583,7 +583,7 @@ Professor(const Coffee &coffee)
       ],
     },
     {
-      section_id: "section_8_5",
+      section_id: "section_08_5",
       title: "Default Initialization",
       mk_description: dedent`
 
@@ -597,7 +597,7 @@ Professor(const Coffee &coffee)
       
       questions: [
         {
-          question_id: "lec8_default_constructors",
+          question_id: "lec08_default_constructors",
           title: "Exercise: Default Constructors",
           points: 3,
           mk_description: dedent`
@@ -718,7 +718,7 @@ int main() {
       ],
     },
     {
-      section_id: "section_8_6",
+      section_id: "section_08_6",
       title: "Best Practices for C++ ADTs",
       mk_description: dedent`
         Finally, let's consider some more miscellaneous topics and best practices for writing well-designed classes, including:

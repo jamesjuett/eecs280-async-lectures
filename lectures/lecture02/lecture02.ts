@@ -10,7 +10,7 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 export const LECTURE_02 = Exam.create({
-  exam_id: "lec_2_procedural_abstraction_and_the_call_stack",
+  exam_id: "lec_02_procedural_abstraction_and_the_call_stack",
   title: "Procedural Abstraction and The Call Stack",
   mk_intructions: dedent`
     
@@ -45,7 +45,7 @@ export const LECTURE_02 = Exam.create({
   assets_dir: __dirname + `/assets`,
   sections: [
     {
-      section_id: "section_2_1",
+      section_id: "section_02_1",
       title: "Intro to Lobster",
       mk_description: dedent`
         Before we start, let me cover a few basics for the Lobster program visualization tool, which we'll use throughout several lecture examples and exercises in the future.
@@ -59,7 +59,7 @@ export const LECTURE_02 = Exam.create({
       questions: [ ]
     },
     {
-      section_id: "section_2_2",
+      section_id: "section_02_2",
       title: "Functions and The Call Stack",
       mk_description: dedent`
         
@@ -74,7 +74,7 @@ export const LECTURE_02 = Exam.create({
       `,
       questions: [
         {
-          question_id: "lec2_stack_frames",
+          question_id: "lec02_stack_frames",
           title: "Exercise: Stack Frames",
           points: 3,
           mk_description: dedent`
@@ -121,7 +121,7 @@ export const LECTURE_02 = Exam.create({
       ],
     },
     {
-      section_id: "section_2_3",
+      section_id: "section_02_3",
       title: "Parameter Passing",
       mk_description: dedent`
         Two primary mechanisms for parameter passing are pass-by-value and pass-by-reference. Let's take a look at the differences between the two, as well as how they relate to function stack frames.
@@ -133,7 +133,7 @@ export const LECTURE_02 = Exam.create({
       `,
       questions: [
         {
-          question_id: "lec2_parameter_passing",
+          question_id: "lec02_parameter_passing",
           title: "Exercise: Parameter Passing",
           points: 3,
           mk_description: dedent`
@@ -164,7 +164,7 @@ export const LECTURE_02 = Exam.create({
       ],
     },
     {
-      section_id: "section_2_4",
+      section_id: "section_02_4",
       title: "Procedural Abstraction",
       mk_description: dedent`
         Turning now to our second, higher-level point, how can we use functions to implement effective procedural abstractions that make our code easier to write, understand, and maintain?
@@ -178,7 +178,7 @@ export const LECTURE_02 = Exam.create({
       `,
       questions: [
         {
-          question_id: "lec2_interface_vs_implementation",
+          question_id: "lec02_interface_vs_implementation",
           title: "Exercise: Interface vs. Implementation",
           points: 3,
           mk_description: dedent`
@@ -225,7 +225,7 @@ export const LECTURE_02 = Exam.create({
       ],
     },
     {
-      section_id: "section_2_5",
+      section_id: "section_02_5",
       title: "Project 1 File Structure",
       mk_description: dedent`
         The file structure in project 1 is a great example of implementing several different modules in our code and using procedural abstractions as the bridge between those modules.
@@ -238,7 +238,7 @@ export const LECTURE_02 = Exam.create({
       questions: [ ]
     },
     {
-      section_id: "section_2_6",
+      section_id: "section_02_6",
       title: "RMEs for Interface Specification",
       mk_description: dedent`
         It's useful to adopt a common patten for comments that specify function interfaces. In EECS 280, we'll use RMEs:
@@ -256,7 +256,7 @@ export const LECTURE_02 = Exam.create({
       questions: [ ]
     },
     {
-      section_id: "section_2_7",
+      section_id: "section_02_7",
       title: "Testing",
       mk_description: dedent`
         Finally, let's take a bit of time to talk about testing. We need to make sure the code we write actually works.
@@ -274,7 +274,7 @@ export const LECTURE_02 = Exam.create({
       // </div>
       questions: [
         {
-          question_id: "lec2_testing",
+          question_id: "lec02_testing",
           title: "Exercise: Testing",
           points: 3,
           mk_description: dedent`

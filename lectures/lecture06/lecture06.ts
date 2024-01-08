@@ -10,7 +10,7 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 export const LECTURE_06 = Exam.create({
-  exam_id: "lec_6_strings_streams_and_io",
+  exam_id: "lec_06_strings_streams_and_io",
   title: "Strings, Streams, and I/O",
   mk_intructions: dedent`
     
@@ -40,7 +40,7 @@ export const LECTURE_06 = Exam.create({
   assets_dir: __dirname + `/assets`,
   sections: [
     {
-      section_id: "section_6_1",
+      section_id: "section_06_1",
       title: "C-Style Strings",
       mk_description: dedent`
         We'll start with the most fundamental representation for a string: an **array of characters**. We'll call this a C-style string (or cstring for short), because this is the predominant form for strings in the original C language. (As opposed to C++, which is essentially a successor to C.)
@@ -74,7 +74,7 @@ export const LECTURE_06 = Exam.create({
       questions: [],
     },
     {
-      section_id: "section_6_2",
+      section_id: "section_06_2",
       title: "Processing C-style Strings",
       mk_description: dedent`
         For almost any operation we would like to perform on a cstring, the basic idea is that we set up a traversal by pointer loop that iterates until it happens upon the null character. As the pointer walks through the string, we perform whatever data processing or modifications we need by dereferencing the pointer to work with individual characters.
@@ -88,7 +88,7 @@ export const LECTURE_06 = Exam.create({
       `,
       questions: [
         {
-          question_id: "lec6_strcpy",
+          question_id: "lec06_strcpy",
           title: "Exercise: \`strcpy()\`",
           points: 3,
           mk_description: dedent`
@@ -113,7 +113,7 @@ export const LECTURE_06 = Exam.create({
       ],
     },
     {
-      section_id: "section_6_3",
+      section_id: "section_06_3",
       title: "C-Style Strings vs. C++ \`string\`",
       mk_description: dedent`
         Because cstrings are just built on fundamental types like arrays, \`char\`, and pointers, you don't need to include any libraries to use them. However, many common operations for cstrings are available as functions in the \`<cstring>\` Library, which you can \`#include\` at the top of your files if you need them. You can find documentation for these in a number of places, but online resources like [http://www.cplusplus.com/reference/cstring/](http://www.cplusplus.com/reference/cstring/>) are generally a good place to start.
@@ -132,7 +132,7 @@ export const LECTURE_06 = Exam.create({
       questions: [],
     },
     {
-      section_id: "section_6_4",
+      section_id: "section_06_4",
       title: "Input and Output Streams",
       mk_description: dedent`
         
@@ -208,7 +208,7 @@ export const LECTURE_06 = Exam.create({
       questions: [],
     },
     {
-      section_id: "section_6_5",
+      section_id: "section_06_5",
       title: "Command Line Arguments",
       mk_description: dedent`
         One last place we might like to take in input - when the program is originally launched from the terminal. For example, if we're running the "redact" program from the previous section, perhaps we'd like to specify the word to redact, the input/output files, and the number of "*****" to use as extra arguments we first run the program:
@@ -293,7 +293,7 @@ export const LECTURE_06 = Exam.create({
       questions: [],
     },
     {
-      section_id: "section_6_6",
+      section_id: "section_06_6",
       title: "The Structure of \`argv\`",
       mk_description: dedent`
         Finally, let's talk about the way \`argv\` is structured in memory, which is an interesting (and somewhat complex) combination of many of the different types we've seen so far.
