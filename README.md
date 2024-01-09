@@ -13,3 +13,5 @@ For example:
 ```console
 npx webpack ./src/intset_insert.ts --config ../../lobster/webpack.config.js
 ```
+
+Then, manually rename `main.html` and `main.js` to e.g. `intset_insert.html` and `intset_insert.js`. Change the source include at the top of `intset_insert.html` appropriately.
