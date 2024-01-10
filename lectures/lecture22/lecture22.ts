@@ -1,4 +1,4 @@
-import { Exam, DocRenderer, QuestionSpecification, SectionSpecification } from "examma-ray";
+import { ExamSpecification, DocRenderer, QuestionSpecification, SectionSpecification } from "examma-ray";
 import { ExamGenerator } from "examma-ray/dist/ExamGenerator";
 import { readFileSync } from "fs";
 import dedent from "ts-dedent";
@@ -9,7 +9,7 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 
-export const LECTURE_22 = Exam.create({
+export const LECTURE_22 : ExamSpecification = {
   exam_id: "lec_22_error_handling_and_exceptions",
   title: "Error Handling and Exceptions",
   mk_intructions: `
@@ -179,4 +179,4 @@ In many modern programming languages, **exceptions** are the tool of choice to c
       questions: [],
     },
   ],
-});
+};

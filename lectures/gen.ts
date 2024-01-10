@@ -1,4 +1,4 @@
-import { DocRenderer } from "examma-ray";
+import { CUSTOMIZE, DocRenderer, Exam, ExamSpecification } from "examma-ray";
 import { ExamGenerator } from "examma-ray/dist/ExamGenerator";
 import { LECTURE_01 } from "./lecture01/lecture01";
 import { LECTURE_02 } from "./lecture02/lecture02";
@@ -22,35 +22,47 @@ import { LECTURE_19 } from "./lecture19/lecture19";
 import { LECTURE_20 } from "./lecture20/lecture20";
 import { LECTURE_21 } from "./lecture21/lecture21";
 import { LECTURE_22 } from "./lecture22/lecture22";
+import dedent from "ts-dedent";
 
-export const LECTURES = [
-  LECTURE_01,
-  LECTURE_02,
-  LECTURE_03,
-  LECTURE_04,
-  LECTURE_05,
-  LECTURE_06,
-  LECTURE_07,
-  LECTURE_08,
-  LECTURE_09,
-  LECTURE_10,
-  LECTURE_11,
-  LECTURE_12,
-  LECTURE_13,
-  LECTURE_14,
-  LECTURE_15,
-  LECTURE_16,
-  LECTURE_17,
-  LECTURE_18,
-  LECTURE_19,
-  LECTURE_20,
-  LECTURE_21,
-  LECTURE_22,
+function addW24Warning(spec: ExamSpecification) {
+  return CUSTOMIZE(spec, {
+    mk_intructions: dedent`
+      <div markdown="1" class="alert alert-danger">
+        <p>Please note that this lecture has not yet been updated for Winter 2024. If you are working through this lecture early, you'll need to come back once it is updated in order to earn participation credit.</p>
+      </div>` +
+    spec.mk_intructions
+  });
+}
+
+export const LECTURE_SPECS = [
+  addW24Warning(LECTURE_01),
+  addW24Warning(LECTURE_02),
+  addW24Warning(LECTURE_03),
+  addW24Warning(LECTURE_04),
+  addW24Warning(LECTURE_05),
+  addW24Warning(LECTURE_06),
+  addW24Warning(LECTURE_07),
+  addW24Warning(LECTURE_08),
+  addW24Warning(LECTURE_09),
+  addW24Warning(LECTURE_10),
+  addW24Warning(LECTURE_11),
+  addW24Warning(LECTURE_12),
+  addW24Warning(LECTURE_13),
+  addW24Warning(LECTURE_14),
+  addW24Warning(LECTURE_15),
+  addW24Warning(LECTURE_16),
+  addW24Warning(LECTURE_17),
+  addW24Warning(LECTURE_18),
+  addW24Warning(LECTURE_19),
+  addW24Warning(LECTURE_20),
+  addW24Warning(LECTURE_21),
+  addW24Warning(LECTURE_22),
 ];
 
 
-LECTURES.forEach(lec => {
-  const generator = new ExamGenerator(lec, {
+LECTURE_SPECS.forEach(lec => {
+
+  const generator = new ExamGenerator(Exam.create(lec), {
     uuid_strategy: "plain",
   });
   

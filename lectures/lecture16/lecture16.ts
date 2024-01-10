@@ -1,4 +1,4 @@
-import { Exam, DocRenderer, QuestionSpecification, SectionSpecification } from "examma-ray";
+import { ExamSpecification, DocRenderer, QuestionSpecification, SectionSpecification } from "examma-ray";
 import { ExamGenerator } from "examma-ray/dist/ExamGenerator";
 import { readFileSync } from "fs";
 import dedent from "ts-dedent";
@@ -9,7 +9,7 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 
-export const LECTURE_16 = Exam.create({
+export const LECTURE_16 : ExamSpecification = {
   exam_id: "lec_16_linked_lists",
   title: "Linked Lists",
   mk_intructions: `
@@ -319,4 +319,4 @@ We've previously covered the contiguous memory approach. In this lecture, we'll 
       questions: []
     },
   ],
-});
+};

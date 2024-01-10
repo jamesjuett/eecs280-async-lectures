@@ -1,4 +1,4 @@
-import { Exam, DocRenderer, QuestionSpecification, SectionSpecification } from "examma-ray";
+import { ExamSpecification, DocRenderer, QuestionSpecification, SectionSpecification } from "examma-ray";
 import { ExamGenerator } from "examma-ray/dist/ExamGenerator";
 import { readFileSync } from "fs";
 import dedent from "ts-dedent";
@@ -9,7 +9,7 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 
-export const LECTURE_15 = Exam.create({
+export const LECTURE_15 : ExamSpecification = {
   exam_id: "lec_15_deep_copies_and_the_big_three",
   title: "Deep Copies and The Big Three",
   mk_intructions: dedent`
@@ -377,4 +377,4 @@ int main() {
       ],
     },
   ],
-});
+};

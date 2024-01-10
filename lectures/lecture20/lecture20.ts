@@ -1,4 +1,4 @@
-import { Exam, DocRenderer, QuestionSpecification, SectionSpecification } from "examma-ray";
+import { ExamSpecification, DocRenderer, QuestionSpecification, SectionSpecification } from "examma-ray";
 import { ExamGenerator } from "examma-ray/dist/ExamGenerator";
 import { readFileSync } from "fs";
 import dedent from "ts-dedent";
@@ -9,7 +9,7 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 
-export const LECTURE_20 = Exam.create({
+export const LECTURE_20 : ExamSpecification = {
   exam_id: "lec_20_structural_recursion",
   title: "Structural Recursion",
   mk_intructions: `
@@ -560,4 +560,4 @@ By the way, I want to give a big thanks to **Ashvin**, who recorded walkthrough 
       questions: [],
     },
   ],
-});
+};

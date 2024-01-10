@@ -1,4 +1,4 @@
-import { Exam, DocRenderer, QuestionSpecification, SectionSpecification } from "examma-ray";
+import { ExamSpecification, DocRenderer, QuestionSpecification, SectionSpecification } from "examma-ray";
 import { ExamGenerator } from "examma-ray/dist/ExamGenerator";
 import { readFileSync } from "fs";
 import dedent from "ts-dedent";
@@ -9,17 +9,13 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 
-export const LECTURE_01 = Exam.create({
+export const LECTURE_01 : ExamSpecification = {
   exam_id: "lec_01_intro_and_machine_model",
   title: "Introduction and Machine Model",
   mk_intructions: dedent`
     
     <div markdown=1 class="alert alert-info">
       Welcome to **EECS 280**! This lecture presents our motivations and big-picture goals, some course logistics, and an initial conceptual model of C++ programs.
-    </div>
-    
-    <div markdown=1 class="alert alert-danger">
-      If you're visiting during the internet and online services outage at the start of the Fall 2023 term, you can access our website and all course content at <a href="eecs280staff.github.io/eecs280.org" target="_blank">eecs280staff.github.io/eecs280.org</a>.
     </div>
 
     <style>
@@ -200,4 +196,4 @@ export const LECTURE_01 = Exam.create({
       questions: [ ]
     },
   ],
-});
+};

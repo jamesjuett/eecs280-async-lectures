@@ -1,4 +1,4 @@
-import { Exam, DocRenderer, QuestionSpecification, SectionSpecification } from "examma-ray";
+import { ExamSpecification, DocRenderer, QuestionSpecification, SectionSpecification } from "examma-ray";
 import { ExamGenerator } from "examma-ray/dist/ExamGenerator";
 import { readFileSync } from "fs";
 import dedent from "ts-dedent";
@@ -9,7 +9,7 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 
-export const LECTURE_08 = Exam.create({
+export const LECTURE_08 : ExamSpecification = {
   exam_id: "lec_08_adts_in_cpp",
   title: "Abstract Data Types in C++",
   mk_intructions: dedent`
@@ -736,4 +736,4 @@ int main() {
       questions: [],
     },
   ],
-});
+};

@@ -1,4 +1,4 @@
-import { Exam, DocRenderer, QuestionSpecification, SectionSpecification } from "examma-ray";
+import { ExamSpecification, DocRenderer, QuestionSpecification, SectionSpecification } from "examma-ray";
 import { ExamGenerator } from "examma-ray/dist/ExamGenerator";
 import { readFileSync } from "fs";
 import dedent from "ts-dedent";
@@ -9,7 +9,7 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 
-export const LECTURE_18 = Exam.create({
+export const LECTURE_18 : ExamSpecification = {
   exam_id: "lec_18_functors",
   title: "Functors and Impostor Syndrome",
   mk_intructions: `
@@ -412,4 +412,4 @@ Finally, we cover **impostor syndrome** - a concept not directly related to prog
       questions: [],
     },
   ],
-});
+};

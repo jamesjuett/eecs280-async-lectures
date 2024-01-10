@@ -1,4 +1,4 @@
-import { Exam, DocRenderer, QuestionSpecification, SectionSpecification } from "examma-ray";
+import { ExamSpecification, DocRenderer, QuestionSpecification, SectionSpecification } from "examma-ray";
 import { ExamGenerator } from "examma-ray/dist/ExamGenerator";
 import { readFileSync } from "fs";
 import dedent from "ts-dedent";
@@ -9,7 +9,7 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 
-export const LECTURE_21 = Exam.create({
+export const LECTURE_21 : ExamSpecification = {
   exam_id: "lec_21_bsts_sets_and_maps",
   title: "Binary Search Trees, Sets, and Maps",
   mk_intructions: `
@@ -174,4 +174,4 @@ BSTs are the foundation of "industry-strength" implementations of several applic
       questions: [],
     },
   ],
-});
+};

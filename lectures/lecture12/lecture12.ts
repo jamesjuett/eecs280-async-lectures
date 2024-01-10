@@ -1,4 +1,4 @@
-import { Exam, DocRenderer, QuestionSpecification, SectionSpecification } from "examma-ray";
+import { ExamSpecification, DocRenderer, QuestionSpecification, SectionSpecification } from "examma-ray";
 import { ExamGenerator } from "examma-ray/dist/ExamGenerator";
 import { readFileSync } from "fs";
 import dedent from "ts-dedent";
@@ -9,7 +9,7 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 
-export const LECTURE_12 = Exam.create({
+export const LECTURE_12 : ExamSpecification = {
   exam_id: "lec_12_containers_2",
   title: "Containers, Part 2 and Templates",
   mk_intructions: dedent`
@@ -300,4 +300,4 @@ void IntSet::remove(int v) {
       ],
     },
   ],
-});
+};

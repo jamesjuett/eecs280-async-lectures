@@ -1,4 +1,4 @@
-import { Exam, DocRenderer, QuestionSpecification, SectionSpecification } from "examma-ray";
+import { ExamSpecification, DocRenderer, QuestionSpecification, SectionSpecification } from "examma-ray";
 import { ExamGenerator } from "examma-ray/dist/ExamGenerator";
 import { readFileSync } from "fs";
 import dedent from "ts-dedent";
@@ -9,7 +9,7 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 
-export const LECTURE_06 = Exam.create({
+export const LECTURE_06 : ExamSpecification = {
   exam_id: "lec_06_strings_streams_and_io",
   title: "Strings, Streams, and I/O",
   mk_intructions: dedent`
@@ -306,4 +306,4 @@ export const LECTURE_06 = Exam.create({
       questions: [],
     },
   ],
-});
+};
