@@ -16,6 +16,7 @@ export const LECTURE_01 : ExamSpecification = {
     
     <div markdown=1 class="alert alert-info">
       Welcome to **EECS 280**! This lecture presents our motivations and big-picture goals, some course logistics, and an initial conceptual model of C++ programs.
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Winter 2024</div>
     </div>
 
     <style>
@@ -65,6 +66,17 @@ export const LECTURE_01 : ExamSpecification = {
         <br />
 
         Don't worry if this all seems a bit overwhelming. There are a lot of different components to the course and a bunch of different resources to get used to. You can find everything from [eecs280.org](https://eecs280.org), and we'll try to keep you up-to-date with the most relevant material. I also highly encourage that you ask questions if you're feeling lost - on Piazza, Discord, in office hours, in lab, etc.
+
+        **C++ Walkthrough Sessions**  
+        Join us for a live walkthrough session via Zoom on C++ development including set up, compilers, makefiles, C++ IDEs, EECS 280 project workflow, and open Q&A.
+
+        **Windows**: Thursday, Jan 11 at 7-8:30pm  
+        **Mac**: Thursday, Jan 11 at 8:30-10pm
+
+        Zoom link (for both): [https://umich.zoom.us/j/8272739282](https://umich.zoom.us/j/8272739282).
+
+        Recordings will be posted eecs280.org and on Piazza.
+
       `,
       questions: [ ]
     },
@@ -77,6 +89,17 @@ export const LECTURE_01 : ExamSpecification = {
           <iframe class="lec-video" src="https://www.youtube.com/embed/9q_tGX4h2XY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
+
+        **Winter 2024**  
+        Please note a key difference for Winter 2024 - starting this term, lecture participation is _optionally_ worth 3% of your overall grade. We'll compute your grade with and without it and take the better.
+
+        You can find full details in our syllabus at [https://eecs280.org/syllabus.html#lecture-participation](https://eecs280.org/syllabus.html#lecture-participation).
+
+        For lectures 2 and beyond, participation credit will be integrated into the aysnc lectures themselves... but I didn't get that finished in time for the term to start, so please fill out this form if you want credit for lecture 1:
+
+        [https://forms.gle/vHzoqmNQnauFe6S28](https://forms.gle/vHzoqmNQnauFe6S28)
+
+        The form will be available until Tuesday, 1/16 at 11:59pm.
       `,
       questions: [ ]
     },
@@ -170,7 +193,15 @@ export const LECTURE_01 : ExamSpecification = {
         </div>
         <br />
 
-        Let's have a conversation about how all this applies in 280. Linked here is a form with examples of several different scenarios that students might run into - what are your thoughts? How do we evaluate them with dual goals of collaboration and academic integrity?
+        The stuff I said in that video all still applies... but that chart is pretty old. Here's a more recent chart from the terms of EECS 280 I've been involved with. The takeaway is the same - we only report cases to the honor council where there is compelling evidence plagiarism occurred.
+
+        <div style="text-align: center;">
+          <img src="assets/hc_resolutions.png" style="width: 600px; border: solid 1px gray;">
+        </div>
+
+        <br />
+
+        Let's take a look at how this plays out in EECS 280. Linked here is a form with examples of several different scenarios that students might run into - what are your thoughts? How do we evaluate them with dual goals of collaboration and academic integrity?
 
         <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSdCuRr919prkQG1xPKevc62MRYihYp9v9zPciVKJTFqSKNgKg/viewform?usp=sf_link"><b>Honor Code Scenarios</b></a>
         
@@ -179,6 +210,9 @@ export const LECTURE_01 : ExamSpecification = {
         <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSdCuRr919prkQG1xPKevc62MRYihYp9v9zPciVKJTFqSKNgKg/viewanalytics"><b>Responses</b></a>
 
         While we encourage students to use their best judgement about what might be "too much" help from someone else, we also don't want to scare you away from helping each other learn! Let me reassure you - the cases we routinely report to the honor council always involve clear, straightforward copying or plagiarism.
+
+        **Generative AI Policy**  
+        Finally, it's worth mentioning our Generative AI Policy. The short version - you're encouraged to use tools like ChatGPT, Copilot, etc. to help you learn, but you aren't allowed to use them to do your work for you. The [full version](https://eecs280.org/syllabus.html#generative-ai-policy) in our syllabus is also worth a read.
       `,
       questions: [ ]
     },
@@ -192,6 +226,12 @@ export const LECTURE_01 : ExamSpecification = {
           <iframe class="lec-video" src="https://www.youtube.com/embed/TlsM1jxpKDQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
+
+        We'd also like to invite you to join a new CSE community event, next Wednesday 1/17:
+
+        <div style="text-align: center;">
+          <img src="assets/cse_carnival_flyer_w24.png" style="width: 800px;">
+        </div>
       `,
       questions: [ ]
     },

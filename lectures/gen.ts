@@ -35,7 +35,7 @@ function addW24Warning(spec: ExamSpecification) {
 }
 
 export const LECTURE_SPECS = [
-  addW24Warning(LECTURE_01),
+  LECTURE_01,
   addW24Warning(LECTURE_02),
   addW24Warning(LECTURE_03),
   addW24Warning(LECTURE_04),
