@@ -43,6 +43,7 @@ export const LECTURE_02 : ExamSpecification = {
   mk_download_message: MK_DOWNLOAD_MESSAGE,
   mk_saver_message: MK_SAVER_MESSAGE,
   assets_dir: __dirname + `/assets`,
+  allow_clientside_content: true,
   sections: [
     {
       section_id: "section_02_1",
@@ -108,6 +109,58 @@ export const LECTURE_02 : ExamSpecification = {
               
               ]]
             `,
+            default_grader: {
+              grader_kind: "manual_regex_fill_in_the_blank",
+              rubric: [
+                {
+                  blankIndex: 1,
+                  title: "Box 1",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /min[ _]*of[ _]*(3|three|tree)/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 2,
+                  title: "Box 2",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /40|forty|fourty/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /10|ten/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 3,
+                  title: "Box 3",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /3|three|tree/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                  ]
+                },
+              ]
+            }
+          },
+          verifier: {
+            verifier_kind: "full_credit",
           },
           mk_postscript: dedent`
             You're also welcome to check out this **walkthrough** video where I talk through the questions. 
@@ -135,7 +188,7 @@ export const LECTURE_02 : ExamSpecification = {
         {
           question_id: "lec02_parameter_passing",
           title: "Exercise: Parameter Passing",
-          points: 3,
+          points: 4,
           mk_description: dedent`
             Consider this code that defines a function with both pass-by-value and pass-by-reference parameters.
             
@@ -149,8 +202,73 @@ export const LECTURE_02 : ExamSpecification = {
           response: {
             kind: "fill_in_the_blank",
             content: dedent`
-              **\`a\`**: _BLANK___ &nbsp;&nbsp;&nbsp;&nbsp; **\`b\`**: _BLANK___ &nbsp;&nbsp;&nbsp;&nbsp;**\`c\`**: _BLANK___ &nbsp;&nbsp;&nbsp;&nbsp;**\`d\`**: _BLANK___
-            `
+              **\`a\`**: _BLANK______ &nbsp;&nbsp;&nbsp;&nbsp; **\`b\`**: _BLANK______ &nbsp;&nbsp;&nbsp;&nbsp;**\`c\`**: _BLANK______ &nbsp;&nbsp;&nbsp;&nbsp;**\`d\`**: _BLANK______
+            `,
+            default_grader: {
+              grader_kind: "manual_regex_fill_in_the_blank",
+              rubric: [
+                {
+                  blankIndex: 1,
+                  title: "Blank 1",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /1|one/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 2,
+                  title: "Blank 2",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /3|three|tree/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /10|ten/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 3,
+                  title: "Blank 3",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /3|three|tree/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 4,
+                  title: "Blank 4",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /4|four/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                  ]
+                },
+              ]
+            }
+          },
+          verifier: {
+            verifier_kind: "full_credit",
           },
           mk_postscript: dedent`
             <details>
@@ -180,7 +298,7 @@ export const LECTURE_02 : ExamSpecification = {
         {
           question_id: "lec02_interface_vs_implementation",
           title: "Exercise: Interface vs. Implementation",
-          points: 3,
+          points: 6,
           mk_description: dedent`
             Consider the following code. Trace through the code either manually or using the Lobster simulation and answer the questions below.
 
@@ -208,7 +326,98 @@ export const LECTURE_02 : ExamSpecification = {
               "interface",
               "implementation",
               "interface",
-            ]
+            ],
+            default_grader: {
+              grader_kind: "manual_regex_fill_in_the_blank",
+              rubric: [
+                {
+                  blankIndex: 1,
+                  title: "Blank 1",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /inter/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 2,
+                  title: "Blank 2",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /impl/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /10|ten/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 3,
+                  title: "Blank 3",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /impl/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 4,
+                  title: "Blank 4",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /inter/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 5,
+                  title: "Blank 5",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /impl/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 6,
+                  title: "Blank 6",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /inter/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                  ]
+                },
+              ]
+            }
+          },
+          verifier: {
+            verifier_kind: "full_credit",
           },
           mk_postscript: dedent`
             <details>
@@ -257,7 +466,7 @@ export const LECTURE_02 : ExamSpecification = {
     },
     {
       section_id: "section_02_7",
-      title: "Testing",
+      title: "Unit Testing",
       mk_description: dedent`
         Finally, let's take a bit of time to talk about testing. We need to make sure the code we write actually works.
         
@@ -269,24 +478,19 @@ export const LECTURE_02 : ExamSpecification = {
         <br />
       `,
 
-      // <div style="text-align: center;">
-      //   <iframe class="lobster-iframe" style="height: 625px;" src="assets/testing.html"></iframe>
-      // </div>
       questions: [
-        {
-          question_id: "lec02_testing",
-          title: "Exercise: Testing",
-          points: 3,
-          mk_description: dedent`
-            TODO
-          `,
-          response: {
-            kind: "iframe",
-            src: "assets/main.html",
-            element_class: "lobster-iframe",
-            element_style: "height: 625px;",
-          },
-        }
+        
+      ],
+    },
+    {
+      section_id: "section_02_8",
+      title: "System and Regression Testing",
+      mk_description: dedent`
+        TODO
+      `,
+
+      questions: [
+        
       ],
     },
   ],

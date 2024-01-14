@@ -43,7 +43,7 @@ $(() => {
             #include <iostream>
             using namespace std;
             
-            int func(int x, int &y, int &z) {
+            double wumbo(const vector<double> &v) {
               x = z;
               y = z;
               return z + 1;
