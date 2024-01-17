@@ -14,13 +14,30 @@ export const LECTURE_02 : ExamSpecification = {
   title: "Procedural Abstraction and The Call Stack",
   mk_intructions: dedent`
     
+    <div markdown=1 class="alert alert-success">
+      <b>Participation credit</b> for async lectures is now automatically recorded once you complete
+      the embedded exercises. Take a look at the top left of the page. You'll need to <b>sign in</b> with
+      your @umich.edu Google account so that we know it's you.
+      
+      Completion of individual exercises is tracked the section headers. Look for badges like this: <span style="vertical-align: text-bottom" class="badge badge-success">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check2-square" viewBox="0 0 16 16">
+          <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5H3z"></path>
+          <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0z"></path>
+        </svg>
+        <span style="vertical-align: middle;">2.1 Complete</span>
+      </span>.
+
+      To earn participation credit, you'll need to complete the lecture within 2 days of the lecture date.
+      For lecture 2 (released Wednesday 1/17), that means completing it by <b>Friday 1/19 at 11:59pm</b>.
+    </div>
+
     <div markdown=1 class="alert alert-info">
       This lecture is all about **functions**. We'll look at two complementary perspectives:
 
       1. Expanding our conceptual model of program execution and memory to include functions and how they are managed on **the call stack**.
       2. Understanding how functions and **procedural abstraction** contribute to good program design.
 
-      **Note** - if you feel like you've already read this introduction, it's because I accidentally had it at the start of lecture 1 for a bit. Oops!
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Winter 2024</div>
     </div>
     <style>
       .lec-video {
@@ -492,7 +509,36 @@ export const LECTURE_02 : ExamSpecification = {
       `,
 
       questions: [
-        
+        {
+          question_id: "lec02_unit_testing_true_false",
+          points: 4,
+          mk_description: dedent`
+            Which of the following are true statements about unit tests?
+          `,
+          response: {
+            kind: "multiple_choice",
+            choices: [
+              "Unit tests should check a mix of general and special cases.",
+              "Each unit test should test as many different functions as possible.",
+              "It's not necessary to write unit tests for bugs that would cause compiler errors.",
+              "Cases that break the function's \`REQUIRES\` clause generally make good special case tests.",
+            ],
+            multiple: false,
+            sample_solution: [0, 2],
+            default_grader: {
+              grader_kind: "summation_multiple_choice",
+              rubric: [
+                {points: 1, selected: true},
+                {points: 1, selected: false},
+                {points: 1, selected: false},
+                {points: 1, selected: true},
+              ]
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
+          },
+        }
       ],
     },
     // {
