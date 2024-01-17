@@ -523,7 +523,7 @@ export const LECTURE_02 : ExamSpecification = {
               "It's not necessary to write unit tests for bugs that would cause compiler errors.",
               "Cases that break the function's \`REQUIRES\` clause generally make good special case tests.",
             ],
-            multiple: false,
+            multiple: true,
             sample_solution: [0, 2],
             default_grader: {
               grader_kind: "summation_multiple_choice",
