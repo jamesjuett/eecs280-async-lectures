@@ -40,6 +40,7 @@ In many modern programming languages, **exceptions** are the tool of choice to c
   mk_download_message: MK_DOWNLOAD_MESSAGE,
   mk_saver_message: MK_SAVER_MESSAGE,
   assets_dir: __dirname + `/assets`,
+  allow_clientside_content: true,
   sections: [
     {
       section_id: "section_22_1",

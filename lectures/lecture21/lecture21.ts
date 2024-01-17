@@ -40,6 +40,7 @@ BSTs are the foundation of "industry-strength" implementations of several applic
   mk_download_message: MK_DOWNLOAD_MESSAGE,
   mk_saver_message: MK_SAVER_MESSAGE,
   assets_dir: __dirname + `/assets`,
+  allow_clientside_content: true,
   sections: [
     {
       section_id: "section_21_1",

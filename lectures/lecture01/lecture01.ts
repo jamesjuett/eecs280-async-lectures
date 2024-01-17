@@ -40,6 +40,7 @@ export const LECTURE_01 : ExamSpecification = {
   mk_download_message: MK_DOWNLOAD_MESSAGE,
   mk_saver_message: MK_SAVER_MESSAGE,
   assets_dir: __dirname + `/assets`,
+  allow_clientside_content: true,
   sections: [
     {
       section_id: "section_01_1",

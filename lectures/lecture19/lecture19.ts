@@ -42,6 +42,7 @@ Recursion occurs when a function that calls itself. It's a bit hard to describe 
   mk_download_message: MK_DOWNLOAD_MESSAGE,
   mk_saver_message: MK_SAVER_MESSAGE,
   assets_dir: __dirname + `/assets`,
+  allow_clientside_content: true,
   sections: [
     {
       section_id: "section_19_1",

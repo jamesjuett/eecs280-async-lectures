@@ -39,6 +39,7 @@ By the way, I want to give a big thanks to **Ashvin**, who recorded walkthrough 
   mk_download_message: MK_DOWNLOAD_MESSAGE,
   mk_saver_message: MK_SAVER_MESSAGE,
   assets_dir: __dirname + `/assets`,
+  allow_clientside_content: true,
   sections: [
     {
       section_id: "section_20_1",
