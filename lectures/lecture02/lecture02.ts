@@ -44,6 +44,19 @@ export const LECTURE_02 : ExamSpecification = {
   mk_saver_message: MK_SAVER_MESSAGE,
   assets_dir: __dirname + `/assets`,
   allow_clientside_content: true,
+  completion: {
+    threshold: 1,
+    tooltip: "",
+    endpoints: {
+      check: "https://examma-ray.eecs.umich.edu/public_api/participation/me/",
+      submit: "https://examma-ray.eecs.umich.edu/public_api/participation/me/",
+    }
+  },
+  credentials_strategy: {
+    strategy: "google_local",
+    client_id: "444801118749-m2g9gl3gvvkh5ru959dmka0lsk94d9uq.apps.googleusercontent.com",
+    message: "Sign in with your @umich.edu Google account to earn participation credit for completing embedded exercises.",
+  },
   sections: [
     {
       section_id: "section_02_1",
@@ -482,16 +495,16 @@ export const LECTURE_02 : ExamSpecification = {
         
       ],
     },
-    {
-      section_id: "section_02_8",
-      title: "System and Regression Testing",
-      mk_description: dedent`
-        TODO
-      `,
+    // {
+    //   section_id: "section_02_8",
+    //   title: "System and Regression Testing",
+    //   mk_description: dedent`
+    //     TODO
+    //   `,
 
-      questions: [
+    //   questions: [
         
-      ],
-    },
+    //   ],
+    // },
   ],
 };
