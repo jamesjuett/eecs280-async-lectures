@@ -520,7 +520,7 @@ export const LECTURE_02 : ExamSpecification = {
             choices: [
               "Unit tests should check a mix of general and special cases.",
               "Each unit test should test as many different functions as possible.",
-              "Cases that break the function's \`REQUIRES\` clause generally make good special case tests.",
+              "Inputs that break the function's \`REQUIRES\` clause generally make good special case tests.",
               "It's not necessary to write unit tests for bugs that would cause compiler errors.",
             ],
             multiple: true,
