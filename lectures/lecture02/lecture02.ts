@@ -149,7 +149,7 @@ export const LECTURE_02 : ExamSpecification = {
                   description: "",
                   patterns: [
                     {
-                      pattern: /min[ _]*of[ _]*(3|three|tree)/i,
+                      pattern: /min[ _]*[O0]f[ _]*(3|three|tree)/i,
                       explanation: "Correct!",
                       points: 1
                     },
