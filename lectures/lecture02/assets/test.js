@@ -20471,7 +20471,8 @@ var Predicates;
     //     return !!decl.type && (!typePredicate || typePredicate(decl.type));
     // }
     function byTypedExpression(typePredicate, valueCategory) {
-        return ((construct) => construct.type && (!typePredicate || typePredicate(construct.type)) && (!valueCategory || construct.valueCategory === valueCategory));
+        return (// TODO conditional on this line can probably be removed
+        ((construct) => construct.type && (!typePredicate || typePredicate(construct.type)) && (!valueCategory || construct.valueCategory === valueCategory)));
     }
     Predicates.byTypedExpression = byTypedExpression;
     function isTypedExpression(construct, typePredicate, valueCategory) {
@@ -20480,7 +20481,8 @@ var Predicates;
     Predicates.isTypedExpression = isTypedExpression;
     // Basically copies of above but with Declaration swapping in for Expression and ValueCategory removed
     function byTypedDeclaration(typePredicate) {
-        return ((construct) => construct.type && (!typePredicate || typePredicate(construct.type)));
+        return (// TODO conditional on this line can probably be removed
+        ((construct) => construct.type && (!typePredicate || typePredicate(construct.type))));
     }
     Predicates.byTypedDeclaration = byTypedDeclaration;
     function isTypedDeclaration(construct, typePredicate) {
@@ -21597,6 +21599,9 @@ function isAnythingConstruct(construct) {
     if ((ac === null || ac === void 0 ? void 0 : ac.construct_type) === "block" && ac.statements.length === 1 && isAnythingConstruct(ac.statements[0])) {
         return true;
     }
+    if ((ac === null || ac === void 0 ? void 0 : ac.construct_type) === "expression_statement" && isAnythingConstruct(ac.expression)) {
+        return true;
+    }
     return false;
 }
 exports.isAnythingConstruct = isAnythingConstruct;
@@ -22244,6 +22249,64 @@ class BaseSubobjectEntity extends CPPEntity {
     }
 }
 exports.BaseSubobjectEntity = BaseSubobjectEntity;
+// export class MemberSubobjectEntity extends CPPEntity<CompleteClassType> implements ObjectEntity<CompleteClassType> {
+//     public readonly variableKind = "object";
+//     public readonly containingEntity: ObjectEntity<CompleteClassType>;
+//     public readonly name: string;
+//     constructor(containingEntity: ObjectEntity<CompleteClassType>, name: string) {
+//         const memEnt = 
+//         assert(containingEntity.type.classDefinition.memberVariableEntitiesByName[name], "invalid name for member");
+//         super(containingEntity.type.classDefinition.memberVariableEntitiesByName[name]?.type);
+//         this.containingEntity = containingEntity;
+//         // This should always be true as long as we don't allow multiple inheritance
+//         assert(this.containingEntity.type.classDefinition.baseType?.similarType(type))
+//     }
+//     public runtimeLookup(rtConstruct: RuntimeConstruct) {
+//         return this.containingEntity.runtimeLookup(rtConstruct).getMemberObject()!;
+//     }
+//     public isTyped<NarrowedT extends CompleteClassType>(predicate: (t:CompleteClassType) => t is NarrowedT) : this is MemberSubobjectEntity;
+//     public isTyped<NarrowedT extends Type>(predicate: (t:Type) => t is NarrowedT) : this is never;
+//     public isTyped<NarrowedT extends CompleteClassType>(predicate: (t:CompleteClassType) => t is NarrowedT) : this is MemberSubobjectEntity {
+//         return predicate(this.type);
+//     }
+//     public describe() {
+//         return {
+//             name: "the " + this.type.className + " base class of " + this.containingEntity.describe().name,
+//             message: "the " + this.type.className + " base class subobject of " + this.containingEntity.describe()
+//         };
+//     }
+//     public isSemanticallyEquivalent(other: CPPEntity, equivalenceContext: SemanticContext): boolean {
+//         return other instanceof BaseSubobjectEntity && sameType(other.type, this.type) && areEntitiesSemanticallyEquivalent(other.containingEntity, this.containingEntity, equivalenceContext);
+//     }
+// }
+// export class ArraySubobjectEntity<T extends ArrayElemType = ArrayElemType> extends CPPEntity<T> implements ObjectEntity<T> {
+//     public readonly variableKind = "object";
+//     public readonly arrayEntity: ObjectEntity<BoundedArrayType<T>>;
+//     public readonly index: number;
+//     constructor(arrayEntity: ObjectEntity<BoundedArrayType<T>>, index: number) {
+//         super(arrayEntity.type.elemType);
+//         this.arrayEntity = arrayEntity;
+//         this.index = index;
+//     }
+//     public runtimeLookup(rtConstruct: RuntimeConstruct) {
+//         return this.arrayEntity.runtimeLookup(rtConstruct).getArrayElemSubobject(this.index);
+//     }
+//     public isTyped<NarrowedT extends ArrayElemType>(predicate: (t:ArrayElemType) => t is NarrowedT) : this is ArraySubobjectEntity<NarrowedT>;
+//     public isTyped<NarrowedT extends Type>(predicate: (t:Type) => t is NarrowedT) : this is never;
+//     public isTyped<NarrowedT extends ArrayElemType>(predicate: (t:ArrayElemType) => t is NarrowedT) : this is ArraySubobjectEntity<NarrowedT> {
+//         return predicate(this.type);
+//     }
+//     public describe() {
+//         let arrDesc = this.arrayEntity.describe();
+//         return {
+//             name: arrDesc.name + "[" + this.index + "]",
+//             message: "element " + this.index + " of " + arrDesc.message
+//         };
+//     }
+//     public isSemanticallyEquivalent(other: CPPEntity, equivalenceContext: SemanticContext): boolean {
+//         return other instanceof ArraySubobjectEntity && sameType(other.type, this.type) && areEntitiesSemanticallyEquivalent(other.arrayEntity, this.arrayEntity, equivalenceContext);
+//     }
+// }
 class MemberVariableEntityBase extends VariableEntityBase {
     constructor(type, decl) {
         super(type, decl.name);
@@ -26082,7 +26145,7 @@ class RuntimeConstruct {
         this.containingRuntimeFunction = func;
     }
     setContextualReceiver(obj) {
-        this.contextualReceiver = obj;
+        this._contextualReceiver = obj;
     }
     /**
      * WARNING: The contextualReceiver property may be undefined, even though it's type suggests it will always
@@ -26093,8 +26156,8 @@ class RuntimeConstruct {
      * be used appropriately by the programmer.
      */
     get contextualReceiver() {
-        var _a;
-        return (_a = this.containingRuntimeFunction) === null || _a === void 0 ? void 0 : _a.receiver;
+        var _a, _b, _c, _d;
+        return (_c = (_a = this._contextualReceiver) !== null && _a !== void 0 ? _a : (_b = this.containingRuntimeFunction) === null || _b === void 0 ? void 0 : _b.receiver) !== null && _c !== void 0 ? _c : (_d = this.parent) === null || _d === void 0 ? void 0 : _d._contextualReceiver;
     }
     /**
      * REQUIRES: this instance is on the top of the execution stack
@@ -34862,7 +34925,7 @@ exports.RuntimeInitializer = RuntimeInitializer;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.RuntimeArrayAggregateInitializer = exports.ArrayAggregateInitializer = exports.RuntimeListInitializer = exports.ListInitializer = void 0;
+exports.RuntimeClassAggregateInitializer = exports.ClassAggregateInitializer = exports.RuntimeArrayAggregateInitializer = exports.ArrayAggregateInitializer = exports.RuntimeListInitializer = exports.ListInitializer = void 0;
 const util_1 = __webpack_require__(511);
 const InitializerOutlet_1 = __webpack_require__(7024);
 const entities_1 = __webpack_require__(9366);
@@ -34885,7 +34948,7 @@ class ListInitializer extends Initializer_1.Initializer {
         }
         else if (target.type.isCompleteClassType()) {
             if (target.type.isAggregate()) {
-                return new InvalidConstruct_1.InvalidConstruct(context, undefined, errors_1.CPPError.declaration.init.aggregate_unsupported, args);
+                return new ClassAggregateInitializer(context, target, args);
             }
             let initializerList = new InitializerListExpression_1.InitializerListExpression(context, undefined, args);
             return new DirectInitializer_1.ClassDirectInitializer(context, target, [initializerList], "direct");
@@ -34973,6 +35036,75 @@ class RuntimeArrayAggregateInitializer extends RuntimeListInitializer {
     }
 }
 exports.RuntimeArrayAggregateInitializer = RuntimeArrayAggregateInitializer;
+class ClassAggregateInitializer extends ListInitializer {
+    constructor(context, target, args) {
+        super(context);
+        this.construct_type = "ClassAggregateInitializer";
+        this.kind = "list";
+        this.target = target;
+        const memberEntities = target.type.classDefinition.memberVariableEntities;
+        if (args.length > memberEntities.length) {
+            // TODO: this seems like a weird error to give. why not something more specific?
+            this.addNote(errors_1.CPPError.param.numParams(this));
+            // No need to bail out, though. We can still generate initializers
+            // for all of the arguments that do correspond to an in-bounds element.
+        }
+        // Note that the args are NOT attached as children to the class aggregate initializer.
+        // Instead, they are attached to the initializers.
+        // Create initializers for each explicitly-initialized element
+        this.explicitMemberInitializers = args.map((arg, i) => DirectInitializer_1.DirectInitializer.create(context, memberEntities[i], [arg], "copy"));
+        let remainingMemberInits = [];
+        for (let i = args.length; i < memberEntities.length; ++i) {
+            remainingMemberInits.push(ValueInitializer_1.ValueInitializer.create(context, memberEntities[i]));
+        }
+        this.implicitMemberInitializers = remainingMemberInits;
+        this.memberInitializers = [];
+        this.memberInitializers = this.memberInitializers.concat(this.explicitMemberInitializers, this.implicitMemberInitializers);
+        this.attachAll(this.memberInitializers);
+        // An array with all the final arguments (after conversions) for the explicitly-initialized array elements
+        this.args = this.explicitMemberInitializers.map(elemInit => elemInit.args[0]);
+    }
+    createRuntimeInitializer(parent) {
+        return new RuntimeClassAggregateInitializer(this, parent);
+    }
+    createDefaultOutlet(element, parent) {
+        return new InitializerOutlet_1.ClassAggregateInitializerOutlet(element, this, parent);
+    }
+    // TODO; change explain everywhere to be separate between compile time and runtime constructs
+    explain(sim, rtConstruct) {
+        let targetDesc = this.target.runtimeLookup(rtConstruct).describe();
+        let rhsDesc = this.args[0].describeEvalResult(0);
+        return { message: (targetDesc.name || targetDesc.message) + " will be initialized with " + (rhsDesc.name || rhsDesc.message) + "." };
+    }
+}
+exports.ClassAggregateInitializer = ClassAggregateInitializer;
+class RuntimeClassAggregateInitializer extends RuntimeListInitializer {
+    constructor(model, parent) {
+        super(model, parent);
+        this.index = 0;
+        // Create argument initializer instances
+        this.explicitMemberInitializers = this.model.explicitMemberInitializers.map(init => init.createRuntimeInitializer(this));
+        this.implicitMemberInitializers = this.model.implicitMemberInitializers.map(init => init.createRuntimeInitializer(this));
+        this.memberInitializers = [];
+        this.memberInitializers = this.memberInitializers.concat(this.explicitMemberInitializers, this.implicitMemberInitializers);
+        this.setContextualReceiver(this.model.target.runtimeLookup(this));
+    }
+    upNextImpl() {
+        if (this.index < this.model.memberInitializers.length) {
+            this.sim.push(this.memberInitializers[this.index++]);
+        }
+        else {
+            let target = this.model.target.runtimeLookup(this);
+            target.beginLifetime();
+            this.observable.send("classObjectInitialized", this);
+            this.startCleanup();
+        }
+    }
+    stepForwardImpl() {
+        // do nothing
+    }
+}
+exports.RuntimeClassAggregateInitializer = RuntimeClassAggregateInitializer;
 //# sourceMappingURL=ListInitializer.js.map
 
 /***/ }),
@@ -56929,7 +57061,7 @@ exports.FunctionOutlet = FunctionOutlet;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.ArrayMemberInitializerOutlet = exports.ArrayAggregateInitializerOutlet = exports.ClassCopyInitializerOutlet = exports.ReferenceCopyInitializerOutlet = exports.AtomicCopyInitializerOutlet = exports.CopyInitializerOutlet = exports.ClassDirectInitializerOutlet = exports.ArrayDirectInitializerOutlet = exports.ReferenceDirectInitializerOutlet = exports.AtomicDirectInitializerOutlet = exports.ClassValueInitializerOutlet = exports.ArrayValueInitializerOutlet = exports.AtomicValueInitializerOutlet = exports.ClassDefaultInitializerOutlet = exports.ArrayDefaultInitializerOutlet = exports.AtomicDefaultInitializerOutlet = exports.addChildInitializerOutlet = exports.InitializerOutlet = exports.createInitializerOutlet = void 0;
+exports.ArrayMemberInitializerOutlet = exports.ClassAggregateInitializerOutlet = exports.ArrayAggregateInitializerOutlet = exports.ClassCopyInitializerOutlet = exports.ReferenceCopyInitializerOutlet = exports.AtomicCopyInitializerOutlet = exports.CopyInitializerOutlet = exports.ClassDirectInitializerOutlet = exports.ArrayDirectInitializerOutlet = exports.ReferenceDirectInitializerOutlet = exports.AtomicDirectInitializerOutlet = exports.ClassValueInitializerOutlet = exports.ArrayValueInitializerOutlet = exports.AtomicValueInitializerOutlet = exports.ClassDefaultInitializerOutlet = exports.ArrayDefaultInitializerOutlet = exports.AtomicDefaultInitializerOutlet = exports.addChildInitializerOutlet = exports.InitializerOutlet = exports.createInitializerOutlet = void 0;
 const util_1 = __webpack_require__(511);
 const PotentialFullExpressionOutlet_1 = __webpack_require__(9367);
 const ExpressionOutlets_1 = __webpack_require__(17);
@@ -57061,6 +57193,18 @@ class ArrayAggregateInitializerOutlet extends InitializerOutlet {
     }
 }
 exports.ArrayAggregateInitializerOutlet = ArrayAggregateInitializerOutlet;
+class ClassAggregateInitializerOutlet extends InitializerOutlet {
+    constructor(element, construct, parent) {
+        super(element, construct, parent);
+        this.memberInitializerOutlets = construct.memberInitializers.map((memberInit, i) => {
+            if (i > 0) {
+                this.element.append(", ");
+            }
+            return createInitializerOutlet($("<span></span>").appendTo(this.element), memberInit, this);
+        });
+    }
+}
+exports.ClassAggregateInitializerOutlet = ClassAggregateInitializerOutlet;
 class ArrayMemberInitializerOutlet extends InitializerOutlet {
     constructor(element, construct, parent) {
         super(element, construct, parent);
@@ -58350,7 +58494,11 @@ exports.HeapOutlet = HeapOutlet;
 
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -58855,7 +59003,11 @@ exports.createMemoryObjectOutlet = createMemoryObjectOutlet;
 
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -79013,13 +79165,19 @@ $(() => {
     $(".lobster-ex").each(function () {
         var _a, _b, _c, _d, _e, _f, _g;
         $(this).append((0, embeddedExerciseOutlet_1.createEmbeddedExerciseOutlet)("single"));
+        $(this).find(".lobster-ex-checkpoints")
+            .detach().prependTo($(this))
+            .css("position", "sticky")
+            .css("top", "0")
+            .css("background-color", "white")
+            .css("z-index", "100000");
         let filename = "exercise.cpp";
         let exerciseSpec = {
             starterCode: (0, ts_dedent_1.default) `
             #include <iostream>
             using namespace std;
             
-            int func(int x, int &y, int &z) {
+            double wumbo(const vector<double> &v) {
               x = z;
               y = z;
               return z + 1;
@@ -79042,7 +79200,7 @@ $(() => {
                     return (0, analysis_1.findConstructs)(main, predicates_1.Predicates.byKind("magic_function_call_expression")).filter(call => call.functionName === "assert").length >= 6;
                 })
             ],
-            completionCriteria: Project_1.COMPLETION_LAST_CHECKPOINT,
+            completionCriteria: Project_1.COMPLETION_ALL_CHECKPOINTS,
             completionMessage: "Nice work! Exercise complete!"
         };
         let completionMessage = (_b = (_a = $(this).find(".lobster-ex-completion-message").html()) === null || _a === void 0 ? void 0 : _a.trim()) !== null && _b !== void 0 ? _b : (_c = $(this).find(".lobster-ex-complete-message").html()) === null || _c === void 0 ? void 0 : _c.trim();
@@ -79072,7 +79230,7 @@ $(() => {
             if (msg.message_kind === "set_submission") {
                 exOutlet.project.setFileContents({
                     name: "exercise.cpp",
-                    text: msg.submission,
+                    text: msg.submission.code
                 });
             }
         });
@@ -79082,7 +79240,10 @@ $(() => {
                 (_a = window.parent) === null || _a === void 0 ? void 0 : _a.postMessage({
                     examma_ray_message: {
                         message_kind: "update",
-                        submission: exOutlet.project.sourceFiles[0].text,
+                        submission: {
+                            code: exOutlet.project.sourceFiles[0].text,
+                            complete: project.exercise.isComplete
+                        }
                     }
                 }, "*");
             }

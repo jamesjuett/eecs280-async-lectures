@@ -60,7 +60,7 @@ export const LECTURE_03 : ExamSpecification = {
         {
           question_id: "lec03_addresses_and_pointers",
           title: "Exercise: Addresses and Pointers",
-          points: 3,
+          points: 4,
           mk_description: "",
           response: {
             kind: "fill_in_the_blank",
@@ -118,6 +118,81 @@ int main() {
   </tr>
 </table>
             `,
+            default_grader: {
+              grader_kind: "manual_regex_fill_in_the_blank",
+              rubric: [
+                {
+                  blankIndex: 1,
+                  title: "Box 1",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /^[^\s]{5,}$/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /\&\s*y/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 2,
+                  title: "Box 2",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /^[^\s]{2,}$/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /n/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 3,
+                  title: "Box 3",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /^[^\s]{4,}$/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 4,
+                  title: "Box 4",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /^[^\s]{2,}$/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /n/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                  ]
+                },
+              ]
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
           },
           mk_postscript: dedent`
             <hr />
@@ -151,7 +226,7 @@ int main() {
         {
           question_id: "lec03_using_pointers",
           title: "Exercise: Using Pointers",
-          points: 3,
+          points: 8,
           mk_description: dedent`
           
             <div class="alert alert-info">
@@ -182,7 +257,119 @@ int main() {
               "4",
               "0x2718",
               "0x2714",
-            ]
+            ],
+            default_grader: {
+              grader_kind: "manual_regex_fill_in_the_blank",
+              rubric: [
+                {
+                  blankIndex: 1,
+                  title: "Box 1",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /3|three|tree/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 2,
+                  title: "Box 2",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /2714|&\s*y/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 3,
+                  title: "Box 3",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /2710|&\s*x/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 4,
+                  title: "Box 4",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /3|three|tree/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 5,
+                  title: "Box 5",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /4|four|for|fore/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 6,
+                  title: "Box 6",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /4|four|for|fore/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 7,
+                  title: "Box 7",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /2718|&\s*ptr/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 8,
+                  title: "Box 8",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /2714|&\s*y/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                  ]
+                },
+              ]
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
           },
           mk_postscript: dedent`
             <details>
@@ -398,7 +585,7 @@ int main() {
         {
           question_id: "lec04_pass_by_pointer",
           title: "Exercise: Pass-by-Pointer",
-          points: 3,
+          points: 1,
           mk_description: dedent`
             The code below contains a broken \`swap\` function that doesn't actually do anything. Fix it by modifying the function to use pass-by-pointer, so that you can swap the original objects through pointer parameters. Once you're done, the values of the original variables in main should be swapped correctly! (Note that Lobster will show a completed checkpoint once you've got the right output, and may also try to give you some hints along the way if you run into any bugs.)
           `,
@@ -407,7 +594,21 @@ int main() {
             src: "assets/pass_by_pointer.html",
             element_class: "lobster-iframe",
             element_style: "height: 750px;",
+            default_grader: {
+              grader_kind: "standard_iframe",
+              rubric: [
+                {
+                  points: 1,
+                  description: "Exercise must be complete.",
+                  property: "complete",
+                  value: true,
+                }
+              ]
+            }
           },
+          verifier: {
+            verifier_kind: "full_credit"
+          }
         }
       ],
     },

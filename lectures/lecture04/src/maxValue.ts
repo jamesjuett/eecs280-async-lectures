@@ -226,7 +226,7 @@ $(() => {
           if (msg.message_kind === "set_submission") {
             exOutlet.project.setFileContents(<SourceFile> {
               name: "exercise.cpp",
-              text: msg.submission,
+              text: msg.submission.code
             });
           }
 
@@ -237,7 +237,10 @@ $(() => {
             window.parent?.postMessage({
               examma_ray_message: {
                 message_kind: "update",
-                submission: exOutlet.project.sourceFiles[0].text,
+                submission: {
+                  code: exOutlet.project.sourceFiles[0].text,
+                  complete: project.exercise.isComplete
+                }
               }
             }, "*");
           }

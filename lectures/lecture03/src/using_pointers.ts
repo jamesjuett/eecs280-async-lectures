@@ -45,8 +45,8 @@ $(() => {
             
             int main() {
               int x = 1;      // Assume x is allocated at address 0x2710
-              int y = 1;      // Assume x is allocated at address 0x2714
-              int *ptr = &x;  // Assume x is allocated at address 0x2718
+              int y = 1;      // Assume y is allocated at address 0x2714
+              int *ptr = &x;  // Assume ptr is allocated at address 0x2718
               
               x = 2;
               *ptr = 3;
@@ -110,7 +110,7 @@ $(() => {
           if (msg.message_kind === "set_submission") {
             exOutlet.project.setFileContents(<SourceFile> {
               name: "exercise.cpp",
-              text: msg.submission,
+              text: msg.submission.code
             });
           }
 
@@ -121,7 +121,10 @@ $(() => {
             window.parent?.postMessage({
               examma_ray_message: {
                 message_kind: "update",
-                submission: exOutlet.project.sourceFiles[0].text,
+                submission: {
+                  code: exOutlet.project.sourceFiles[0].text,
+                  complete: project.exercise.isComplete
+                }
               }
             }, "*");
           }
