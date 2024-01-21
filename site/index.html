@@ -26,7 +26,7 @@
 
   <script>
     async function on_google_sign_in(response) {
-      let email = jwtDecode(response.credential).email;
+      const email = jwtDecode(response.credential).email;
       const participation_response = await axios({
         url: "https://examma-ray.eecs.umich.edu/public_api/participation/me/",
         method: "GET",
@@ -35,7 +35,13 @@
         }
       });
 
-      console.log(participation_response.data);
+      const participation = participation_response.data;
+
+      if (Array.isArray(participation)) {
+        participation.forEach(lec => {
+          $(`.complete-icon-${lec.exam_id}`).css("visibility", "visible");
+        })
+      }
     }
   </script>
 
@@ -102,7 +108,13 @@
     <table>
       <tr>
         <td style="width: 7em;">Wed Jan 10</td>
-        <td><a href="lec_01_intro_and_machine_model/exams/eecs280-eecs280-lec_01_intro_and_machine_model.html">1 Introduction and Machine Model</a></td>
+        <td>
+          <span class="ui blue label" data-tooltip="This lecture has been updated for Winter 2024">W24</span>
+          <span class="ui green icon label">
+            <span id="completion-icon-lec_01_intro_and_machine_model" style="visibility: hidden;" class="ui check square outline icon"></span>
+          </span>
+          <a href="lec_01_intro_and_machine_model/exams/eecs280-eecs280-lec_01_intro_and_machine_model.html">1 Introduction and Machine Model</a>
+        </td>
       </tr>
       <tr>
         <td>Mon Jan 15</td>
@@ -110,47 +122,113 @@
       </tr>
       <tr>
         <td>Wed Jan 17</td>
-        <td><a href="lec_02_procedural_abstraction_and_the_call_stack/exams/eecs280-eecs280-lec_02_procedural_abstraction_and_the_call_stack.html">2 Procedural Abstraction, Testing and Debugging</a></td>
+        <td>
+          <span class="ui blue label" data-tooltip="This lecture has been updated for Winter 2024">W24</span>
+          <span class="ui green icon label">
+            <span id="completion-icon-lec_02_procedural_abstraction_and_the_call_stack" style="visibility: hidden;" class="ui check square outline icon"></span>
+          </span>
+          <a href="lec_02_procedural_abstraction_and_the_call_stack/exams/eecs280-eecs280-lec_02_procedural_abstraction_and_the_call_stack.html">2 Procedural Abstraction, Testing and Debugging</a>
+        </td>
       </tr>
       <tr>
         <td>Mon Jan 22</td>
-        <td><a href="lec_03_pointers/exams/eecs280-eecs280-lec_03_pointers.html">3 Pointers</a></td>
+        <td>
+          <span class="ui blue label" style="visibility: hidden;" data-tooltip="This lecture has been updated for Winter 2024">W24</span>
+          <span class="ui green icon label">
+            <span id="completion-icon-lec_03_pointers" style="visibility: hidden;" class="ui check square outline icon"></span>
+          </span>
+          <a href="lec_03_pointers/exams/eecs280-eecs280-lec_03_pointers.html">3 Pointers</a>
+        </td>
       </tr>
       <tr>
         <td>Wed Jan 24</td>
-        <td><a href="lec_04_arrays/exams/eecs280-eecs280-lec_04_arrays.html">4 Pointers and Arrays</a></td>
+        <td>
+          <span class="ui blue label" style="visibility: hidden;" data-tooltip="This lecture has been updated for Winter 2024">W24</span>
+          <span class="ui green icon label">
+            <span id="completion-icon-lec_04_arrays" style="visibility: hidden;" class="ui check square outline icon"></span>
+          </span>
+          <a href="lec_04_arrays/exams/eecs280-eecs280-lec_04_arrays.html">4 Pointers and Arrays</a>
+        </td>
       </tr>
       <tr>
         <td>Mon Jan 29</td>
-        <td><a href="lec_05_compound_objects/exams/eecs280-eecs280-lec_05_compound_objects.html">5 Compound Objects</a></td>
+        <td>
+          <span class="ui blue label" style="visibility: hidden;" data-tooltip="This lecture has been updated for Winter 2024">W24</span>
+          <span class="ui green icon label">
+            <span id="completion-icon-lec_05_compound_objects" style="visibility: hidden;" class="ui check square outline icon"></span>
+          </span>
+          <a href="lec_05_compound_objects/exams/eecs280-eecs280-lec_05_compound_objects.html">5 Compound Objects</a>
+        </td>
       </tr>
       <tr>
         <td>Wed Jan 31</td>
-        <td><a href="lec_07_adts_in_c/exams/eecs280-eecs280-lec_07_adts_in_c.html">6 Abstract Data Types in C</a></td>
+        <td>
+          <span class="ui blue label" style="visibility: hidden;" data-tooltip="This lecture has been updated for Winter 2024">W24</span>
+          <span class="ui green icon label">
+            <span id="completion-icon-lec_07_adts_in_c" style="visibility: hidden;" class="ui check square outline icon"></span>
+          </span>
+          <a href="lec_07_adts_in_c/exams/eecs280-eecs280-lec_07_adts_in_c.html">6 Abstract Data Types in C</a>
+        </td>
       </tr>
       <tr>
         <td>Mon Feb 5</td>
-        <td><a href="lec_06_strings_streams_and_io/exams/eecs280-eecs280-lec_06_strings_streams_and_io.html">7 Strings, Streams, and IO</a></td>
+        <td>
+          <span class="ui blue label" style="visibility: hidden;" data-tooltip="This lecture has been updated for Winter 2024">W24</span>
+          <span class="ui green icon label">
+            <span id="completion-icon-lec_06_strings_streams_and_io" style="visibility: hidden;" class="ui check square outline icon"></span>
+          </span>
+          <a href="lec_06_strings_streams_and_io/exams/eecs280-eecs280-lec_06_strings_streams_and_io.html">7 Strings, Streams, and IO</a>
+        </td>
       </tr>
       <tr>
         <td>Wed Feb 7</td>
-        <td><a href="lec_08_adts_in_cpp/exams/eecs280-eecs280-lec_08_adts_in_cpp.html">8 Abstract Data Types in C++</a></td>
+        <td>
+          <span class="ui blue label" style="visibility: hidden;" data-tooltip="This lecture has been updated for Winter 2024">W24</span>
+          <span class="ui green icon label">
+            <span id="completion-icon-lec_08_adts_in_cpp" style="visibility: hidden;" class="ui check square outline icon"></span>
+          </span>
+          <a href="lec_08_adts_in_cpp/exams/eecs280-eecs280-lec_08_adts_in_cpp.html">8 Abstract Data Types in C++</a>
+        </td>
       </tr>
       <tr>
         <td>Mon Feb 12</td>
-        <td><a href="lec_09_inheritance/exams/eecs280-eecs280-lec_09_inheritance.html">9 Derived Classes and Inheritance</a></td>
+        <td>
+          <span class="ui blue label" style="visibility: hidden;" data-tooltip="This lecture has been updated for Winter 2024">W24</span>
+          <span class="ui green icon label">
+            <span id="completion-icon-lec_09_inheritance" style="visibility: hidden;" class="ui check square outline icon"></span>
+          </span>
+          <a href="lec_09_inheritance/exams/eecs280-eecs280-lec_09_inheritance.html">9 Derived Classes and Inheritance</a>
+        </td>
       </tr>
       <tr>
         <td>Wed Feb 14</td>
-        <td><a href="lec_10_polymorphism/exams/eecs280-eecs280-lec_10_polymorphism.html">10 Polymorphism</a></td>
+        <td>
+          <span class="ui blue label" style="visibility: hidden;" data-tooltip="This lecture has been updated for Winter 2024">W24</span>
+          <span class="ui green icon label">
+            <span id="completion-icon-lec_10_polymorphism" style="visibility: hidden;" class="ui check square outline icon"></span>
+          </span>
+          <a href="lec_10_polymorphism/exams/eecs280-eecs280-lec_10_polymorphism.html">10 Polymorphism</a>
+        </td>
       </tr>
       <tr>
         <td>Mon Feb 19</td>
-        <td><a href="lec_11_containers_1/exams/eecs280-eecs280-lec_11_containers_1.html">11 Container ADTs I</a></td>
+        <td>
+          <span class="ui blue label" style="visibility: hidden;" data-tooltip="This lecture has been updated for Winter 2024">W24</span>
+          <span class="ui green icon label">
+            <span id="completion-icon-lec_11_containers_1" style="visibility: hidden;" class="ui check square outline icon"></span>
+          </span>
+          <a href="lec_11_containers_1/exams/eecs280-eecs280-lec_11_containers_1.html">11 Container ADTs I</a>
+        </td>
       </tr>
       <tr>
         <td>Wed Feb 21</td>
-        <td><a href="lec_12_containers_2/exams/eecs280-eecs280-lec_12_containers_2.html">12 Container ADTs II</a></td>
+        <td>
+          <span class="ui blue label" style="visibility: hidden;" data-tooltip="This lecture has been updated for Winter 2024">W24</span>
+          <span class="ui green icon label">
+            <span id="completion-icon-lec_12_containers_2" style="visibility: hidden;" class="ui check square outline icon"></span>
+          </span>
+          <a href="lec_12_containers_2/exams/eecs280-eecs280-lec_12_containers_2.html">12 Container ADTs II</a>
+        </td>
       </tr>
       <tr>
         <td>Mon Feb 26</td>
@@ -162,15 +240,33 @@
       </tr>
       <tr>
         <td>Mon Mar 4</td>
-        <td><a href="lec_13_dynamic_memory/exams/eecs280-eecs280-lec_13_dynamic_memory.html">13 Memory Models and Dynamic Memory</a></td>
+        <td>
+          <span class="ui blue label" style="visibility: hidden;" data-tooltip="This lecture has been updated for Winter 2024">W24</span>
+          <span class="ui green icon label">
+            <span id="completion-icon-lec_13_dynamic_memory" style="visibility: hidden;" class="ui check square outline icon"></span>
+          </span>
+          <a href="lec_13_dynamic_memory/exams/eecs280-eecs280-lec_13_dynamic_memory.html">13 Memory Models and Dynamic Memory</a>
+        </td>
       </tr>
       <tr>
         <td>Wed Mar 6</td>
-        <td><a href="lec_14_raii_growable_containers/exams/eecs280-eecs280-lec_14_raii_growable_containers.html">14 Managing Dynamic Memory</a></td>
+        <td>
+          <span class="ui blue label" style="visibility: hidden;" data-tooltip="This lecture has been updated for Winter 2024">W24</span>
+          <span class="ui green icon label">
+            <span id="completion-icon-lec_14_raii_growable_containers" style="visibility: hidden;" class="ui check square outline icon"></span>
+          </span>
+          <a href="lec_14_raii_growable_containers/exams/eecs280-eecs280-lec_14_raii_growable_containers.html">14 Managing Dynamic Memory</a>
+        </td>
       </tr>
       <tr>
         <td>Mon Mar 11</td>
-        <td><a href="lec_15_deep_copies_and_the_big_three/exams/eecs280-eecs280-lec_15_deep_copies_and_the_big_three.html">15 Deep Copies and The Big Three</a></td>
+        <td>
+          <span class="ui blue label" style="visibility: hidden;" data-tooltip="This lecture has been updated for Winter 2024">W24</span>
+          <span class="ui green icon label">
+            <span id="completion-icon-lec_15_deep_copies_and_the_big_three" style="visibility: hidden;" class="ui check square outline icon"></span>
+          </span>
+          <a href="lec_15_deep_copies_and_the_big_three/exams/eecs280-eecs280-lec_15_deep_copies_and_the_big_three.html">15 Deep Copies and The Big Three</a>
+        </td>
       </tr>
       <tr>
         <td>Wed Mar 13</td>
@@ -178,27 +274,63 @@
       </tr>
       <tr>
         <td>Mon Mar 18</td>
-        <td><a href="lec_16_linked_lists/exams/eecs280-eecs280-lec_16_linked_lists.html">16 Linked Lists</a></td>
+        <td>
+          <span class="ui blue label" style="visibility: hidden;" data-tooltip="This lecture has been updated for Winter 2024">W24</span>
+          <span class="ui green icon label">
+            <span id="completion-icon-lec_16_linked_lists" style="visibility: hidden;" class="ui check square outline icon"></span>
+          </span>
+          <a href="lec_16_linked_lists/exams/eecs280-eecs280-lec_16_linked_lists.html">16 Linked Lists</a>
+        </td>
       </tr>
       <tr>
         <td>Wed Mar 20</td>
-        <td><a href="lec_17_iterators/exams/eecs280-eecs280-lec_17_iterators.html">17 Iterators</a></td>
+        <td>
+          <span class="ui blue label" style="visibility: hidden;" data-tooltip="This lecture has been updated for Winter 2024">W24</span>
+          <span class="ui green icon label">
+            <span id="completion-icon-lec_17_iterators" style="visibility: hidden;" class="ui check square outline icon"></span>
+          </span>
+          <a href="lec_17_iterators/exams/eecs280-eecs280-lec_17_iterators.html">17 Iterators</a>
+        </td>
       </tr>
       <tr>
         <td>Mon Mar 25</td>
-        <td><a href="lec_18_functors/exams/eecs280-eecs280-lec_18_functors.html">18 Function Objects and Impostor Syndrome</a></td>
+        <td>
+          <span class="ui blue label" style="visibility: hidden;" data-tooltip="This lecture has been updated for Winter 2024">W24</span>
+          <span class="ui green icon label">
+            <span id="completion-icon-lec_18_functors" style="visibility: hidden;" class="ui check square outline icon"></span>
+          </span>
+          <a href="lec_18_functors/exams/eecs280-eecs280-lec_18_functors.html">18 Function Objects and Impostor Syndrome</a>
+        </td>
       </tr>
       <tr>
         <td>Wed Mar 27</td>
-        <td><a href="lec_19_recursion_and_tail_recursion/exams/eecs280-eecs280-lec_19_recursion_and_tail_recursion.html">19 Recursion and Tail Recursion</a></td>
+        <td>
+          <span class="ui blue label" style="visibility: hidden;" data-tooltip="This lecture has been updated for Winter 2024">W24</span>
+          <span class="ui green icon label">
+            <span id="completion-icon-lec_19_recursion_and_tail_recursion" style="visibility: hidden;" class="ui check square outline icon"></span>
+          </span>
+          <a href="lec_19_recursion_and_tail_recursion/exams/eecs280-eecs280-lec_19_recursion_and_tail_recursion.html">19 Recursion and Tail Recursion</a>
+        </td>
       </tr>
       <tr>
         <td>Mon Apr 1</td>
-        <td><a href="lec_20_structural_recursion/exams/eecs280-eecs280-lec_20_structural_recursion.html">20 Structural Recursion</a></td>
+        <td>
+          <span class="ui blue label" style="visibility: hidden;" data-tooltip="This lecture has been updated for Winter 2024">W24</span>
+          <span class="ui green icon label">
+            <span id="completion-icon-lec_20_structural_recursion" style="visibility: hidden;" class="ui check square outline icon"></span>
+          </span>
+          <a href="lec_20_structural_recursion/exams/eecs280-eecs280-lec_20_structural_recursion.html">20 Structural Recursion</a>
+        </td>
       </tr>
       <tr>
         <td>Wed Apr 3</td>
-        <td><a href="lec_21_bsts_sets_and_maps/exams/eecs280-eecs280-lec_21_bsts_sets_and_maps.html">21 Binary Search Trees and Maps</a></td>
+        <td>
+          <span class="ui blue label" style="visibility: hidden;" data-tooltip="This lecture has been updated for Winter 2024">W24</span>
+          <span class="ui green icon label">
+            <span id="completion-icon-lec_21_bsts_sets_and_maps" style="visibility: hidden;" class="ui check square outline icon"></span>
+          </span>
+          <a href="lec_21_bsts_sets_and_maps/exams/eecs280-eecs280-lec_21_bsts_sets_and_maps.html">21 Binary Search Trees and Maps</a>
+        </td>
       </tr>
       <tr>
         <td>Mon Apr 8</td>
@@ -210,7 +342,13 @@
       </tr>
       <tr>
         <td>Mon Apr 15</td>
-        <td><a href="lec_22_error_handling_and_exceptions/exams/eecs280-eecs280-lec_22_error_handling_and_exceptions.html">22 Exceptions</a></td>
+        <td>
+          <span class="ui blue label" style="visibility: hidden;" data-tooltip="This lecture has been updated for Winter 2024">W24</span>
+          <span class="ui green icon label">
+            <span id="completion-icon-lec_22_error_handling_and_exceptions" style="visibility: hidden;" class="ui check square outline icon"></span>
+          </span>
+          <a href="lec_22_error_handling_and_exceptions/exams/eecs280-eecs280-lec_22_error_handling_and_exceptions.html">22 Exceptions</a>
+        </td>
       </tr>
       <tr>
         <td>Wed Apr 17</td>
