@@ -28,9 +28,7 @@ export const LECTURE_03 : ExamSpecification = {
       </span> for a hint.
       
       Please also note you can now check your overall progress on the async lectures
-      <a href="/eecs280-async-lectures">
-        home page
-      </a>.
+      <a href="/eecs280-async-lectures">home page</a>.
 
       To earn participation credit, you'll need to complete the lecture within 2 days of the lecture date.
       For lecture 3 (released Monday 1/22), that means completing it by <b>Wednesday 1/24 at 11:59pm</b>.
