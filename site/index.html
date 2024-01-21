@@ -14,7 +14,7 @@
   <link href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.2/dist/semantic.min.css" rel="stylesheet">
 
   <script src="https://cdn.jsdelivr.net/npm/jwt-decode@4.0.0/build/cjs/index.min.js"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="https://accounts.google.com/gsi/client" async></script>
   
 
@@ -25,10 +25,18 @@
   </style>
 
   <script>
-    // function on_google_sign_in(response) {
-    //   alert("hi");
-    //   let test = jwtDecode(response.credential);
-    // }
+    async function on_google_sign_in(response) {
+      let email = jwtDecode(response.credential).email;
+      const participation_response = await axios({
+        url: "https://examma-ray.eecs.umich.edu/public_api/participation/me/",
+        method: "GET",
+        headers: {
+          'Authorization': credentials
+        }
+      });
+
+      console.log(participation_response.data);
+    }
   </script>
 
 </head>
@@ -39,25 +47,32 @@
   <div class="ui text container">
 
     <!-- Header and description -->
-    <h1>EECS 280 Asynchronous Lectures</h1>
-    <div id="g_id_onload"
-      data-client_id="444801118749-m2g9gl3gvvkh5ru959dmka0lsk94d9uq.apps.googleusercontent.com"
-      data-context="signin"
-      data-ux_mode="popup"
-      data-callback="on_google_sign_in"
-      data-auto_select="true"
-      data-itp_support="true"
+    <h1>
+      EECS 280 Asynchronous Lectures
+      <div
+        class="g_id_signin"
+        style="display: inline-block;"
+        data-type="standard"
+        data-shape="rectangular"
+        data-theme="outline"
+        data-text="signin_with"
+        data-size="large"
+        data-logo_alignment="left"
       >
-    </div>
+      </div>
+      <div id="g_id_onload"
+        data-client_id="444801118749-m2g9gl3gvvkh5ru959dmka0lsk94d9uq.apps.googleusercontent.com"
+        data-context="signin"
+        data-ux_mode="popup"
+        data-callback="on_google_sign_in"
+        data-auto_select="true"
+        data-itp_support="true"
+        data-close_on_tap_outside="false"
+      >
+      </div>
+    </h1>
 
-    <div class="g_id_signin"
-      data-type="standard"
-      data-shape="rectangular"
-      data-theme="outline"
-      data-text="signin_with"
-      data-size="large"
-      data-logo_alignment="left">
-    </div>
+    
     <div class="inline">
       <i>James Juett, The University of Michigan</i>
     </div>
