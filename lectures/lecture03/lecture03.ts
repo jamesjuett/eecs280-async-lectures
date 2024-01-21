@@ -42,6 +42,8 @@ export const LECTURE_03 : ExamSpecification = {
       Why? Pretty much the same reason we use addresses anywhere else - sometimes we need to work **indirectly**. For example, in the "real world", an address book refers to the places that people live, but it doesn't literally contain those places! (That wouldn't even make sense.)
       
       Likewise, in a program we might want several different parts of our code to refer to the same data structure, but we don't want them all to literally have a local copy of that data. It would be better to know the address of the data and just go look it up when we need to.
+      
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Winter 2024</div>
     </div>
     <style>
       .lec-video {
@@ -204,7 +206,12 @@ int main() {
                   description: "",
                   patterns: [
                     {
-                      pattern: /yes|allow|ok|fine/i,
+                      pattern: /not allowed|wont allow|won't allow|/i,
+                      explanation: "The compiler will allow it - it repoints the pointer. (Your answer should contain the word \"yes\" or \"allowed\".)",
+                      points: 0
+                    },
+                    {
+                      pattern: /yes|allow|ok|fine|point.*at|points/i,
                       explanation: "Correct!",
                       points: 1
                     },
@@ -221,6 +228,11 @@ int main() {
                   points: 1,
                   description: "",
                   patterns: [
+                    {
+                      pattern: /yes/i,
+                      explanation: "It is not possible. (Your answer should contain words such as \"not possible\" or \"impossible\".)",
+                      points: 0
+                    },
                     {
                       pattern: /no|not|impossible|can't|cant|mismatch|double|error|type/i,
                       explanation: "Correct!",
