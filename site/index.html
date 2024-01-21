@@ -26,9 +26,7 @@
   <script>
     async function on_google_sign_in(response) {
 
-      // decode jwt
-      
-      const email = response.credential.split(".")[1].email;
+      const email = JSON.parse(atob(response.credential.split(".")[1])).email;
       const participation_response = await axios({
         url: "https://examma-ray.eecs.umich.edu/public_api/participation/me/",
         method: "GET",
