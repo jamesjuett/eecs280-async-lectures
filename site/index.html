@@ -13,7 +13,6 @@
   <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.2/dist/semantic.min.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.2/dist/semantic.min.css" rel="stylesheet">
 
-  <script src="https://cdn.jsdelivr.net/npm/jwt-decode@4.0.0/build/cjs/index.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="https://accounts.google.com/gsi/client" async></script>
   
@@ -26,7 +25,10 @@
 
   <script>
     async function on_google_sign_in(response) {
-      const email = jwtDecode(response.credential).email;
+
+      // decode jwt
+      
+      const email = response.credential.split(".")[1].email;
       const participation_response = await axios({
         url: "https://examma-ray.eecs.umich.edu/public_api/participation/me/",
         method: "GET",
