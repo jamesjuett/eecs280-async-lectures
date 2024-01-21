@@ -128,7 +128,7 @@ int main() {
                   description: "",
                   patterns: [
                     {
-                      pattern: /^[^\s]{5,}$/i,
+                      pattern: /addr.*y/i,
                       explanation: "Correct!",
                       points: 1
                     },
@@ -136,6 +136,11 @@ int main() {
                       pattern: /\&\s*y/i,
                       explanation: "Correct!",
                       points: 1
+                    },
+                    {
+                      pattern: /.{5,}/i,
+                      explanation: "The address of y is printed (i.e. &y).",
+                      points: 0
                     },
                   ]
                 },
@@ -146,14 +151,14 @@ int main() {
                   description: "",
                   patterns: [
                     {
-                      pattern: /^[^\s]{2,}$/i,
+                      pattern: /no|error|not|bad|wrong/i,
                       explanation: "Correct!",
                       points: 1
                     },
                     {
-                      pattern: /n/i,
-                      explanation: "Correct!",
-                      points: 1
+                      pattern: /.{10,}/i,
+                      explanation: "The compiler will not allow it. (Your answer should contain the word \"no\".)",
+                      points: 0
                     },
                   ]
                 },
@@ -164,9 +169,14 @@ int main() {
                   description: "",
                   patterns: [
                     {
-                      pattern: /^[^\s]{4,}$/i,
+                      pattern: /yes|allow|ok|fine/i,
                       explanation: "Correct!",
                       points: 1
+                    },
+                    {
+                      pattern: /.{10,}/i,
+                      explanation: "The compiler will allow it - it repoints the pointer. (Your answer should contain the word \"yes\" or \"allowed\".)",
+                      points: 0
                     },
                   ]
                 },
@@ -177,14 +187,14 @@ int main() {
                   description: "",
                   patterns: [
                     {
-                      pattern: /^[^\s]{2,}$/i,
+                      pattern: /no|not|impossible|can't|cant|mismatch|double|error|type/i,
                       explanation: "Correct!",
                       points: 1
                     },
                     {
-                      pattern: /n/i,
-                      explanation: "Correct!",
-                      points: 1
+                      pattern: /.{10,}/i,
+                      explanation: "It is not possible. (Your answer should contain words such as \"not possible\" or \"impossible\".)",
+                      points: 0
                     },
                   ]
                 },
@@ -557,6 +567,86 @@ int main() {
   </tr>
 </table>
             `,
+            default_grader: {
+              grader_kind: "manual_regex_fill_in_the_blank",
+              rubric: [
+                {
+                  blankIndex: 1,
+                  title: "Box 1",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /null|nil|undefined|crash|error|exist/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /.{5,}/i,
+                      explanation: "It dereferences a null pointer (`ptr1`) and crashes.",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 2,
+                  title: "Box 2",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /undef|error|crash|junk|random|uninitialized|unknown|unpredictable|nowhere/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /.{5,}/i,
+                      explanation: "It increments (adds 1 to) an undefined address, since `ptr2` was not initialized to point to anything.",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 3,
+                  title: "Box 3",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /undef|error|crash|junk|random|uninitialized|unknown|unpredictable|nowhere/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /.{5,}/i,
+                      explanation: "It writes the value of `a` (which is `2`) to an undefined address, since `ptr2` was not initialized to point to anything.",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 4,
+                  title: "Box 4",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /point|sets|addr|refer|ptr2.*a/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /.{5,}/i,
+                      explanation: "It points `ptr2` at `a`. Or, equivalently, sets the value of `ptr2` to the address of `a`.",
+                      points: 0
+                    },
+                  ]
+                },
+              ]
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
           },
           mk_postscript: dedent`
             <hr />

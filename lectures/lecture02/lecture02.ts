@@ -330,8 +330,6 @@ export const LECTURE_02 : ExamSpecification = {
           title: "Exercise: Interface vs. Implementation",
           points: 6,
           mk_description: dedent`
-            Consider the following code. Trace through the code either manually or using the Lobster simulation and answer the questions below.
-
             Categorize each of the following according to whether they are part of the interface or implementation (write "interface" or "implementation" in each box).
           `,
           response: {
