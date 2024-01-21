@@ -16,12 +16,12 @@ export const LECTURE_03 : ExamSpecification = {
     
     <div markdown=1 class="alert alert-success">
       I've added some additional feedback for fill-in-the-blank exercises. The
-      <span style="display: inline-block; color: green;" >
+      <span style="display: inline-block; color: green; vertical-align: text-bottom;" >
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-square-fill" viewBox="0 0 16 16">
           <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z"></path>
         </svg>
       </span> icon will show which boxes are finished. If you've entered an answer, but it isn't hitting the completion criteria, hover over the
-      <span style="display: inline-block; color: red;">
+      <span style="display: inline-block; color: red; vertical-align: text-bottom;">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-square-fill" viewBox="0 0 16 16">
           <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm8.93 4.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM8 5.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2"></path>
         </svg>
