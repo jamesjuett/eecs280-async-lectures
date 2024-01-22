@@ -206,7 +206,7 @@ int main() {
                   description: "",
                   patterns: [
                     {
-                      pattern: /not allowed|wont allow|won't allow|/i,
+                      pattern: /not allowed|wont allow|won't allow/i,
                       explanation: "The compiler will allow it - it repoints the pointer. (Your answer should contain the word \"yes\" or \"allowed\".)",
                       points: 0
                     },
@@ -500,7 +500,7 @@ int main() {
         {
           question_id: "lec03_null_and_uninitialized_pointers",
           title: "Exercise: Null and Uninitialized Pointers",
-          points: 3,
+          points: 4,
           mk_description: dedent`
             For each of the following code snippets, briefly describe what the **last** line of code does. (For example, "sets the value of a to 3" or "dereferences a null pointer - program crashes".)
           `,
