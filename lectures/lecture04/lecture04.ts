@@ -309,7 +309,7 @@ export const LECTURE_04 : ExamSpecification = {
                   description: "",
                   patterns: [
                     {
-                      pattern: /undef|error|random|junk|uninit|bounds|off.*end|outside/i,
+                      pattern: /undef|error|random|junk|uninit|bounds|past|off.*end|outside/i,
                       explanation: "Correct!",
                       points: 1
                     },
@@ -372,20 +372,21 @@ export const LECTURE_04 : ExamSpecification = {
             }
             \`\`\`
 
-            Determine whether each of the following expressions evaluates to \`true\` or \`false\`.
+            Determine whether each of the following expressions evaluates to \`true\` or \`false\`. Or,
+            if the expression has undefined behavior, write "undefined".
           `,
           response: {
             kind: "fill_in_the_blank",
             content: dedent`
-              _BLANK_______ \`ptr1 == ptr2\`
+              _BLANK____________ \`ptr1 == ptr2\`
 
-              _BLANK_______ \`ptr1 == ptr2 - 1\`
+              _BLANK____________ \`ptr1 == ptr2 - 1\`
               
-              _BLANK_______ \`ptr1 < ptr2\`
+              _BLANK____________ \`ptr1 < ptr2\`
               
-              _BLANK_______ \`*ptr1 < *ptr2\`
+              _BLANK____________ \`*ptr1 < *ptr2\`
               
-              _BLANK_______ \`ptr1 < arr + 5\`
+              _BLANK____________ \`ptr1 < arr + 5\`
             `,
             sample_solution: [
               "false",
@@ -460,6 +461,11 @@ export const LECTURE_04 : ExamSpecification = {
                       explanation: "Correct!",
                       points: 1
                     },
+                    {
+                      pattern: /undef|error|random|junk|uninit|bounds|past|off.*end|outside/i,
+                      explanation: "This expression actually has well-defined behavior... see the sample solution for an explanation.",
+                      points: 0
+                    },
                   ]
                 },
               ]
@@ -481,6 +487,13 @@ export const LECTURE_04 : ExamSpecification = {
               <input type="text" size="7" value="false" readonly</input> \`*ptr1 < *ptr2\`
               
               <input type="text" size="7" value="true" readonly</input> \`ptr1 < arr + 5\`
+
+              Why does the last expression yield a guaranteed \`true\` rather than undefined behavior?
+              The key is that although \`arr + 5\` computes the address (i.e. a pointer) of the space one-past-the-end
+              of the array, it doesn't dereference it with \`*\` and try to access data stored there. It also
+              turns out an expression like this is very useful - it tells us whether \`ptr1\` is still in bounds
+              or not, since it's checking to make sure it's less than the one-past-the-end address. We'll see this
+              in action in the next section...
             </details>
           `,
         }

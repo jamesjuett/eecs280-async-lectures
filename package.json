@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/jamesjuett/async-lectures#readme",
   "dependencies": {
-    "examma-ray": "^1.0.365",
+    "examma-ray": "^1.0.368",
     "he": "^1.2.0",
     "lobster-vis": "^1.0.29",
     "minimist": "^1.2.7",
