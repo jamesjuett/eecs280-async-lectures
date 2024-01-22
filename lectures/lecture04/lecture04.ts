@@ -13,7 +13,12 @@ export const LECTURE_04 : ExamSpecification = {
   exam_id: "lec_04_arrays",
   title: "Arrays",
   mk_intructions: dedent`
-    
+    <div markdown=1 class="alert alert-success">
+      
+      To earn participation credit, you'll need to complete the lecture within 2 days of the lecture date.
+      For lecture 4 (released Wednesday 1/24), that means completing it by <b>Friday 1/26 at 11:59pm</b>.
+    </div>
+
     <div markdown=1 class="alert alert-info">
       The official course title for EECS 280 is *"Programming and Introductory Data Structures"*. The second half of this, **data structures**, is the study of how to represent containers or sequences of data in a way that makes the data easily (for you) and efficiently (for the computer) accessible.
       
@@ -25,6 +30,8 @@ export const LECTURE_04 : ExamSpecification = {
       
       - **Sequential Access**: Iterating through a sequence of elements from start to end.
       - **Random Access**: Accessing an element at a particular index (i.e. position) in the sequence.
+
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Winter 2024</div>
     </div>
     <style>
       .lec-video {
@@ -617,7 +624,7 @@ for(int *ptr = arr; ptr < ptr + 5; ++ptr) {
                   description: "",
                   patterns: [
                     {
-                      pattern: /.{15,}/i,
+                      pattern: /.{10,}/i,
                       explanation: "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer!",
                       points: 1
                     },
@@ -630,7 +637,7 @@ for(int *ptr = arr; ptr < ptr + 5; ++ptr) {
                   description: "",
                   patterns: [
                     {
-                      pattern: /.{15,}/i,
+                      pattern: /.{10,}/i,
                       explanation: "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer!",
                       points: 1
                     },
@@ -643,7 +650,7 @@ for(int *ptr = arr; ptr < ptr + 5; ++ptr) {
                   description: "",
                   patterns: [
                     {
-                      pattern: /.{15,}/i,
+                      pattern: /.{10,}/i,
                       explanation: "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer!",
                       points: 1
                     },
