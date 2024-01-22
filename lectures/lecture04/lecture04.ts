@@ -30,8 +30,7 @@ export const LECTURE_04 : ExamSpecification = {
       
       - **Sequential Access**: Iterating through a sequence of elements from start to end.
       - **Random Access**: Accessing an element at a particular index (i.e. position) in the sequence.
-
-      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Winter 2024</div>
+      
     </div>
     <style>
       .lec-video {
