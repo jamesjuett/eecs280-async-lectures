@@ -1,5 +1,6 @@
 node_modules/
 out/
+local_out/
 preview/
 /*/data/*
 *Zone.Identifier

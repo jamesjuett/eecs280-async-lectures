@@ -40,6 +40,9 @@ export const LECTURE_07 : ExamSpecification = {
       }
 
     </style>
+    <script>
+      alert("Warning: The content of this lecture will change significantly in W24. Don't work through it early.")
+    </script>
   `,
   mk_questions_message: MK_QUESTIONS_MESSAGE,
   mk_bottom_message: MK_BOTTOM_MESSAGE,
