@@ -36,8 +36,6 @@ export const LECTURE_02 : ExamSpecification = {
 
       1. Expanding our conceptual model of program execution and memory to include functions and how they are managed on **the call stack**.
       2. Understanding how functions and **procedural abstraction** contribute to good program design.
-
-      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Winter 2024</div>
     </div>
     <style>
       .lec-video {

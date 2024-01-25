@@ -70,7 +70,7 @@ export const LECTURE_04 : ExamSpecification = {
   sections: [
     {
       section_id: "section_04_1",
-      title: "Addresses and Pointers",
+      title: "Introduction to Arrays",
       mk_description: dedent`
         Arrays are a low-level abstraction over a sequence of objects in memory that we can fit into the memory model we've been building up so far...
 
@@ -82,7 +82,7 @@ export const LECTURE_04 : ExamSpecification = {
       questions: [
         {
           question_id: "lec04_arrays_and_memory",
-          title: "Exercise: Addresses and Pointers",
+          title: "Exercise: Introduction to Arrays",
           points: 5,
           mk_description: "",
           response: {
