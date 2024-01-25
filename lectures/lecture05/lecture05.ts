@@ -94,10 +94,10 @@ export const LECTURE_05 : ExamSpecification = {
 
               \`\`\`cpp
               int x = 3;
-              int const y = x;
-              int const * ptr1 = &x;
+              const int y = x;
+              const int * ptr1 = &x;
               int * const ptr2 = &x;
-              int const &ref = x;
+              const int &ref = x;
               \`\`\`
 
               _BLANK_______ \`y = 5;\`
@@ -319,7 +319,9 @@ export const LECTURE_05 : ExamSpecification = {
 
               For which function call does the compiler produce an error? Briefly explain why.
 
-              [[BOX]]
+              [[BOX
+              
+              ]]
             `,
             sample_solution: [
               "The compiler will prohibit the call to red(arr1) since the parameter does not maintain the const. If the call were allowed, the implementation of red could then potentially change data in the arr1 array, which was supposed to be const."
