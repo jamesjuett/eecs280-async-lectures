@@ -394,7 +394,7 @@ export const LECTURE_05 : ExamSpecification = {
         {
           question_id: "lec05_struct_practice",
           title: "Exercise: Practice with \`structs\`",
-          points: 3,
+          points: 1,
           mk_description: dedent`
             Complete each of the tasks described in the comments.
           `,
@@ -468,10 +468,10 @@ export const LECTURE_05 : ExamSpecification = {
         </div>
         <br />
         
-        This is a good time to review the general best practices for parameter passing:
+        Here's a written version of the flowchart in the video, for quick reference:
         - If you need to modify the original object, use **pass-by-pointer** or **pass-by-reference**.
         - If you don't modify the original object, use **pass-by-pointer-to-const** or **pass-by-reference-to-const**. This protects against accidental modification but more importantly also ensures your function can actually be called on const objects.
-        - Only use **pass-by-value** for fundamental objects (e.g. \`int\`, \`double\`, etc.) or very small compound objects. If the objects are large (e.g. \`string\`, \`vector\`, your own custom \`struct\`s, etc.), pass-by-value makes an expensive and unnecessary copy.
+        - Only use **pass-by-value** for primitive objects (e.g. \`int\`, \`double\`, etc.) or very small compound objects. If the objects are large (e.g. \`string\`, \`vector\`, your own custom \`struct\`s, etc.), pass-by-value makes an expensive and unnecessary copy.
       `,
       
       questions: [
