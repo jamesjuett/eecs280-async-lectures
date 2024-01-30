@@ -341,8 +341,18 @@ export const LECTURE_05 : ExamSpecification = {
                       points: 1
                     },
                     {
+                      pattern: /red/i,
+                      explanation: "Only the call to `red(arr1)` produces an error, `red(arr2)` is ok. (To receive credit, your answer needs to contain text similar to `red(arr1)`).",
+                      points: 0
+                    },
+                    {
                       pattern: /purple|teal|arr2/i,
                       explanation: "All calls except `red(arr1)` are ok. Check the walkthrough video for details.",
+                      points: 0
+                    },
+                    {
+                      pattern: /.{15,}/i,
+                      explanation: "The call to `red(arr1)` produces an error. Make sure your answer mentions this call specifically.",
                       points: 0
                     },
                   ]
