@@ -145,11 +145,18 @@ $(() => {
       exerciseSpec.starterCode = initCode;
     }
 
-    let extras = [(program: Program) => {
+    let extras = [
+      (program: Program) => {
 
-      
+        const classes = findConstructs(program, Predicates.byKind("class_definition"));
+        const sandwich_struct = classes.find(c => c.name === "Sandwich");
+        const mem_price = sandwich_struct?.memberDeclarationsByName["price"];
 
-    }];
+        if (mem_price?.type?.similarType(Int.INT)) {
+          mem_price.addNote(new CompilerNote(mem_price, NoteKind.STYLE, "analysis.1", "Make sure the type here can accommodate decimal values like 7.99"))
+        }
+      }
+    ];
 
     let project = new Project(
       "project",
