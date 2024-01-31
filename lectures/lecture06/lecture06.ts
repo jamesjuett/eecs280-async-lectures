@@ -10,12 +10,18 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 export const LECTURE_06 : ExamSpecification = {
-  exam_id: "lec_06_strings_streams_and_io",
-  title: "Strings, Streams, and I/O",
+  exam_id: "lec_06_streams_and_io",
+  title: "Streams and I/O",
   mk_intructions: dedent`
     
     <div markdown=1 class="alert alert-info">
-      This lecture is all about strings, streams, and input/output (I/O). Fundamentally, these all involve processing text data represented as sequences of characters - perhaps the text of a book, an encrypted message, or even the source code for one of our programs as it's about to be digested by the compiler!
+
+      **Streams** are the fundamental mechanism for text-based I/O (input/output) in C++, whether it's printing messages and taking input from the user via the terminal, reading and writing to files, or a number of other applications.
+
+      Programs can also receive input via command-line arguments provided when it is initally run.
+
+      We'll cover these as well as a number of miscellaneous topics related to programs and the command-line environment from which they run, including exit codes, input/output redirection, and pipelining.
+      
     </div>
     <style>
       .lec-video {
@@ -32,9 +38,6 @@ export const LECTURE_06 : ExamSpecification = {
       }
 
     </style>
-    <script>
-      alert("Warning: The content of this lecture will change significantly in W24. Don't work through it early.")
-    </script>
   `,
   mk_questions_message: MK_QUESTIONS_MESSAGE,
   mk_bottom_message: MK_BOTTOM_MESSAGE,
@@ -42,272 +45,444 @@ export const LECTURE_06 : ExamSpecification = {
   mk_saver_message: MK_SAVER_MESSAGE,
   assets_dir: __dirname + `/assets`,
   allow_clientside_content: true,
+  completion: {
+    threshold: 1,
+    tooltip: "",
+    endpoints: {
+      check: "https://examma-ray.eecs.umich.edu/public_api/participation/me/",
+      submit: "https://examma-ray.eecs.umich.edu/public_api/participation/me/",
+    }
+  },
+  credentials_strategy: {
+    strategy: "google_local",
+    client_id: "444801118749-m2g9gl3gvvkh5ru959dmka0lsk94d9uq.apps.googleusercontent.com",
+    message: "Sign in with your @umich.edu Google account to earn participation credit for completing embedded exercises.",
+  },
   sections: [
     {
       section_id: "section_06_1",
-      title: "C-Style Strings",
+      title: "Standard Input and Output",
       mk_description: dedent`
-        We'll start with the most fundamental representation for a string: an **array of characters**. We'll call this a C-style string (or cstring for short), because this is the predominant form for strings in the original C language. (As opposed to C++, which is essentially a successor to C.)
+        The familiar \`cin\` and \`cout\` variables in C++ are the realization of standard input and output streams that allow a program to communicate with its runtime environment. By default, this might be communication with a user typing at the terminal, but these streams can also be redirected to/from files or connected to other programs as part of a pipeline.
 
-        There's one additional trick to C-style strings - instead of keeping track of the length of the array of characters separately (e.g. in an int variable that we pass along to any array functions), we instead mark the end of the string data in the array with a special character called a **sentinel**. Any code processing the string keeps an eye out for the sentiel value to know when to stop.
-
-        Here's a brief introduction:
+        Here's the details and several examples:
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/0z_SYTVQnA0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/g9Fo2FAOWWw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
 
-        To recap:
-        - A cstring is a sequence of characters, living in an array, terminated by a null character (\`'\\0'\`).
-        - The null character acts as a sentinel, so that code processing the cstring knows where to stop.
-        - When initializing a cstring from a double-quoted string literal, the compiler automatically adds the null character.
-        - It's customary to work with cstrings via traversal by pointer.
-
-        There are three main options for creating a cstring:
-        - \`const char *welcomeMsg = "Welcome to EECS 280!";\`  
-          Point at a string literal. We can use it, but we don't plan to modify the contents (and the compiler enforces this with the const).  
-
-        - \`char hexColor[] = "00274C";\`  
-          Create a local array to contain a *copy* of the given cstring. The example here has space for 7 characters (6 regular plus the null character). We can modify the contents however we want, but the size is fixed.  
-
-        - \`char filename[1024];\`  
-          Create a "buffer" that may hold many different cstrings (one at a time). The array contains lots of space, because some strings might be longer than others. The placement of the null character lets us know the end of the current cstring living in the buffer. For example, we might want to iterate through a list of file names and process them.  
-
-      `,
-      questions: [],
-    },
-    {
-      section_id: "section_06_2",
-      title: "Processing C-style Strings",
-      mk_description: dedent`
-        For almost any operation we would like to perform on a cstring, the basic idea is that we set up a traversal by pointer loop that iterates until it happens upon the null character. As the pointer walks through the string, we perform whatever data processing or modifications we need by dereferencing the pointer to work with individual characters.
-
-        It's generally a good idea to wrap up this kind of work in a function that can be reused wherever we need it. Let's take a look at how this plays out in code with a few examples.
         
-        <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/lhoW6iwCl9M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <br />
       `,
       questions: [
         {
-          question_id: "lec06_strcpy",
-          title: "Exercise: \`strcpy()\`",
-          points: 3,
+          question_id: "lec05_standard_io_mc",
+          points: 4,
           mk_description: dedent`
-            Write the function \`strcpy()\` described at the end of the video above.
+            Consider this command run at the terminal. Assume \`filter.exe\` and \`meow.exe\` are C++ programs.
+
+            \`\`\`console
+            ./filter.exe < cats.txt | ./meow.exe
+            \`\`\`
+          
+          Which of the following are true?
           `,
           response: {
-            kind: "iframe",
-            src: "assets/strcpy.html",
-            element_class: "lobster-iframe",
-            element_style: "height: 825px;",
+            kind: "multiple_choice",
+            choices: [
+              "Reading from `cin` within the code for `filter.exe` would yield data from `cats.txt`.",
+              "Standard output from `filter.exe` is being redirected to an output file.",
+              "If the `meow.exe` program prints `\"MEOW\"` to `cout`, this will show at the terminal.",
+              "The input via `cin` to `meow.exe` is determined by the output of `filter.exe` to `cout`.",
+            ],
+            multiple: true,
+            sample_solution: [0,2,3],
+            default_grader: {
+              grader_kind: "summation_multiple_choice",
+              rubric: [
+                {points: 1, selected: true},
+                {points: 1, selected: false},
+                {points: 1, selected: true},
+                {points: 1, selected: true},
+              ]
+            },
           },
-          mk_postscript: dedent`
-            <hr />
-            You're welcome to check your solution with this **walkthrough** video:
-
-            <div style="text-align: center;">
-              <iframe class="lec-video" src="https://www.youtube.com/embed/KOS5Oe2FvO0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <br />
-          `,
+          verifier: {
+            verifier_kind: "full_credit",
+          },
         }
       ],
     },
     {
-      section_id: "section_06_3",
-      title: "C-Style Strings vs. C++ \`string\`",
+      section_id: "section_06_2",
+      title: "File Streams",
       mk_description: dedent`
-        Because cstrings are just built on fundamental types like arrays, \`char\`, and pointers, you don't need to include any libraries to use them. However, many common operations for cstrings are available as functions in the \`<cstring>\` Library, which you can \`#include\` at the top of your files if you need them. You can find documentation for these in a number of places, but online resources like [http://www.cplusplus.com/reference/cstring/](http://www.cplusplus.com/reference/cstring/>) are generally a good place to start.
-
-        You may have worked with the C++ \`string\` type in your intro programming course or other previous experience. If not, or if you're primarily familiar with strings from a different language, we encourage you to check out one of several tutorials or documentation resources available online. (If you didn't take one of the intro courses here at UM, please also feel free to reach out and I can connect you with the material on \`string\` from one of those courses.)
-
-        In general, you should prefer to use C++ \`string\` where you can. It's an easier datatype to work with than a cstring and supports intuitive string operators like \`==\`, \`<\`, \`+\`, \`=\`, etc. Basically it works well and doesn't have some of the unpredictable quirks. (Contrast this to the fact that by its nature as an array of characters, cstring variables won't work with any of the operators just mentioned.)
+        Streams are also used for reading and writing files in C++. First, some basics:
         
-        Why are we learning about cstrings if they're so...un-useful?
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/msHuDHN71vs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
         
-        - Sometimes you need to use them, for example, command-line arguments (see below) rely on cstrings.
-        - It's an interesting look into a low-level representation of a string, very much similar to the way a C++ \`string\` is actually implemented internally.
-        - The notion of a sentinel-terminated sequence generalizes and will show up elsewhere.
-        - More practice with pointers! Yay. :)
+        In the previous video, we saw that the program should \`return 1;\` if it runs into an error opening the file. This is an "exit code" or "exit status" that indicates something has gone wrong to the parent process that originally invoked the program. Now seems like a reasonable time to take a detour to talk a bit more about exit codes generally...
+
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/wh7okv03l6o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
+      `,
+      questions: [
+
+      ],
+    },
+    {
+      section_id: "section_06_3",
+      title: "Patterns for File Input in C++",
+      mk_description: dedent`
+      
+      File input can be fairly complex, but there are a few common patterns that tend to work well. These depend on a some specifics of the stream operators and interface in C++, so we'll introduce those first.
+
+      <div style="text-align: center;">
+        <iframe class="lec-video" src="https://www.youtube.com/embed/nBUfC4PYtFg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <br />
+
+      Now, on to some common patterns (and anti-patterns!) for file input in C++...
+      
+      <div style="text-align: center;">
+        <iframe class="lec-video" src="https://www.youtube.com/embed/625r53MiaI8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <br />
       `,
       questions: [],
     },
     {
       section_id: "section_06_4",
-      title: "Input and Output Streams",
+      title: "Stream Functions and Unit Testing with Stringstreams",
       mk_description: dedent`
+        This section addresses a few design considerations for functions that performs input/output.
         
-        **Streams** are the fundamental mechanism for text-based I/O (input/output) in C++, whether it's printing messages and taking input from the user via the terminal, reading and writing to files, or a number of other applications.
+        First, it's generally best to pass generic \`ostream\` or \`istream\` objects to the function, so that it can potentially be used with any different kind of stream (e.g. sometimes write output to \`cout\` and other times to a file through an \`ofstream\`).
+        
+        Additionally, how can you write automated unit tests for the function? (You can't just have someone sit there and type input via \`cin\` every time you want to run tests.) Instead, use \`stringstream\`s - special stream objects that can essentially "fake" input/output operations.
+
+        The video below covers both in more detail.
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/CLW-DIZ5AOw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/a8c4coHtvKg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
-
-        For reference, here is the final example from the video:
-
-        \`\`\`cpp
-        #include <iostream>
-        #include <string>
-        #include <fstream>
-        
-        using namespace std;
-        
-        int main() {
-        
-          string inName = "in.txt";
-          string outName = "out.txt";
-        
-          cout << "Copying from " << inName << " to " << outName << endl;
-        
-          string wordToRemove;
-          cout << "What word would you like to remove? ";
-          cin >> wordToRemove;
-        
-          ifstream fin(inName);
-          ofstream fout(outName);
-          if ( !fin.is_open() ) {
-            cout << "Unable to open " << inName << endl;
-            return 1;
-          }
-          
-          if ( !fout.is_open() ) {
-            cout << "Unable to open " << outName << endl;
-            return 1;
-          }
-        
-          string word;
-          while (fin >> word) {
-            if (word != wordToRemove) { fout << word << " "; }
-            else { fout << "*****" << " "; }
-          }
-        
-          fin.close();
-          fout.close();
-        }
-        \`\`\`
-
-        Here's another example, which also showcases the \`stoi()\` function, which converts from a \`string\` to the \`int\` value that it represents. In this case, we want to read a sequence of numbers from the user via \`cin\` and add them together. The user may enter as many numbers as they like and then types \`"done"\` to indicate they are finished. Because we need to accommodate both numbers and a string, we use the most general type - \`string\` and then convert to an \`int\` where appropriate using \`stoi\`.
-
-        \`\`\`cpp
-        #include <iostream>
-        #include <string>
-        
-        using namespace std;
-        
-        int main() {
-          int sum = 0;
-          string word;
-          while (cin >> word && word != "done") {
-            sum += stoi(word);
-          }
-          cout << "sum is " << sum << endl;
-        }
-        \`\`\`
       `,
-      
       questions: [],
     },
     {
       section_id: "section_06_5",
       title: "Command Line Arguments",
       mk_description: dedent`
-        One last place we might like to take in input - when the program is originally launched from the terminal. For example, if we're running the "redact" program from the previous section, perhaps we'd like to specify the word to redact, the input/output files, and the number of "*****" to use as extra arguments we first run the program:
+        One last place we might like to take in input - when the program is originally launched from the terminal. For example, in project 2, the image resizing program takes arguments that look something like this:
 
         \`\`\`console
-        ./redact bee in.txt out.txt 10
+        ./resize.exe horses.ppm horses_400x250.ppm 400 250
         \`\`\`
 
         Let's take a look at how this works in C++:
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/mXJA13Go9qk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/3JPzvVsuoCg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
-
-        To get an argument out of \`argv\`, you generally just use indexing, e.g. \`argv[x]\` where \`x\` is the index of the argument you want. Remember that the argument at index \`0\` is just the name of the executable, so your "real" arguments will start indexed at \`1\`.
-
-        Once you have an argument, there are three things you might want to do with it:
-
-        1. \`string wordToRemove = argv[1];\`  
-           Immediately convert it to a C++ string (e.g. by storing in a \`string\` variable). C++ strings are MUCH easier to work with and support convenient operators like \`==\`.  
-           
-        2. \`ifstream fin(argv[2]);\`  
-           \`ofstream fout(argv[3]);\`  
-           Use it directly somewhere that a cstring is readily accepted. For example, an \`ifstream\` or \`ofstream\` can be constructed from a cstring with the name of an input/output file.  
-
-        3. \`int redactLength = atoi(argv[4]);\`  
-           For arguments you want to interpret as a number (rather than a "string of digits"), convert it to an \`int\` using \`atoi()\` or to a \`double\` using \`atof()\`. (Or, if you already converted to a C++ \`string\`, use \`stoi()\` or \`stod()\`.)  
-
-        If you like, you can always start with option #1. It's almost never a bad idea to go ahead and switch over to a C++ \`string\` where you can.
-
-        Again, for reference, here's the final code for the "redact" example, modified to use command line arguments as shown in the video.
-
-        \`\`\`cpp
-        #include <iostream>
-        #include <string>
-        #include <fstream>
-        
-        using namespace std;
-        
-        int main(int argc, char *argv[]) {
-        
-          // Usage message shown if the user runs with incorrect command line args
-          if (argc != 5) {
-            cout << "Usage: redact WORD INFILE OUTFILE NUM_STARS" << endl;
-            return 1;
-          }
-        
-          string inName = argv[2];
-          string outName = argv[3];
-        
-          cout << "Copying from " << inName << " to " << outName << endl;
-        
-          string wordToRemove = argv[1];
-          int numStars = atoi(argv[4]); // to double - atof()
-          string replacement(numStars, '*'); // e.g. numStars is 3, makes ***
-        
-          ifstream fin(inName);
-          ofstream fout(outName);
-          if ( !fin.is_open() ) {
-            cout << "Unable to open " << inName << endl;
-            return 1;
-          }
-          
-          if ( !fout.is_open() ) {
-            cout << "Unable to open " << outName << endl;
-            return 1;
-          }
-        
-          string word;
-          while (fin >> word) {
-            if (word != wordToRemove) { fout << word << " "; }
-            else { fout << replacement << " "; }
-          }
-        
-          fin.close();
-          fout.close();
-        }
-        
-        \`\`\`
       `,
       questions: [],
     },
     {
       section_id: "section_06_6",
-      title: "The Structure of \`argv\`",
+      title: "Exercise: Word Count",
       mk_description: dedent`
-        Finally, let's talk about the way \`argv\` is structured in memory, which is an interesting (and somewhat complex) combination of many of the different types we've seen so far.
+        In this exercise, implement a program that counts the number of words in a set of files, which are specified by providing their filenames as command line arguments.
 
-        <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/fRfxPaOX7b4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <br />
+        If a particular file does not open successfully, the program should print "Skipping file: " with the associated filename and continue on to the next file.
+        
+        ##### \`wordcount.exe\` Example
+
+        Assume these files are present in the current working directory:
+
+        <table>
+          <tr>
+            <th>File Name</th>
+            <th>Contents</th>
+          </tr>
+          <tr>
+            <td><code>greeting.txt</code></td>
+            <td>
+              <code>
+                hello world!
+              </code>
+            </td>
+          </tr>
+          <tr>
+            <td><code>fav_class.txt</code></td>
+            <td>
+              <code>
+                EECS 280 is awesome :)
+              </code>
+            </td>
+          </tr>
+          <tr>
+            <td><code>fav_colors.txt</code></td>
+            <td>
+              <code>
+                red blue green
+              </code>
+            </td>
+          </tr>
+        </table>
+
+        If the program was compiled to \`wordcount.exe\` and run as:
+
+        \`\`\`console
+        ./wordcount.exe greeting.txt aaaaa.txt fav_class.txt
+        \`\`\`
+
+        The output to \`cout\` would be:
+        \`\`\`text
+        greeting.txt has 2 words.
+        Skipping file: aaaaa.txt
+        fav_class.txt has 5 words.
+        7 words in total.
+        \`\`\`
+        
+        (Note that \`fav_colors.txt\` was not specified and therefore ignored.)
       `,
-      questions: [],
+      questions: [
+        {
+          question_id: "lec06_word_count",
+          points: 8,
+          mk_description: dedent`
+            Implement the program by filling in the boxes below.
+          `,
+          response: {
+            kind: "fill_in_the_blank",
+            content: dedent`
+              \`\`\`cpp
+              #include <string>
+              #include <iostream>
+              #include <fstream>
+              
+              using namespace std;
+              
+              // MODIFIES: The given input stream
+              // EFFECTS:  Reads all input from the given input stream and returns the
+              //           number of words in the input (with words separated from each
+              //           other by whitespace).
+              int word_count(______________BLANK______________ input) {
+                
+                string word;
+                int count = 0;
+                while(______________BLANK______________) {
+                  ++count;
+                }
+                return count;
+              }
+              
+              int main(int argc, char *argv[]) {
+                int total = 0;
+                for(int i = ______BLANK______; __________BLANK__________; ++i) {
+                  string filename = ____________BLANK____________;
+                  ifstream fin(____________BLANK____________);
+              
+                  if (____________BLANK____________) {
+                    cout << "Skipping file: " << filename << endl;
+                    continue;
+                  }
+                  int wc = ____________BLANK____________;
+                  cout << filename << " has " << wc << " words." << endl;
+                  total += wc;
+
+                  fin.close(); // technically not needed since fin is going out of scope each iteration
+                }
+                
+                cout << total << " words in total." << endl;
+              }
+              \`\`\`
+            `,
+            sample_solution: [
+              "istream & or ifstream &",
+              "input >> word",
+              "1",
+              "i < argc",
+              "argv[i]",
+              "filename",
+              "!fin.is_open()",
+              "filename",
+              "word_count(fin)",
+              "filename",
+            ],
+            
+            default_grader: {
+              grader_kind: "manual_regex_fill_in_the_blank",
+              rubric: [
+                {
+                  blankIndex: 1,
+                  title: "Box 1",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /^\s*istream\s*&\s*$/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /^\s*ifstream\s*&\s*$/i,
+                      explanation: "While an `ifstream&` will work for this specific case, the function should take an `istream&` to be as flexible as possible.",
+                      points: 0
+                    },
+                    {
+                      pattern: /./i,
+                      explanation: "The parameter type should be `istream &`.",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 2,
+                  title: "Box 2",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /input\s*>>\s*word/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /./i,
+                      explanation: "Use `input >> word` to read each word until the end of stream input.",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 3,
+                  title: "Box 3",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /^\s*1\s*$/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /./i,
+                      explanation: "The loop should begin with `int i = 1;`. (The argument at index 0 is the name of the program, which we don't need.)",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 4,
+                  title: "Box 4",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /i\s*<\s*argc/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /./i,
+                      explanation: "The loop should continue as long as `i < argc`.",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 5,
+                  title: "Box 5",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /argv\s*\[\s*i\s*\]/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /./i,
+                      explanation: "Each argument represents a filename, retrieved by using `argv[i]`.",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 6,
+                  title: "Box 6",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /filename/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /argv\s*\[\s*i\s*\]/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /./i,
+                      explanation: "Either `filename` or `argv[i]` should be used to open the input file stream.",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 7,
+                  title: "Box 7",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /^\s*!\(?\s*fin\.is.?open\(?\)?\s*\)?\s*$/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /./i,
+                      explanation: "Check whether the file stream has failed to open with `!fin.is_open()`;",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 8,
+                  title: "Box 8",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /^\s*word.?count\s*\(\s*fin\s*\)\s*;?\s*$/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /./i,
+                      explanation: "Call the function `word_count(fin)`.",
+                      points: 0
+                    },
+                  ]
+                },
+              ]
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit"
+          }
+        }
+      ],
     },
   ],
 };
