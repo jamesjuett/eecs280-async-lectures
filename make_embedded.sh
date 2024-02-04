@@ -41,7 +41,7 @@ mv assets/main.html assets/struct_basics.html
 mv assets/main.js assets/struct_basics.js
 sed -i 's/main\.js/struct_basics\.js/' assets/struct_basics.html
 cd ..
-cd lecture06
+cd lecture07
 npx webpack ./src/strcpy.ts --config ../../lobster/webpack.config.js
 mv assets/main.html assets/strcpy.html
 mv assets/main.js assets/strcpy.js

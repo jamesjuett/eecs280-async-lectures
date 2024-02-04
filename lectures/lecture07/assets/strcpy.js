@@ -79318,7 +79318,7 @@ $(() => {
                 return second !== -1;
             }),
         ],
-        completionCriteria: Project_1.COMPLETION_LAST_CHECKPOINT,
+        completionCriteria: Project_1.COMPLETION_ALL_CHECKPOINTS,
         completionMessage: "Nice work! Exercise complete!",
     };
     let completionMessage = (_b = (_a = ex_elem.find(".lobster-ex-completion-message").html()) === null || _a === void 0 ? void 0 : _a.trim()) !== null && _b !== void 0 ? _b : (_c = ex_elem.find(".lobster-ex-complete-message").html()) === null || _c === void 0 ? void 0 : _c.trim();
@@ -79373,7 +79373,7 @@ $(() => {
         if (msg.message_kind === "set_submission") {
             exOutlet.project.setFileContents({
                 name: "exercise.cpp",
-                text: msg.submission,
+                text: msg.submission.code
             });
         }
     });
@@ -79383,7 +79383,10 @@ $(() => {
             (_a = window.parent) === null || _a === void 0 ? void 0 : _a.postMessage({
                 examma_ray_message: {
                     message_kind: "update",
-                    submission: exOutlet.project.sourceFiles[0].text,
+                    submission: {
+                        code: exOutlet.project.sourceFiles[0].text,
+                        complete: project.exercise.isComplete
+                    }
                 }
             }, "*");
         }

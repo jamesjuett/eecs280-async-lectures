@@ -13,12 +13,15 @@ export const LECTURE_06 : ExamSpecification = {
   exam_id: "lec_06_streams_and_io",
   title: "Streams and I/O",
   mk_intructions: dedent`
-    
+    <div markdown=1 class="alert alert-success">
+      To earn participation credit, you'll need to complete the lecture within 2 days of the lecture date.
+      For lecture 6 (released Wednesday 1/31), that means completing it by <b>Friday 2/2 at 11:59pm</b>.
+    </div>
     <div markdown=1 class="alert alert-info">
 
       **Streams** are the fundamental mechanism for text-based I/O (input/output) in C++, whether it's printing messages and taking input from the user via the terminal, reading and writing to files, or a number of other applications.
 
-      Programs can also receive input via command-line arguments provided when it is initally run.
+      Programs can also receive input via **command-line arguments** provided when it is initally run.
 
       We'll cover these as well as a number of miscellaneous topics related to programs and the command-line environment from which they run, including exit codes, input/output redirection, and pipelining.
       

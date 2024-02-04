@@ -425,6 +425,9 @@ export const LECTURE_05 : ExamSpecification = {
               ]
             }
           },
+          verifier: {
+            verifier_kind: "full_credit"
+          },
           mk_postscript: dedent`
             <hr />
             <details>
@@ -460,10 +463,7 @@ export const LECTURE_05 : ExamSpecification = {
               }
               \`\`\`
             </details>
-          `,
-          verifier: {
-            verifier_kind: "full_credit"
-          }
+          `
         }
       ],
     },

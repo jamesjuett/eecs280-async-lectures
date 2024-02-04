@@ -1,4 +1,11 @@
-export const MK_BOTTOM_MESSAGE = `You've reached the end of this lecture! Your work on any exercises will be saved if you re-open this page in the same web browser.`;
+import dedent from "ts-dedent";
+
+export const MK_BOTTOM_MESSAGE = dedent`
+  You've reached the end of this lecture! Your work on any exercises will be saved if you re-open this page in the same web browser.
+
+  **Participation Credit**  
+  Make sure to sign in to the page, complete each of the exercises, and **double check** the participation indicator at the top left of this page to ensure you've earned credit.
+`;
 
 export const MK_DOWNLOAD_MESSAGE = `Export your exercise answers to use with another computer or browser.`;
 
