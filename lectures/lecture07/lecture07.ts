@@ -197,6 +197,8 @@ export const LECTURE_07 : ExamSpecification = {
       mk_description: dedent`
         Finally, let's talk about the way \`argv\` is structured in memory, which is an interesting (and somewhat complex) combination of many of the different types we've seen so far, including cstrings.
 
+        Please note I get something wrong in the video below... \`*(argv+1)\` would print out the whole cstring, "bee", not just the single letter "b".
+
         <div style="text-align: center;">
           <iframe class="lec-video" src="https://www.youtube.com/embed/fRfxPaOX7b4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>

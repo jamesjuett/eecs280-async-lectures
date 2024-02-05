@@ -365,7 +365,7 @@ export const LECTURE_08 : ExamSpecification = {
                       points: 1
                     },
                     {
-                      pattern: /.{10,}/i,
+                      pattern: /.{5,}/i,
                       explanation: "The `this` pointer is implicitly used here, such that the functions are called on the same `Triangle` as `halfPerimeter()` was. In this case, that's `t1`.",
                       points: 0
                     },
