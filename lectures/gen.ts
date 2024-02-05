@@ -42,7 +42,7 @@ export const LECTURE_SPECS = [
   LECTURE_05,
   LECTURE_06,
   LECTURE_07,
-  addW24Warning(LECTURE_08),
+  LECTURE_08,
   addW24Warning(LECTURE_09),
   addW24Warning(LECTURE_10),
   addW24Warning(LECTURE_11),

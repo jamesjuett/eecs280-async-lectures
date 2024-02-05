@@ -13,7 +13,10 @@ export const LECTURE_08 : ExamSpecification = {
   exam_id: "lec_08_adts_in_cpp",
   title: "Abstract Data Types in C++",
   mk_intructions: dedent`
-    
+    <div markdown=1 class="alert alert-success">
+      To earn participation credit, you'll need to complete the lecture within 2 days of the lecture date.
+      For lecture 8 (released Wednesday 2/7), that means completing it by <b>Friday 2/9 at 11:59pm</b>.
+    </div>
     <div markdown=1 class="alert alert-info">
       As we move onward to the C++ style for ADTs, we'll use \`class\` rather than \`struct\` and also use built-in features of the language (i.e. things that C++ adds beyond C) to support good practices in a more robust way. In particular, a \`class\` in C++ gives us:
 
@@ -49,6 +52,19 @@ export const LECTURE_08 : ExamSpecification = {
   mk_saver_message: MK_SAVER_MESSAGE,
   assets_dir: __dirname + `/assets`,
   allow_clientside_content: true,
+  completion: {
+    threshold: 1,
+    tooltip: "",
+    endpoints: {
+      check: "https://examma-ray.eecs.umich.edu/public_api/participation/me/",
+      submit: "https://examma-ray.eecs.umich.edu/public_api/participation/me/",
+    }
+  },
+  credentials_strategy: {
+    strategy: "google_local",
+    client_id: "444801118749-m2g9gl3gvvkh5ru959dmka0lsk94d9uq.apps.googleusercontent.com",
+    message: "Sign in with your @umich.edu Google account to earn participation credit for completing embedded exercises.",
+  },
   sections: [
     {
       section_id: "section_08_1",
@@ -60,7 +76,7 @@ export const LECTURE_08 : ExamSpecification = {
         {
           question_id: "lec08_warm_up",
           title: "Exercise: Warm Up",
-          points: 3,
+          points: 4,
           mk_description: dedent`
             Consider the code here that creates and uses a C-style ADT, specifically the \`Triangle\` ADT from last time:
 
@@ -145,6 +161,86 @@ export const LECTURE_08 : ExamSpecification = {
   </tr>
 </table>
             `,
+            default_grader: {
+              grader_kind: "manual_regex_fill_in_the_blank",
+              rubric: [
+                {
+                  blankIndex: 1,
+                  title: "Box 1",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /compile|error/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /.{10,}/i,
+                      explanation: "Subsequent lines that attempt to use `t` will fail to compile.",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 2,
+                  title: "Box 2",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /undef|error|crash|junk|random|uninitialized|unknown|unpredictable|nowhere/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /.{5,}/i,
+                      explanation: "Undefined behavior - the `Triangle` member variables are uninitialized and contain memory junk.",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 3,
+                  title: "Box 3",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /&t|first|1st|Triangle|tri|this/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /.{5,}/i,
+                      explanation: "The first parameter is used to pass a pointer to the `Triangle` on which an operation should be performed. In `main()`, this is `&t1`.",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 4,
+                  title: "Box 4",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /break|respect|interface|private|member|variable|direct|outside|implementation/i,
+                      explanation: "",
+                      points: 1
+                    },
+                    {
+                      pattern: /.{10,}/i,
+                      explanation: "Accessing the member `a` directly here does not respect the interface of the `Triangle` ADT. However, the compiler does not give an error.",
+                      points: 0
+                    },
+                  ]
+                },
+              ]
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
           },
           mk_postscript: dedent`
             <hr />
@@ -175,7 +271,7 @@ export const LECTURE_08 : ExamSpecification = {
         {
           question_id: "lec08_halfPerimeter",
           title: "Exercise: `halfPerimeter()`",
-          points: 3,
+          points: 4,
           mk_description: dedent`
             Consider another member function, \`halfPerimeter()\`, which is intended to return a value that is half of the triangle's perimeter. The (questionable) algorithm we choose for our implementation is to first shrink the triangle in half and then return its perimeter.
 
@@ -254,6 +350,81 @@ export const LECTURE_08 : ExamSpecification = {
   </tr>
 </table>
             `,
+            default_grader: {
+              grader_kind: "manual_regex_fill_in_the_blank",
+              rubric: [
+                {
+                  blankIndex: 1,
+                  title: "Box 1",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /this|implicit|t1|same|halfPerimeter|receiver|context|origin/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /.{10,}/i,
+                      explanation: "The `this` pointer is implicitly used here, such that the functions are called on the same `Triangle` as `halfPerimeter()` was. In this case, that's `t1`.",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 2,
+                  title: "Box 2",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /shrink|scale|const|mult|\*|modify|move|shift|trade|other/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /.{5,}/i,
+                      explanation: "It just moves the problem to `shrink()`, which can no longer call `scale()`.",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 3,
+                  title: "Box 3",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /const|t1|origin|constant/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /.{5,}/i,
+                      explanation: "Yes, if `t1` were declared `const`, we could no longer use `halfPerimeter()`",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 4,
+                  title: "Box 4",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /.{10,}/i,
+                      explanation: "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer!",
+                      points: 1
+                    },
+                  ]
+                },
+              ]
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
           },
           mk_postscript: dedent`
             <hr />
@@ -282,7 +453,7 @@ export const LECTURE_08 : ExamSpecification = {
         {
           question_id: "lec08_coffee",
           title: "Exercise: `Coffee` class",
-          points: 3,
+          points: 5,
           mk_description: dedent`
             Consider the \`class\` below, used as an ADT for a cup of coffee. Note that the implementations for the member functions are omitted for brevity.
 
@@ -422,6 +593,104 @@ c5.print();
   </tr>
 </table>
             `,
+            default_grader: {
+              grader_kind: "manual_regex_fill_in_the_blank",
+              rubric: [
+                {
+                  blankIndex: 1,
+                  title: "Box 1",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /error|illegal|not.*legal|not.*allowed|wrong/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /./i,
+                      explanation: "The compiler will not allow it, given there is no default ctor. Answer = \"error\".",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 2,
+                  title: "Box 2",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /error|illegal|not.*legal|not.*allowed|wrong/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /./i,
+                      explanation: "The compiler will not allow accessing a private member variable here. Answer = \"error\".",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 3,
+                  title: "Box 3",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /ok|allowed|legal/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /./i,
+                      explanation: "The compiler will allow it. Answer = \"ok\".",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 4,
+                  title: "Box 4",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /error|illegal|not.*legal|not.*allowed|wrong/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /./i,
+                      explanation: "The compiler will not allow calling `c4.addCream()` since `c4` is declared `const`. Answer = \"error\".",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 5,
+                  title: "Box 5",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /error|illegal|not.*legal|not.*allowed|wrong/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /./i,
+                      explanation: "There is no constructor that takes a single boolean value. Answer = \"error\".",
+                      points: 0
+                    },
+                  ]
+                },
+              ]
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
           },
           mk_postscript: dedent`
             <hr />
@@ -453,7 +722,7 @@ c5.print();
         {
           question_id: "lec08_professor",
           title: "Exercise: `Professor` Constructors",
-          points: 3,
+          points: 4,
           mk_description: dedent`
             Here again are the classes from the video:
 
@@ -483,7 +752,7 @@ c5.print();
             };
             \`\`\`
             
-            Consider several possible constructors for the \`Professor\` class. Which compile successfully? For those that don't compile, explain why (including which member is not initialized correctly).
+            Consider several possible constructors for the \`Professor\` class. If the constructor definition would compile successfully, write "ok". Otherwise, write "error" and a very brief explanation of the problem (including which member is not initialized correctly).
           `,
           response: {
             kind: "fill_in_the_blank",
@@ -570,10 +839,90 @@ Professor(const Coffee &coffee)
   </tr>
 </table>
             `,
+            default_grader: {
+              grader_kind: "manual_regex_fill_in_the_blank",
+              rubric: [
+                {
+                  blankIndex: 1,
+                  title: "Box 1",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /error|illegal|not.*legal|not.*allowed|wrong/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /./i,
+                      explanation: "The constructor doesn't compile, because there is no initialization for the `favCoffee` member and no default constructor for the `Coffee` class. Answer = \"error\".",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 2,
+                  title: "Box 2",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /ok|allowed|legal/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /./i,
+                      explanation: "The compiler will allow it. The omitted members all have default constructors. Answer = \"ok\".",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 3,
+                  title: "Box 3",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /error|illegal|not.*legal|not.*allowed|wrong/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /./i,
+                      explanation: "The constructor doesn't compile, because there is no initialization for the `favCoffee` member and no default constructor for the `Coffee` class. Answer = \"error\".",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 4,
+                  title: "Box 4",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /error|illegal|not.*legal|not.*allowed|wrong/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /./i,
+                      explanation: "Initialization of `favTriangle` with two numbers is not allowed since there is no matching constructor for the `Triangle` class. Answer = \"error\".",
+                      points: 0
+                    },
+                  ]
+                },
+              ]
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
           },
           mk_postscript: dedent`
             <hr />
-            You're welcome to check your solution with this **walkthrough** video:
+            You're welcome to check your solution with this **walkthrough** video. (Please accept my apologies for the notification sounds in the video... apparently some group chat of mine was going nuts.)
 
             <div style="text-align: center;">
               <iframe class="lec-video" src="https://www.youtube.com/embed/VSLPLyI3LHk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -631,6 +980,7 @@ int main() {
     </td>
     <td>
     <div>
+      Write "ok" if the class is default-constructible. Otherwise, write "error". Justify your answer.
       [[BOX
       
       
@@ -668,6 +1018,7 @@ int main() {
     </td>
     <td>
     <div>
+      Write "ok" if the class is default-constructible. Otherwise, write "error". Justify your answer.
       [[BOX
       
       
@@ -695,6 +1046,7 @@ int main() {
     </td>
     <td>
     <div>
+      Write "ok" if the class is default-constructible. Otherwise, write "error". Justify your answer.
       [[BOX
       
       
@@ -705,6 +1057,68 @@ int main() {
   </tr>
 </table>
             `,
+            default_grader: {
+              grader_kind: "manual_regex_fill_in_the_blank",
+              rubric: [
+                {
+                  blankIndex: 1,
+                  title: "Box 1",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /error|illegal|not.*legal|not.*allowed|wrong/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /./i,
+                      explanation: "There is no user-defined default ctor. Because there are other user-defined ctors, the compiler doesn't provide the implicitly defined default ctor. Answer = \"error\".",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 2,
+                  title: "Box 2",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /ok|allowed|legal/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /./i,
+                      explanation: "There is a user-defined default constructor. Answer = \"ok\".",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 3,
+                  title: "Box 3",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /ok|allowed|legal/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /./i,
+                      explanation: "There are no user-defined constructors at all, so the compiler provides an implicitly-defined default constructor. Answer = \"ok\".",
+                      points: 0
+                    },
+                  ]
+                },
+              ]
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
           },
           mk_postscript: dedent`
             <hr />
