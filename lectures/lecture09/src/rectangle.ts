@@ -63,7 +63,7 @@ $(() => {
             };
           `,
           checkpoints: [
-            new StaticAnalysisCheckpoint("Default Ctor", (program: Program, project: Project) => {
+            new StaticAnalysisCheckpoint("Default Ctor (that uses delegation)", (program: Program, project: Project) => {
               let rect_class = findConstructs(program.translationUnits["code"], Predicates.byKind("class_definition")).find(c => c.name === "Rectangle");
               if (!rect_class) {
                   return false;
@@ -77,7 +77,7 @@ $(() => {
               return false;
 
             }),
-            new StaticAnalysisCheckpoint("One Argument Ctor", (program: Program, project: Project) => {
+            new StaticAnalysisCheckpoint("One Argument Ctor (that uses delegation)", (program: Program, project: Project) => {
               let rect_class = findConstructs(program.translationUnits["code"], Predicates.byKind("class_definition")).find(c => c.name === "Rectangle");
               if (!rect_class) {
                   return false;

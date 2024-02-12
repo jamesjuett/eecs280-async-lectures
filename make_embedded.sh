@@ -54,18 +54,18 @@ mv assets/main.js assets/halfPerimeter.js
 sed -i 's/main\.js/halfPerimeter\.js/' assets/halfPerimeter.html
 cd ..
 cd lecture09
-npx webpack ./src/plant.ts --config ../../lobster/webpack.config.js
-mv assets/main.html assets/plant.html
-mv assets/main.js assets/plant.js
-sed -i 's/main\.js/plant\.js/' assets/plant.html
-cd ..
-cd lecture09
 npx webpack ./src/rectangle.ts --config ../../lobster/webpack.config.js
 mv assets/main.html assets/rectangle.html
 mv assets/main.js assets/rectangle.js
 sed -i 's/main\.js/rectangle\.js/' assets/rectangle.html
 cd ..
-cd lecture10
+cd lecture09
+npx webpack ./src/birds_compile_errors.ts --config ../../lobster/webpack.config.js
+mv assets/main.html assets/birds_compile_errors.html
+mv assets/main.js assets/birds_compile_errors.js
+sed -i 's/main\.js/birds_compile_errors\.js/' assets/birds_compile_errors.html
+cd ..
+cd lecture09
 npx webpack ./src/pixel_operator_overloads.ts --config ../../lobster/webpack.config.js
 mv assets/main.html assets/pixel_operator_overloads.html
 mv assets/main.js assets/pixel_operator_overloads.js

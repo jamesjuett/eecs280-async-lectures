@@ -42,116 +42,6 @@ export const LECTURE_10 : ExamSpecification = {
   sections: [
     {
       section_id: "section_10_1",
-      title: "Function Overloading",
-      mk_description: dedent`
-        Let's briefly introduce polymorphism and one of its simpler forms: **function overloading**.
-        
-        <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/cOpLOkKZlfE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <br />
-      `,
-      questions: [ ],
-    },
-    {
-      section_id: "section_10_2",
-      title: "Operator Overloading",
-      mk_description: dedent`
-        We can also apply the concept of overloading to *operators* as well. For example, the \`+\` operator means one thing when it's used on \`int\`, something else when it's used on \`string\`, and yet another thing when it's used for pointer arithmetic!
-
-        In C++, we can also define what an operator should do if used on our own custom classes. Take a look:
-
-        <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/4ETw1p8brbc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <br />
-      `,
-      questions: [
-        {
-          question_id: "lec10_pixel_operator_overloads",
-          title: "Exercise: \`Pixel\` Operator Overloads",
-          points: 3,
-          mk_description: dedent`
-            Let's upgrade \`Pixel\` from project 2 to a \`class\` and add some overloaded operators:
-
-            - An overloaded \`<<\` operator that prints a pixel in the format \`rgb(R,G,B)\`
-            - An overloaded \`-\` operator that computes the squared difference of two pixels
-            
-            Implement each operator (as a non-member function) so that the code in main works correctly.
-          `,
-          response: {
-            kind: "iframe",
-            src: "assets/pixel_operator_overload.html",
-            element_class: "lobster-iframe",
-            element_style: "height: 675px;",
-          },
-          mk_postscript: dedent`
-            <hr />
-            <details>
-              <summary>Sample solution...</summary>
-              
-              \`\`\`cpp
-              #include <iostream>
-              using namespace std;
-              
-              class Pixel {
-              public:
-                const int r;
-                const int g;
-                const int b;
-                
-                Pixel(int r, int g, int b)
-                  : r(r), g(g), b(b) { }
-                
-              };
-              
-              int squared_difference(const Pixel &p1, const Pixel &p2);
-              
-              // TASK 1: Add an overloaded operator- that
-              // returns the squared difference between two
-              // pixels (you can just call squared_difference
-              // in your implementation)
-              
-              int operator-(const Pixel &p1, const Pixel &p2) {
-                return squared_difference(p1, p2);
-              }
-              
-              // TASK 2: Add an overloaded operator<< that
-              // prints out the pixel in this format:
-              //   rgb({R},{G},{B})
-              ostream &operator<<(ostream &os, const Pixel &p) {
-                cout << "rgb(" << p.r << ", " << p.g
-                      << ", " << p.b << ")";
-                return os;
-              }
-                
-              int main() {
-                Pixel p1(174, 129, 255);
-                Pixel p2(166, 226, 46);
-                
-                cout << "p1: " << p1 << endl; // p1: rgb(174,129,255)
-                cout << "p2: " << p2 << endl; // p2: rgb(166,226,46)
-                
-                cout << "sq diff: " << p2 - p1 << endl; // sq diff: 531
-              }
-              
-              // From processing.cpp in P2 starter code
-              int squared_difference(const Pixel &p1, const Pixel &p2) {
-                int dr = p2.r - p1.r;
-                int dg = p2.g - p1.g;
-                int db = p2.b - p1.b;
-                // Divide by 100 is to avoid possible overflows
-                // later on in the algorithm.
-                return (dr*dr + dg*dg + db*db) / 100;
-              }
-              \`\`\`
-            </details>
-          `
-        }
-      ],
-    },
-    {
-      section_id: "section_10_3",
       title: "Subtype Polymorphism",
       mk_description: dedent`
 
@@ -301,7 +191,7 @@ Bird &bRef = d;
       ],
     },
     {
-      section_id: "section_10_4",
+      section_id: "section_10_2",
       title: "Virtual Functions",
       mk_description: dedent`
 
@@ -453,7 +343,7 @@ int main() {
       ],
     },
     {
-      section_id: "section_10_5",
+      section_id: "section_10_3",
       title: "Polymorphism and Design",
       mk_description: dedent`
 

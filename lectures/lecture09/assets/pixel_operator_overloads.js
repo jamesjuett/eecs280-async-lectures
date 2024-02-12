@@ -79163,6 +79163,12 @@ $(() => {
     $(".lobster-ex").each(function () {
         var _a, _b, _c, _d, _e, _f, _g;
         $(this).append((0, embeddedExerciseOutlet_1.createEmbeddedExerciseOutlet)("single"));
+        $(this).find(".lobster-ex-checkpoints")
+            .detach().prependTo($(this))
+            .css("position", "sticky")
+            .css("top", "0")
+            .css("background-color", "white")
+            .css("z-index", "100000");
         let filename = "code";
         let exerciseSpec = {
             starterCode: (0, ts_dedent_1.default) `
@@ -79171,9 +79177,9 @@ $(() => {
             
             class Pixel {
             public:
-              int r;
-              int g;
-              int b;
+              const int r;
+              const int g;
+              const int b;
               
               Pixel(int r, int g, int b)
                 : r(r), g(g), b(b) { }
@@ -79221,7 +79227,7 @@ $(() => {
           `,
             checkpoints: [
                 new checkpoints_1.OutputCheckpoint("- Subtraction Operator", (output, project) => {
-                    return output.indexOf("sq diff: 531") !== 0;
+                    return output.indexOf("sq diff: 531") !== -1;
                 }),
                 new checkpoints_1.OutputCheckpoint("<< Output Operator", (output, project) => {
                     return ["rgb", "174", "129", "255", "166", "226", "46"].every(str => output.indexOf(str) !== -1);
@@ -79274,7 +79280,7 @@ $(() => {
             if (msg.message_kind === "set_submission") {
                 exOutlet.project.setFileContents({
                     name: "code",
-                    text: msg.submission,
+                    text: msg.submission.code
                 });
             }
         });
@@ -79284,7 +79290,10 @@ $(() => {
                 (_a = window.parent) === null || _a === void 0 ? void 0 : _a.postMessage({
                     examma_ray_message: {
                         message_kind: "update",
-                        submission: exOutlet.project.sourceFiles[0].text,
+                        submission: {
+                            code: exOutlet.project.sourceFiles[0].text,
+                            complete: project.exercise.isComplete
+                        }
                     }
                 }, "*");
             }
