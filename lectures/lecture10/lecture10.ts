@@ -13,9 +13,16 @@ export const LECTURE_10 : ExamSpecification = {
   exam_id: "lec_10_polymorphism",
   title: "Polymorphism",
   mk_intructions: dedent`
+    <div markdown=1 class="alert alert-success">
+      To earn participation credit, you'll need to complete the lecture within 2 days of the lecture date.
+      For lecture 10 (released Wednesday 2/14), that means completing it by <b>Friday 2/16 at 11:59pm</b>.
+    </div>
     
     <div markdown=1 class="alert alert-info">
       This lecture explores **polymorphism**, which makes our code more flexible and enables even just a single line of code to potentially do many different things in different contexts or situations. It's one of the most powerful concepts in programming.
+
+      We'll specifically focus on **subtype polymorphism** today.
+
     </div>
     <style>
       .lec-video {
@@ -39,15 +46,33 @@ export const LECTURE_10 : ExamSpecification = {
   mk_saver_message: MK_SAVER_MESSAGE,
   assets_dir: __dirname + `/assets`,
   allow_clientside_content: true,
+  completion: {
+    threshold: 1,
+    tooltip: "",
+    endpoints: {
+      check: "https://examma-ray.eecs.umich.edu/public_api/participation/me/",
+      submit: "https://examma-ray.eecs.umich.edu/public_api/participation/me/",
+    }
+  },
+  credentials_strategy: {
+    strategy: "google_local",
+    client_id: "444801118749-m2g9gl3gvvkh5ru959dmka0lsk94d9uq.apps.googleusercontent.com",
+    message: "Sign in with your @umich.edu Google account to earn participation credit for completing embedded exercises.",
+  },
   sections: [
     {
       section_id: "section_10_1",
       title: "Subtype Polymorphism",
       mk_description: dedent`
 
-        While function overloading allows us to conveniently reuse a name for many different functions with different signatures, it doesn't fundamentally change our programming - we could have just named the functions differently (e.g. \`max_double\`, \`max_int\`, \`max_Card\`, etc.).
+        First, a brief intro to the many forms of polymorphism:
 
-        Subtype polymorphism, on the other hand, is a game-changer. It works hand-in-hand with inheritance and essentially allows us to have a variable of a base type (e.g. \`Bird\`) and then have that same variable potentially refer to any of the different derived types (e.g. \`Chicken\`, \`Duck\`, \`Eagle\`, etc.), often changing which kind it refers to throughout the course of the program!
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/41PpFzEIFg8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
+
+        To enable subtype polymorphism specifically, we'll need a way for a single base class variable to potentially work with any object of any derived class. As usual, the answer is more pointers :).
 
         <div style="text-align: center;">
           <iframe class="lec-video" src="https://www.youtube.com/embed/wVdKXkTgrbg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -59,7 +84,7 @@ export const LECTURE_10 : ExamSpecification = {
         {
           question_id: "lec10_upcasts_and_downcasts",
           title: "Exercise: Upcasts and Downcasts",
-          points: 3,
+          points: 4,
           mk_description: dedent`
             Consider the variables \`a\`, \`b\`, and \`c\` below, and assume the \`Duck\` and \`Chicken\` classes are both derived from the \`Bird\` base class.
 
@@ -156,6 +181,86 @@ Bird &bRef = d;
   </tr>
 </table>
             `,
+            default_grader: {
+              grader_kind: "manual_regex_fill_in_the_blank",
+              rubric: [
+                {
+                  blankIndex: 1,
+                  title: "Box 1",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /error|illegal|not.*legal|not.*allowed|wrong/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /./i,
+                      explanation: "The conversion from `bPtr` to `cPtr` is a downcast, which is not allowed. Answer = \"error\".",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 2,
+                  title: "Box 2",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /ok|allowed|legal/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /./i,
+                      explanation: "As a `Bird*`, `bPtr` can point to any of the objects. The assignments to `&d` and `&c` are upcasts, which are allowed. Answer = \"ok\".",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 3,
+                  title: "Box 3",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /error|illegal|not.*legal|not.*allowed|wrong/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /./i,
+                      explanation: "The conversion from `bRef` to `cref` is a downcast, which is not allowed. Answer = \"error\".",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 4,
+                  title: "Box 4",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /ok|allowed|legal/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /./i,
+                      explanation: "Binding a `Bird&` to a `Duck` object requires an upcast, which is allowed. In other words, a `Bird` reference is allowed to refer to a `Duck`. Answer = \"ok\".",
+                      points: 0
+                    },
+                  ]
+                },
+              ]
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
           },
           mk_postscript: dedent`
             <hr />
@@ -172,7 +277,7 @@ Bird &bRef = d;
               Bird *bPtr = &b;
               bPtr = &d;
               bPtr = &c;
-              // ok - as a Bird*, b can point to any of the objects
+              // ok - as a Bird*, bPtr can point to any of the objects
               \`\`\`
 
               \`\`\`cpp
@@ -192,7 +297,7 @@ Bird &bRef = d;
     },
     {
       section_id: "section_10_2",
-      title: "Virtual Functions",
+      title: "Static vs. Dynamic Binding",
       mk_description: dedent`
 
         We've now got a way (i.e. using pointers/references) to have a polymorphic variable that can potentially point to any type derived from a particular base, but there's still something missing.
@@ -214,13 +319,20 @@ Bird &bRef = d;
           <iframe class="lec-video" src="https://www.youtube.com/embed/otALFLY4FWI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
+        
+        A common pattern for type hierarchies is that the **base class** will define a **virtual** function with the expectation that derived classes may provide their own implementations that **override** the original behavior of that function (since dynamic binding ensures the more specific version is called).
+
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/tuMG7pBZyYU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
 
       `,
       questions: [
         {
           question_id: "lec10_virtual_functions",
           title: "Exercise: Virtual vs. Non-Virtual Functions",
-          points: 3,
+          points: 7,
           mk_description: dedent`
             Shown below are a hierarchy of fruit-based classes and a main function that makes member function calls on a variety of fruit objects and pointers. Note that the \`f1()\` function is non-virtual and the \`f2()\` function is virtual.
             
@@ -282,6 +394,114 @@ int main() {
   </tr>
 </table>
             `,
+            sample_solution: [
+              "2",
+              "3",
+              "1",
+              "6",
+              "4",
+              "3",
+              "6",
+            ],
+            default_grader: {
+              grader_kind: "manual_regex_fill_in_the_blank",
+              rubric: [
+                {
+                  blankIndex: 1,
+                  title: "Box 1",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /2/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 2,
+                  title: "Box 2",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /3/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 3,
+                  title: "Box 3",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /1/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 4,
+                  title: "Box 4",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /6/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 5,
+                  title: "Box 5",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /4/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 6,
+                  title: "Box 6",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /3/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 7,
+                  title: "Box 7",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /6/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                  ]
+                },
+              ]
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
           },
           mk_postscript: `
 <hr />
@@ -344,27 +564,50 @@ int main() {
     },
     {
       section_id: "section_10_3",
-      title: "Polymorphism and Design",
+      title: "Pure Virtual Functions",
       mk_description: dedent`
-
-        A common pattern for type hierarchies is that the **base class** will define a **virtual** function with the expectation that derived classes may provide their own implementations that **override** the original behavior of that function (since dynamic binding ensures the more specific version is called).
-
-        <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/tuMG7pBZyYU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <br />
 
         If a "default" implementation doesn't make sense for the base class, we can also opt to define the function there as **pure virtual**, meaning that it doesn't have any implementation.
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/gzfM9pPR_DA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/a7Bm_cfiqqY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
+      `,
+      questions: []
+    },
+    {
+      section_id: "section_10_4",
+      title: "Interface Inheritance",
+      mk_description: dedent`
 
-        To recap the above:
-        - When a **base class** defines a function as **virtual**, it means the derived classes **may** provide an overridden version if they want (or if they don't, they just inherit the default implementation from the base class.)
-        - When a **base class** defines a function as **pure virtual**, it is an **abstract class** and cannot be instantiated. Derived classes **must** provide an overridden version (or else remain themselves abstract).
-        - A **derived class** should always use the \`override\` keyword to indicate that it is providing an implementation of a virtual function from its base class. (This tell the compiler to check that its signature matches correctly.)
+        It turns out that inheriting interfaces is just as important (if not more) than inheriting implementations. Here's why:
+
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/9p-EvfUW6Qk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
+      `,
+      questions: []
+    },
+    {
+      section_id: "section_10_5",
+      title: "Factory Functions",
+      mk_description: dedent`
+
+        The last piece of the puzzle for polymorphic objects is where to create them. Ideally, we don't want client code to have to deal with creating specific derived class objects, so we provide a "factory function" that abstracts away that process.
+
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/PBPDNI1eqto" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
+      `,
+      questions: []
+    },
+    {
+      section_id: "section_10_6",
+      title: "The Liskov Substitution Principle",
+      mk_description: dedent`
 
         Finally, we'll briefly describe the _Liskov Substitution Principle_, which formally qualifies whether or not a derived type is proper subtype and satifies everything expected of its base type.
 
@@ -483,8 +726,54 @@ class DerivedUnicorn : public Unicorn {
   </tr>
 </table>
             `,
+            default_grader: {
+              grader_kind: "manual_regex_fill_in_the_blank",
+              rubric: [
+                {
+                  blankIndex: 1,
+                  title: "Box 1",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /./i,
+                      explanation: "This is just graded for completion. You can use the walkthrough video to check your answer.",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 2,
+                  title: "Box 2",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /./i,
+                      explanation: "This is just graded for completion. You can use the walkthrough video to check your answer.",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 3,
+                  title: "Box 3",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /./i,
+                      explanation: "This is just graded for completion. You can use the walkthrough video to check your answer.",
+                      points: 1
+                    },
+                  ]
+                },
+              ]
+            },
           },
-          
+          verifier: {
+            verifier_kind: "full_credit",
+          },
           mk_postscript: dedent`
             <hr />
             You're welcome to check your solution with this **walkthrough** video:

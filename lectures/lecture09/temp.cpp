@@ -16,7 +16,6 @@ public:
 
   void draw(const string& subject, bool isArtistic) {
     if (isArtistic) {
-       // Use a flag to differentiate
       cout << name << " is drawing a " << subject << "." << endl;
     }
   }
