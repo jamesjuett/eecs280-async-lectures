@@ -72,20 +72,23 @@ export const LECTURE_SPECS = [
     spec = CUSTOMIZE(spec, {
       credentials_strategy: {
         strategy: "google_local",
-        // client_id: "444801118749-m2g9gl3gvvkh5ru959dmka0lsk94d9uq.apps.googleusercontent.com",
-        client_id: "444801118749-099920plmkl1s5n5u563pbmu71lo4bot.apps.googleusercontent.com",
+        client_id: "444801118749-m2g9gl3gvvkh5ru959dmka0lsk94d9uq.apps.googleusercontent.com",
+        // client_id: "444801118749-099920plmkl1s5n5u563pbmu71lo4bot.apps.googleusercontent.com",
         message: "Sign in with your @umich.edu Google account to earn participation credit for completing embedded exercises."
       },
       completion: {
         threshold: 1,
         tooltip: "",
         endpoints: {
-          // check: "https://examma-ray.eecs.umich.edu/public_api/participation/me/",
-          // submit: "https://examma-ray.eecs.umich.edu/public_api/participation/me/",
-          check: "https://localhost/public_api/participation/me/",
-          submit: "https://localhost/public_api/participation/me/",
+          check: "https://examma-ray.eecs.umich.edu/public_api/participation/me/",
+          submit: "https://examma-ray.eecs.umich.edu/public_api/participation/me/",
+          // check: "https://localhost/public_api/participation/me/",
+          // submit: "https://localhost/public_api/participation/me/",
         },
-        local_deadline: lec.deadline
+        local_deadline: lec.deadline && {
+          when: lec.deadline,
+          grace_minutes: 5
+        }
       }
     });
   }
