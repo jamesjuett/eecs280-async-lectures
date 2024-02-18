@@ -11,7 +11,7 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 export const LECTURE_12 : ExamSpecification = {
   exam_id: "lec_12_containers_2",
-  title: "Containers, Part 2 and Templates",
+  title: "Sorted vs. Unsorted Data Structures, Templates",
   mk_intructions: dedent`
     
     <div markdown=1 class="alert alert-info">
