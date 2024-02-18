@@ -11,13 +11,12 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 export const LECTURE_11 : ExamSpecification = {
   exam_id: "lec_11_containers_1",
-  title: "Containers, Part 1",
+  title: "Array-Based Containers, Part 1",
   mk_intructions: dedent`
     <div markdown=1 class="alert alert-success">
-      **IMPORTANT** The participation deadlines are now strictly enforced by the async lecture site. It is your responsibility to double check that you are logged in and see the "Completion Verified" message at the top left before the deadline.
-
-      To earn participation credit, you'll need to complete the lecture within 2 days of the lecture date.
-      For lecture 11 (released Monday 2/19), that means completing it by <b>Wednesday 2/21 at 11:59pm</b>.
+      <p style="text-align: center;"><b>IMPORTANT</b></p>
+      <p>The participation deadlines are now strictly enforced by the async lecture site. To earn participation credit, you must complete each exercise before the deadline (shown near the top left of the page). It is your responsibility to ensure you are signed in and double check that you see the "Completion Verified" status at the top left before the deadline.</p>
+      <p style="text-align: center; margin-bottom: 0;"><b>IMPORTANT</b></p>
     </div>
     <div markdown=1 class="alert alert-info">
       So far, we've covered a lot of the fundamental tools C++ gives us, as well as some general principles of good programming design, in particular including the design of Abstract Data Types (ADTs).
