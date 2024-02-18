@@ -18,9 +18,10 @@
   },
   "homepage": "https://github.com/jamesjuett/async-lectures#readme",
   "dependencies": {
-    "examma-ray": "^1.0.373",
+    "examma-ray": "^1.0.374",
     "he": "^1.2.0",
     "lobster-vis": "^1.0.29",
+    "luxon": "^3.4.4",
     "minimist": "^1.2.7",
     "ts-dedent": "^2.2.0",
     "ts-node": "^10.9.1"
@@ -28,6 +29,7 @@
   "devDependencies": {
     "@types/he": "^1.1.2",
     "@types/jquery": "^3.5.16",
+    "@types/luxon": "^3.4.2",
     "@types/minimist": "^1.2.2",
     "css-loader": "^6.7.3",
     "html-webpack-plugin": "^5.5.0",

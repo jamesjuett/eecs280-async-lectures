@@ -46,7 +46,7 @@ export const LECTURE_11 : ExamSpecification = {
       section_id: "section_11_1",
       title: "An Array-Based Unsorted Set",
       mk_description: dedent`
-        Let's take a look at a data structure to represent a set. We'll be following our normal process for building an ADT - starting with our motivating use cases and the interface we want, followed by a fundamental data representation and invariants, and finally filling in the implementations for each member function.
+        Let's take a look at a data structure to represent an **unsorted set**. We'll be following our normal process for building an ADT - starting with our motivating use cases and the interface we want, followed by a fundamental data representation and invariants, and finally filling in the implementations for each member function.
         
         <div style="text-align: center;">
           <iframe class="lec-video" src="https://www.youtube.com/embed/oHqTh9VfrEc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -59,8 +59,16 @@ export const LECTURE_11 : ExamSpecification = {
           <iframe class="lec-video" src="https://www.youtube.com/embed/K6eRavvlUY0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
-        
-        Finally, let's get into the implementation of a default constructor and a few member functions.
+      `,
+      questions: [
+
+      ],
+    },
+    {
+      section_id: "section_11_2",
+      title: "Implementation",
+      mk_description: dedent`
+        Let's get into the implementation of a default constructor and a few member functions for the array-based unsorted set.
         
         <div style="text-align: center;">
           <iframe class="lec-video" src="https://www.youtube.com/embed/vy07Uesr0i8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -71,7 +79,7 @@ export const LECTURE_11 : ExamSpecification = {
         {
           question_id: "lec11_intset_insert",
           title: "Exercise: \`IntSet::insert()\`",
-          points: 3,
+          points: 1,
           mk_description: dedent`
             Implement the \`insert()\` member function for the \`IntSet\` class, which adds a given value \`v\` to the set.
             
@@ -83,9 +91,23 @@ export const LECTURE_11 : ExamSpecification = {
           `,
           response: {
             kind: "iframe",
-            src: "assets/intset_insert_remove.html",
+            src: "assets/intset_insert.html",
             element_class: "lobster-iframe",
             element_style: "height: 675px;",
+            default_grader: {
+              grader_kind: "standard_iframe",
+              rubric: [
+                {
+                  points: 1,
+                  description: "Exercise must be complete.",
+                  property: "complete",
+                  value: true,
+                }
+              ]
+            }
+          },
+          verifier: {
+            verifier_kind: "full_credit"
           },
           mk_postscript: dedent`
             <hr />
@@ -102,9 +124,9 @@ export const LECTURE_11 : ExamSpecification = {
         {
           question_id: "lec11_intset_remove",
           title: "Exercise: \`IntSet::remove()\`",
-          points: 3,
+          points: 5,
           mk_description: dedent`
-            Below are some potential implementations of the \`remove()\` function for \`IntSet\`. Determine whether each is correct or incorrect. If the implementation is incorrect, explain what the problem is.
+            Below are some potential implementations of the \`remove()\` function for \`IntSet\`. Which ones work correctly?
             
             It may be helpful to trace through the code on this set, removing the \`1\`, for example:
 
@@ -113,6 +135,8 @@ export const LECTURE_11 : ExamSpecification = {
             </div>
             
             Or, you might also consider pasting them into the code for the exercise above and uncommenting the additional set of tests in \`main()\` for the \`remove()\` function.
+
+            Which of the implementations of \`remove()\` below are correct? Write **"correct"** or **"incorrect"**. For each that is not correct, explain what's wrong with it.
           `,
           response: {
             kind: "fill_in_the_blank",
@@ -227,6 +251,99 @@ Two of the implementations above for \`remove()\` work correctly. Which one is t
 
 ]]
             `,
+            default_grader: {
+              grader_kind: "manual_regex_fill_in_the_blank",
+              rubric: [
+                {
+                  blankIndex: 1,
+                  title: "Box 1",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /incorrect|not\s*correct/i,
+                      explanation: "The implementation is incorrect. Check the walkthrough video for more details.",
+                      points: 1
+                    },
+                    {
+                      pattern: /correct/i,
+                      explanation: "The implementation is incorrect. Check the walkthrough video for more details.",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 2,
+                  title: "Box 2",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /incorrect|not\s*correct/i,
+                      explanation: "The implementation is correct. Check the walkthrough video for more details.",
+                      points: 0
+                    },
+                    {
+                      pattern: /correct/i,
+                      explanation: "The implementation is correct. Check the walkthrough video for more details.",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 3,
+                  title: "Box 3",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /incorrect|not\s*correct/i,
+                      explanation: "The implementation is incorrect. Check the walkthrough video for more details.",
+                      points: 1
+                    },
+                    {
+                      pattern: /correct/i,
+                      explanation: "The implementation is incorrect. Check the walkthrough video for more details.",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 4,
+                  title: "Box 4",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /incorrect|not\s*correct/i,
+                      explanation: "The implementation is correct. Check the walkthrough video for more details.",
+                      points: 0
+                    },
+                    {
+                      pattern: /correct/i,
+                      explanation: "The implementation is correct. Check the walkthrough video for more details.",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 5,
+                  title: "Box 5",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /.{10,}/i,
+                      explanation: "This is just checked for completion. Check the walkthrough video to confirm your answer.",
+                      points: 1
+                    },
+                  ]
+                },
+              ]
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
           },
           mk_postscript: dedent`
             <hr />
@@ -237,13 +354,13 @@ Two of the implementations above for \`remove()\` work correctly. Which one is t
             </div>
             <br />
 
-            **NOTE:** For completeness, I'll mention here that ultimately both implementations that work correctly end up having similar runtime _complexities_ in that their runtime scales linearly with the amount of elements in the set - that's because even though the one I describe in the walkthrough video does less work to remove the element, it still needs to call \`indexOf\`, which has a linear runtime. We'll talk more about complexities in the next lecture.
+            **NOTE:** For completeness, I'll mention here that ultimately both implementations that work correctly end up having similar runtime _complexities_ in that their runtime scales linearly with the amount of elements in the set - that's because even though the one I describe in the walkthrough video does less work to remove the element, it still needs to call \`indexOf\`, which has a linear runtime. We'll talk more about time complexity in the next lecture.
           `
         }
       ],
     },
     {
-      section_id: "section_11_3",
+      section_id: "section_11_4",
       title: "Member vs. Non-Member Operator Overloads",
       mk_description: dedent`
 
@@ -263,7 +380,7 @@ Two of the implementations above for \`remove()\` work correctly. Which one is t
         {
           question_id: "lec11_intset_operator_plus_equals",
           title: "Exercise: Overloading \`+=\` on \`IntSet\`",
-          points: 3,
+          points: 5,
           mk_description: dedent`
             Let's add a \`+=\` operator to our \`IntSet\` class, which allows a nice syntax for adding elements to the set. Here's an example of how we might use it:
 
@@ -279,7 +396,7 @@ Two of the implementations above for \`remove()\` work correctly. Which one is t
             }
             \`\`\`
 
-            The \`+=\` operator can be implemented either as a member function overload or a non-member function overload. Consider each of the potential implementations of \`+=\` below. For each, indicate whether the \`operator+=\` overload function is being defined as a member or non-member, and whether or not it is implemented correctly.
+            The \`+=\` operator can be implemented either as a member function overload or a non-member function overload. Consider each of the potential implementations of \`+=\` below. For each, indicate how the \`operator+=\` overload function is being defined (write **"member"** or **"non-member"**) and whether or not it is implemented correctly (write **"correct"** or **"incorrect"**).
           `,
           response: {
             kind: "fill_in_the_blank",
@@ -393,6 +510,124 @@ void IntSet::operator+=(int v) {
   </tr>
 </table>
             `,
+            default_grader: {
+              grader_kind: "manual_regex_fill_in_the_blank",
+              rubric: [
+                {
+                  blankIndex: 1,
+                  title: "Box 1",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /incorrect/i,
+                      explanation: "`operator+=` is being implemented as a non-member function. The implementation is correct.",
+                      points: 0
+                    },
+                    {
+                      pattern: /non\s*-?\s*member.*correct|correct.*non\s*-?\s*member/i,
+                      explanation: "`operator+=` is being implemented as a non-member function. The implementation is correct.",
+                      points: 1
+                    },
+                    {
+                      pattern: /.{12,}/i,
+                      explanation: "`operator+=` is being implemented as a non-member function. The implementation is correct.",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 2,
+                  title: "Box 2",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /non\s*-?\s*member|incorrect/i,
+                      explanation: "`operator+=` is being implemented as a member function. The implementation is correct.",
+                      points: 0
+                    },
+                    {
+                      pattern: /member.*correct|correct.*member/i,
+                      explanation: "`operator+=` is being implemented as a member function. The implementation is correct.",
+                      points: 1
+                    },
+                    {
+                      pattern: /.{12,}/i,
+                      explanation: "`operator+=` is being implemented as a member function. The implementation is correct.",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 3,
+                  title: "Box 3",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /non\s*-?\s*member/i,
+                      explanation: "`operator+=` is being implemented as a member function. The implementation is incorrect.",
+                      points: 0
+                    },
+                    {
+                      pattern: /member.*incorrect|incorrect.*member/i,
+                      explanation: "`operator+=` is being implemented as a member function. The implementation is incorrect.",
+                      points: 1
+                    },
+                    {
+                      pattern: /.{12,}/i,
+                      explanation: "`operator+=` is being implemented as a member function. The implementation is incorrect.",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 4,
+                  title: "Box 4",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /non\s*-?\s*member.*incorrect|incorrect.*non\s*-?\s*member/i,
+                      explanation: "`operator+=` is being implemented as a non-member function. The implementation is incorrect.",
+                      points: 1
+                    },
+                    {
+                      pattern: /.{12,}/i,
+                      explanation: "`operator+=` is being implemented as a non-member function. The implementation is incorrect.",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 5,
+                  title: "Box 5",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /non\s*-?\s*member|incorrect/i,
+                      explanation: "`operator+=` is being implemented as a member function. The implementation is correct.",
+                      points: 0
+                    },
+                    {
+                      pattern: /member.*correct|correct.*member/i,
+                      explanation: "`operator+=` is being implemented as a member function. The implementation is correct.",
+                      points: 1
+                    },
+                    {
+                      pattern: /.{12,}/i,
+                      explanation: "`operator+=` is being implemented as a member function. The implementation is correct.",
+                      points: 0
+                    },
+                  ]
+                },
+              ]
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
           },
           mk_postscript: dedent`
             <hr />

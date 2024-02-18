@@ -79163,6 +79163,12 @@ $(() => {
     $(".lobster-ex").each(function () {
         var _a, _b, _c, _d, _e, _f, _g;
         $(this).append((0, embeddedExerciseOutlet_1.createEmbeddedExerciseOutlet)("single"));
+        $(this).find(".lobster-ex-checkpoints")
+            .detach().prependTo($(this))
+            .css("position", "sticky")
+            .css("top", "0")
+            .css("background-color", "white")
+            .css("z-index", "100000");
         let filename = "code";
         let exerciseSpec = {
             starterCode: (0, ts_dedent_1.default) `
@@ -79308,7 +79314,7 @@ $(() => {
             if (msg.message_kind === "set_submission") {
                 exOutlet.project.setFileContents({
                     name: "code",
-                    text: msg.submission,
+                    text: msg.submission.code
                 });
             }
         });
@@ -79318,7 +79324,10 @@ $(() => {
                 (_a = window.parent) === null || _a === void 0 ? void 0 : _a.postMessage({
                     examma_ray_message: {
                         message_kind: "update",
-                        submission: exOutlet.project.sourceFiles[0].text,
+                        submission: {
+                            code: exOutlet.project.sourceFiles[0].text,
+                            complete: project.exercise.isComplete
+                        }
                     }
                 }, "*");
             }

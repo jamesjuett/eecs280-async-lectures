@@ -79035,6 +79035,12 @@ $(() => {
     $(".lobster-ex").each(function () {
         var _a, _b, _c, _d, _e, _f, _g;
         $(this).append((0, embeddedExerciseOutlet_1.createEmbeddedExerciseOutlet)("single"));
+        $(this).find(".lobster-ex-checkpoints")
+            .detach().prependTo($(this))
+            .css("position", "sticky")
+            .css("top", "0")
+            .css("background-color", "white")
+            .css("z-index", "100000");
         let filename = "code";
         let exerciseSpec = {
             starterCode: (0, ts_dedent_1.default) `
