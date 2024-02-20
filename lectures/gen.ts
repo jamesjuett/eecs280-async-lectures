@@ -96,6 +96,7 @@ export const LECTURE_SPECS = [
     spec = addW24Warning(spec);
   }
 
+
   return spec;
 });
 
