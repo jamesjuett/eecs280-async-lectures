@@ -51,7 +51,7 @@ export const LECTURE_11 : ExamSpecification = {
 
     </style>
     <script>
-    alert('Due to an issue with authentication, you may see a "Server Error" after finishing the lecture exercises. If so, or if you do not see "Completion Verified" after finishing all exercises, please try signing in again manually (click the button with your username near the top left). If that doesn't work, try refreshing the page. Apologies for the inconvenience!');
+    alert('Due to an issue with authentication, you may see a "Server Error" after finishing the lecture exercises. If so, or if you do not see "Completion Verified" after finishing all exercises, please try signing in again manually (click the button with your username near the top left). If that doesn\'t work, try refreshing the page. Apologies for the inconvenience!');
     </script>
   `,
   mk_questions_message: MK_QUESTIONS_MESSAGE,
