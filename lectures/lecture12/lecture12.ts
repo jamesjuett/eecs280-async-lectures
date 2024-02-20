@@ -58,7 +58,7 @@ export const LECTURE_12 : ExamSpecification = {
       questions: [
         {
           question_id: "lec12_time_complexity",
-          title: "Exercise: Time Complexity`",
+          title: "Exercise: Time Complexity",
           points: 6,
           mk_description: dedent`
             Below are several implementations of functions for the unsorted \`IntSet\` from last time. Determine whether each function has _O(1)_ constant time complexity or _O(n)_ linear time complexity. Explain your reasoning. 
