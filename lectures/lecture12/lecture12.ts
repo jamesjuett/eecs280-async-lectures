@@ -442,6 +442,11 @@ void IntSet::remove(int v) {
                   description: "",
                   patterns: [
                     {
+                      pattern: /int/i,
+                      explanation: "Make sure not to hardcode `<int>` on the `UnsortedSet`. Instead, plug in the type from your template parameter.",
+                      points: 0
+                    },
+                    {
                       pattern: /^\s*UnsortedSet\s*<\s*[a-zA-Z0-9_]+\s*>\s*&\s*$/i,
                       explanation: "Correct!",
                       points: 1
@@ -457,18 +462,8 @@ void IntSet::remove(int v) {
                       points: 0
                     },
                     {
-                      pattern: /^\s*UnsortedSet\s*<\s*[a-zA-Z0-9_]+\s*>\s*$/i,
-                      explanation: "Make sure to pass the `UnsortedSet` by reference to ensure elements are actually added to the original (not just to a local copy).",
-                      points: 0
-                    },
-                    {
                       pattern: /^\s*UnsortedSet\s*$/i,
                       explanation: "The UnsortedSet parameter will need to specify the element type as well, i.e. `UnsortedSet<____>` with the `____` replaced by your template parameter.",
-                      points: 0
-                    },
-                    {
-                      pattern: /<\s*int\s*>\s*/i,
-                      explanation: "Make sure not to hardcode `<int>` on the `UnsortedSet`. Instead, plug in the type from your template parameter.",
                       points: 0
                     },
                   ]
@@ -479,6 +474,11 @@ void IntSet::remove(int v) {
                   points: 1,
                   description: "",
                   patterns: [
+                    {
+                      pattern: /int/i,
+                      explanation: "Make sure not to hardcode `int` as the element type of the array. Instead, use the type from your template parameter.",
+                      points: 0
+                    },
                     {
                       pattern: /^\s*const\s*[a-zA-Z0-9_]+\s*\*\s*$/i,
                       explanation: "Correct!",
