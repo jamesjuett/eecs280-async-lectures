@@ -15,9 +15,11 @@ export const LECTURE_12 : ExamSpecification = {
   mk_intructions: dedent`
     
     <div markdown=1 class="alert alert-info">
-      Continuing from last time, we'll investigate another potential implementation of a set, this time based on an underlying array that is sorted. This ends up affecting the implementations of the functions as well as their efficiency. We'll briefly introduce the notion of **time complexity** to formally analyze efficiency.
+      Continuing from last time, we'll introduce the notion of **time complexity** to formally analyze the efficiency of operations on the unsorted array-based implementation of a set. Spoiler alert - we'll find this implementation is a bit slow.
+      
+      This leads us to consider another potential implementation of a set, this time based on an underlying array that is kept in sorted order. The addition of a sorting invariant means some of our functions are more complicated (i.e. you can't just put elements wherever), but searching for elements in the array can be done much more efficiently.
 
-      We'll also introduce **templates** as both a specific technique for implementing generic containers with flexible element types (e.g. \`set<int>\` and \`set<string>\`) and generally as another fundamental expression of polymorphism.
+      Finally, it makes sense to introduce **templates** as a miscellaneous topic here. In particular, templates can be used to implement generic containers with flexible element types (e.g. \`set<int>\` and \`set<string>\`). Generally speaking, they also complete our exploration (started a few lectures ago) of different kinds of polymorphism.
     </div>
     <style>
       .lec-video {
@@ -46,7 +48,7 @@ export const LECTURE_12 : ExamSpecification = {
       section_id: "section_12_1",
       title: "Time Complexity",
       mk_description: dedent`
-        As we're asessing the fitness of a data structure for a given task, it's helpful to determine its **time complexity**, which quantifies how well it performs as the size of the data set we're working with scales up.
+        As we're asessing the fitness of a data structure for a given task, it's helpful to determine its **time complexity**, which quantifies how well it performs as the size of the data we're working with scales up.
         
         <div style="text-align: center;">
           <iframe class="lec-video" src="https://www.youtube.com/embed/sOC4Nizvh4I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -57,9 +59,9 @@ export const LECTURE_12 : ExamSpecification = {
         {
           question_id: "lec12_time_complexity",
           title: "Exercise: Time Complexity`",
-          points: 3,
+          points: 6,
           mk_description: dedent`
-            Below are several implementations of functions for the unsorted \`IntSet\` from last time. Determine whether each function has $$O(1)$$ constant time complexity or $$O(n)$$ linear time complexity. Explain your reasoning. 
+            Below are several implementations of functions for the unsorted \`IntSet\` from last time. Determine whether each function has _O(1)_ constant time complexity or _O(n)_ linear time complexity. Explain your reasoning. 
           `,
           response: {
             kind: "fill_in_the_blank",
@@ -190,6 +192,122 @@ void IntSet::remove(int v) {
   </tr>
 </table>
             `,
+            default_grader: {
+              grader_kind: "manual_regex_fill_in_the_blank",
+              rubric: [
+                {
+                  blankIndex: 1,
+                  title: "Box 1",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /constant|O\s*\(\s*1\s*\)/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /linear|O\s*\(\s*n\s*\)/i,
+                      explanation: "The implementation has constant time complexity. Check the walkthrough video for details.",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 2,
+                  title: "Box 2",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /constant|O\s*\(\s*1\s*\)/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /linear|O\s*\(\s*n\s*\)/i,
+                      explanation: "The implementation has constant time complexity. Check the walkthrough video for details.",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 3,
+                  title: "Box 3",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /linear|O\s*\(\s*n\s*\)/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /constant|O\s*\(\s*1\s*\)/i,
+                      explanation: "The implementation has linear time complexity. Check the walkthrough video for details.",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 4,
+                  title: "Box 4",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /linear|O\s*\(\s*n\s*\)/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /constant|O\s*\(\s*1\s*\)/i,
+                      explanation: "The implementation has linear time complexity. Check the walkthrough video for details.",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 5,
+                  title: "Box 5",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /linear|O\s*\(\s*n\s*\)/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /constant|O\s*\(\s*1\s*\)/i,
+                      explanation: "The implementation has linear time complexity. Check the walkthrough video for details.",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 6,
+                  title: "Box 6",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /linear|O\s*\(\s*n\s*\)/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /constant|O\s*\(\s*1\s*\)/i,
+                      explanation: "The implementation has linear time complexity. Check the walkthrough video for details.",
+                      points: 0
+                    },
+                  ]
+                },
+              ]
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
           },
           mk_postscript: dedent`
             <hr />
@@ -220,7 +338,7 @@ void IntSet::remove(int v) {
         {
           question_id: "lec12_sortedintset_insert",
           title: "Exercise: \`SortedIntSet::insert()\`",
-          points: 3,
+          points: 1,
           mk_description: dedent`
             Implement the \`insert()\` member function for the \`SortedIntSet\` class. If the given value is not already in the set, it should be inserted into the \`elts\` array at the appropriate position to maintain the sorting invariant. Elements greater than the inserted value will need to be shifted to the right to create the space to insert the element. \`elts_size\` should also increase by 1. However, if the value is already in the array, \`insert()\` does nothing.
 
@@ -231,6 +349,20 @@ void IntSet::remove(int v) {
             src: "assets/sortedintset_insert.html",
             element_class: "lobster-iframe",
             element_style: "height: 675px;",
+            default_grader: {
+              grader_kind: "standard_iframe",
+              rubric: [
+                {
+                  points: 1,
+                  description: "Exercise must be complete.",
+                  property: "complete",
+                  value: true,
+                }
+              ]
+            }
+          },
+          verifier: {
+            verifier_kind: "full_credit"
           },
           mk_postscript: dedent`
             <hr />
@@ -263,7 +395,7 @@ void IntSet::remove(int v) {
         {
           question_id: "lec12_fillFromArray",
           title: "Exercise: \`fillFromArray()\` Function Template",
-          points: 3,
+          points: 4,
           mk_description: dedent`
             Fill in the blanks to make the function work as intended (the \`main\` function shows examples).
           `,
@@ -286,14 +418,114 @@ void IntSet::remove(int v) {
                 fillFromArray(set2, arr2, 3); // set2 now contains 'a', 'b'
               }
               \`\`\`
-            `
+            `,
+            default_grader: {
+              grader_kind: "manual_regex_fill_in_the_blank",
+              rubric: [
+                {
+                  blankIndex: 1,
+                  title: "Box 1",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /^\s*(typename|class)\s+[a-zA-Z0-9_]+\s*$/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 2,
+                  title: "Box 2",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /^\s*UnsortedSet\s*<\s*[a-zA-Z0-9_]+\s*>\s*&\s*$/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /^\s*UnsortedSet\s*&\s*<\s*[a-zA-Z0-9_]+\s*>\s*$/i,
+                      explanation: "Almost! Your `&` is misplaced.",
+                      points: 0
+                    },
+                    {
+                      pattern: /^\s*UnsortedSet\s*<\s*[a-zA-Z0-9_]+\s*>\s*$/i,
+                      explanation: "Make sure to pass the `UnsortedSet` by reference to ensure elements are actually added to the original (not just to a local copy).",
+                      points: 0
+                    },
+                    {
+                      pattern: /^\s*UnsortedSet\s*<\s*[a-zA-Z0-9_]+\s*>\s*$/i,
+                      explanation: "Make sure to pass the `UnsortedSet` by reference to ensure elements are actually added to the original (not just to a local copy).",
+                      points: 0
+                    },
+                    {
+                      pattern: /^\s*UnsortedSet\s*$/i,
+                      explanation: "The UnsortedSet parameter will need to specify the element type as well, i.e. `UnsortedSet<____>` with the `____` replaced by your template parameter.",
+                      points: 0
+                    },
+                    {
+                      pattern: /<\s*int\s*>\s*/i,
+                      explanation: "Make sure not to hardcode `<int>` on the `UnsortedSet`. Instead, plug in the type from your template parameter.",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 3,
+                  title: "Box 3",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /^\s*const\s*[a-zA-Z0-9_]+\s*\*\s*$/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /^\s*[a-zA-Z0-9_]+\s*const\s*\*\s*$/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /^\s*[a-zA-Z0-9_]+\s*\*\s*$/i,
+                      explanation: "The element type should be const qualified here since the function does not modify the source array.",
+                      points: 0
+                    },
+                    {
+                      pattern: /\[.*\]/i,
+                      explanation: "Given the placement of the fill-in-the-blank boxes, you'll need to pass the array parameter by pointer (recall that all arrays are ultimately passed this way due to array decay).",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 4,
+                  title: "Box 4",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /.*insert.*arr.*i/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                  ]
+                },
+              ]
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
           },
           mk_postscript: dedent`
             <hr />
             You're welcome to check your solution with this **walkthrough** video:
 
             <div style="text-align: center;">
-              <iframe class="lec-video" src="https://www.youtube.com/embed/Fid4TlI19oI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe class="lec-video" src="https://www.youtube.com/embed/7tyRQjYejw0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <br />
           `
