@@ -14,7 +14,7 @@ export const LECTURE_12 : ExamSpecification = {
   title: "Sorted vs. Unsorted Data Structures, Templates",
   mk_intructions: dedent`
     <div markdown=1 class="alert alert-info">
-      Continuinddg from last time, we'll introduce the notion of **time complexity** to formally analyze the efficiency of operations on the unsorted array-based implementation of a set. Spoiler alert - we'll find this implementation is a bit slow.
+      Continuing from last time, we'll introduce the notion of **time complexity** to formally analyze the efficiency of operations on the unsorted array-based implementation of a set. Spoiler alert - we'll find this implementation is a bit slow.
       
       This leads us to consider another potential implementation of a set, this time based on an underlying array that is kept in sorted order. The addition of a sorting invariant means some of our functions are more complicated (i.e. you can't just put elements wherever), but searching for elements in the array can be done much more efficiently.
 
