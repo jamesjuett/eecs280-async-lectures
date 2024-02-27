@@ -61,11 +61,11 @@ export const LECTURE_SPECS = [
   { spec: LECTURE_22, updated: false, deadline: DateTime.fromISO("2024-04-15", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
 ].map((lec) => {
   let spec = CUSTOMIZE(lec.spec, {
-    mk_intructions: dedent`
-      <div markdown="1" class="alert alert-danger">
-        <p>Due to electrical work affecting a North Campus server room, the participation server is temporarily down. Once it comes back up you'll be able to see your participation credit again.</p>
-      </div>` +
-      lec.spec.mk_intructions,
+    // mk_intructions: dedent`
+    //   <div markdown="1" class="alert alert-danger">
+    //     <p>Due to electrical work affecting a North Campus server room, the participation server is temporarily down. Once it comes back up you'll be able to see your participation credit again.</p>
+    //   </div>` +
+    //   lec.spec.mk_intructions,
     mk_questions_message: MK_QUESTIONS_MESSAGE,
     mk_bottom_message: MK_BOTTOM_MESSAGE,
     mk_download_message: MK_DOWNLOAD_MESSAGE,
