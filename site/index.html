@@ -24,14 +24,17 @@
   </style>
 
   <script>
-    async function on_google_sign_in(response) {
 
-      const email = JSON.parse(atob(response.credential.split(".")[1])).email;
+    const PARTICIPATION_TOKEN_LOCAL_STORAGE_KEY = "examma-ray-participation-token";
+
+    async function updateUser(participation_token) {
+      // const test = JSON.parse(atob(participation_token.split(".")[1])).sub;
+
       const participation_response = await axios({
         url: "https://examma-ray.eecs.umich.edu/public_api/participation/me/",
         method: "GET",
         headers: {
-          'Authorization': response.credential
+          'Authorization': participation_token
         }
       });
 
@@ -43,6 +46,31 @@
         })
       }
     }
+
+    async function on_google_sign_in(response) {
+      const email = JSON.parse(atob(response.credential.split(".")[1])).email;
+      const auth_response = await axios({
+        url: "https://examma-ray.eecs.umich.edu/public_api/participation/auth/",
+        method: "POST",
+        headers: {
+          'Authorization': response.credential
+        }
+      });
+
+      if (auth_response.status === 201) {
+        const participation_token = auth_response.data.participation_token;
+        if (participation_token && participation_token !== "") {
+          localStorage.setItem(PARTICIPATION_TOKEN_LOCAL_STORAGE_KEY, participation_token);
+          updateUser(participation_token);
+        }
+      }
+    }
+
+    const participation_token = localStorage.getItem(PARTICIPATION_TOKEN_LOCAL_STORAGE_KEY);
+    if (participation_token && participation_token !== "") {
+      updateUser(participation_token);
+    }
+    
   </script>
 
 </head>
