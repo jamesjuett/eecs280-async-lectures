@@ -79,6 +79,7 @@ export const LECTURE_SPECS = [
         strategy: "google_local",
         client_id: "444801118749-m2g9gl3gvvkh5ru959dmka0lsk94d9uq.apps.googleusercontent.com",
         // client_id: "444801118749-099920plmkl1s5n5u563pbmu71lo4bot.apps.googleusercontent.com",
+        auth_endpoint: "https://examma-ray.eecs.umich.edu/public_api/participation/auth/",
         message: "Sign in with your @umich.edu Google account to earn participation credit for completing embedded exercises."
       },
       completion: {
