@@ -44,6 +44,9 @@ export const LECTURE_13 : ExamSpecification = {
       section_id: "section_13_1",
       title: "Memory Model and The Heap",
       mk_description: dedent`
+
+        When we define a variable in C++, the lifetime of the corresponding object and the memory it uses at runtime are all managed automatically for us. This specifically applies for both global and local variables, although in different ways.
+
         To start, consider the \`Bird\` class and code in \`main()\` below. \`Bird\` defines a custom constructor (\`Bird()\`) and destructor (\`~Bird()\`) that print out a message when they run. Recall that constructors and destructors are special functions that run at the start/end of an object's lifetime...that means thinking about when these functions run (and print their messages!) is a helpful exercise in thinking precisely about their lifetimes in our code.
 
         Take a moment to mentally trace through the code and predict what you think will be printed. You can use the simulation to check.
@@ -62,8 +65,9 @@ export const LECTURE_13 : ExamSpecification = {
         <br />
 
         To recap:
-         - Dynamically allocated objects are stored in a separate section of memory called the **heap**.
-         - The lifetime of such objects is controlled directly by the code we write (and not automatically managed).
+         - **Global variables** correspond to objects with static storage duration - their lifetime that extends throughout the entire program.
+         - **Local variables** correspond to objects with automatic storage duration - their lifetime is limited to the block (i.e. a set of \`{\` \`}\`) in which they are defined and are automatically cleaned up when they go out of scope.
+         - **Dynamically allocated objects** are stored in a separate section of memory called the **heap**. The lifetime of such objects is controlled directly by the \`new\` and \`delete\` expressions in the code we write (and not automatically managed).
       `,
       questions: [ ],
     },
@@ -89,7 +93,7 @@ export const LECTURE_13 : ExamSpecification = {
         {
           question_id: "lec13_mole_lifetimes",
           title: "Exercise: Dynamic Object Lifetimes",
-          points: 3,
+          points: 6,
           mk_description: dedent`
             Let's add dynamic memory with \`new\` and \`delete\` to another example like the warm up exercise from earlier. Here, we're working with a \`Mole\` class rather than \`Bird\`, since the objects popping in and out of existence in dynamic memory remind me of the old "Whac-a-Mole" arcade game.
             
@@ -151,6 +155,122 @@ int main() {
   </tr>
 </table>
             `,
+            default_grader: {
+              grader_kind: "manual_regex_fill_in_the_blank",
+              rubric: [
+                {
+                  blankIndex: 1,
+                  title: "Box 1",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /1/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /./i,
+                      explanation: "Incorrect. If you get stuck, check the sample solution below.",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 2,
+                  title: "Box 2",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /2/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /./i,
+                      explanation: "Incorrect. If you get stuck, check the sample solution below.",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 3,
+                  title: "Box 3",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /1/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /./i,
+                      explanation: "Incorrect. If you get stuck, check the sample solution below.",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 4,
+                  title: "Box 4",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /3/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /./i,
+                      explanation: "Incorrect. If you get stuck, check the sample solution below.",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 5,
+                  title: "Box 5",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /2/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /./i,
+                      explanation: "Incorrect. If you get stuck, check the sample solution below.",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 6,
+                  title: "Box 6",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /1/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /./i,
+                      explanation: "Incorrect. If you get stuck, check the sample solution below.",
+                      points: 0
+                    },
+                  ]
+                },
+              ]
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
           },
           mk_postscript: dedent`
             <hr />
@@ -198,9 +318,9 @@ int main() {
         {
           question_id: "lec13_memory_leaks",
           title: "Exercise: Memory Leaks",
-          points: 3,
+          points: 5,
           mk_description: dedent`
-            Which of the following programs run out of memory and crash? Assume the program has 8KB of stack space and 4MB of heap space. Assume each \`int\` takes up 4 bytes. Describe the memory use of the program and any problems in the box provided.
+            Which of the following programs run out of memory and crash? Assume the program has 8KB of stack space and 4MB of heap space. Assume each \`int\` takes up 4 bytes. If the program runs out of memory and crashes, write **"crash"** in the box. If the program runs successfully, write **"ok"** in the box. Additionally, justify your answer with a desciption of the memory use of the program. 
           `,
           response: {
             kind: "fill_in_the_blank",
@@ -321,6 +441,111 @@ int main() {
   </tr>
 </table>
             `,
+            sample_solution: [
+              "crash",
+              "ok",
+              "crash",
+              "crash",
+              "ok",
+            ],
+            default_grader: {
+              grader_kind: "manual_regex_fill_in_the_blank",
+              rubric: [
+                {
+                  blankIndex: 1,
+                  title: "Box 1",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /crash|error|memory leak|out of memory/i,
+                      explanation: "The program runs out of heap space. Answer = \"crash\".",
+                      points: 1
+                    },
+                    {
+                      pattern: /ok/i,
+                      explanation: "The program runs out of heap space. Answer = \"crash\".",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 2,
+                  title: "Box 2",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /ok/i,
+                      explanation: "Although the program runs 10,000 iterations of a loop, each iteration reuses the same variables and memory space as the last. Answer = \"ok\".",
+                      points: 1
+                    },
+                    {
+                      pattern: /crash|error|memory leak|out of memory/i,
+                      explanation: "Although the program runs 10,000 iterations of a loop, each iteration reuses the same variables and memory space as the last. Answer = \"ok\".",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 3,
+                  title: "Box 3",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /crash|error|memory leak|out of memory/i,
+                      explanation: "The program runs out of stack space. Answer = \"crash\".",
+                      points: 1
+                    },
+                    {
+                      pattern: /ok/i,
+                      explanation: "The program runs out of stack space. Answer = \"crash\".",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 4,
+                  title: "Box 4",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /crash|error|memory leak|out of memory/i,
+                      explanation: "The program runs out of heap space. Answer = \"crash\".",
+                      points: 1
+                    },
+                    {
+                      pattern: /ok/i,
+                      explanation: "The program runs out of heap space. Answer = \"crash\".",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 5,
+                  title: "Box 5",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /ok/i,
+                      explanation: "The program allocates a large array, but the amount of heap space is sufficient. Answer = \"ok\".",
+                      points: 1
+                    },
+                    {
+                      pattern: /crash|error|memory leak|out of memory/i,
+                      explanation: "The program allocates a large array, but the amount of heap space is sufficient. Answer = \"ok\".",
+                      points: 0
+                    },
+                  ]
+                },
+              ]
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
           },
           mk_postscript: dedent`
             <hr />
@@ -355,11 +580,11 @@ int main() {
         {
           question_id: "lec13_double_free",
           title: "Exercise: Double Frees and Improper Deletes",
-          points: 3,
+          points: 6,
           mk_description: dedent`
             Which of the following programs run out of memory and crash? Assume the program has 8KB of stack space and 4MB of heap space. Assume each \`int\` takes up 4 bytes. Describe the memory use of the program and any problems in the box provided.
 
-            Which of the following programs will likely crash due to one of the two \`delete\` errors mentioned above? If there's a problem, describe it in the box provided.
+            Which of the following programs will likely crash due to one of the two \`delete\` errors mentioned above? If the program contains such an error, write **"crash"** in the box and a description of the problem. If the program runs successfully, write **"ok"** in the box.
           `,
           response: {
             kind: "fill_in_the_blank",
@@ -494,6 +719,130 @@ int main() {
   </tr>
 </table>
             `,
+            sample_solution: [
+              "ok",
+              "crash",
+              "crash",
+              "crash",
+              "crash",
+              "crash",
+            ],
+            default_grader: {
+              grader_kind: "manual_regex_fill_in_the_blank",
+              rubric: [
+                {
+                  blankIndex: 1,
+                  title: "Box 1",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /ok/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /crash|error|memory leak|out of memory/i,
+                      explanation: "Although delete is used on `ptr1` twice, it is pointing at different objects each time and they are appropriately freed. Answer = \"ok\".",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 2,
+                  title: "Box 2",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /crash|error|memory leak|out of memory/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /ok/i,
+                      explanation: "The program crashes due to a double free. Answer = \"crash\".",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 3,
+                  title: "Box 3",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /crash|error|memory leak|out of memory/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /ok/i,
+                      explanation: "The program crashes due to an attempt to delete `x`, which is not on the heap. Answer = \"crash\".",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 4,
+                  title: "Box 4",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /crash|error|memory leak|out of memory/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /ok/i,
+                      explanation: "The `&` should generally not be used with `delete`. In this case, the program crashes due to an attept to delete `ptr1` itself. Answer = \"crash\".",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 5,
+                  title: "Box 5",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /crash|error|memory leak|out of memory/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /ok/i,
+                      explanation: "The program crashes due to a double free. Answer = \"crash\".",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 6,
+                  title: "Box 6",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /crash|error|memory leak|out of memory/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /ok/i,
+                      explanation: "The program crashes due to a double free. Answer = \"crash\".",
+                      points: 0
+                    },
+                  ]
+                },
+              ]
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
           },
           mk_postscript: dedent`
             <hr />
@@ -525,10 +874,10 @@ int main() {
         }
         \`\`\`
 
-        However, dangling pointers naturally arise any time we \`delete\` dynamic memory. That's ok, but we do have to be careful not to accidentally use them.
+        However, dangling pointers naturally arise any time we \`delete\` dynamic memory, and we have to be careful not to accidentally use them. This turns out to be somewhat complex.
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/ce8NcPvXoM4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/orIlmEIltYo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
       `,

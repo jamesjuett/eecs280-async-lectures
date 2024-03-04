@@ -49,7 +49,7 @@ export const LECTURE_SPECS = [
   { spec: LECTURE_10, updated: true },
   { spec: LECTURE_11, updated: true, deadline: DateTime.fromISO("2024-02-19", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
   { spec: LECTURE_12, updated: true, deadline: DateTime.fromISO("2024-02-21", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
-  { spec: LECTURE_13, updated: false, deadline: DateTime.fromISO("2024-03-4", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
+  { spec: LECTURE_13, updated: true, deadline: DateTime.fromISO("2024-03-4", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
   { spec: LECTURE_14, updated: false, deadline: DateTime.fromISO("2024-03-6", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
   { spec: LECTURE_15, updated: false, deadline: DateTime.fromISO("2024-03-11", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
   { spec: LECTURE_16, updated: false, deadline: DateTime.fromISO("2024-03-18", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
