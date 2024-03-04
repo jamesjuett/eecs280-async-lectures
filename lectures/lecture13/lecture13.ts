@@ -874,10 +874,10 @@ int main() {
         }
         \`\`\`
 
-        However, dangling pointers naturally arise any time we \`delete\` dynamic memory. That's ok, but we do have to be careful not to accidentally use them.
+        However, dangling pointers naturally arise any time we \`delete\` dynamic memory, and we have to be careful not to accidentally use them. This turns out to be somewhat complex.
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/ce8NcPvXoM4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/orIlmEIltYo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
       `,
