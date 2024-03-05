@@ -50,7 +50,7 @@ export const LECTURE_14 : ExamSpecification = {
         {
           question_id: "lec14_warm_up",
           title: "Exercise: Warm Up",
-          points: 3,
+          points: 1,
           mk_description: "",
           response: {
             kind: "fill_in_the_blank",
@@ -80,6 +80,27 @@ export const LECTURE_14 : ExamSpecification = {
               
               ]]
             `,
+            default_grader: {
+              grader_kind: "manual_regex_fill_in_the_blank",
+              rubric: [
+                {
+                  blankIndex: 1,
+                  title: "Box 1",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /.{30,}/i,
+                      explanation: "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer!",
+                      points: 1
+                    },
+                  ]
+                },
+              ]
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
           },
           mk_postscript: dedent`
             <hr />
@@ -116,9 +137,9 @@ export const LECTURE_14 : ExamSpecification = {
         {
           question_id: "lec14_raii",
           title: "Exercise: RAII and Memory Management",
-          points: 3,
+          points: 4,
           mk_description: dedent`
-            Which of these functions leak memory? Write either "ok" or "memory leak", as well as a brief justification. You should assume the constructors and destructor for \`UnsortedSet\` are defined (correctly) as described above for \`DynamicIntArray\`, such that the constructor and destructor take care of creating and destroying the internal array used to store set elements.
+            Which of these functions leak memory? Write either **"ok"** or **"memory leak"**, as well as a brief justification. You should assume the constructors and destructor for \`UnsortedSet\` are defined (correctly) as described above for \`DynamicIntArray\`, such that the constructor and destructor take care of creating and destroying the internal array used to store set elements.
           `,
           response: {
             kind: "fill_in_the_blank",
@@ -208,6 +229,92 @@ void func() {
   </tr>
 </table>
             `,
+            sample_solution: [
+              "ok",
+              "memory leak",
+              "memory leak",
+              "ok",
+            ],
+            default_grader: {
+              grader_kind: "manual_regex_fill_in_the_blank",
+              rubric: [
+                {
+                  blankIndex: 1,
+                  title: "Box 1",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /ok/i,
+                      explanation: "The code here does not use `new`, and we presume the `UnsortedSet` class manages its memory correctly. Answer = \"ok\".",
+                      points: 1
+                    },
+                    {
+                      pattern: /memory ?-?leak/i,
+                      explanation: "The code here does not use `new`, and we presume the `UnsortedSet` class manages its memory correctly. Answer = \"ok\".",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 2,
+                  title: "Box 2",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /memory ?-?leak/i,
+                      explanation: "The code allocates integers with `new` and stores the pointers in the set. However, the `UnsortedSet` will only clean up the memory for its internal array, not these additional integers we created. Answer = \"memory leak\".",
+                      points: 1
+                    },
+                    {
+                      pattern: /ok/i,
+                      explanation: "The code allocates integers with `new` and stores the pointers in the set. However, the `UnsortedSet` will only clean up the memory for its internal array, not these additional integers we created. Answer = \"memory leak\".",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 3,
+                  title: "Box 3",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /memory ?-?leak/i,
+                      explanation: "In this case, the `UnsortedSet` itself is allocated on the heap with `new`, but not deleted. Although `UnsortedSet` manages its internal memory correctly, the problem is the set overall is never destroyed. Answer = \"memory leak\".",
+                      points: 1
+                    },
+                    {
+                      pattern: /ok/i,
+                      explanation: "In this case, the `UnsortedSet` itself is allocated on the heap with `new`, but not deleted. Although `UnsortedSet` manages its internal memory correctly, the problem is the set overall is never destroyed. Answer = \"memory leak\".",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 4,
+                  title: "Box 4",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /ok/i,
+                      explanation: "This contrasts to the previous example by adding the appropriate `delete` operation. Answer = \"ok\".",
+                      points: 1
+                    },
+                    {
+                      pattern: /memory ?-?leak/i,
+                      explanation: "This contrasts to the previous example by adding the appropriate `delete` operation. Answer = \"ok\".",
+                      points: 0
+                    },
+                  ]
+                },
+              ]
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
           },
           mk_postscript: dedent`
             <hr />
@@ -238,7 +345,7 @@ void func() {
         {
           question_id: "lec14_unsortedintset_grow",
           title: "Exercise: \`UnsortedIntSet::grow()\`",
-          points: 3,
+          points: 1,
           mk_description: dedent`
             Fill in the code for the \`grow()\` function for \`UnsortedIntSet\` using the algorithm described in the video (it is also repeated in the comments above the function in the code below).
 
@@ -249,6 +356,20 @@ void func() {
             src: "assets/unsortedintset_grow.html",
             element_class: "lobster-iframe",
             element_style: "height: 675px;",
+            default_grader: {
+              grader_kind: "standard_iframe",
+              rubric: [
+                {
+                  points: 1,
+                  description: "Exercise must be complete.",
+                  property: "complete",
+                  value: true,
+                }
+              ]
+            }
+          },
+          verifier: {
+            verifier_kind: "full_credit"
           },
           mk_postscript: dedent`
             <hr />

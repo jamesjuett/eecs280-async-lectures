@@ -200,22 +200,17 @@ $(() => {
 
         let extras = [(program: Program) => {
 
-          // let rect_class = findConstructs(program.translationUnits["code"], Predicates.byKind("class_definition")).find(c => c.name === "Rectangle");
-          // if (!rect_class) {
-          //     return false;
-          // }
-          
-          // rect_class.constructors.forEach(ctor => {
-          //   const decl = ctor.firstDeclaration;
-          //   if (isMemberSpecificationContext(decl.context) && decl.context.accessLevel == "private") {
-          //     decl.addNote(
-          //       new CompilerNote(
-          //         decl, NoteKind.STYLE, "lec9.rectangle.1",
-          //         `Make sure to declare constructors in the public section, otherwise they won't be usable from outside the class.`
-          //       )
-          //     );
-          //   }
-          // });
+          let delete_exps = findConstructs(program.translationUnits["code"], Predicates.byKind("delete_expression"));
+          if (!delete_exps) {
+              return false;
+          }
+
+          delete_exps.forEach(e => e.addNote(
+            new CompilerNote(
+              e, NoteKind.STYLE, "lec14.delete.1",
+              "Double check that you're using `delete` in the correct place and using the correct form of `delete`. If you're planning to delete an array, use \`delete[]\` instead."
+            )
+          ));
 
         }];
 
