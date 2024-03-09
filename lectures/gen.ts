@@ -51,7 +51,7 @@ export const LECTURE_SPECS = [
   { spec: LECTURE_12, updated: true, deadline: DateTime.fromISO("2024-02-21", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
   { spec: LECTURE_13, updated: true, deadline: DateTime.fromISO("2024-03-04", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
   { spec: LECTURE_14, updated: true, deadline: DateTime.fromISO("2024-03-06", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
-  { spec: LECTURE_15, updated: false, deadline: DateTime.fromISO("2024-03-11", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
+  { spec: LECTURE_15, updated: true, deadline: DateTime.fromISO("2024-03-11", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
   { spec: LECTURE_16, updated: false, deadline: DateTime.fromISO("2024-03-18", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
   { spec: LECTURE_17, updated: false, deadline: DateTime.fromISO("2024-03-20", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
   { spec: LECTURE_18, updated: false, deadline: DateTime.fromISO("2024-03-25", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },

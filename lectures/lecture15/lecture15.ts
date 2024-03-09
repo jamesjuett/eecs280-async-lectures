@@ -6,7 +6,25 @@ import dedent from "ts-dedent";
 import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_MESSAGE } from "../../common/messages";
 
 
+const BIG_THREE_SOLUTIONS = [
+  "ctor a",
+  "ctor b",
+  "ctor c",
+  "copy ctor b",
+  "copy ctor a",
+  "dtor a",
+  "dtor b",
+  "copy ctor c",
+  "assign c.*c",
+  "dtor c",
+  "dtor c",
+  "dtor b",
+  "dtor a",
+];
 
+const BIG_THREE_PATTERNS = BIG_THREE_SOLUTIONS.map(
+  sol => "[\\s\\n]*" + sol.replace(/ /g, "[\\s\\n]*") + "[\\s\\n]*"
+);
 
 
 export const LECTURE_15 : ExamSpecification = {
@@ -48,15 +66,17 @@ export const LECTURE_15 : ExamSpecification = {
         {
           question_id: "lec15_warm_up",
           title: "Exercise: Warm Up",
-          points: 3,
+          points: 1,
           mk_description: "",
           response: {
             kind: "fill_in_the_blank",
             content: dedent`
               
-              Consider the code below. We've got a copy of the \`UnsortedIntSet\` class from previous lectures, which we've recently upgraded to use a pointer to a dynamically allocated array (instead of storing the array directly).
+              Consider the code below for the \`UnsortedIntSet\` class from previous lectures, which we've recently upgraded to use a pointer to a dynamically allocated array (instead of storing the array directly).
 
-              The code also contains a \`main()\` function that creates two sets. Two elements are added to the first set, \`s1\`. Then, a second set \`s2\` is created as a copy of \`s1\`.
+              The code also contains a \`main()\` function that creates two sets:
+              - The first set, \`s1\`, is default-constructed and we add some elements to it.
+              - Then, a second set \`s2\` is created as a copy of \`s1\`.
 
               Go ahead and run the lobster simulation (you can just click "run" to skip all the way to the end). Then, observe the contents of memory and the structure of the two sets. Can you identify any potential problems that might lead to unintuitive behavior?
 
@@ -70,6 +90,27 @@ export const LECTURE_15 : ExamSpecification = {
                 <iframe class="lobster-iframe" style="height: 600px;" src="assets/shallow_copy.html"></iframe>
               </div>
             `,
+            default_grader: {
+              grader_kind: "manual_regex_fill_in_the_blank",
+              rubric: [
+                {
+                  blankIndex: 1,
+                  title: "Box 1",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /.{30,}/i,
+                      explanation: "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer!",
+                      points: 1
+                    },
+                  ]
+                },
+              ]
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
           },
           mk_postscript: dedent`
             <hr />
@@ -99,7 +140,7 @@ export const LECTURE_15 : ExamSpecification = {
         {
           question_id: "lec15_shallow_copy_grow",
           title: "Exercise: Shallow Copy Problems",
-          points: 3,
+          points: 2,
           mk_description: dedent`
             Consider the code for \`UnsortedSet\` below. The implicitly-defined copy constructor is used for the line \`UnsortedSet<int> s2 = s1;\` in \`main()\`, but this only performs a shallow copy, which results in some problems.
           `,
@@ -168,6 +209,7 @@ int main() {
   cout << s1 << endl; // THIS LINE
 }
 \`\`\`
+test
     </div>
     </td>
     <td></td>
@@ -187,6 +229,8 @@ int main() {
   cout << s2 << endl;
 }
 \`\`\`
+
+Write the specific kind of memory error that will occur on the line above and explain why it occurs.
     </div>
     </td>
   </tr>
@@ -213,6 +257,40 @@ int main() {
   </tr>
 </table>
             `,
+            default_grader: {
+              grader_kind: "manual_regex_fill_in_the_blank",
+              rubric: [
+                {
+                  blankIndex: 1,
+                  title: "Box 1",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /.{45,}/i,
+                      explanation: "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer!",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 2,
+                  title: "Box 2",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /.{45,}/i,
+                      explanation: "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer!",
+                      points: 1
+                    },
+                  ]
+                },
+              ]
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
           },
           mk_postscript: dedent`
             <hr />
@@ -243,7 +321,7 @@ int main() {
         {
           question_id: "lec15_unsortedintset_copy_ctor",
           title: "Exercise: \`UnsortedIntSet\` Copy Constructor",
-          points: 3,
+          points: 1,
           mk_description: dedent`
             Implement a custom copy constructor for \`UnsortedIntSet\`. Your implementation should ensure that a deep copy of the dynamically allocated array is made, following these steps:
 
@@ -260,6 +338,20 @@ int main() {
             src: "assets/unsortedintset_copy_ctor.html",
             element_class: "lobster-iframe",
             element_style: "height: 675px;",
+            default_grader: {
+              grader_kind: "standard_iframe",
+              rubric: [
+                {
+                  points: 1,
+                  description: "Exercise must be complete.",
+                  property: "complete",
+                  value: true,
+                }
+              ]
+            }
+          },
+          verifier: {
+            verifier_kind: "full_credit"
           },
           mk_postscript: dedent`
             <hr />
@@ -291,7 +383,7 @@ int main() {
         {
           question_id: "lec15_unsortedintset_assignment_op",
           title: "Exercise: \`UnsortedIntSet\` Assignment Operator",
-          points: 3,
+          points: 1,
           mk_description: dedent`
             Implement a custom copy constructor for \`UnsortedIntSet\`. Your implementation should ensure that a deep copy of the dynamically allocated array is made, following these steps:
 
@@ -309,6 +401,20 @@ int main() {
             src: "assets/unsortedintset_assignment_op.html",
             element_class: "lobster-iframe",
             element_style: "height: 675px;",
+            default_grader: {
+              grader_kind: "standard_iframe",
+              rubric: [
+                {
+                  points: 1,
+                  description: "Exercise must be complete.",
+                  property: "complete",
+                  value: true,
+                }
+              ]
+            }
+          },
+          verifier: {
+            verifier_kind: "full_credit"
           },
           mk_postscript: dedent`
             <hr />
@@ -338,13 +444,15 @@ int main() {
         {
           question_id: "lec15_big_three",
           title: "Exercise: The Big Three",
-          points: 3,
+          points: BIG_THREE_PATTERNS.length,
           mk_description: "",
           response: {
             kind: "fill_in_the_blank",
             content: dedent`
               
               Determine what is printed by the following code. To do this, you'll need to think about where each of the Big Three are used by the code in the main program. Record your prediction in the box at the right. You can use the simulation to double check your answer.
+
+              _**Note**: The run button in the simulation automatically pauses at the end of main. If you want to see all the output, including the destructors that run as main ends, you can click "run", "step", then "run" again._
 
               <table>
                 <tr>
@@ -355,15 +463,31 @@ int main() {
                   </td>
                   <td>
                     Record your predicted output here.
-                    [[BOX
-                    \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
-                    
-                    
-                    ]]
+
+                    ${BIG_THREE_PATTERNS.map(_ => "_BLANK___________________").join("\n")}
                   </td>
                 </tr>
               </table>
             `,
+            default_grader: {
+              grader_kind: "manual_regex_fill_in_the_blank",
+              rubric: BIG_THREE_PATTERNS.map((pattern, i) => ({
+                blankIndex: i+1,
+                title: `Box ${i+1}`,
+                points: 1,
+                description: "",
+                patterns: [
+                  {
+                    pattern: new RegExp(pattern, "i"),
+                    explanation: `Correct!`,
+                    points: 1
+                  }
+                ]
+              }))
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
           },
           mk_postscript: dedent`
             <hr />
