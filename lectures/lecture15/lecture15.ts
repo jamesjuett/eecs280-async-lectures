@@ -209,7 +209,6 @@ int main() {
   cout << s1 << endl; // THIS LINE
 }
 \`\`\`
-test
     </div>
     </td>
     <td></td>
@@ -229,8 +228,6 @@ int main() {
   cout << s2 << endl;
 }
 \`\`\`
-
-Write the specific kind of memory error that will occur on the line above and explain why it occurs.
     </div>
     </td>
   </tr>
