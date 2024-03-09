@@ -79160,6 +79160,7 @@ const checkpoints_1 = __webpack_require__(7939);
 const predicates_1 = __webpack_require__(7227);
 const analysis_1 = __webpack_require__(1112);
 const ts_dedent_1 = __importDefault(__webpack_require__(1893));
+const errors_1 = __webpack_require__(9221);
 $(() => {
     var _a;
     $(".lobster-ex").each(function () {
@@ -79335,21 +79336,11 @@ $(() => {
             exerciseSpec.starterCode = initCode;
         }
         let extras = [(program) => {
-                // let rect_class = findConstructs(program.translationUnits["code"], Predicates.byKind("class_definition")).find(c => c.name === "Rectangle");
-                // if (!rect_class) {
-                //     return false;
-                // }
-                // rect_class.constructors.forEach(ctor => {
-                //   const decl = ctor.firstDeclaration;
-                //   if (isMemberSpecificationContext(decl.context) && decl.context.accessLevel == "private") {
-                //     decl.addNote(
-                //       new CompilerNote(
-                //         decl, NoteKind.STYLE, "lec9.rectangle.1",
-                //         `Make sure to declare constructors in the public section, otherwise they won't be usable from outside the class.`
-                //       )
-                //     );
-                //   }
-                // });
+                let delete_exps = (0, analysis_1.findConstructs)(program.translationUnits["code"], predicates_1.Predicates.byKind("delete_expression"));
+                if (!delete_exps) {
+                    return false;
+                }
+                delete_exps.forEach(e => e.addNote(new errors_1.CompilerNote(e, errors_1.NoteKind.STYLE, "lec14.delete.1", "Double check that you're using `delete` in the correct place and using the correct form of `delete`. If you're planning to delete an array, use \`delete[]\` instead.")));
             }];
         let project = new Project_1.Project("project", undefined, [{ name: filename, code: exerciseSpec.starterCode, isTranslationUnit: true }], new Project_1.Exercise(exerciseSpec), extras);
         project.turnOnAutoCompile(500);
