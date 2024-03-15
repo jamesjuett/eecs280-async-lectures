@@ -13,6 +13,10 @@ export const LECTURE_16 : ExamSpecification = {
   exam_id: "lec_16_linked_lists",
   title: "Linked Lists",
   mk_intructions: `
+
+<div markdown=1 class="alert alert-danger">
+  The contents of this lecture will **change significantly** to better match changes to the structure of the linked list implemented in the new project 4. I highly recommend waiting until it is updated.
+</div>
 <div markdown=1 class="alert alert-info">
 Most any data structure uses one of two fundamental approaches in its underlying data representation:
 

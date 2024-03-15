@@ -13,6 +13,10 @@ export const LECTURE_17 : ExamSpecification = {
   exam_id: "lec_17_iterators",
   title: "Iterators",
   mk_intructions: `
+    
+<div markdown=1 class="alert alert-danger">
+  The contents of this lecture will **change significantly** to better match changes to the structure of the linked list implemented in the new project 4. I highly recommend waiting until it is updated.
+</div>
 <div markdown=1 class="alert alert-info">
 Abstraction is quite likely the most powerful tool in programming. We've seen it applied as "procedural abstraction" (i.e. functions) and in "abstract data types" (i.e. classes), and we'll add another today - abstracting the process of "iteration" or "traversal" over a sequence or a container.
 
