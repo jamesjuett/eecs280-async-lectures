@@ -416,7 +416,7 @@ We've previously covered the contiguous memory approach. In this lecture, we'll 
         One more thing - since our class manages dynamically allocated nodes, we'll need custom implementations of "the big three".
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/lCcVoYQGQn0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/QYjqEOEuSes" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
 
