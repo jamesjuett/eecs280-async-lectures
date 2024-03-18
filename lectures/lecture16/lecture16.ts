@@ -385,7 +385,7 @@ We've previously covered the contiguous memory approach. In this lecture, we'll 
           response: {
             kind: "multiple_choice",
             choices: [
-              "For a singly-linked list, it is impossible to implement a `pop_back()` function in constant time, even if the list is doubly-ended (i.e. it has a `last` pointer).",
+              "For a singly-linked list, it is impossible to implement a `pop_back()` function in constant time, even if the list is double-ended (i.e. it has a `last` pointer).",
               "For a doubly-linked list, the time complexity of some operations is worse (i.e. becomes linear instead of constant) due to the addition of \"previous\" pointers.)",
               "Determining the size of a linked list by iterating and counting next pointers has linear time complexity.",
               "Iterating both forward and backward is possible with a doubly-linked list.",
