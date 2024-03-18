@@ -105,7 +105,7 @@ We've previously covered the contiguous memory approach. In this lecture, we'll 
                   description: "",
                   patterns: [
                     {
-                      pattern: /.{50,}/i,
+                      pattern: /(.|\n){50,}/i,
                       explanation: "This is just graded for completion. Make sure to check back through the original video if you're not sure about your answer.",
                       points: 1
                     },
@@ -118,7 +118,7 @@ We've previously covered the contiguous memory approach. In this lecture, we'll 
                   description: "",
                   patterns: [
                     {
-                      pattern: /.{50,}/i,
+                      pattern: /(.|\n){50,}/i,
                       explanation: "This is just graded for completion. Make sure to check back through the original video if you're not sure about your answer.",
                       points: 1
                     },
@@ -190,7 +190,7 @@ We've previously covered the contiguous memory approach. In this lecture, we'll 
                   description: "",
                   patterns: [
                     {
-                      pattern: /.{50,}/i,
+                      pattern: /(.|\n){50,}/i,
                       explanation: "This is just graded for completion. Check the sample solution if you're not sure about your answer!",
                       points: 1
                     },
