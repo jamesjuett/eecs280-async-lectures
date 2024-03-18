@@ -14,16 +14,13 @@ export const LECTURE_16 : ExamSpecification = {
   title: "Linked Lists",
   mk_intructions: `
 
-<div markdown=1 class="alert alert-danger">
-  The contents of this lecture will **change significantly** to better match changes to the structure of the linked list implemented in the new project 4. I highly recommend waiting until it is updated.
-</div>
 <div markdown=1 class="alert alert-info">
 Most any data structure uses one of two fundamental approaches in its underlying data representation:
 
 - **Contiguous memory**: store elements next to each other in memory (i.e. in an array)
 - **Linked structures**: store elements separately from each other, connected together via pointers
 
-We've previously covered the contiguous memory approach. In this lecture, we'll begin to explore linked structures. As an initial example, we'll implement a **linked list** - a sequential, ordered container that functions kind of like a vector. It turns out that linked lists have somewhat limited practical applications themselves, but they serve as good starting point to practice the mechanics of linked structures and to introduce some of the fundamental contrasts in efficiency of operations between contiguous memory and linked structures.
+We've previously covered the contiguous memory approach. In this lecture, we'll begin to explore linked structures. As an initial example, we'll implement a **linked list**.
 </div>
 <style>
   .lec-video {
@@ -50,90 +47,108 @@ We've previously covered the contiguous memory approach. In this lecture, we'll 
   sections: [
     {
       section_id: "section_16_1",
-      title: "Warm Up Exercise",
-      mk_description: "",
+      title: "Sequential Containers and Data Structures",
+      mk_description: dedent`
+        First, let's acknowledge the kinds of **sequential containers** we'd like to build and the applications they're used for.
+
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/ImchR43lyN8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
+      `,
+      questions: [],
+    },
+    {
+      section_id: "section_16_2",
+      title: "Arrays vs. Linked Lists",
+      mk_description: dedent`
+        The underlying data structures for these containers must either use **contiguous memory** or **linked structures**. Let's take a close look at each approach and compare/contrast the efficiency of several common operations.
+
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/ZRhqG8pmYWM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
+      `,
       questions: [
         {
           question_id: "lec16_warm_up",
-          title: "Exercise: Warm Up",
-          points: 3,
+          title: "Exercise: Arrays vs. Linked Structures",
+          points: 2,
           mk_description: "",
           response: {
             kind: "fill_in_the_blank",
             content: dedent`
               
-              Arrays and vectors are sequential containers that allow us to maintain elements in a particular order (not necessarily sorted, but we do care about order, unlike in a set.)
+              Describe one of the operations that can be performed more efficiently on an array than on a linked list. Why is this the case and what are the relevant time complexities?
 
-              The way that arrays and vectors maintain the sequence is straightforward - literally, the elements are stored contiguously in memory, and to iterate through them in order you just walk straight forward through memory, either through traversal by index or traversal by pointer.
+              [[BOX
+              
+              
 
-              Storing data contiguously in memory makes some operations quite efficient, but makes others less efficient since we have to shift elements around to maintain the contiguous ordering.
+              ]]
               
-              Consider the following operations, and determine their time complexity (either $$O(1)$$ constant or $$O(n)$$ linear).
-            
-              <table style="border: none;">
-                <tr>
-                  <td style="vertical-align: middle;"><b>A</b></td>
-                  <td style="vertical-align: middle;">_BLANK_________</td>
-                  <td style="vertical-align: middle;">Finding an element at a given index <code>i</code></td>
-                </tr>
-                <tr>
-                  <td style="vertical-align: middle;"><b>B</b></td>
-                  <td style="vertical-align: middle;">_BLANK_________</td>
-                  <td style="vertical-align: middle;">Iterating through all of the elements in an array</td>
-                </tr>
-                <tr>
-                  <td style="vertical-align: middle;"><b>C</b></td>
-                  <td style="vertical-align: middle;">_BLANK_________</td>
-                  <td style="vertical-align: middle;">Adding an element to the back of a sequence stored in an array (assuming the array is not full)</td>
-                </tr>
-                <tr>
-                  <td style="vertical-align: middle;"><b>D</b></td>
-                  <td style="vertical-align: middle;">_BLANK_________</td>
-                  <td style="vertical-align: middle;">Adding an element to the back of a full array, where you have to reallocate a new, bigger one and copy the elements over</td>
-                </tr>
-                <tr>
-                  <td style="vertical-align: middle;"><b>E</b></td>
-                  <td style="vertical-align: middle;">_BLANK_________</td>
-                  <td style="vertical-align: middle;">Adding an element to the front of a sequence stored in an array (assuming the array is not full)</td>
-                </tr>
-                <tr>
-                  <td style="vertical-align: middle;"><b>F</b></td>
-                  <td style="vertical-align: middle;">_BLANK_________</td>
-                  <td style="vertical-align: middle;">Inserting an element in the middle of an array</td>
-                </tr>
-              </table>
+              Describe one of the operations that can be performed more efficiently on a linked list than on an array. Why is this the case and what are the relevant time complexities?
+
+              [[BOX
               
-              <br />
-              Hypothetically, let's say we could store elements of the sequence non-contiguously in memory. Which operations above would become **less** efficient, **more** efficient, or stay the **same**?
               
-              <b>A</b> _BLANK____ &nbsp;&nbsp;
-              <b>B</b> _BLANK____ &nbsp;&nbsp;
-              <b>C</b> _BLANK____ &nbsp;&nbsp;
-              <b>D</b> _BLANK____ &nbsp;&nbsp;
-              <b>E</b> _BLANK____ &nbsp;&nbsp;
-              <b>F</b> _BLANK____ &nbsp;&nbsp;
+
+              ]]
             `,
+            default_grader: {
+              grader_kind: "manual_regex_fill_in_the_blank",
+              rubric: [
+                {
+                  blankIndex: 1,
+                  title: "Box 1",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /.{50,}/i,
+                      explanation: "This is just graded for completion. Make sure to check back through the original video if you're not sure about your answer.",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 2,
+                  title: "Box 2",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /.{50,}/i,
+                      explanation: "This is just graded for completion. Make sure to check back through the original video if you're not sure about your answer.",
+                      points: 1
+                    },
+                  ]
+                },
+              ]
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
           },
           mk_postscript: dedent`
             <hr />
-            You're welcome to check your solution with this **walkthrough** video:
+            There is no walkthrough video for this question, but you can refer back to the video above for examples.
 
-            <div style="text-align: center;">
-              <iframe class="lec-video" src="https://www.youtube.com/embed/3vqF8Y4eUow" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
             <br />
           `
         }
       ],
     },
     {
-      section_id: "section_16_2",
+      section_id: "section_16_3",
       title: "Intro to Linked Lists",
       mk_description: dedent`
-        Here we'll introduce the **Linked List**, which is the simplest realization of a linked data structure. The key idea is that we store each piece of data in the list separately in memory (and not necessarily contiguously!) and keep them connected using pointers.
+        Here we'll consider building an ADT for a linked **Linked List**, which is the simplest linked data structure. The key idea is that we implement a sequential container by storing several nodes (each individually allocated in dynamic memory) that contain element values and a pointer to the next node in the sequence. There's no requirement that the nodes are contiguous in memory.
+
+        Specifically, we'll start with a "singly-linked, single-ended" list, which we'll call \`ForwardList\` (since we can only traverse it in a forward direction).
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/c7Glq0Q7urw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/2H26k6Xd7E4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
       `,
@@ -141,7 +156,7 @@ We've previously covered the contiguous memory approach. In this lecture, we'll 
         {
           question_id: "lec16_linked_list_representation_invariants",
           title: "Exercise: Linked List Representation Invariants",
-          points: 3,
+          points: 1,
           mk_description: dedent`
             Here again is the basic data representation for a linked list:
 
@@ -165,6 +180,27 @@ We've previously covered the contiguous memory approach. In this lecture, we'll 
               ]]
 
             `,
+            default_grader: {
+              grader_kind: "manual_regex_fill_in_the_blank",
+              rubric: [
+                {
+                  blankIndex: 1,
+                  title: "Box 1",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /.{50,}/i,
+                      explanation: "This is just graded for completion. Check the sample solution if you're not sure about your answer!",
+                      points: 1
+                    },
+                  ]
+                },
+              ]
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
           },
           mk_postscript: dedent`
             <hr />
@@ -174,7 +210,7 @@ We've previously covered the contiguous memory approach. In this lecture, we'll 
               - \`first\` is either null (indicating an empty list) or points to a valid \`Node\`.  
               - In the last \`Node\`, \`next\` is always null (i.e. has the value \`0x0\`).  
               - For all other \`Node\`s, next points to another \`Node\`.  
-              - A \`Node\` may never point to itself.  
+              - A \`Node\` may never point to itself. There may be no cycles of \`next\` pointers.  
 
             </details>
           `
@@ -182,14 +218,14 @@ We've previously covered the contiguous memory approach. In this lecture, we'll 
       ],
     },
     {
-      section_id: "section_16_3",
+      section_id: "section_16_4",
       title: "Linked List Implementation",
       mk_description: dedent`
 
-        Let's keep working on the \`IntList\` class and fill in the implementations of several key functions.
+        Let's keep working on the \`ForwardList\` class and fill in the implementations of several key functions.
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/rsnOd2rpQVg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/H6T0hK2Pw9s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
 
@@ -197,20 +233,21 @@ We've previously covered the contiguous memory approach. In this lecture, we'll 
       questions: [
         {
           question_id: "lec16_pop_front",
-          title: "Exercise: \`IntList::pop_front()\`",
-          points: 3,
+          title: "Exercise: \`ForwardList::pop_front()\`",
+          points: 1,
           mk_description: dedent`
-            Implement the \`pop_front()\` member function for the IntList class, which removes the front element from the list. Your implementation should ensure the Node for this element is properly deleted to prevent a memory leak, but you will also need to be careful to avoid undefined behavior! _(Hint: For linked list coding, it is VERY helpful to draw a picture.)_
+            Implement the \`pop_front()\` member function for the ForwardList class, which removes the front element from the list. Your implementation should ensure the Node for this element is properly deleted to prevent a memory leak, but you will also need to be careful to avoid undefined behavior! _(Hint: For linked list coding, it is VERY helpful to draw a picture.)_
           `,
           response: {
             kind: "code_editor",
             codemirror_mime_type: "text/x-c++src",
             code_language: "cpp",
             header: dedent`
-              class IntList {
+              template <typename T>
+              class ForwardList {
               private:
                 struct Node {
-                  int datum;
+                  T datum;
                   Node *next;
                 };
                 Node *first;
@@ -223,13 +260,21 @@ We've previously covered the contiguous memory approach. In this lecture, we'll 
                 }
               };
             `,
-            starter: "",
+            starter: "// This exercise is not automatically graded.\n// However, getting a correct answer is a bit tricky.\n// I highly suggest you check the walkthrough video.",
             sample_solution: dedent`
               assert(!empty());
               Node* victim = first;
               first = first->next;
               delete victim;
-            `
+            `,
+            default_grader: {
+              grader_kind: "freebie",
+              points: 1,
+              allow_blanks: false,
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
           },
           mk_postscript: dedent`
             <hr />
@@ -244,14 +289,14 @@ We've previously covered the contiguous memory approach. In this lecture, we'll 
       ],
     },
     {
-      section_id: "section_16_4",
+      section_id: "section_16_5",
       title: "Traversing a Linked List",
       mk_description: dedent`
 
-        With a data structure based on contiguous memory, walking through increasing indices or addresses is a natural approach. With a linked structure, however, this doesn't work (it was predicated on the contiguous memory assumption). Instead, we have to follow \`next\` pointers to traverse from one node to the next.
+        With a data structure based on contiguous memory, walking through increasing indices or addresses is a natural approach. With a linked structure, however, this doesn't work (we can't rely on the contiguous memory assumption anymore). Instead, we have to follow \`next\` pointers to traverse from one node to the next.
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/rVJM2DoxXuw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/yZdgKYELFJE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
 
@@ -259,8 +304,8 @@ We've previously covered the contiguous memory approach. In this lecture, we'll 
       questions: [
         {
           question_id: "lec16_print",
-          title: "Exercise: \`IntList::print()\`",
-          points: 3,
+          title: "Exercise: \`ForwardList::print()\`",
+          points: 1,
           mk_description: dedent`
             Implement the \`print()\` member function, using traversal via \`next\` pointers.
           `,
@@ -269,10 +314,11 @@ We've previously covered the contiguous memory approach. In this lecture, we'll 
             codemirror_mime_type: "text/x-c++src",
             code_language: "cpp",
             header: dedent`
-              class IntList {
+              template <typename T>
+              class ForwardList {
               private:
                 struct Node {
-                  int datum;
+                  T datum;
                   Node *next;
                 };
                 Node *first;
@@ -286,19 +332,27 @@ We've previously covered the contiguous memory approach. In this lecture, we'll 
                 }
               };
             `,
-            starter: "",
+            starter: "// This exercise is not automatically graded.\n// You can check your solution against the walkthrough video.",
             sample_solution: dedent`
               for(Node *ptr = first; ptr; ptr = ptr->next) {
                 cout << ptr->datum << endl;
               }
-            `
+            `,
+            default_grader: {
+              grader_kind: "freebie",
+              points: 1,
+              allow_blanks: false,
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
           },
           mk_postscript: dedent`
             <hr />
-            You're welcome to check your solution with this **walkthrough** video:
+            You're welcome to check your solution with this **walkthrough** video: 
 
             <div style="text-align: center;">
-              <iframe class="lec-video" src="https://www.youtube.com/embed/yzL0w-hhUl4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe class="lec-video" src="https://www.youtube.com/embed/8q0GZsjDsGU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <br />
           `
@@ -306,17 +360,63 @@ We've previously covered the contiguous memory approach. In this lecture, we'll 
       ],
     },
     {
-      section_id: "section_16_5",
-      title: "Managing Memory, Doubly-Linked Lists, and Templates",
+      section_id: "section_16_6",
+      title: "Doubly-Linked, Double-Ended Lists",
       mk_description: dedent`
 
-        A few more miscellaneous topics:
-        - Since we're using dynamically allocated nodes, we need to ensure proper **dynamic memory management** using RAII and custom implementations of the Big Three.
-        - We'll upgrade to a **doubly-linked** list (with both \`next\` and \`prev\` pointers) to enable working with the list from both ends, reverse traversal, etc.
-        - We can create a linked list class **template** with minimal changes, which will allow creating linked lists of different types.
+        Let's take a look at three upgrades to our data representation and where they make a difference in terms of efficiency:
+          - Adding a "previous" pointer to each node in addition to the "next" pointer
+          - Adding a "last" pointer to the overall list in addition to the "first" pointer
+          - Tracking the current size of the list in a member variable
+        
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/9_BIlGfoQSw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
+
+      `,
+      questions: [
+        {
+          question_id: "lec16_singly_doubly_mc",
+          points: 4,
+          mk_description: dedent`
+            Which of the following are true?
+          `,
+          response: {
+            kind: "multiple_choice",
+            choices: [
+              "For a singly-linked list, it is impossible to implement a `pop_back()` function in constant time, even if the list is doubly-ended (i.e. it has a `last` pointer).",
+              "For a doubly-linked list, the time complexity of some operations is worse (i.e. becomes linear instead of constant) due to the addition of \"previous\" pointers.)",
+              "Determining the size of a linked list by iterating and counting next pointers has linear time complexity.",
+              "Iterating both forward and backward is possible with a doubly-linked list.",
+            ],
+            multiple: true,
+            sample_solution: [0,2,3],
+            default_grader: {
+              grader_kind: "summation_multiple_choice",
+              rubric: [
+                {points: 1, selected: true},
+                {points: 1, selected: false},
+                {points: 1, selected: true},
+                {points: 1, selected: true},
+              ]
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
+          },
+        }
+      ]
+    },
+    {
+      section_id: "section_16_7",
+      title: "The Big Three",
+      mk_description: dedent`
+
+        One more thing - since our class manages dynamically allocated nodes, we'll need custom implementations of "the big three".
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/7mkpKCce6Mk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/lCcVoYQGQn0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
 
