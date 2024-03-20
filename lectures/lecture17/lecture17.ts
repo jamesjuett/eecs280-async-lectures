@@ -13,16 +13,10 @@ export const LECTURE_17 : ExamSpecification = {
   exam_id: "lec_17_iterators",
   title: "Iterators",
   mk_intructions: `
-    
-<div markdown=1 class="alert alert-danger">
-  The contents of this lecture will **change significantly** to better match changes to the structure of the linked list implemented in the new project 4. I highly recommend waiting until it is updated.
-</div>
 <div markdown=1 class="alert alert-info">
 Abstraction is quite likely the most powerful tool in programming. We've seen it applied as "procedural abstraction" (i.e. functions) and in "abstract data types" (i.e. classes), and we'll add another today - abstracting the process of "iteration" or "traversal" over a sequence or a container.
 
 To do this, we'll first define a common *interface* for iteration. But not all containers will naturally conform to this interface - traversing over an array looks a whole lot different than traversing over a linked list. So, we'll define custom objects called "**iterators**" for each different kind of sequence or container that act as the "tour guide" that conforms to our common interface but handles the container-specific details behind the scenes.
-
-Ironically - the description above is quite abstract, and may not make intuitive sense now. Come back and read it again after the chapter, once we've gone through some specific examples! Or, if you prefer a pun to irony - iterators are a subject where you have to iterate over the concept a few times before all the parts make sense together. Let's call this iteration 1. :)
 </div>
 <style>
   .lec-video {
@@ -55,7 +49,7 @@ Ironically - the description above is quite abstract, and may not make intuitive
         {
           question_id: "lec17_warm_up",
           title: "Exercise: Warm Up",
-          points: 3,
+          points: 10,
           mk_description: "",
           response: {
             kind: "fill_in_the_blank",
@@ -164,6 +158,25 @@ Ironically - the description above is quite abstract, and may not make intuitive
               </tr>
             </table>
             `,
+            default_grader: {
+              grader_kind: "manual_regex_fill_in_the_blank",
+              rubric: Array(10).fill(0).map((_,i)=> ({
+                blankIndex: i+1,
+                title: `Box ${i+1}`,
+                points: 1,
+                description: "",
+                patterns: [
+                  {
+                    pattern: /./i,
+                    explanation: "This is just graded for completion.",
+                    points: 1
+                  },
+                ]
+              }))
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
           },
           // mk_postscript: dedent`
           //   <hr />
@@ -210,7 +223,7 @@ Ironically - the description above is quite abstract, and may not make intuitive
         }
         \`\`\`
 
-        In essence, we presume that containers have objects called **iterators** that we can get by calling \`.begin()\` and \`.end()\` functions, and that those iterators will support operations like \`*\`, \`++\`, etc. to take us on a tour through the element's containers. This is our 2nd iteration on understanding iterators!
+        In essence, we presume that containers have objects called **iterators** that we can get by calling \`.begin()\` and \`.end()\` functions, and that those iterators will support operations like \`*\`, \`++\`, etc. to take us on a tour through the element's containers.
       `,
       questions: [],
     },
@@ -222,17 +235,43 @@ Ironically - the description above is quite abstract, and may not make intuitive
         Let's fill in some more details and work through an example of actually creating an iterator for our linked list class...
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/SJQhjiOtDq0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/ta7xGM47uV8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
         
-        Now we've seen the inside implementation details of how we build an iterator for a linked list, the magic behind the abstraction of the iterator interface. This perspective is our 3rd and final iteration on understanding iterators :).
+        In the previous video, we implemented the prefix increment operator, i.e. \`++it\`. What's the difference between this and the postfix increment with \`it++\`? Let's take a look and also define the latter for our linked list iterators.
+
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/i8JRfK6PVfM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
+        
+        Okay, what about the \`--\` operators?
+
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/U0UYAm5XvKg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
+        
+        Now that we've covered the data representation and operator implmentation, we'll look at constructing iterators and how the linked list provides them via the \`list.begin()\` and \`list.end()\` member functions.
+
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/qBdNWgrckXo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
+        
+        Finally, writing out the type of an iterator like \`List<int>::Iterator\` can be a bit obnoxious. But, the C++ \`auto\` keyword can make our lives easier here! Let's take a look...
+
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/bf6Dny8JKME" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
       `,
       questions: [
         {
           question_id: "lec17_linked_list_memory_management",
           title: "Exercise: Linked List Memory Management",
-          points: 3,
+          points: 2,
           mk_description: "",
           response: {
             kind: "fill_in_the_blank",
@@ -258,7 +297,7 @@ Ironically - the description above is quite abstract, and may not make intuitive
               }
               \`\`\`
 
-              Consider your diagram...does everything look as it should, even though the copy of the iterator did not also result in a deep copy of the node it was pointing to?
+              Consider your diagram...does everything look as it should, even though the copy of the iterator did not also result in a deep copy of the node it was pointing to? Explain your reasoning.
 
               [[BOX
               
@@ -294,7 +333,41 @@ Ironically - the description above is quite abstract, and may not make intuitive
               
               
               ]]
-            `
+            `,
+            default_grader: {
+              grader_kind: "manual_regex_fill_in_the_blank",
+              rubric: [
+                {
+                  blankIndex: 1,
+                  title: "Box 1",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /(.|\n){20,}/i,
+                      explanation: "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer.",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 2,
+                  title: "Box 2",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /(.|\n){20,}/i,
+                      explanation: "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer.",
+                      points: 1
+                    },
+                  ]
+                },
+              ]
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
           },
           mk_postscript: dedent`
             <hr />
@@ -325,7 +398,7 @@ Ironically - the description above is quite abstract, and may not make intuitive
         {
           question_id: "lec17_generic_length",
           title: "Exercise: Generic \`length()\` Function Template with Iterators",
-          points: 3,
+          points: 4,
           mk_description: dedent`
             Consider a generic \`length()\` function that takes in begin/end iterators and computes the length of the sequence they point to (using traversal by iterator and counting the number of steps). We would like the \`length()\` function to be useable with any container that supports an iterator interface.
             
@@ -465,7 +538,87 @@ int length(Iter_type begin, Iter_type end) {
     </div>
     </td>
   </tr>
-</table>`
+</table>`,
+            default_grader: {
+              grader_kind: "manual_regex_fill_in_the_blank",
+              rubric: [
+                {
+                  blankIndex: 1,
+                  title: "Box 1",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /incorrect|not\s*correct/i,
+                      explanation: "The implementation is incorrect. Check the walkthrough video for more details.",
+                      points: 1
+                    },
+                    {
+                      pattern: /correct/i,
+                      explanation: "The implementation is incorrect. Check the walkthrough video for more details.",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 2,
+                  title: "Box 2",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /incorrect|not\s*correct/i,
+                      explanation: "The implementation is incorrect. Check the walkthrough video for more details.",
+                      points: 1
+                    },
+                    {
+                      pattern: /correct/i,
+                      explanation: "The implementation is incorrect. Check the walkthrough video for more details.",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 3,
+                  title: "Box 3",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /incorrect|not\s*correct/i,
+                      explanation: "The implementation is correct. Check the walkthrough video for more details.",
+                      points: 0
+                    },
+                    {
+                      pattern: /correct/i,
+                      explanation: "The implementation is correct. Check the walkthrough video for more details.",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 4,
+                  title: "Box 4",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /incorrect|not\s*correct/i,
+                      explanation: "The implementation is incorrect. Check the walkthrough video for more details.",
+                      points: 1
+                    },
+                    {
+                      pattern: /correct/i,
+                      explanation: "The implementation is incorrect. Check the walkthrough video for more details.",
+                      points: 0
+                    },
+                  ]
+                },
+              ]
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
           },
           mk_postscript: dedent`
             <hr />
