@@ -423,7 +423,7 @@ To do this, we'll first define a common *interface* for iteration. But not all c
           response: {
             kind: "fill_in_the_blank",
             content: `
-Determine which of the following potential implementations of \`length()\` are correct. Write "correct" or "incorrect". If they are not correct, additionally describe what's wrong with them.
+Determine which of the following potential implementations of \`length()\` are correct. Write **"correct"** or **"incorrect"**. If they are not correct, additionally describe what's wrong with them.
 
 <table style="width: 100%; border: none;">
   <tr>
