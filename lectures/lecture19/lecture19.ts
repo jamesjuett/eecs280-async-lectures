@@ -84,7 +84,7 @@ Recursion occurs when a function that calls itself. It's a bit hard to describe 
         {
           question_id: "lec19_ducks_1",
           title: "Exercise: Counting Ducks, Part 1",
-          points: 3,
+          points: 1,
           mk_description: dedent`
 
             Here's a copy of the duck exercise slide from the previous video:
@@ -105,7 +105,28 @@ Recursion occurs when a function that calls itself. It's a bit hard to describe 
 
 
               ]]
-            `
+            `,
+            default_grader: {
+              grader_kind: "manual_regex_fill_in_the_blank",
+              rubric: [
+                {
+                  blankIndex: 1,
+                  title: "Box 1",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /(.|\n){15,}/i,
+                      explanation: "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer.",
+                      points: 1
+                    },
+                  ]
+                },
+              ]
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
           },
           mk_postscript: dedent`
             The walkthrough for this exercise is included with the walkthrough video for the second exercise below.
@@ -115,7 +136,7 @@ Recursion occurs when a function that calls itself. It's a bit hard to describe 
         {
           question_id: "lec19_ducks_2",
           title: "Exercise: Counting Ducks, Part 2",
-          points: 3,
+          points: 1,
           mk_description: dedent`
             Translate your recurrence relation from Part 1 to code.
           `,
@@ -124,6 +145,20 @@ Recursion occurs when a function that calls itself. It's a bit hard to describe 
             src: "assets/ducks.html",
             element_class: "lobster-iframe",
             element_style: "height: 675px;",
+            default_grader: {
+              grader_kind: "standard_iframe",
+              rubric: [
+                {
+                  points: 1,
+                  description: "Exercise must be complete.",
+                  property: "complete",
+                  value: true,
+                }
+              ]
+            }
+          },
+          verifier: {
+            verifier_kind: "full_credit"
           },
           mk_postscript: dedent`
             <hr />
@@ -186,7 +221,54 @@ Recursion occurs when a function that calls itself. It's a bit hard to describe 
               
               
               ]]
-            `
+            `,
+            default_grader: {
+              grader_kind: "manual_regex_fill_in_the_blank",
+              rubric: [
+                {
+                  blankIndex: 1,
+                  title: "Box 1",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /(.|\n){15,}/i,
+                      explanation: "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer.",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 2,
+                  title: "Box 2",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /(.|\n){15,}/i,
+                      explanation: "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer.",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 3,
+                  title: "Box 3",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /(.|\n){15,}/i,
+                      explanation: "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer.",
+                      points: 1
+                    },
+                  ]
+                },
+              ]
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
           },
           mk_postscript: dedent`
             <hr />
@@ -202,7 +284,7 @@ Recursion occurs when a function that calls itself. It's a bit hard to describe 
         {
           question_id: "lec19_array_reverse_2",
           title: "Exercise: Recursive Array Reverse, Part 2",
-          points: 3,
+          points: 1,
           mk_description: dedent`
             Translate your recurrence relation from Part 1 to code.
           `,
@@ -211,6 +293,20 @@ Recursion occurs when a function that calls itself. It's a bit hard to describe 
             src: "assets/array_reverse.html",
             element_class: "lobster-iframe",
             element_style: "height: 675px;",
+            default_grader: {
+              grader_kind: "standard_iframe",
+              rubric: [
+                {
+                  points: 1,
+                  description: "Exercise must be complete.",
+                  property: "complete",
+                  value: true,
+                }
+              ]
+            }
+          },
+          verifier: {
+            verifier_kind: "full_credit"
           },
           mk_postscript: dedent`
             <hr />
