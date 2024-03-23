@@ -370,7 +370,7 @@ Finally, we cover **impostor syndrome** - a concept not directly related to prog
                   description: "",
                   patterns: [
                     {
-                      pattern: /(.|\n){20,}/i,
+                      pattern: /./i,
                       explanation: "This is just graded for completion. Make sure to check the sample solution if you're not sure about your answer.",
                       points: 1
                     },
@@ -383,7 +383,7 @@ Finally, we cover **impostor syndrome** - a concept not directly related to prog
                   description: "",
                   patterns: [
                     {
-                      pattern: /(.|\n){20,}/i,
+                      pattern: /./i,
                       explanation: "This is just graded for completion. Make sure to check the sample solution if you're not sure about your answer.",
                       points: 1
                     },
@@ -396,7 +396,7 @@ Finally, we cover **impostor syndrome** - a concept not directly related to prog
                   description: "",
                   patterns: [
                     {
-                      pattern: /(.|\n){20,}/i,
+                      pattern: /./i,
                       explanation: "This is just graded for completion. Make sure to check the sample solution if you're not sure about your answer.",
                       points: 1
                     },
@@ -409,7 +409,7 @@ Finally, we cover **impostor syndrome** - a concept not directly related to prog
                   description: "",
                   patterns: [
                     {
-                      pattern: /(.|\n){20,}/i,
+                      pattern: /./i,
                       explanation: "This is just graded for completion. Make sure to check the sample solution if you're not sure about your answer.",
                       points: 1
                     },
@@ -422,7 +422,7 @@ Finally, we cover **impostor syndrome** - a concept not directly related to prog
                   description: "",
                   patterns: [
                     {
-                      pattern: /(.|\n){20,}/i,
+                      pattern: /./i,
                       explanation: "This is just graded for completion. Make sure to check the sample solution if you're not sure about your answer.",
                       points: 1
                     },
@@ -435,7 +435,7 @@ Finally, we cover **impostor syndrome** - a concept not directly related to prog
                   description: "",
                   patterns: [
                     {
-                      pattern: /(.|\n){20,}/i,
+                      pattern: /./i,
                       explanation: "This is just graded for completion. Make sure to check the sample solution if you're not sure about your answer.",
                       points: 1
                     },
@@ -448,7 +448,7 @@ Finally, we cover **impostor syndrome** - a concept not directly related to prog
                   description: "",
                   patterns: [
                     {
-                      pattern: /(.|\n){20,}/i,
+                      pattern: /./i,
                       explanation: "This is just graded for completion. Make sure to check the sample solution if you're not sure about your answer.",
                       points: 1
                     },
@@ -461,7 +461,7 @@ Finally, we cover **impostor syndrome** - a concept not directly related to prog
                   description: "",
                   patterns: [
                     {
-                      pattern: /(.|\n){20,}/i,
+                      pattern: /./i,
                       explanation: "This is just graded for completion. Make sure to check the sample solution if you're not sure about your answer.",
                       points: 1
                     },
