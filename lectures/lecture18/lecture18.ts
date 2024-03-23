@@ -199,6 +199,11 @@ Finally, we cover **impostor syndrome** - a concept not directly related to prog
                       explanation: "Correct - this is a bad idea. Make sure to check the walkthrough if you're not sure about your justification.",
                       points: 1
                     },
+                    {
+                      pattern: /good ?idea/i,
+                      explanation: "This idea won't end up working. Answer = \"bad idea\". Check the walkthrough for an explanation.",
+                      points: 0
+                    },
                   ]
                 },
                 {
@@ -217,6 +222,11 @@ Finally, we cover **impostor syndrome** - a concept not directly related to prog
                       explanation: "Correct - this is a bad idea. Make sure to check the walkthrough if you're not sure about your justification.",
                       points: 1
                     },
+                    {
+                      pattern: /good ?idea/i,
+                      explanation: "This idea won't end up working. Answer = \"bad idea\". Check the walkthrough for an explanation.",
+                      points: 0
+                    },
                   ]
                 },
                 {
@@ -234,6 +244,11 @@ Finally, we cover **impostor syndrome** - a concept not directly related to prog
                       pattern: /(.|\n){10,}bad idea/i,
                       explanation: "Correct - this is a bad idea. Make sure to check the walkthrough if you're not sure about your justification.",
                       points: 1
+                    },
+                    {
+                      pattern: /good ?idea/i,
+                      explanation: "This idea won't end up working. Answer = \"bad idea\". Check the walkthrough for an explanation.",
+                      points: 0
                     },
                   ]
                 },
