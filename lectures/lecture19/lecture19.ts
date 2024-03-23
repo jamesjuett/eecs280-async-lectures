@@ -232,7 +232,7 @@ Recursion occurs when a function that calls itself. It's a bit hard to describe 
                   description: "",
                   patterns: [
                     {
-                      pattern: /(.|\n){15,}/i,
+                      pattern: /(.|\n){5,}/i,
                       explanation: "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer.",
                       points: 1
                     },
@@ -245,7 +245,7 @@ Recursion occurs when a function that calls itself. It's a bit hard to describe 
                   description: "",
                   patterns: [
                     {
-                      pattern: /(.|\n){15,}/i,
+                      pattern: /(.|\n){5,}/i,
                       explanation: "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer.",
                       points: 1
                     },
@@ -258,7 +258,7 @@ Recursion occurs when a function that calls itself. It's a bit hard to describe 
                   description: "",
                   patterns: [
                     {
-                      pattern: /(.|\n){15,}/i,
+                      pattern: /(.|\n){5,}/i,
                       explanation: "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer.",
                       points: 1
                     },
