@@ -150,7 +150,7 @@ BSTs are the foundation of "industry-strength" implementations of several applic
         
         But, before we get there, let me introduce a few miscellaneous C++ features that will make the code a bit more elegant.
 
-        First, the \`auto\` keyword, which tells the compiler to deduce the type of a variable for us - this can be useful with types like iterators that are a pain to write out by hand.
+        First, the \`auto\` keyword, which tells the compiler to deduce the type of a variable for us - this can be useful with types like iterators that are a pain to write out by hand. (Depending on the term you're taking EECS 280, we may have also covered \`auto\` previously.)
 
         <div style="text-align: center;">
           <iframe class="lec-video" src="https://www.youtube.com/embed/R5fQKw69np0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -169,6 +169,29 @@ BSTs are the foundation of "industry-strength" implementations of several applic
 
         <div style="text-align: center;">
           <iframe class="lec-video" src="https://www.youtube.com/embed/RqFV6PqvJuI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
+      `,
+      questions: [],
+    },
+    {
+      section_id: "section_21_7",
+      title: "`Map.h` Tips for Project 5",
+      mk_description: dedent`
+        Finally, a few practical tips and tricks for \`Map.h\` from project 5. I saved this until now because an understanding of functors is essential here.
+
+        Let's take a tour of each component in the \`Map\` class, including the BST member variable (i.e. the "has-a" pattern), the template parameters, and a custom comparator to compare key-value pairs in the BST based on the keys only.
+
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/Feou0OEHEPQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
+
+        
+        Here's also an overview of what each of the three main \`Map\` functions (\`find\`, \`insert\`, and \`operator[]\`) should do. You'll use each in various places thoughout the project 5 driver.
+
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/DlBMShisMkQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
       `,

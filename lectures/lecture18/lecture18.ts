@@ -59,40 +59,59 @@ Finally, we cover **impostor syndrome** - a concept not directly related to prog
         {
           question_id: "lec18_any_of_even",
           title: "Exercise: \`any_of_even()\`",
-          points: 3,
+          points: 5,
           mk_description: dedent`
-            Implement a function template \`any_of_even()\`, which takes in two iterators (of any kind) and determines whether any of the elements in the range they define are even-valued. The function will be very similar to \`any_of_odd()\` from the previous video.
-          `,
-          
-          response: {
-            kind: "code_editor",
-            codemirror_mime_type: "text/x-c++src",
-            code_language: "cpp",
-            starter: "",
-            sample_solution: dedent`
+            Consider the function template \`any_of_odd()\` below, which takes in two iterators (of any kind) and determines whether any of the elements in the range they define are odd-valued.
+
+            \`\`\`cpp
               template <typename Iter_type>
-              bool any_of_even(Iter_type begin, Iter_type end) {
-                for (Iter_type it = begin; it != end; ++it) {
-                  if (*it % 2 == 0) { return true; }
-                }
-                return false;
-              }
-            `
-          },
-          mk_postscript: dedent`
-            <hr />
-            <details>
-              <summary>Sample solution...</summary>
-              
-              \`\`\`cpp
-              template <typename Iter_type>
-              bool any_of_even(Iter_type begin, Iter_type end) {
-                for (Iter_type it = begin; it != end; ++it) {
-                  if (*it % 2 == 0) { return true; }
+              bool any_of_odd(Iter_type begin, Iter_type end) {
+                while(begin != end) {
+                  if (*begin % 2 != 0) {
+                    return true;
+                  }
+                  ++begin;
                 }
                 return false;
               }
               \`\`\`
+
+              Which of the following would need to change in order to implement a similar function \`any_of_even()\` that determines whether any of the elements in the range are even-valued?
+          `,
+          
+          response: {
+            kind: "multiple_choice",
+            choices: [
+              "The template parameter `Iter_type` would need to change to a different type.",
+              "The function name would need to change to `any_of_even()`.",
+              "The loop condition or increment would need to change.",
+              "The condition in the `if` statement would need to change.",
+              "The `return true;` and `return false;` statements would need to be swapped."
+            ],
+            multiple: true,
+            sample_solution: [1, 3],
+            default_grader: {
+              grader_kind: "summation_multiple_choice",
+              rubric: [
+                {points: 1, selected: false},
+                {points: 1, selected: true},
+                {points: 1, selected: false},
+                {points: 1, selected: true},
+                {points: 1, selected: false},
+              ]
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
+          },
+          mk_postscript: dedent`
+            <hr />
+            <details>
+              <summary>Explanation...</summary>
+              
+              Beyond changing the function name, the only thing that needs to change is the condition in the \`if\` statement. Instead of checking for odd numbers, we would check for even numbers with \`*begin % 2 == 0\`.
+
+              The idea of swapping the return statements seems viable at first glace, but on closer inspection, this doesn't change the function to check for evens instead of odds. Rather, it would change the function from "any of" to "none of".
             </details>
           `
         },
@@ -102,7 +121,7 @@ Finally, we cover **impostor syndrome** - a concept not directly related to prog
       section_id: "section_18_2",
       title: "Function Pointers",
       mk_description: dedent`
-        Building on the previous section and exercise - what if we wanted to check for other criteria besides even and odd numbers?
+        Building on the previous section and exercise - what if we wanted to check for other criteria besides even and odd numbers? How about prime numbers, or numbers that are greater than a certain threshold?
         
         Instead of writing mostly the same code over and over again, let's come up with a generic \`any_of()\` function and just tell it what we're looking for when we use it.
         
@@ -137,15 +156,92 @@ Finally, we cover **impostor syndrome** - a concept not directly related to prog
             kind: "fill_in_the_blank",
             content: dedent`
               
-              What do you think? Are any of these good ideas?
+              What do you think? Are any of these good ideas? For each, write "good idea" or "bad idea" in the blank provided. In your own words, justify your answer.
 
+              Make a single \`greater\` function that uses a global variable to store the threshold.
               [[BOX
               
               
+              ]]
+              <br />
+              <br />
+
+              Make a single \`greater\` function with an extra parameter to pass in the threshold.
+              [[BOX
+              
+              
+              ]]
+              <br />
+              <br />
+
+              Add an extra parameter to the \`any_of\` function to pass in the threshold.
+              [[BOX
               
               
               ]]
             `,
+            default_grader: {
+              grader_kind: "manual_regex_fill_in_the_blank",
+              rubric: [
+                {
+                  blankIndex: 1,
+                  title: "Box 1",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /bad idea(.|\n){10,}/i,
+                      explanation: "Correct - this is a bad idea. Make sure to check the walkthrough if you're not sure about your justification.",
+                      points: 1
+                    },
+                    {
+                      pattern: /(.|\n){10,}bad idea/i,
+                      explanation: "Correct - this is a bad idea. Make sure to check the walkthrough if you're not sure about your justification.",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 2,
+                  title: "Box 2",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /bad idea(.|\n){10,}/i,
+                      explanation: "Correct - this is a bad idea. Make sure to check the walkthrough if you're not sure about your justification.",
+                      points: 1
+                    },
+                    {
+                      pattern: /(.|\n){10,}bad idea/i,
+                      explanation: "Correct - this is a bad idea. Make sure to check the walkthrough if you're not sure about your justification.",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 3,
+                  title: "Box 3",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /bad idea(.|\n){10,}/i,
+                      explanation: "Correct - this is a bad idea. Make sure to check the walkthrough if you're not sure about your justification.",
+                      points: 1
+                    },
+                    {
+                      pattern: /(.|\n){10,}bad idea/i,
+                      explanation: "Correct - this is a bad idea. Make sure to check the walkthrough if you're not sure about your justification.",
+                      points: 1
+                    },
+                  ]
+                },
+              ]
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
           },
           mk_postscript: dedent`
             <hr />
@@ -184,7 +280,7 @@ Finally, we cover **impostor syndrome** - a concept not directly related to prog
         {
           question_id: "lec18_in_range",
           title: "Exercise: \`InRange\` Predicate Functor",
-          points: 3,
+          points: 8,
           mk_description: "",
           response: {
             kind: "fill_in_the_blank",
@@ -264,6 +360,118 @@ Finally, we cover **impostor syndrome** - a concept not directly related to prog
               }
               \`\`\`
             `,
+            default_grader: {
+              grader_kind: "manual_regex_fill_in_the_blank",
+              rubric: [
+                {
+                  blankIndex: 1,
+                  title: "Box 1",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /(.|\n){20,}/i,
+                      explanation: "This is just graded for completion. Make sure to check the sample solution if you're not sure about your answer.",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 2,
+                  title: "Box 2",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /(.|\n){20,}/i,
+                      explanation: "This is just graded for completion. Make sure to check the sample solution if you're not sure about your answer.",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 3,
+                  title: "Box 3",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /(.|\n){20,}/i,
+                      explanation: "This is just graded for completion. Make sure to check the sample solution if you're not sure about your answer.",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 4,
+                  title: "Box 4",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /(.|\n){20,}/i,
+                      explanation: "This is just graded for completion. Make sure to check the sample solution if you're not sure about your answer.",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 5,
+                  title: "Box 5",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /(.|\n){20,}/i,
+                      explanation: "This is just graded for completion. Make sure to check the sample solution if you're not sure about your answer.",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 6,
+                  title: "Box 6",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /(.|\n){20,}/i,
+                      explanation: "This is just graded for completion. Make sure to check the sample solution if you're not sure about your answer.",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 7,
+                  title: "Box 7",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /(.|\n){20,}/i,
+                      explanation: "This is just graded for completion. Make sure to check the sample solution if you're not sure about your answer.",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 8,
+                  title: "Box 8",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /(.|\n){20,}/i,
+                      explanation: "This is just graded for completion. Make sure to check the sample solution if you're not sure about your answer.",
+                      points: 1
+                    },
+                  ]
+                },
+              ]
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
           },
           mk_postscript: dedent`
             <hr />
@@ -380,33 +588,10 @@ Finally, we cover **impostor syndrome** - a concept not directly related to prog
 
         I mentioned a poll in the video above - here's a set of results from a previous term.
         
-        We asked, _"Have you felt like an impostor in your classes here at UM?"_
+        We asked, _"Have you felt like an impostor in your classes here at the University of Michigan?"_
         
         <div style="text-align: center">
           <img src="assets/impostor_syndrome_poll.png" style="width: 400px;">
-        </div>
-        <br />
-      `,
-      questions: [],
-    },
-    {
-      section_id: "section_18_7",
-      title: "`Map.h` Tips for Project 5",
-      mk_description: dedent`
-        Finally, a few practical tips and tricks for \`Map.h\` from project 5. I saved this until now because an understanding of functors is essential here.
-
-        Let's take a tour of each component in the \`Map\` class, including the BST member variable (i.e. the "has-a" pattern), the template parameters, and a custom comparator to compare key-value pairs in the BST based on the keys only.
-
-        <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/Feou0OEHEPQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <br />
-
-        
-        Here's also an overview of what each of the three main \`Map\` functions (\`find\`, \`insert\`, and \`operator[]\`) should do. You'll use each in various places thoughout the project 5 driver.
-
-        <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/DlBMShisMkQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
       `,
