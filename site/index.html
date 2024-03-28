@@ -28,7 +28,49 @@
     const PARTICIPATION_TOKEN_LOCAL_STORAGE_KEY = "examma-ray-participation-token";
 
     async function updateUser(participation_token) {
-      // const test = JSON.parse(atob(participation_token.split(".")[1])).sub;
+
+      const lec_ids = [
+        "lec_01_intro_and_machine_model",
+        "lec_02_procedural_abstraction_and_the_call_stack",
+        "lec_03_pointers",
+        "lec_04_arrays",
+        "lec_05_const_structs_c_style_adts",
+        "lec_06_streams_and_io",
+        "lec_07_cstrings",
+        "lec_08_adts_in_cpp",
+        "lec_09_inheritance",
+        "lec_10_polymorphism",
+        "lec_11_containers_1",
+        "lec_12_containers_2",
+        "lec_13_dynamic_memory",
+        "lec_14_raii_growable_containers",
+        "lec_15_deep_copies_and_the_big_three",
+        "lec_16_linked_lists",
+        "lec_17_iterators",
+        "lec_18_functors",
+        "lec_19_recursion_and_tail_recursion",
+        "lec_20_structural_recursion",
+        "lec_21_bsts_sets_and_maps",
+        "lec_22_error_handling_and_exceptions",
+      ];
+
+      lec_ids.forEach(lec_id => {
+        const storage_key = `${lec_id}-eecs280-eecs280-${lec_id}`;
+        const submission = localStorage.getItem(storage_key);
+        if (!submission) {
+          return;
+        }
+        axios({
+          url: `https://examma-ray.eecs.umich.edu/public_api/participation/${lec_id}/submission`,
+          method: "PUT",
+          data: {
+            submission: JSON.stringify(submission, null, 2)
+          },
+          headers: {
+            "Authorization": participation_token
+          }
+        });
+      });
 
       const participation_response = await axios({
         url: "https://examma-ray.eecs.umich.edu/public_api/participation/me/",
