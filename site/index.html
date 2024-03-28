@@ -61,7 +61,7 @@
           return;
         }
         axios({
-          url: `https://examma-ray.eecs.umich.edu/public_api/participation/${lec_id}/submission`,
+          url: `https://examma-ray.eecs.umich.edu/public_api/participation/me/${lec_id}/submission`,
           method: "PUT",
           data: {
             submission: JSON.stringify(submission, null, 2)
