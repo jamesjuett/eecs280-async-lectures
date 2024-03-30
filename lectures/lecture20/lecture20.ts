@@ -57,7 +57,7 @@ By the way, I want to give a big thanks to **Ashvin**, who recorded walkthrough 
         {
           question_id: "lec20_recursive_list_functions",
           title: "Exercise: Recursive List Functions",
-          points: 3,
+          points: 7,
           mk_description: dedent`
 
             <table class="table w-auto">
@@ -230,7 +230,106 @@ By the way, I want to give a big thanks to **Ashvin**, who recorded walkthrough 
                   </td>
                 </tr>
               </table>
-            `
+            `,
+            default_grader: {
+              grader_kind: "manual_regex_fill_in_the_blank",
+              rubric: [
+                {
+                  blankIndex: 1,
+                  title: "Box 1",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /(.|\n){5,}/i,
+                      explanation: "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer.",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 2,
+                  title: "Box 2",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /(.|\n){5,}/i,
+                      explanation: "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer.",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 3,
+                  title: "Box 3",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /(.|\n){5,}/i,
+                      explanation: "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer.",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 4,
+                  title: "Box 4",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /(.|\n){5,}/i,
+                      explanation: "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer.",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 5,
+                  title: "Box 5",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /(.|\n){5,}/i,
+                      explanation: "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer.",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 6,
+                  title: "Box 6",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /(.|\n){5,}/i,
+                      explanation: "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer.",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 7,
+                  title: "Box 7",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /(.|\n){5,}/i,
+                      explanation: "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer.",
+                      points: 1
+                    },
+                  ]
+                },
+              ]
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
           },
           mk_postscript: dedent`
             <hr />
@@ -261,7 +360,7 @@ By the way, I want to give a big thanks to **Ashvin**, who recorded walkthrough 
         {
           question_id: "lec20_list_max",
           title: "Exercise: Coding \`list_max()\`",
-          points: 3,
+          points: 1,
           mk_description: dedent`
             Implement the \`list_max()\` function based on the base case and recurrence relation from earlier.
           `,
@@ -270,6 +369,20 @@ By the way, I want to give a big thanks to **Ashvin**, who recorded walkthrough 
             src: "assets/list_max.html",
             element_class: "lobster-iframe",
             element_style: "height: 675px;",
+            default_grader: {
+              grader_kind: "standard_iframe",
+              rubric: [
+                {
+                  points: 1,
+                  description: "Exercise must be complete.",
+                  property: "complete",
+                  value: true,
+                }
+              ]
+            }
+          },
+          verifier: {
+            verifier_kind: "full_credit"
           },
           mk_postscript: dedent`
             <hr />
@@ -301,7 +414,7 @@ By the way, I want to give a big thanks to **Ashvin**, who recorded walkthrough 
         {
           question_id: "lec20_recursive_tree_functions",
           title: "Exercise: Recursive Tree Functions",
-          points: 3,
+          points: 7,
           mk_description: dedent`
 
             <table class="table w-auto">
@@ -471,7 +584,106 @@ By the way, I want to give a big thanks to **Ashvin**, who recorded walkthrough 
                   </td>
                 </tr>
               </table>
-            `
+            `,
+            default_grader: {
+              grader_kind: "manual_regex_fill_in_the_blank",
+              rubric: [
+                {
+                  blankIndex: 1,
+                  title: "Box 1",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /(.|\n){5,}/i,
+                      explanation: "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer.",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 2,
+                  title: "Box 2",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /(.|\n){5,}/i,
+                      explanation: "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer.",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 3,
+                  title: "Box 3",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /(.|\n){5,}/i,
+                      explanation: "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer.",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 4,
+                  title: "Box 4",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /(.|\n){5,}/i,
+                      explanation: "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer.",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 5,
+                  title: "Box 5",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /(.|\n){5,}/i,
+                      explanation: "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer.",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 6,
+                  title: "Box 6",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /(.|\n){5,}/i,
+                      explanation: "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer.",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 7,
+                  title: "Box 7",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /(.|\n){5,}/i,
+                      explanation: "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer.",
+                      points: 1
+                    },
+                  ]
+                },
+              ]
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
           },
           mk_postscript: dedent`
             <hr />
@@ -501,7 +713,7 @@ By the way, I want to give a big thanks to **Ashvin**, who recorded walkthrough 
         {
           question_id: "lec20_tree_height",
           title: "Exercise: Coding \`tree_height()\`",
-          points: 3,
+          points: 1,
           mk_description: dedent`
             Implement the \`tree_height()\` function based on the base case and recurrence relation from earlier. Note that \`max()\` helper function provided.
           `,
@@ -510,6 +722,20 @@ By the way, I want to give a big thanks to **Ashvin**, who recorded walkthrough 
             src: "assets/tree_height.html",
             element_class: "lobster-iframe",
             element_style: "height: 675px;",
+            default_grader: {
+              grader_kind: "standard_iframe",
+              rubric: [
+                {
+                  points: 1,
+                  description: "Exercise must be complete.",
+                  property: "complete",
+                  value: true,
+                }
+              ]
+            }
+          },
+          verifier: {
+            verifier_kind: "full_credit"
           },
           mk_postscript: dedent`
             <hr />
@@ -558,7 +784,112 @@ By the way, I want to give a big thanks to **Ashvin**, who recorded walkthrough 
         <br />
 
       `,
-      questions: [],
+      questions: [
+        {
+          question_id: "lec20_recursion_kinds_1",
+          points: 1,
+          mk_description: dedent`
+            Consider this function. What kind of recursion does it use?
+
+            \`\`\`cpp
+            int sum(int n) {
+              if (n == 0) {
+                return 0;
+              }
+              return n + sum(n - 1);
+            }
+            \`\`\`
+          `,
+          response: {
+            kind: "multiple_choice",
+            choices: [
+              "Tail recursive",
+              "Linear recursive (but not tail recursive)",
+              "Tree recursive",
+              "Not recursive at all"
+            ],
+            multiple: false,
+            sample_solution: [1],
+            default_grader: {
+              grader_kind: "simple_multiple_choice",
+              correct_index: 1,
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
+          },
+        },
+        {
+          question_id: "lec20_recursion_kinds_2",
+          points: 1,
+          mk_description: dedent`
+            Consider this function. What kind of recursion does it use?
+
+            \`\`\`cpp
+            void print_list(Node* n) {
+              if (!n) {
+                return;
+              }
+              cout << n->datum << endl;
+              print_list(n->next);
+            }
+
+            \`\`\`
+          `,
+          response: {
+            kind: "multiple_choice",
+            choices: [
+              "Tail recursive",
+              "Linear recursive (but not tail recursive)",
+              "Tree recursive",
+              "Not recursive at all"
+            ],
+            multiple: false,
+            sample_solution: [0],
+            default_grader: {
+              grader_kind: "simple_multiple_choice",
+              correct_index: 0,
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
+          },
+        },
+        {
+          question_id: "lec20_recursion_kinds_3",
+          points: 1,
+          mk_description: dedent`
+            Consider this function. What kind of recursion does it use?
+
+            \`\`\`cpp
+            int fibonacci(int n) {
+              if (n <= 1) {
+                return n;
+              }
+              return fibonacci(n - 1) + fibonacci(n - 2);
+            }
+            \`\`\`
+          `,
+          response: {
+            kind: "multiple_choice",
+            choices: [
+              "Tail recursive",
+              "Linear recursive (but not tail recursive)",
+              "Tree recursive",
+              "Not recursive at all"
+            ],
+            multiple: false,
+            sample_solution: [2],
+            default_grader: {
+              grader_kind: "simple_multiple_choice",
+              correct_index: 2,
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
+          },
+        }
+      ],
     },
   ],
 };
