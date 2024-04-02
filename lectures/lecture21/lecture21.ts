@@ -73,7 +73,7 @@ BSTs are the foundation of "industry-strength" implementations of several applic
         {
           question_id: "lec21_bst_contains",
           title: "Exercise: \`bst_contains()\`",
-          points: 3,
+          points: 1,
           mk_description: dedent`
             Implement the \`bst_contains()\` function, introduced at the end of the video above.
           `,
@@ -82,6 +82,20 @@ BSTs are the foundation of "industry-strength" implementations of several applic
             src: "assets/bst_contains.html",
             element_class: "lobster-iframe",
             element_style: "height: 675px;",
+            default_grader: {
+              grader_kind: "standard_iframe",
+              rubric: [
+                {
+                  points: 1,
+                  description: "Exercise must be complete.",
+                  property: "complete",
+                  value: true,
+                }
+              ]
+            }
+          },
+          verifier: {
+            verifier_kind: "full_credit"
           },
           mk_postscript: dedent`
             <hr />
@@ -134,11 +148,6 @@ BSTs are the foundation of "industry-strength" implementations of several applic
           <iframe class="lec-video" src="https://www.youtube.com/embed/8cdFFouBjvs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
-        
-        We'll return back in a future lecture to some more details on the actual implementation of the map, including how we can sort entries (i.e. pairs of keys and values) in the underlying binary search tree appropriately (i.e. based only on the key, not the value).
-
-        <br />
-
       `,
       questions: [],
     },
@@ -146,7 +155,7 @@ BSTs are the foundation of "industry-strength" implementations of several applic
       section_id: "section_21_6",
       title: "`Map` Implementation (and tips for Project 5)",
       mk_description: dedent`
-        Finally, a few practical tips and tricks for \`Map.h\` from project 5. I saved this until now because an understanding of functors is essential here.
+        Finally, a few practical tips and tricks for \`Map.h\` from project 5.
 
         Let's take a tour of each component in the \`Map\` class, including the BST member variable (i.e. the "has-a" pattern), the template parameters, and a custom comparator to compare key-value pairs in the BST based on the keys only.
 

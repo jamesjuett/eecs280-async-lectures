@@ -57,7 +57,7 @@ export const LECTURE_SPECS = [
   { spec: LECTURE_18, updated: true, deadline: DateTime.fromISO("2024-03-25", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
   { spec: LECTURE_19, updated: true, deadline: DateTime.fromISO("2024-03-27", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
   { spec: LECTURE_20, updated: true, deadline: DateTime.fromISO("2024-04-01", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
-  { spec: LECTURE_21, updated: false, deadline: DateTime.fromISO("2024-04-03", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
+  { spec: LECTURE_21, updated: true, deadline: DateTime.fromISO("2024-04-03", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
   { spec: LECTURE_22, updated: false, deadline: DateTime.fromISO("2024-04-15", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
 ].map((lec) => {
   let spec = CUSTOMIZE(lec.spec, {
