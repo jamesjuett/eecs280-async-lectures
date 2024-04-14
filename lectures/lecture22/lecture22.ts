@@ -73,7 +73,7 @@ In many modern programming languages, **exceptions** are the tool of choice to c
         {
           question_id: "lec22_drive_thru_1",
           title: "Exercise: Drive Thru Part 1",
-          points: 3,
+          points: 4,
           mk_description: dedent`
             <div style="text-align: center;">
               <iframe class="lec-video" src="https://www.youtube.com/embed/DlcYD2w5Rm4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -87,34 +87,169 @@ In many modern programming languages, **exceptions** are the tool of choice to c
             </div>
             <br />
           `,
-          
           response: {
             kind: "fill_in_the_blank",
-            content: dedent`
-              Which functions are correct and which are incorrect? For those that are incorrect, what is the problem?
-              
-              [[BOX
+            content: `
+Determine which of the following potential implementations of \`getPrice()\` are correct. Write **"correct"** or **"incorrect"**. If they are not correct, additionally describe what's wrong with them.
 
-
-
-
-
-
-
-
-
-
-
-
-              ]]
-            `
+<table style="width: 100%; border: none;">
+  <tr>
+    <td style="width: 200px; padding-right: 15px;">
+    <div markdown="1">
+      Implementation A
+    </div>
+    </td>
+    <td>
+    <div>
+      [[BOX
+      
+      
+      
+      
+      ]]
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 200px; padding-right: 15px;">
+    <div markdown="1">
+      Implementation B
+    </div>
+    </td>
+    <td>
+    <div>
+      [[BOX
+      
+      
+      
+      
+      ]]
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 200px; padding-right: 15px;">
+    <div markdown="1">
+      Implementation C
+    </div>
+    </td>
+    <td>
+    <div>
+      [[BOX
+      
+      
+      
+      
+      ]]
+    </div>
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="width: 200px; padding-right: 15px;">
+    <div markdown="1">
+      Implementation D
+    </div>
+    </td>
+    <td>
+    <div>
+      [[BOX
+      
+      
+      
+      
+      ]]
+    </div>
+    </td>
+  </tr>
+</table>`,
+            default_grader: {
+              grader_kind: "manual_regex_fill_in_the_blank",
+              rubric: [
+                {
+                  blankIndex: 1,
+                  title: "Box 1",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /incorrect|not\s*correct/i,
+                      explanation: "The implementation is incorrect since an iterator cannot be implicitly converted to a boolean. Check the walkthrough video for more details.",
+                      points: 1
+                    },
+                    {
+                      pattern: /correct/i,
+                      explanation: "The implementation is incorrect since an iterator cannot be implicitly converted to a boolean. Check the walkthrough video for more details.",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 2,
+                  title: "Box 2",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /incorrect|not\s*correct/i,
+                      explanation: "The implementation is correct. Check the walkthrough video for more details.",
+                      points: 0
+                    },
+                    {
+                      pattern: /correct/i,
+                      explanation: "The implementation is correct. Check the walkthrough video for more details.",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 3,
+                  title: "Box 3",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /incorrect|not\s*correct/i,
+                      explanation: "The implementation is incorrect. The logic is ok, but the use of the `[]` operator is forbidden in a const-qualified member function. Check the walkthrough video for more details.",
+                      points: 1
+                    },
+                    {
+                      pattern: /correct/i,
+                      explanation: "The implementation is incorrect. The logic is ok, but the use of the `[]` operator is forbidden in a const-qualified member function. Check the walkthrough video for more details.",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 4,
+                  title: "Box 4",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /incorrect|not\s*correct/i,
+                      explanation: "The implementation is correct. Check the walkthrough video for more details.",
+                      points: 0
+                    },
+                    {
+                      pattern: /correct/i,
+                      explanation: "The implementation is correct. Check the walkthrough video for more details.",
+                      points: 1
+                    },
+                  ]
+                },
+              ]
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
           },
           mk_postscript: dedent`
             <hr />
             You're welcome to check your solution with this **walkthrough** video:
 
             <div style="text-align: center;">
-              <iframe class="lec-video" src="https://www.youtube.com/embed/2s_i47H1FYE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe class="lec-video" src="https://www.youtube.com/embed/BWCJpKM-fD8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <br />
           `
@@ -122,7 +257,7 @@ In many modern programming languages, **exceptions** are the tool of choice to c
         {
           question_id: "lec22_drive_thru_2",
           title: "Exercise: Drive Thru Part 2",
-          points: 3,
+          points: 1,
           mk_description: dedent`
             <div style="text-align: center;">
               <iframe class="lec-video" src="https://www.youtube.com/embed/khPkxia2y64" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -149,7 +284,28 @@ In many modern programming languages, **exceptions** are the tool of choice to c
 
 
               ]]
-            `
+            `,
+            default_grader: {
+              grader_kind: "manual_regex_fill_in_the_blank",
+              rubric: [
+                {
+                  blankIndex: 1,
+                  title: "Box 1",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /(.|\n){15,}/i,
+                      explanation: "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer.",
+                      points: 1
+                    },
+                  ]
+                },
+              ]
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
           },
           mk_postscript: dedent`
             <hr />
