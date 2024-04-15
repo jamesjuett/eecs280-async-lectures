@@ -249,7 +249,7 @@ Determine which of the following potential implementations of \`getPrice()\` are
             You're welcome to check your solution with this **walkthrough** video:
 
             <div style="text-align: center;">
-              <iframe class="lec-video" src="https://www.youtube.com/embed/BWCJpKM-fD8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe class="lec-video" src="https://www.youtube.com/embed/2s_i47H1FYE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <br />
           `
