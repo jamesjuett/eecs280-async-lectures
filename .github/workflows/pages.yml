@@ -5,7 +5,7 @@
 #
 # Based on the internal deploy process for EECS 280 project
 # specifications at the University of Michigan.
-name: Deploy spec website
+name: Deploy Site
 
 on:
   # Run on all pushes to main
@@ -38,13 +38,13 @@ jobs:
 
       # https://github.com/actions/checkout
       - name: 📁 Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       
       # https://docs.github.com/en/actions/using-workflows/caching-dependencies-to-speed-up-workflows
 
       - name: Cache node modules
         id: cache-npm
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         env:
           cache-name: cache-node-modules
         with:
