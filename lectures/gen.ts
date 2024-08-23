@@ -30,7 +30,7 @@ function addW24Warning(spec: ExamSpecification) {
   return CUSTOMIZE(spec, {
     mk_intructions: dedent`
       <div markdown="1" class="alert alert-danger">
-        <p>Please note that this lecture has not yet been updated for Winter 2024. If you are working through this lecture early, you'll need to come back once it is updated in order to earn participation credit.</p>
+        <p>Please note that this lecture has not yet been updated for Fall 2024. The sequence and content of several lectures will change significantly, so we recommend you do NOT work through them before they are updated. I'll try to get a few lectures ahead once the term starts.</p>
       </div>` +
     spec.mk_intructions
   });
