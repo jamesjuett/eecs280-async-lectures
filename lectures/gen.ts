@@ -37,28 +37,30 @@ function addW24Warning(spec: ExamSpecification) {
 }
 
 export const LECTURE_SPECS = [
-  { spec: LECTURE_01, updated: true, deadline: DateTime.fromISO("2024-02-19", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
-  { spec: LECTURE_02, updated: true, deadline: DateTime.fromISO("2024-02-19", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
-  { spec: LECTURE_03, updated: true, deadline: DateTime.fromISO("2024-02-19", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
-  { spec: LECTURE_04, updated: true, deadline: DateTime.fromISO("2024-02-19", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
-  { spec: LECTURE_05, updated: true, deadline: DateTime.fromISO("2024-02-19", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
-  { spec: LECTURE_06, updated: true, deadline: DateTime.fromISO("2024-02-19", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
-  { spec: LECTURE_07, updated: true, deadline: DateTime.fromISO("2024-02-19", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
-  { spec: LECTURE_08, updated: true, deadline: DateTime.fromISO("2024-02-19", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
-  { spec: LECTURE_09, updated: true, deadline: DateTime.fromISO("2024-02-19", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
-  { spec: LECTURE_10, updated: true, deadline: DateTime.fromISO("2024-02-19", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
-  { spec: LECTURE_11, updated: true, deadline: DateTime.fromISO("2024-02-19", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
-  { spec: LECTURE_12, updated: true, deadline: DateTime.fromISO("2024-02-21", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
-  { spec: LECTURE_13, updated: true, deadline: DateTime.fromISO("2024-03-04", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
-  { spec: LECTURE_14, updated: true, deadline: DateTime.fromISO("2024-03-06", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
-  { spec: LECTURE_15, updated: true, deadline: DateTime.fromISO("2024-03-13", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
-  { spec: LECTURE_16, updated: true, deadline: DateTime.fromISO("2024-03-18", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
-  { spec: LECTURE_17, updated: true, deadline: DateTime.fromISO("2024-03-20", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
-  { spec: LECTURE_18, updated: true, deadline: DateTime.fromISO("2024-03-25", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
-  { spec: LECTURE_19, updated: true, deadline: DateTime.fromISO("2024-03-27", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
-  { spec: LECTURE_20, updated: true, deadline: DateTime.fromISO("2024-04-01", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
-  { spec: LECTURE_21, updated: true, deadline: DateTime.fromISO("2024-04-03", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
-  { spec: LECTURE_22, updated: true, deadline: DateTime.fromISO("2024-04-15", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
+  { spec: LECTURE_01, updated: true, deadline: DateTime.fromISO("2024-08-26", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
+  { spec: LECTURE_02, updated: false, deadline: DateTime.fromISO("2024-08-28", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
+  { spec: LECTURE_03, updated: false, deadline: DateTime.fromISO("2024-09-04", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
+  { spec: LECTURE_04, updated: false, deadline: DateTime.fromISO("2024-09-09", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
+  { spec: LECTURE_05, updated: false, deadline: DateTime.fromISO("2024-09-11", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
+  { spec: LECTURE_06, updated: false, deadline: DateTime.fromISO("2024-09-16", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
+  { spec: LECTURE_07, updated: false, deadline: DateTime.fromISO("2024-09-18", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
+  { spec: LECTURE_08, updated: false, deadline: DateTime.fromISO("2024-09-23", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
+  { spec: LECTURE_09, updated: false, deadline: DateTime.fromISO("2024-09-25", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
+  { spec: LECTURE_10, updated: false, deadline: DateTime.fromISO("2024-09-30", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
+  { spec: LECTURE_11, updated: false, deadline: DateTime.fromISO("2024-10-02", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
+  { spec: LECTURE_12, updated: false, deadline: DateTime.fromISO("2024-10-07", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
+  { spec: LECTURE_13, updated: false, deadline: DateTime.fromISO("2024-10-09", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
+  { spec: LECTURE_14, updated: false, deadline: DateTime.fromISO("2024-10-16", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
+  { spec: LECTURE_15, updated: false, deadline: DateTime.fromISO("2024-10-21", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
+  { spec: LECTURE_16, updated: false, deadline: DateTime.fromISO("2024-10-23", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
+  { spec: LECTURE_17, updated: false, deadline: DateTime.fromISO("2024-10-30", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
+  { spec: LECTURE_18, updated: false, deadline: DateTime.fromISO("2024-11-04", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
+  { spec: LECTURE_19, updated: false, deadline: DateTime.fromISO("2024-11-06", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
+  { spec: LECTURE_20, updated: false, deadline: DateTime.fromISO("2024-11-11", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
+  { spec: LECTURE_21, updated: false, deadline: DateTime.fromISO("2024-11-13", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
+  { spec: LECTURE_22, updated: false, deadline: DateTime.fromISO("2024-11-18", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
+  // { spec: LECTURE_23, updated: false, deadline: DateTime.fromISO("2024-11-20", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
+  // { spec: LECTURE_24, updated: false, deadline: DateTime.fromISO("2024-11-25", {zone: "America/Detroit"}).plus({days: 2, hours: 23, minutes: 59, seconds: 59}) },
 ].map((lec) => {
   let spec = CUSTOMIZE(lec.spec, {
     // mk_intructions: dedent`
@@ -75,27 +77,27 @@ export const LECTURE_SPECS = [
 
   if (lec.updated) {
     spec = CUSTOMIZE(spec, {
-      credentials_strategy: {
-        strategy: "google_local",
-        client_id: "444801118749-m2g9gl3gvvkh5ru959dmka0lsk94d9uq.apps.googleusercontent.com",
-        // client_id: "444801118749-099920plmkl1s5n5u563pbmu71lo4bot.apps.googleusercontent.com",
-        auth_endpoint: "https://examma-ray.eecs.umich.edu/public_api/participation/auth/",
-        message: "Sign in with your @umich.edu Google account to earn participation credit for completing embedded exercises."
-      },
-      completion: {
-        threshold: 1,
-        tooltip: "",
-        endpoints: {
-          check: "https://examma-ray.eecs.umich.edu/public_api/participation/me/",
-          submit: "https://examma-ray.eecs.umich.edu/public_api/participation/me/",
-          // check: "https://localhost/public_api/participation/me/",
-          // submit: "https://localhost/public_api/participation/me/",
-        },
-        local_deadline: lec.deadline && {
-          when: lec.deadline,
-          grace_minutes: 5
-        }
-      }
+      // credentials_strategy: {
+      //   strategy: "google_local",
+      //   client_id: "444801118749-m2g9gl3gvvkh5ru959dmka0lsk94d9uq.apps.googleusercontent.com",
+      //   // client_id: "444801118749-099920plmkl1s5n5u563pbmu71lo4bot.apps.googleusercontent.com",
+      //   auth_endpoint: "https://examma-ray.eecs.umich.edu/public_api/participation/auth/",
+      //   message: "Sign in with your @umich.edu Google account to earn participation credit for completing embedded exercises."
+      // },
+      // completion: {
+      //   threshold: 1,
+      //   tooltip: "",
+      //   endpoints: {
+      //     check: "https://examma-ray.eecs.umich.edu/public_api/participation/me/",
+      //     submit: "https://examma-ray.eecs.umich.edu/public_api/participation/me/",
+      //     // check: "https://localhost/public_api/participation/me/",
+      //     // submit: "https://localhost/public_api/participation/me/",
+      //   },
+      //   local_deadline: lec.deadline && {
+      //     when: lec.deadline,
+      //     grace_minutes: 5
+      //   }
+      // }
     });
   }
   else {
