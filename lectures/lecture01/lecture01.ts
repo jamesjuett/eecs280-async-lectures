@@ -133,7 +133,7 @@ export const LECTURE_01 : ExamSpecification = {
           Please also note a key difference for Fall 2024 - **lecture participation** is _optionally_ worth 3% of your overall grade. We'll compute your grade with and without it and take the better.
 
           You can find full details in our syllabus at [https://eecs280.org/syllabus.html#lecture-participation](https://eecs280.org/syllabus.html#lecture-participation).
-          
+
         </div>
       `,
       questions: [
@@ -368,8 +368,8 @@ export const LECTURE_01 : ExamSpecification = {
                 //         The variable's type should only allow whole numbers.
                 int quantity = 4;
 
-                // Task 3: Print out the result of multiplying the variables
-                //         to cout. (Use the unqualified name cout, not std::cout.)
+                // Task 3: Print the result of multiplying the variables to cout.
+                //         (Use the unqualified name cout, not std::cout.)
                 cout << price * quantity << endl;
               }
               \`\`\`

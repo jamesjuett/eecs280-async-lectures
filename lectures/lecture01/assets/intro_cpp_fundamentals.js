@@ -79181,7 +79181,7 @@ $(() => {
           //         The variable's type should only allow whole numbers.
 
 
-          // Task 3: Print out the result of multiplying the variables together to cout.
+          // Task 3: Print the result of multiplying the variables to cout.
           //         (Use the unqualified name cout, not std::cout.)
 
 
