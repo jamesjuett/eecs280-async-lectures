@@ -10,7 +10,7 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 export const LECTURE_01 : ExamSpecification = {
-  exam_id: "lec_01_intro_and_machine_model",
+  exam_id: "f24_lec_01",
   title: "Introduction and Machine Model",
   mk_intructions: dedent`
     
@@ -129,18 +129,14 @@ export const LECTURE_01 : ExamSpecification = {
         <div class="alert alert-secondary" role="alert" markdown="1">
           <h5><span class="badge badge-success">Fall 2024</span></h5>
           Recall that we're splitting up project 5 for this term, into projects 4 and 6. Each of those halves is worth 5% each.
+
+          Please also note a key difference for Fall 2024 - **lecture participation** is _optionally_ worth 3% of your overall grade. We'll compute your grade with and without it and take the better.
+
+          You can find full details in our syllabus at [https://eecs280.org/syllabus.html#lecture-participation](https://eecs280.org/syllabus.html#lecture-participation).
+
+          Since this is the first lecture, there's only one embedded exercise here, but most lectures will have several.
+
         </div>
-
-        **Winter 2024**  
-        Please note a key difference for Winter 2024 - starting this term, lecture participation is _optionally_ worth 3% of your overall grade. We'll compute your grade with and without it and take the better.
-
-        You can find full details in our syllabus at [https://eecs280.org/syllabus.html#lecture-participation](https://eecs280.org/syllabus.html#lecture-participation).
-
-        For lectures 2 and beyond, participation credit will be integrated into the aysnc lectures themselves... but I didn't get that finished in time for the term to start, so please fill out this form if you want credit for lecture 1:
-
-        [https://forms.gle/vHzoqmNQnauFe6S28](https://forms.gle/vHzoqmNQnauFe6S28)
-
-        The form will be available until Tuesday, 1/16 at 11:59pm.
       `,
       questions: [
         {
@@ -257,75 +253,85 @@ export const LECTURE_01 : ExamSpecification = {
       title: "Lab Groups and Exercises",
       mk_description: dedent`
 
-        TODO
-
-        Lectures are followed up with labs, where you work with a small group of other students to explore and pratice the material further.
+        Lectures are followed up with labs, where you work with small groups of other students to further explore and pratice the course material.
         
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/WnKxucMSYDs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/hcF1NbPVuu0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
-
-        Feedback from former students generally indicates that lab is sometimes where the "real" learning happens. We do the best we can in lecture, but often the hands-on experience in lab is what makes things click.
       `,
       questions: [ ]
     },
     {
       section_id: "section_01_5",
-      title: "Variables and References",
+      title: "Machine Code and Compilation",
       mk_description: dedent`
-        It's time to dive into our first course material! Let's take a look at the connections between the code we write and what the program does at runtime. In particular:
-
-        - How do variables correspond to data in memory?
-        - What is a reference, and how does it differ from a regular variable?
-
-        <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/mpAO5F1rrlw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <br />
-        <br />
-        <br />
         
-        <table style="max-width: 700px; margin-left: auto; margin-right: auto;">
-          <tr>
-            <td>
-            Here's a quick exercise for you. Click the "Memory Diagram" button below and set it to "ON". Then, modify the code in <code>main</code> so that it generates a memory diagram like the one shown here, using variable and/or reference declarations as appropriate.
-            </td>
-            <td>
-              <img src="assets/diagram.png" style="width: 300px;">
-            </td>
-          </tr>
-        </table>
-
-        <br />
+        Let's take a break from talking about course logistics and dive into our first sequence of course material! We'll start with a brief introduction to the nature of C++ as a **compiled** language.
 
         <div style="text-align: center;">
-          <iframe class="lobster-iframe" src="assets/test_exercise.html"></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/5I_gpGCwlGY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
+        <br />
       `,
       questions: [ ],
     },
     {
       section_id: "section_01_6",
-      title: "Scope and Lifetimes",
+      title: "Demo: A First Progam in C++",
       mk_description: dedent`
-        Let's ask some more questions, which all turn out to be related!
-         - Why does the compiler have such strict rules on variable scope?
-         - How long does the data stored in a variable "hang around" at runtime?
-         - What is "memory junk" and where does it come from?
-         
+        
+        So, what does it actually look like to write a program in C++, compile it, and run it?
+
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/95KtAgkkHQU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/MLCHE6cbsLY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
+
+        There were several commands in there, including the \`g++ hello.cpp -o hello.exe\` that I used to compile the program. Don't worry about memorizing any of this right now. The tutorials and C++ setup walkthrough sessions will go into some more depth on these.
       `,
-      questions: [ ]
+      questions: [ ],
     },
     {
       section_id: "section_01_7",
+      title: "A Tour of C++",
+      mk_description: dedent`
+        
+        Now, we'll spend some time on a brief, whirlwind-style tour of some of the characteristics of C++. This is just a high-level overview, and we'll spend more time on a lot of details throughout the rest of the course.
+
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/V9-WMP0mXUY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
+
+        It's worth looking at **expressions** and **variables** in a bit more detail, especially the way variables and their types relate to the underlying memory used in our program.
+
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/b0GpOtt0fK4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
+
+        Understanding variables as a name for an object in memory also helps us understand what would happen if a variable were declared, but not properly initialized before we use it...
+
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/ub1lkk67XME" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
+
+        Finally, we'll look at a few ways the compiler checks for common errors in programs before we're allowed to run them, using rules of **scope** and **static typing**.
+
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/57NGk0keZLY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
+      `,
+      questions: [ ],
+    },
+    {
+      section_id: "section_01_8",
       title: "Projects and Autograder",
       mk_description: dedent`
-        You get to exercise the skills you learn in lecture and lab in five large-scale programming projects throughout the course, designed to solidify your understanding and give you a chance to build some neat applications with real-world appeal!
+        You get to exercise the skills you learn in lecture and lab in six large-scale programming projects throughout the course, designed to solidify your understanding and give you a chance to build some neat applications with real-world appeal!
         
         <div style="text-align: center;">
           <iframe class="lec-video" src="https://www.youtube.com/embed/CY21lS9FQtA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -335,7 +341,7 @@ export const LECTURE_01 : ExamSpecification = {
       questions: [ ]
     },
     {
-      section_id: "section_01_8",
+      section_id: "section_01_9",
       title: "Collaboration and Honor Code",
       mk_description: dedent`
         We want you to learn with and from each other! Enjoying the class with others and having a network you can reach out to for help is highly encouraged. At the same time, we want to make sure everyone has an opportunity to learn for themselves and that nobody takes credit for someone else's work. We follow the UM CoE Honor Code.
@@ -345,7 +351,7 @@ export const LECTURE_01 : ExamSpecification = {
         </div>
         <br />
 
-        The stuff I said in that video all still applies... but that chart is pretty old. Here's a more recent chart from the terms of EECS 280 I've been involved with. The takeaway is the same - we only report cases to the honor council where there is compelling evidence plagiarism occurred.
+        The stuff I said in that video all still applies... but that chart is pretty old. Here's a more recent chart from the terms of EECS 280 (and excluding ENGR 101) that I've been involved with. The takeaway is the same - we only report cases to the honor council where there is compelling evidence plagiarism occurred.
 
         <div style="text-align: center;">
           <img src="assets/hc_resolutions.png" style="width: 600px; border: solid 1px gray;">
@@ -353,23 +359,15 @@ export const LECTURE_01 : ExamSpecification = {
 
         <br />
 
-        Let's take a look at how this plays out in EECS 280. Linked here is a form with examples of several different scenarios that students might run into - what are your thoughts? How do we evaluate them with dual goals of collaboration and academic integrity?
-
-        <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSdCuRr919prkQG1xPKevc62MRYihYp9v9zPciVKJTFqSKNgKg/viewform?usp=sf_link"><b>Honor Code Scenarios</b></a>
-        
-        After you fill out the form, you can see how others responded here:
-        
-        <a target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLSdCuRr919prkQG1xPKevc62MRYihYp9v9zPciVKJTFqSKNgKg/viewanalytics"><b>Responses</b></a>
-
-        While we encourage students to use their best judgement about what might be "too much" help from someone else, we also don't want to scare you away from helping each other learn! Let me reassure you - the cases we routinely report to the honor council always involve clear, straightforward copying or plagiarism.
-
         **Generative AI Policy**  
         Finally, it's worth mentioning our Generative AI Policy. The short version - you're encouraged to use tools like ChatGPT, Copilot, etc. to help you learn, but you aren't allowed to use them to do your work for you. The [full version](https://eecs280.org/syllabus.html#generative-ai-policy) in our syllabus is also worth a read.
+
+        In almost all cases in EECS 280, I highly recommend against using generative AI tools for writing ANY code, regardless of the amount. A huge part of this course is building up your own programming skills.
       `,
       questions: [ ]
     },
     {
-      section_id: "section_01_9",
+      section_id: "section_01_10",
       title: "Wrapping Up",
       mk_description: dedent`
         Just a few parting thoughts.
@@ -378,12 +376,6 @@ export const LECTURE_01 : ExamSpecification = {
           <iframe class="lec-video" src="https://www.youtube.com/embed/TlsM1jxpKDQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
-
-        We'd also like to invite you to join a new CSE community event, next Wednesday 1/17:
-
-        <div style="text-align: center;">
-          <img src="assets/cse_carnival_flyer_w24.png" style="width: 800px;">
-        </div>
       `,
       questions: [ ]
     },
