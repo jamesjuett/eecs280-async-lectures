@@ -26,7 +26,7 @@ concurrency:
   cancel-in-progress: true
 
 # We have two jobs:
-# (1) A "build" job that installs dependenresponsible for creating the tarball and building
+# (1) A "build" job that installs dependencies responsible for creating the tarball and building
 #     the website using Jekyll.
 # (2) A "deploy" job that pushes the output of the build job to GitHub Pages.
 jobs:
