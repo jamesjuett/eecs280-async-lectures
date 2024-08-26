@@ -1,4 +1,10 @@
 cd lectures
+cd lecture01
+npx webpack ./src/intro_cpp_fundamentals.ts --config ../../lobster/webpack.config.js
+mv assets/main.html assets/intro_cpp_fundamentals.html
+mv assets/main.js assets/intro_cpp_fundamentals.js
+sed -i 's/main\.js/intro_cpp_fundamentals\.js/' assets/intro_cpp_fundamentals.html
+cd ..
 cd lecture02
 npx webpack ./src/test.ts --config ../../lobster/webpack.config.js
 mv assets/main.html assets/test.html

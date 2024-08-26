@@ -133,9 +133,7 @@ export const LECTURE_01 : ExamSpecification = {
           Please also note a key difference for Fall 2024 - **lecture participation** is _optionally_ worth 3% of your overall grade. We'll compute your grade with and without it and take the better.
 
           You can find full details in our syllabus at [https://eecs280.org/syllabus.html#lecture-participation](https://eecs280.org/syllabus.html#lecture-participation).
-
-          Since this is the first lecture, there's only one embedded exercise here, but most lectures will have several.
-
+          
         </div>
       `,
       questions: [
@@ -325,7 +323,60 @@ export const LECTURE_01 : ExamSpecification = {
         </div>
         <br />
       `,
-      questions: [ ],
+      questions: [
+        {
+          question_id: "lec_intro_cpp_fundamentals",
+          title: "Exercise: C++ Fundamentals",
+          points: 1,
+          mk_description: dedent`
+            Complete each of the tasks described in the comments.
+          `,
+          response: {
+            kind: "iframe",
+            src: "assets/intro_cpp_fundamentals.html",
+            element_class: "lobster-iframe",
+            element_style: "height: 850px;",
+            default_grader: {
+              grader_kind: "standard_iframe",
+              rubric: [
+                {
+                  points: 1,
+                  description: "Exercise must be complete.",
+                  property: "complete",
+                  value: true,
+                }
+              ]
+            }
+          },
+          verifier: {
+            verifier_kind: "full_credit"
+          },
+          mk_postscript: dedent`
+            <hr />
+            <details>
+              <summary>Sample solution...</summary>
+              \`\`\`cpp
+              #include <iostream>
+              using namespace std;
+              
+              int main() {
+              
+                // Task 1: Define a variable called price with inital value 7.99.
+                double price = 7.99;
+
+                // Task 2: Define a variable called quantity with initial value 4.
+                //         The variable's type should only allow whole numbers.
+                int quantity = 4;
+
+                // Task 3: Print out the result of multiplying the variables
+                //         to cout. (Use the unqualified name cout, not std::cout.)
+                cout << price * quantity << endl;
+              }
+              \`\`\`
+            </details>
+          `
+        }
+      ],
     },
     {
       section_id: "section_01_8",
