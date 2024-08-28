@@ -151,9 +151,6 @@ export const LECTURE_02 : ExamSpecification = {
           },
           mk_postscript: dedent`
             <hr />
-            <div markdown=1 class="alert alert-warning">
-              *Make sure to return to finish the video after completing the exercise!*
-            </div>
 
             <details>
               <summary>Sample solution...</summary>
