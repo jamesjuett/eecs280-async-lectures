@@ -16,9 +16,12 @@ export const LECTURE_02 : ExamSpecification = {
 
     <div markdown=1 class="alert alert-info">
       We'll continue our tour of C++ in this lecture, with a particular focus on three areas:
+      
       - Data types, both fundamental and those from the C++ standard library.
       - Control flow structures for branching and looping.
       - Defining and using functions (for procedural abstraction), including when they're split across several files.
+      
+      <!-- end list -->
 
       Also, this lecture is a bit long. They won't all be like this, I promise!
 
