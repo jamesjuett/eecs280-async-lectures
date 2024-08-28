@@ -6,10 +6,16 @@ mv assets/main.js assets/intro_cpp_fundamentals.js
 sed -i 's/main\.js/intro_cpp_fundamentals\.js/' assets/intro_cpp_fundamentals.html
 cd ..
 cd lecture02
-npx webpack ./src/test.ts --config ../../lobster/webpack.config.js
-mv assets/main.html assets/test.html
-mv assets/main.js assets/test.js
-sed -i 's/main\.js/test\.js/' assets/test.html
+npx webpack ./src/vector_sum.ts --config ../../lobster/webpack.config.js
+mv assets/main.html assets/vector_sum.html
+mv assets/main.js assets/vector_sum.js
+sed -i 's/main\.js/vector_sum\.js/' assets/vector_sum.html
+cd ..
+cd lecture02
+npx webpack ./src/vector_min.ts --config ../../lobster/webpack.config.js
+mv assets/main.html assets/vector_min.html
+mv assets/main.js assets/vector_min.js
+sed -i 's/main\.js/vector_min\.js/' assets/vector_min.html
 cd ..
 cd lecture03
 npx webpack ./src/pass_by_pointer.ts --config ../../lobster/webpack.config.js

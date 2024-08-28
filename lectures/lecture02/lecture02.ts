@@ -10,16 +10,19 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 export const LECTURE_02 : ExamSpecification = {
-  exam_id: "lec_02_procedural_abstraction_and_the_call_stack",
-  title: "Procedural Abstraction and The Call Stack",
+  exam_id: "f24_lec_02",
+  title: "Types, Control Structures, and Procedural Abstraction",
   mk_intructions: dedent`
 
     <div markdown=1 class="alert alert-info">
-      This lecture is all about **functions**. We'll look at two complementary perspectives:
+      We'll continue our tour of C++ in this lecture, with a particular focus on three areas:
+      - Data types, both fundamental and those from the C++ standard library.
+      - Control flow structures for branching and looping.
+      - Defining and using functions (for procedural abstraction), including when they're split across several files.
 
-      1. Expanding our conceptual model of program execution and memory to include functions and how they are managed on **the call stack**.
-      2. Understanding how functions and **procedural abstraction** contribute to good program design.
-      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Winter 2024</div>
+      Also, this lecture is a bit long. They won't all be like this, I promise!
+
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2024</div>
     </div>
     <style>
       .lec-video {
@@ -46,245 +49,253 @@ export const LECTURE_02 : ExamSpecification = {
   sections: [
     {
       section_id: "section_02_1",
-      title: "Intro to Lobster",
+      title: "Fundamental Types and Implicit Conversions",
       mk_description: dedent`
-        Before we start, let me cover a few basics for the Lobster program visualization tool, which we'll use throughout several lecture examples and exercises in the future.
+        Let's take a look at the set of fundamental data types built in to the C++ language, as well as the rules for implicit conversion between them.
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/SyYblfASLlE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/BFt_3sLGMy4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
-        You can find Lobster at [https://lobster.eecs.umich.edu](https://lobster.eecs.umich.edu). However, there are also Lobster exercises embedded directly in these asynchronous lecture documents, and you can just work on them here (your work will be saved along with any other interactive exercises).
+
+        I'll also point out that **explicit conversions** are possible, where we directly request a conversion. In some cases this may be necessary. In others, it's stylistically preferrable to make an otherwise implicit conversion more obvious. Here's a few examples:
+
+        \`\`\`cpp
+        int main() {
+          double value = 4.3;
+
+          // implicit conversion, too easy to miss
+          int x = value;
+
+          // C-style cast, avoid doing this
+          int x = (int)value;
+
+          // C++-style cast, this is preferred
+          int x = static_cast<int>(value);
+        }
+        \`\`\`
+
+        In C++, the \`static_cast\` form is preferred because the compiler generally performs stronger checks to ensure the conversion makes sense.
       `,
-      questions: [ ]
+      questions: [],
     },
     {
       section_id: "section_02_2",
-      title: "Functions and The Call Stack",
+      title: "Functions",
       mk_description: dedent`
-        
-        The memory allocated for each function is generally called an **activation record** or (more commonly) a **stack frame**. Each function takes up a certain amount of memory that depends on how many local variables it may need to store, and this memory is allocated and freed as needed during the program.
-
-        Because of the way that functions call work (i.e. the called function has to finish and return before you can start back up in the original function), it's natural to use a stack to represent the memory frames for each function. Whichever function is called most recently is added to the top of the stack, and will always be removed before any other functions that were already on the stack (this is called the "Last In First Out" or "LIFO" property).
+        In more complex programs, it's essential to define functions to abstract away details.
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/jT077RVOUgk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/EibBjApuktw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
+      `,
+      questions: [],
+    },
+    {
+      section_id: "section_02_3",
+      title: "Standard Library Types",
+      mk_description: dedent`
+        The C++ Standard Library provides a variety of container and utility types. We'll take a look at a few now, including \`std::vector\` which is used extensively in project 1.
+
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/Or3dP1jF5go" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
+      `,
+      questions: [],
+    },
+    {
+      section_id: "section_02_4",
+      title: "Iteration",
+      mk_description: dedent`
+        In imperative programming, loops allow us to iterate through a set of instructions multiple times as long as some condition is true. C++ has two primary looping constructs, \`for\` and \`while\`.
+
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/E2QAhXmsnmw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
       `,
       questions: [
         {
-          question_id: "lec02_stack_frames",
-          title: "Exercise: Stack Frames",
-          points: 3,
+          question_id: "lec_vector_sum",
+          title: "Exercise: Vector Sum",
+          points: 1,
           mk_description: dedent`
-            Consider the following code. Trace through the code either manually or using the Lobster simulation and answer the questions below.
-
-            <div style="text-align: center;">
-              <iframe class="lobster-iframe" style="height: 625px;" src="assets/call_stack.html"></iframe>
-            </div>
+            Fill in the blanks so that the code computes the sum of elements in the vector.
+            
+            If your code compiles, but you're not getting credit, try clicking the "Simulate" button to step through the code and see where it's going wrong.
           `,
           response: {
-            kind: "fill_in_the_blank",
-            content: dedent`
-              Which function has the largest stack frame (in terms of memory use)? How can you tell? Is this a compile-time property or a runtime property?
-
-              [[BOX
-              
-              
-              ]]
-
-              What is the maximum amount of memory on the (call) stack needed by the program at any one given time? Assume an \`int\` takes up 4 bytes, and that the memory to store local \`int\` objects is the only memory used by the program. 
-
-              [[BOX
-              
-              
-              ]]
-
-              How many different stack frames are created for the \`min()\` function throughout the execution of the program?
-
-              [[BOX
-              
-              
-              ]]
-            `,
+            kind: "iframe",
+            src: "assets/vector_sum.html",
+            element_class: "lobster-iframe",
+            element_style: "height: 850px;",
             default_grader: {
-              grader_kind: "manual_regex_fill_in_the_blank",
+              grader_kind: "standard_iframe",
               rubric: [
                 {
-                  blankIndex: 1,
-                  title: "Box 1",
                   points: 1,
-                  description: "",
-                  patterns: [
-                    {
-                      pattern: /min[ _]*[O0]f[ _]*(3|three|tree)/i,
-                      explanation: "Correct!",
-                      points: 1
-                    },
-                  ]
-                },
-                {
-                  blankIndex: 2,
-                  title: "Box 2",
-                  points: 1,
-                  description: "",
-                  patterns: [
-                    {
-                      pattern: /40|forty|fourty/i,
-                      explanation: "Correct!",
-                      points: 1
-                    },
-                    {
-                      pattern: /10|ten/i,
-                      explanation: "Correct!",
-                      points: 1
-                    },
-                  ]
-                },
-                {
-                  blankIndex: 3,
-                  title: "Box 3",
-                  points: 1,
-                  description: "",
-                  patterns: [
-                    {
-                      pattern: /3|three|tree/i,
-                      explanation: "Correct!",
-                      points: 1
-                    },
-                  ]
-                },
+                  description: "Exercise must be complete.",
+                  property: "complete",
+                  value: true,
+                }
               ]
             }
           },
           verifier: {
-            verifier_kind: "full_credit",
+            verifier_kind: "full_credit"
           },
           mk_postscript: dedent`
-            You're also welcome to check out this **walkthrough** video where I talk through the questions. 
-
-            <div style="text-align: center;">
-              <iframe class="lec-video" src="https://www.youtube.com/embed/N6e_IA6GaKo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <hr />
+            <div markdown=1 class="alert alert-warning">
+              *Make sure to return to finish the video after completing the exercise!*
             </div>
-            <br />
+
+            <details>
+              <summary>Sample solution...</summary>
+              \`\`\`cpp
+              #include <iostream>
+              #include <vector>
+              using namespace std;
+              
+              int main() {
+                vector<double> v = {1, 5, 3.5, 6.5};
+
+                // Declare accumulator variable to hold the sum
+                double sum = 0;
+
+                // Traverse by index from 0 ... v.size()-1
+                for (int i = 0; i < v.size(); ++i) {
+
+                  // Access each element by index and add to sum
+                  sum += v[i];
+                }
+                
+                cout << "Sum: " << sum << endl;
+              }
+              \`\`\`
+            </details>
+            
+            <div markdown=1 class="alert alert-warning" style="text-align: center;">
+              <div style="color: black;"><svg style="vertical-align: text-top;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M13 17.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm-.25-8.25a.75.75 0 0 0-1.5 0v4.5a.75.75 0 0 0 1.5 0v-4.5Z"></path><path d="M9.836 3.244c.963-1.665 3.365-1.665 4.328 0l8.967 15.504c.963 1.667-.24 3.752-2.165 3.752H3.034c-1.926 0-3.128-2.085-2.165-3.752Zm3.03.751a1.002 1.002 0 0 0-1.732 0L2.168 19.499A1.002 1.002 0 0 0 3.034 21h17.932a1.002 1.002 0 0 0 .866-1.5L12.866 3.994Z"></path></svg>
+              Make sure to return to finish the video after completing the exercise!
+              </div>
+            </div>
           `
         }
       ],
     },
     {
-      section_id: "section_02_3",
-      title: "Parameter Passing",
+      section_id: "section_02_5",
+      title: "Branching",
       mk_description: dedent`
-        Two primary mechanisms for parameter passing are pass-by-value and pass-by-reference. Let's take a look at the differences between the two, as well as how they relate to function stack frames.
+        The \`if\` and \`else\` constructs are used for branching in C++, often in conjunction with loops.
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/xetnP9gQXEY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/U3smDED1ibA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
       `,
       questions: [
         {
-          question_id: "lec02_parameter_passing",
-          title: "Exercise: Parameter Passing",
-          points: 4,
+          question_id: "lec_vector_min",
+          title: "Exercise: Vector Minimum",
+          points: 1,
           mk_description: dedent`
-            Consider this code that defines a function with both pass-by-value and pass-by-reference parameters.
+            Fill in the blanks so that the code finds the minimum value in the vector.
             
-            <div style="text-align: center;">
-              <iframe class="lobster-iframe" style="height: 500px;" src="assets/parameter_passing.html"></iframe>
-            </div>
-            
-            What are the values of each variable at the end of the main function? (You can also use the Lobster simulation to check.)
-
+            If your code compiles, but you're not getting credit, try clicking the "Simulate" button to step through the code and see where it's going wrong.
           `,
           response: {
-            kind: "fill_in_the_blank",
-            content: dedent`
-              **\`a\`**: _BLANK______ &nbsp;&nbsp;&nbsp;&nbsp; **\`b\`**: _BLANK______ &nbsp;&nbsp;&nbsp;&nbsp;**\`c\`**: _BLANK______ &nbsp;&nbsp;&nbsp;&nbsp;**\`d\`**: _BLANK______
-            `,
+            kind: "iframe",
+            src: "assets/vector_min.html",
+            element_class: "lobster-iframe",
+            element_style: "height: 850px;",
             default_grader: {
-              grader_kind: "manual_regex_fill_in_the_blank",
+              grader_kind: "standard_iframe",
               rubric: [
                 {
-                  blankIndex: 1,
-                  title: "Blank 1",
                   points: 1,
-                  description: "",
-                  patterns: [
-                    {
-                      pattern: /1|one/i,
-                      explanation: "Correct!",
-                      points: 1
-                    },
-                  ]
-                },
-                {
-                  blankIndex: 2,
-                  title: "Blank 2",
-                  points: 1,
-                  description: "",
-                  patterns: [
-                    {
-                      pattern: /3|three|tree/i,
-                      explanation: "Correct!",
-                      points: 1
-                    },
-                    {
-                      pattern: /10|ten/i,
-                      explanation: "Correct!",
-                      points: 1
-                    },
-                  ]
-                },
-                {
-                  blankIndex: 3,
-                  title: "Blank 3",
-                  points: 1,
-                  description: "",
-                  patterns: [
-                    {
-                      pattern: /3|three|tree/i,
-                      explanation: "Correct!",
-                      points: 1
-                    },
-                  ]
-                },
-                {
-                  blankIndex: 4,
-                  title: "Blank 4",
-                  points: 1,
-                  description: "",
-                  patterns: [
-                    {
-                      pattern: /4|four/i,
-                      explanation: "Correct!",
-                      points: 1
-                    },
-                  ]
-                },
+                  description: "Exercise must be complete.",
+                  property: "complete",
+                  value: true,
+                }
               ]
             }
           },
           verifier: {
-            verifier_kind: "full_credit",
+            verifier_kind: "full_credit"
           },
           mk_postscript: dedent`
+            <hr />
+
             <details>
               <summary>Sample solution...</summary>
-              <p markdown="1">
-              **\`a\`**: 1 &nbsp;&nbsp;&nbsp;&nbsp; **\`b\`**: 3 &nbsp;&nbsp;&nbsp;&nbsp;**\`c\`**: 3 &nbsp;&nbsp;&nbsp;&nbsp;**\`d\`**: 4
-              </p>
+              \`\`\`cpp
+              #include <iostream>
+              #include <vector>
+              using namespace std;
+              
+              int main() {
+                vector<double> v = {1, 5, 3.5, 6.5};
+
+                // Keep track of the "best" candidate we've seen.
+                
+                double min = v[0];
+
+                for (size_t i = 0; i < v.size(); ++i) {
+                  // If v[i] is less than the current min, update min.
+                  if (v[i] < min) {
+                    min = v[i];
+                  }
+                }
+
+                cout << "Min: " << min << endl;
+              }
+              \`\`\`
             </details>
-          `,
+
+            <div markdown=1 class="alert alert-warning" style="text-align: center;">
+              <div style="color: black;"><svg style="vertical-align: text-top;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20"><path d="M13 17.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm-.25-8.25a.75.75 0 0 0-1.5 0v4.5a.75.75 0 0 0 1.5 0v-4.5Z"></path><path d="M9.836 3.244c.963-1.665 3.365-1.665 4.328 0l8.967 15.504c.963 1.667-.24 3.752-2.165 3.752H3.034c-1.926 0-3.128-2.085-2.165-3.752Zm3.03.751a1.002 1.002 0 0 0-1.732 0L2.168 19.499A1.002 1.002 0 0 0 3.034 21h17.932a1.002 1.002 0 0 0 .866-1.5L12.866 3.994Z"></path></svg>
+              Make sure to return to finish the video after completing the exercise!
+              </div>
+            </div>
+          `
         }
       ],
     },
     {
-      section_id: "section_02_4",
+      section_id: "section_02_6",
+      title: "Logical Operations and Short-Circuit Evaluation",
+      mk_description: dedent`
+        Sometimes we need to create compound boolean expressions using the \`&&\`, \`||\`, and \`!\` operators. In C++ (and some other languages), \`&&\` and \`||\` have special behavior called *short-circuit evaluation*. Here's the details.
+
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/gQITxorPtt4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
+      `,
+      questions: [],
+    },
+    {
+      section_id: "section_02_7",
+      title: "`break;` and `continue;`",
+      mk_description: dedent`
+        Finally, a miscellaneous topic. C++ also has special \`break;\` and \`continue\` statements that affect the execution of loops.
+
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/-7cN_32DOQw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
+      `,
+      questions: [],
+    },
+    {
+      section_id: "section_02_8",
       title: "Procedural Abstraction",
       mk_description: dedent`
-        Turning now to our second, higher-level point, how can we use functions to implement effective procedural abstractions that make our code easier to write, understand, and maintain?
+        Switching gears a bit, let's take a look at the high-level organization of a program using procedural abstraction to make our code easier to write, understand, and maintain.
         
         <div style="text-align: center;">
           <iframe class="lec-video" src="https://www.youtube.com/embed/WVqOirVNBqI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -294,17 +305,25 @@ export const LECTURE_02 : ExamSpecification = {
       questions: []
     },
     {
-      section_id: "section_02_5",
-      title: "Project 1 File Structure",
+      section_id: "section_02_9",
+      title: "Header Files, Makefiles, and Project 1",
       mk_description: dedent`
-        The file structure in project 1 is a great example of implementing several different modules in our code and using procedural abstractions as the bridge between those modules.
-
-        TODO
+        As projects grow more complex, we often need to split the code into several different modules. In C++, we often use use a \`.hpp\` header files to provide declarations of the interfaces for implementation code in a \`.cpp\` file. These headers facilitate compilation across many files. But, as a project grows and compilation becomes more complex, we'll also turn to using build tools like \`Makefiles\` to automate the process.
+        
+        We'll use project 1 as an example to illustrate each of these. First, we'll look at the role of function prototpyes and header files.
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/a26xmgSPE6U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/-3Yj7YpVOmk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
+
+        Now, some discussion of the overall structure of project 1 and the \`Makefile\` we provide with the project.
+
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/4-y9jzZz2bM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
+
       `,
       questions: [
         {
@@ -444,7 +463,7 @@ export const LECTURE_02 : ExamSpecification = {
       ],
     },
     {
-      section_id: "section_02_6",
+      section_id: "section_02_10",
       title: "RMEs for Interface Specification",
       mk_description: dedent`
         It's useful to adopt a common patten for comments that specify function interfaces. In EECS 280, we'll use RMEs:
@@ -462,12 +481,12 @@ export const LECTURE_02 : ExamSpecification = {
       questions: [ ]
     },
     {
-      section_id: "section_02_7",
+      section_id: "section_02_11",
       title: "Unit Testing",
       mk_description: dedent`
-        Finally, let's take a bit of time to talk about testing. We need to make sure the code we write actually works.
+        Finally, let's take a bit of time to talk about unit testing. We need to make sure the code we write actually works.
         
-        In particular, we'll look at **unit testing** as a strategy for making sure that the implementation we write for a function actually works according to the interface we've decided for it to have. We'll look at some examples and general strateiges for writing good tests. 
+        In particular, we'll look at **unit testing** as a strategy for making sure that the implementation we write for a function actually works according to the interface we've decided for it to have. We'll look at some examples and general strateiges for writing good tests.
         
         <div style="text-align: center;">
           <iframe class="lec-video" src="https://www.youtube.com/embed/mpmqISAUacI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -509,7 +528,7 @@ export const LECTURE_02 : ExamSpecification = {
       ],
     },
     // {
-    //   section_id: "section_02_8",
+    //   section_id: "section_02_12",
     //   title: "System and Regression Testing",
     //   mk_description: dedent`
     //     TODO

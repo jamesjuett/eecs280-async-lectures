@@ -69,7 +69,7 @@ $(() => {
           let priceDef = findFirstConstruct(program, Predicates.byVariableName("quantity"));
           if (!priceDef?.type.similarType(Int.INT)) { return false; }
           return Predicates.byVariableInitialValue(4)(priceDef);
-        }),,
+        }),
         new OutputCheckpoint("Task 3", (output: string) => {
             return output.indexOf("31.96") !== -1;
         })
