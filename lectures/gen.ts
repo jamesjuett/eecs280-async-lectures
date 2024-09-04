@@ -39,7 +39,7 @@ function addW24Warning(spec: ExamSpecification) {
 export const LECTURE_SPECS = [
   { spec: LECTURE_01, updated: true, deadline: DateTime.fromISO("2024-08-26", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   { spec: LECTURE_02, updated: true, deadline: DateTime.fromISO("2024-08-28", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: LECTURE_03, updated: false, deadline: DateTime.fromISO("2024-09-04", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: LECTURE_03, updated: true, deadline: DateTime.fromISO("2024-09-04", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   // { spec: LECTURE_04, updated: false, deadline: DateTime.fromISO("2024-09-09", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   // { spec: LECTURE_05, updated: false, deadline: DateTime.fromISO("2024-09-11", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   // { spec: LECTURE_06, updated: false, deadline: DateTime.fromISO("2024-09-16", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
