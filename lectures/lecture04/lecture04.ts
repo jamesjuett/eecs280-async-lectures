@@ -10,27 +10,14 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 export const LECTURE_04 : ExamSpecification = {
-  exam_id: "lec_04_arrays",
-  title: "Arrays",
+  exam_id: "f24_lec_04",
+  title: "Machine Model, Part 2",
   mk_intructions: dedent`
-    <div markdown=1 class="alert alert-success">
-      
-      To earn participation credit, you'll need to complete the lecture within 2 days of the lecture date.
-      For lecture 4 (released Wednesday 1/24), that means completing it by <b>Friday 1/26 at 11:59pm</b>.
-    </div>
 
     <div markdown=1 class="alert alert-info">
-      The official course title for EECS 280 is *"Programming and Introductory Data Structures"*. The second half of this, **data structures**, is the study of how to represent containers or sequences of data in a way that makes the data easily (for you) and efficiently (for the computer) accessible.
+      This is part two of our exploration of the underlying machine model. A primary focus will be on the way local objects and their underlying memory is managed by the function call stack. We'll also cover different mechanisms for parameter passing and returned results from functions.
       
-      There are many different standard data structures, each well-suited for different kinds of tasks. We'll take a look at several throughout the course, realized via C++ implementations. The same sorts of data structures are applicable in most any programming language and thinking through which data structures to use for a particular problem is one of the fundamentals of good programming.
-
-      To start, we'll focus on **arrays**, which are the most basic container for storing sequential data and also one of the most ubiquitous. In fact, *many* other containers, including \`std::vector\` and \`std::string\` from the C++ standard library, are actually built on top of arrays! (We'll come back to this later.)
-      
-      We'll also see that arrays provide very efficient access to data in a couple different ways:
-      
-      - **Sequential Access**: Iterating through a sequence of elements from start to end.
-      - **Random Access**: Accessing an element at a particular index (i.e. position) in the sequence.
-      
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2024</div>
     </div>
     <style>
       .lec-video {
@@ -55,37 +42,70 @@ export const LECTURE_04 : ExamSpecification = {
   assets_dir: __dirname + `/assets`,
   allow_clientside_content: true,
   sections: [
+    
     {
-      section_id: "section_04_1",
-      title: "Introduction to Arrays",
+      section_id: "section_02_1",
+      title: "Intro to Lobster",
       mk_description: dedent`
-        Arrays are a low-level abstraction over a sequence of objects in memory that we can fit into the memory model we've been building up so far...
+        Before we start, let me cover a few basics for the Lobster program visualization tool, which we'll use throughout several lecture examples and exercises in the future.
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/4r_X4JyNLT0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/SyYblfASLlE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
+        You can find the main Lobster page at [https://lobster.eecs.umich.edu](https://lobster.eecs.umich.edu). **However**, there are also Lobster exercises embedded directly in these asynchronous lectures, and you can just work on them here (your work will be saved along with any other interactive exercises). You don't need to go to the separate Lobster page unless you want to work on other problems outside of these lectures.
+      `,
+      questions: [ ]
+    },
+    {
+      section_id: "section_02_2",
+      title: "Functions and The Call Stack",
+      mk_description: dedent`
+        
+        The memory allocated for each function is generally called an **activation record** or (more commonly) a **stack frame**. Each function takes up a certain amount of memory that depends on how many local variables it may need to store, and this memory is allocated and freed as needed during the program.
+
+        Because of the way that functions call work (i.e. the called function has to finish and return before you can start back up in the original function), it's natural to use a stack to represent the memory frames for each function. Whichever function is called most recently is added to the top of the stack, and will always be removed before any other functions that were already on the stack (this is called the "Last In First Out" or "LIFO" property).
+
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/jT077RVOUgk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
       `,
       questions: [
         {
-          question_id: "lec04_arrays_and_memory",
-          title: "Exercise: Introduction to Arrays",
-          points: 5,
-          mk_description: "",
+          question_id: "lec_stack_frames",
+          title: "Exercise: Stack Frames",
+          points: 3,
+          mk_description: dedent`
+            Consider the following code. Trace through the code either manually or using the Lobster simulation and answer the questions below.
+
+            <div style="text-align: center;">
+              <iframe class="lobster-iframe" style="height: 625px;" src="assets/call_stack.html"></iframe>
+            </div>
+          `,
           response: {
             kind: "fill_in_the_blank",
             content: dedent`
-              Determine whether each of the following statements are true or false.
+              Which function has the largest stack frame (in terms of memory use)? How can you tell? Is this a compile-time property or a runtime property?
 
-              _BLANK_______ Arrays can be resized if you need more space.
+              [[BOX
               
-              _BLANK_______ The elements in an array are stored contiguously in memory.
               
-              _BLANK_______ All elements in a particular array must be the same type.
+              ]]
+
+              What is the maximum amount of memory on the (call) stack needed by the program at any one given time? Assume an \`int\` takes up 4 bytes, and that the memory to store local \`int\` objects is the only memory used by the program. 
+
+              [[BOX
               
-              _BLANK_______ All individual array elements must be the same size in memory.
               
-              _BLANK_______ Each array element lives at the same address in memory.
+              ]]
+
+              How many different stack frames are created for the \`min()\` function throughout the execution of the program?
+
+              [[BOX
+              
+              
+              ]]
             `,
             default_grader: {
               grader_kind: "manual_regex_fill_in_the_blank",
@@ -97,9 +117,14 @@ export const LECTURE_04 : ExamSpecification = {
                   description: "",
                   patterns: [
                     {
-                      pattern: /false|^\s*f\s*$|0/i,
+                      pattern: /min[ _]*[O0]f[ _]*(3|three|tree)/i,
                       explanation: "Correct!",
                       points: 1
+                    },
+                    {
+                      pattern: /min|main/i,
+                      explanation: "The minOf3 function has the most local variables (including parameters), so it needs the largest stack frame.",
+                      points: 0
                     },
                   ]
                 },
@@ -110,9 +135,14 @@ export const LECTURE_04 : ExamSpecification = {
                   description: "",
                   patterns: [
                     {
-                      pattern: /true|^\s*t\s*$|1/i,
+                      pattern: /40|forty|fourty/i,
                       explanation: "Correct!",
                       points: 1
+                    },
+                    {
+                      pattern: /.{5,}|\d+/i,
+                      explanation: "The maximum memory needed is 40 bytes (10 ints * 4 bytes each). This occurs when main() has called minOf3(), which in turn has called min().",
+                      points: 0
                     },
                   ]
                 },
@@ -123,116 +153,102 @@ export const LECTURE_04 : ExamSpecification = {
                   description: "",
                   patterns: [
                     {
-                      pattern: /true|^\s*t\s*$|1/i,
+                      pattern: /3|three|tree/i,
                       explanation: "Correct!",
                       points: 1
                     },
-                  ]
-                },
-                {
-                  blankIndex: 4,
-                  title: "Box 4",
-                  points: 1,
-                  description: "",
-                  patterns: [
                     {
-                      pattern: /true|^\s*t\s*$|1/i,
-                      explanation: "Correct!",
-                      points: 1
-                    },
-                  ]
-                },
-                {
-                  blankIndex: 5,
-                  title: "Box 5",
-                  points: 1,
-                  description: "",
-                  patterns: [
-                    {
-                      pattern: /false|^\s*f\s*$|0/i,
-                      explanation: "Correct!",
-                      points: 1
+                      pattern: /.{5,}|\d+/i,
+                      explanation: "The min() function is called three times, so three different stack frames are created for it.",
+                      points: 0
                     },
                   ]
                 },
               ]
-            },
+            }
           },
           verifier: {
             verifier_kind: "full_credit",
           },
           mk_postscript: dedent`
-            <details>
-              <summary>Sample solution...</summary>
+            You're also welcome to check out this **walkthrough** video where I talk through the questions. 
 
-              <input type="text" size="8" value="false" readonly</input> Arrays can be resized if you need more space.
-              
-              <input type="text" size="8" value="true" readonly</input> The elements in an array are stored contiguously in memory.
-              
-              <input type="text" size="8" value="true" readonly</input> All elements in a particular array must be the same type.
-              
-              <input type="text" size="8" value="true" readonly</input> All individual array elements must be the same size in memory.
-              
-              <input type="text" size="8" value="false" readonly</input> Each array element lives at the same address in memory.
-            </details>
+            <div style="text-align: center;">
+              <iframe class="lec-video" src="https://www.youtube.com/embed/N6e_IA6GaKo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <br />
           `
         }
       ],
     },
     {
-      section_id: "section_04_2",
-      title: "Arrays, Pointers, and Pointer Arithmetic",
+      section_id: "section_02_3",
+      title: "Mechanisms for Parameters/Returns",
       mk_description: dedent`
-        Because an array is essentially just a sequence of objects (one for each element in the array) that are laid out contiguously in memory, we can leverage pointers (i.e. addresses) to work with arrays. Here's one example, informally:
+        The two primary mechanisms for parameter passing are pass-by-value and pass-by-reference. A similar choice applies for returning results from a function. Let's take a look at the differences between the two, as well as how they relate to function stack frames.
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/DyEOyWsHAUc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/tb7-ZC3-PVs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
-
-        Let's recap the fundamental arithmetic operations with pointers. Assume \`ptr1\` and \`ptr2\` are pointers and that \`x\` is an integer.
-
-        1. **Pointer Offset**. For example, \`ptr1 + x\`. This computes a new address, offset \`x\` "spaces" in memory past the original \`ptr1\`. The size of a "space" depends on the type that \`ptr1\` was pointing to.  
-        
-        2. **Pointer Difference**. For example, \`ptr2 - ptr1\`. This computes the number of spaces between the two addresses in memory.
-
-        Note that in both cases, we don't have to worry about how many bytes are involved - the compiler takes care of that behind the scenes based on the pointer types. We can think about offsets and differences in terms of the sequences of whole objects in memory.
       `,
       questions: [
         {
-          question_id: "lec04_pointer_arithmetic",
-          title: "Exercise: Pointer Arithmetic",
-          points: 5,
+          question_id: "lec_parameter_passing",
+          title: "Exercise: Parameter Passing",
+          points: 4,
           mk_description: dedent`
-            Trace this code and draw a memory diagram as you go. Once you're finished, use your diagram to answer the question below. You could also run the lobster simulation to check your work.
-
+            Consider this code that defines a function with both pass-by-value and pass-by-reference parameters.
+            
             <div style="text-align: center;">
-              <iframe class="lobster-iframe" style="height: 600px;" src="assets/pointer_arithmetic.html"></iframe>
+              <iframe class="lobster-iframe" style="height: 500px;" src="assets/parameter_passing.html"></iframe>
             </div>
+            
+            What are the values of each variable at the end of the main function? (You can also use the Lobster simulation to check.)
+
           `,
           response: {
             kind: "fill_in_the_blank",
             content: dedent`
-              What values are printed for each of the expressions sent to \`cout\` at the end of the program? If the expression results in undefined behavior, write "undefined".
-
-              &nbsp;&nbsp;&nbsp;&nbsp; \`*a\` _BLANK_________ &nbsp;&nbsp;&nbsp;  \`*(a + 2)\` _BLANK_________ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  \`a - d\` _BLANK_________
-
-              \`b - c\` _BLANK_________ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  \`b[2]\` _BLANK_________ &nbsp;&nbsp;&nbsp;  \`*(arr + 5)\` _BLANK_________
+              **\`a\`**: _BLANK______ &nbsp;&nbsp;&nbsp;&nbsp; **\`b\`**: _BLANK______ &nbsp;&nbsp;&nbsp;&nbsp;**\`c\`**: _BLANK______ &nbsp;&nbsp;&nbsp;&nbsp;**\`d\`**: _BLANK______
             `,
-            sample_solution: [
-              "3",
-              "4",
-              "0",
-              "-2",
-              "4",
-              "undefined",
-            ],
             default_grader: {
               grader_kind: "manual_regex_fill_in_the_blank",
               rubric: [
                 {
                   blankIndex: 1,
-                  title: "Box 1",
+                  title: "Blank 1",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /1|one/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 2,
+                  title: "Blank 2",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /3|three|tree/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /10|ten/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 3,
+                  title: "Blank 3",
                   points: 1,
                   description: "",
                   patterns: [
@@ -244,72 +260,20 @@ export const LECTURE_04 : ExamSpecification = {
                   ]
                 },
                 {
-                  blankIndex: 2,
-                  title: "Box 2",
-                  points: 1,
-                  description: "",
-                  patterns: [
-                    {
-                      pattern: /4|four|for|fore/i,
-                      explanation: "Correct!",
-                      points: 1
-                    },
-                  ]
-                },
-                {
-                  blankIndex: 3,
-                  title: "Box 3",
-                  points: 1,
-                  description: "",
-                  patterns: [
-                    {
-                      pattern: /0|zero|zed/i,
-                      explanation: "Correct!",
-                      points: 1
-                    },
-                  ]
-                },
-                {
                   blankIndex: 4,
-                  title: "Box 4",
+                  title: "Blank 4",
                   points: 1,
                   description: "",
                   patterns: [
                     {
-                      pattern: /-(2|two)|neg.*(2|two)/i,
-                      explanation: "Correct!",
-                      points: 1
-                    },
-                  ]
-                },
-                {
-                  blankIndex: 5,
-                  title: "Box 5",
-                  points: 1,
-                  description: "",
-                  patterns: [
-                    {
-                      pattern: /4|four|for|fore/i,
-                      explanation: "Correct!",
-                      points: 1
-                    },
-                  ]
-                },
-                {
-                  blankIndex: 6,
-                  title: "Box 6",
-                  points: 1,
-                  description: "",
-                  patterns: [
-                    {
-                      pattern: /undef|error|random|junk|uninit|bounds|past|off.*end|outside/i,
+                      pattern: /4|four/i,
                       explanation: "Correct!",
                       points: 1
                     },
                   ]
                 },
               ]
-            },
+            }
           },
           verifier: {
             verifier_kind: "full_credit",
@@ -317,224 +281,146 @@ export const LECTURE_04 : ExamSpecification = {
           mk_postscript: dedent`
             <details>
               <summary>Sample solution...</summary>
-
-              &nbsp;&nbsp;&nbsp;&nbsp; \`*a\` <input type="text" size="10" value="3" readonly</input> &nbsp;&nbsp;&nbsp;  \`*(a + 2)\` <input type="text" size="10" value="4" readonly</input> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  \`a - d\` <input type="text" size="10" value="0" readonly</input>
-
-              \`b - c\` <input type="text" size="10" value="-2" readonly</input> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  \`b[2]\` <input type="text" size="10" value="4" readonly</input> &nbsp;&nbsp;&nbsp;  \`*(arr + 5)\` <input type="text" size="10" value="undefined" readonly</input>
+              <p markdown="1">
+              **\`a\`**: 1 &nbsp;&nbsp;&nbsp;&nbsp; **\`b\`**: 3 &nbsp;&nbsp;&nbsp;&nbsp;**\`c\`**: 3 &nbsp;&nbsp;&nbsp;&nbsp;**\`d\`**: 4
+              </p>
             </details>
-            
-            <hr />
-            You're welcome to check your solution with this **walkthrough** video:
-
-            <div style="text-align: center;">
-              <iframe class="lec-video" src="https://www.youtube.com/embed/LaBI6fgTOAM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <br />
           `,
         }
       ],
     },
+    
     {
-      section_id: "section_04_3",
-      title: "Pointer Comparison Operators",
+      section_id: "section_03_4",
+      title: "Passing/Returning Pointers",
       mk_description: dedent`
-        Just like we can do arithmetic with pointers by considering offsets and distances between locations in memory, we can also understand pointer comparisons naturally in terms of addresses.
-        
+        We can achieve an effect similar to pass-by-reference by using a pointer instead. Here's the basic idea - just like with pass-by-reference, we want to work with the original object (e.g. in a \`main()\` function) without making a copy when we pass it in as a parameter. So, instead of passing the original object, we pass its address as a pointer parameter. That parameter is technically copied (i.e. this is technically a pass-by-value), but who cares! A copy of an address will still get you back to the original object's location.
+
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/ffPi8C1tXek" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/c8cDH9ioynw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
 
-        So, basically, \`ptr1 < ptr2\` will be true if and only if \`ptr1\` points to an address that is numerically lower than the address \`ptr2\` points to. Or, put another way, if \`ptr1\` is pointing somewhere before \`ptr2\` in memory. The rest of the comparison operators (\`>\`, \`<=\`, \`>=\`) work analogously.
+        It also turns out that the compiler offers pass-by-reference as feature of the C++ language, but it's ultimately turned into pass-by-pointer in the compiled machine code. Here's a brief explanation:
 
-        It's also worth noting the equality operators \`==\` and \`!=\` test whether two pointers are pointing to the same object (by checking if they hold the same address and are pointing to the same place).
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/wH6I4CH-yfo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
       `,
       questions: [
         {
-          question_id: "lec04_pointer_comparison",
-          title: "Exercise: Pointer Comparison",
-          points: 5,
+          question_id: "lec_pass_by_pointer",
+          title: "Exercise: Pass-by-Pointer",
+          points: 1,
           mk_description: dedent`
-            Given an array and some pointers:
-
-            \`\`\`cpp
-            int main() {
-              int arr[5] = { 5, 4, 3, 2, 1 };
-              int *ptr1 = arr + 2;
-              int *ptr2 = arr + 3;
-            }
-            \`\`\`
-
-            Determine whether each of the following expressions evaluates to \`true\` or \`false\`. Or,
-            if the expression has undefined behavior, write "undefined".
+            The code below contains a broken \`swap\` function that doesn't actually do anything. Fix it by modifying the function to use pass-by-pointer, so that you can swap the original objects through pointer parameters. Once you're done, the values of the original variables in main should be swapped correctly! (Note that Lobster will show a completed checkpoint once you've got the right output, and may also try to give you some hints along the way if you run into any bugs.)
           `,
           response: {
-            kind: "fill_in_the_blank",
-            content: dedent`
-              _BLANK____________ \`ptr1 == ptr2\`
-
-              _BLANK____________ \`ptr1 == ptr2 - 1\`
-              
-              _BLANK____________ \`ptr1 < ptr2\`
-              
-              _BLANK____________ \`*ptr1 < *ptr2\`
-              
-              _BLANK____________ \`ptr1 < arr + 5\`
-            `,
-            sample_solution: [
-              "false",
-              "true",
-              "true",
-              "false",
-              "true",
-            ],
+            kind: "iframe",
+            src: "assets/pass_by_pointer.html",
+            element_class: "lobster-iframe",
+            element_style: "height: 750px;",
             default_grader: {
-              grader_kind: "manual_regex_fill_in_the_blank",
+              grader_kind: "standard_iframe",
               rubric: [
                 {
-                  blankIndex: 1,
-                  title: "Box 1",
                   points: 1,
-                  description: "",
-                  patterns: [
-                    {
-                      pattern: /false|^\s*f\s*$|0/i,
-                      explanation: "Correct!",
-                      points: 1
-                    },
-                  ]
-                },
-                {
-                  blankIndex: 2,
-                  title: "Box 2",
-                  points: 1,
-                  description: "",
-                  patterns: [
-                    {
-                      pattern: /true|^\s*t\s*$|1/i,
-                      explanation: "Correct!",
-                      points: 1
-                    },
-                  ]
-                },
-                {
-                  blankIndex: 3,
-                  title: "Box 3",
-                  points: 1,
-                  description: "",
-                  patterns: [
-                    {
-                      pattern: /true|^\s*t\s*$|1/i,
-                      explanation: "Correct!",
-                      points: 1
-                    },
-                  ]
-                },
-                {
-                  blankIndex: 4,
-                  title: "Box 4",
-                  points: 1,
-                  description: "",
-                  patterns: [
-                    {
-                      pattern: /false|^\s*f\s*$|0/i,
-                      explanation: "Correct!",
-                      points: 1
-                    },
-                  ]
-                },
-                {
-                  blankIndex: 5,
-                  title: "Box 5",
-                  points: 1,
-                  description: "",
-                  patterns: [
-                    {
-                      pattern: /true|^\s*t\s*$|1/i,
-                      explanation: "Correct!",
-                      points: 1
-                    },
-                    {
-                      pattern: /undef|error|random|junk|uninit|bounds|past|off.*end|outside/i,
-                      explanation: "This expression actually has well-defined behavior... see the sample solution for an explanation.",
-                      points: 0
-                    },
-                  ]
-                },
+                  description: "Exercise must be complete.",
+                  property: "complete",
+                  value: true,
+                }
               ]
-            },
+            }
           },
           verifier: {
-            verifier_kind: "full_credit",
-          },
-          mk_postscript: dedent`
-            <details>
-              <summary>Sample solution...</summary>
-
-              <input type="text" size="7" value="false" readonly</input> \`ptr1 == ptr2\`
-
-              <input type="text" size="7" value="true" readonly</input> \`ptr1 == ptr2 - 1\`
-              
-              <input type="text" size="7" value="true" readonly</input> \`ptr1 < ptr2\`
-              
-              <input type="text" size="7" value="false" readonly</input> \`*ptr1 < *ptr2\`
-              
-              <input type="text" size="7" value="true" readonly</input> \`ptr1 < arr + 5\`
-
-              Why does the last expression yield a guaranteed \`true\` rather than undefined behavior?
-              The key is that although \`arr + 5\` computes the address (i.e. a pointer) of the space one-past-the-end
-              of the array, it doesn't dereference it with \`*\` and try to access data stored there. It also
-              turns out an expression like this is very useful - it tells us whether \`ptr1\` is still in bounds
-              or not, since it's checking to make sure it's less than the one-past-the-end address. We'll see this
-              in action in the next section...
-            </details>
-          `,
+            verifier_kind: "full_credit"
+          }
         }
       ],
     },
+    
     {
-      section_id: "section_04_4",
-      title: "Traversal by Pointer",
+      section_id: "section_03_3",
+      title: "Null and Uninitialized Pointers",
       mk_description: dedent`
-        There are two fundamental ways to approach sequential access of the elements in an array using a loop, which we might also call "traversal" or "iteration" through the array's elements:
 
-        - **Traversal by Index**: Start an index variable (e.g. \`i\`) at \`0\`, increase it by 1 on each iteration of the loop, and plug \`i\` into an indexing operation to find each element of the array.
-        - **Traversal by Pointer**: Start a pointer (e.g. \`ptr\`) at the beginning of an array, move it forward one space in memory on each iteration, and dereference it along the way to visit each element of the array.
+        A regular pointer contains the address of some other object in your program, and will lead you to that object when you dereference it. But there are a few exceptional cases we should consider:
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/NtnOo1MNoCE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/BwYQmXUgqbM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
-        
-        Neither traversal by pointer nor traversal by index is fundamentally better or more efficient for arrays. You might hear someone say that traversal by index is slower, but this is generally not true given that modern compilers can optimize both approaches into the same machine code. You should use the one that feels more natural to you or that matches the generally accepted pattern for the code you're writing. In most cases, that's probably traversal by index.
 
-        However, we're taking a look at traversal by pointer now because:
+        To recap:
+          - **Uninitialized pointers**: Just like with any other (primitive) variable, if you don't initialize a pointer, it's value is determined by memory junk. That means it's pointing randomly off into space.  
 
-        1. It's another interesting thing you can do with pointers.
-        2. It is customarily used in certain contexts, like with C-style strings, which we'll look at in a future lecture.
-        3. It's conceptually similar to traversal by *iterator*, which we'll learn about later on in the course.
+          - **Null pointers**: Sometimes we want to definitively say "this pointer isn't pointing to anything right now", and the way to do that is point it at address \`0\`.
+
+        Some more examples:
+
+        \`\`\`cpp
+
+        int x = 3;
+
+        int *ptr1 = &x; // Initialized with the address of x, this pointer points to x
+        *ptr1 = 10;     // Follows ptr1 to x and sets x to 10
+
+        int *ptr2;      // Uninitialized pointer, points at some random address (eeeewww)
+        *ptr2 = 10;     // Follows ptr2 off to some random part of memory and slaps down a 10
+                        // causing undefined behavior depending on how important that memory was
+
+        int *ptr2 = nullptr; // Null pointer, "not pointing at anything right now"
+        *ptr2 = 10;          // Tries to write a 10 to address 0 in memory, which will almost
+                             // certainly crash (easier to debug than undefined behavior though!)
+        \`\`\`
+
+        While uninitialized pointers are pretty much always bad, it's useful to have a nullable pointer to represent something "optional". But, to safely use pointer that might be null, you need to check the pointer before dereferencing it. For example:
+
+        \`\`\`cpp
+
+        // Assume we have a pointer called ptr that might be null
+
+        if (ptr != nullptr) {
+          // If we get in here, it's safe to dereference and do something with *ptr
+        }
+        \`\`\`
+
+        You can also shorten that up by replying on an implicit conversion from pointer types to \`bool\`- non-null pointers will convert to \`true\` and null pointers will convert to \`false\`. (Kind of like the way nonzero numbers convert to \`true\` and \`0\` converts to \`false\`, considering a null pointer contains address \`0x0\`.)
+
+        \`\`\`cpp
+
+        // Assume we have a pointer called ptr that might be null
+
+        if (ptr) {
+          // If we get in here, it's safe to dereference and do something with *ptr
+          // That's because ptr would only turn into true if it wasn't null
+        }
+        \`\`\`
       `,
       questions: [
         {
-          question_id: "lec04_traversal_by_pointer",
-          title: "Exercise: Traversal By Pointer",
-          points: 3,
+          question_id: "lec_null_and_uninitialized_pointers",
+          title: "Exercise: Null and Uninitialized Pointers",
+          points: 4,
           mk_description: dedent`
-            Which of the following code snippets correctly implement traversal by pointer? For each, indicate whether it is correct or has a bug. If it has a bug, describe what's wrong. Is it a compile error or a runtime error? How would you fix it?
+            For each of the following code snippets, briefly describe what the **last** line of code does. (For example, "sets the value of a to 3" or "dereferences a null pointer - program crashes".)
           `,
           response: {
             kind: "fill_in_the_blank",
             content: `
 <table style="width: 100%; border: none;">
   <tr>
-    <td style="width: 350px; padding-right: 15px;">
+    <td style="width: 250px; padding-right: 15px;">
     <div markdown="1">
       
 \`\`\`cpp
-int arr[5] = {1,2,3,4,5};
+int main() {
+  int a = 2;
+  int *ptr1 = nullptr;
+  int *ptr2;
 
-for(int *ptr = 0; ptr < 5; ++ptr) {
-  cout << *ptr << endl;
+  *ptr1 = 4; // What does this line do?
 }
 \`\`\`
     </div>
@@ -551,14 +437,16 @@ for(int *ptr = 0; ptr < 5; ++ptr) {
     </td>
   </tr>
   <tr>
-    <td style="width: 350px; padding-right: 15px;">
+    <td style="width: 250px; padding-right: 15px;">
     <div markdown="1">
       
 \`\`\`cpp
-int arr[5] = {1,2,3,4,5};
+int main() {
+  int a = 2;
+  int *ptr1 = nullptr;
+  int *ptr2;
 
-for(int *ptr = arr; ptr < arr + 5; ++ptr) {
-  cout << ptr << endl;
+  ++*ptr2; // What does this line do?
 }
 \`\`\`
     </div>
@@ -575,14 +463,42 @@ for(int *ptr = arr; ptr < arr + 5; ++ptr) {
     </td>
   </tr>
   <tr>
-    <td style="width: 350px; padding-right: 15px;">
+    <td style="width: 250px; padding-right: 15px;">
     <div markdown="1">
       
 \`\`\`cpp
-int arr[5] = {1,2,3,4,5};
+int main() {
+  int a = 2;
+  int *ptr1 = nullptr;
+  int *ptr2;
 
-for(int *ptr = arr; ptr < ptr + 5; ++ptr) {
-  cout << *ptr << endl;
+  *ptr2 = a; // What does this line do?
+}
+\`\`\`
+    </div>
+    </td>
+    <td>
+    <div>
+      [[BOX
+      
+      
+      
+      
+      ]]
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 250px; padding-right: 15px;">
+    <div markdown="1">
+      
+\`\`\`cpp
+int main() {
+  int a = 2;
+  int *ptr1 = nullptr;
+  int *ptr2;
+
+  ptr2 = &a; // What does this line do?
 }
 \`\`\`
     </div>
@@ -610,9 +526,14 @@ for(int *ptr = arr; ptr < ptr + 5; ++ptr) {
                   description: "",
                   patterns: [
                     {
-                      pattern: /.{10,}/i,
-                      explanation: "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer!",
+                      pattern: /null|nil|undefined|crash|error|exist/i,
+                      explanation: "Correct!",
                       points: 1
+                    },
+                    {
+                      pattern: /.{5,}/i,
+                      explanation: "It dereferences a null pointer (`ptr1`) and crashes.",
+                      points: 0
                     },
                   ]
                 },
@@ -623,9 +544,14 @@ for(int *ptr = arr; ptr < ptr + 5; ++ptr) {
                   description: "",
                   patterns: [
                     {
-                      pattern: /.{10,}/i,
-                      explanation: "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer!",
+                      pattern: /undef|error|crash|junk|random|uninitialized|unknown|unpredictable|nowhere/i,
+                      explanation: "Correct!",
                       points: 1
+                    },
+                    {
+                      pattern: /.{5,}/i,
+                      explanation: "It increments (adds 1 to) an undefined address, since `ptr2` was not initialized to point to anything.",
+                      points: 0
                     },
                   ]
                 },
@@ -636,9 +562,32 @@ for(int *ptr = arr; ptr < ptr + 5; ++ptr) {
                   description: "",
                   patterns: [
                     {
-                      pattern: /.{10,}/i,
-                      explanation: "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer!",
+                      pattern: /undef|error|crash|junk|random|uninitialized|unknown|unpredictable|nowhere/i,
+                      explanation: "Correct!",
                       points: 1
+                    },
+                    {
+                      pattern: /.{5,}/i,
+                      explanation: "It writes the value of `a` (which is `2`) to an undefined address, since `ptr2` was not initialized to point to anything.",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 4,
+                  title: "Box 4",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /point|sets|addr|refer|ptr2.*a/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /.{5,}/i,
+                      explanation: "It points `ptr2` at `a`. Or, equivalently, sets the value of `ptr2` to the address of `a`.",
+                      points: 0
                     },
                   ]
                 },
@@ -650,10 +599,10 @@ for(int *ptr = arr; ptr < ptr + 5; ++ptr) {
           },
           mk_postscript: dedent`
             <hr />
-            Surprise! Each of the code snippets above contains at least one mistake. If you didn't find this, double check the ones you marked as correct, or take a look this **walkthrough** video:
+            You're welcome to check your solution with this **walkthrough** video:
 
             <div style="text-align: center;">
-              <iframe class="lec-video" src="https://www.youtube.com/embed/PEgsl2a30Sc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe class="lec-video" src="https://www.youtube.com/embed/3PDShlC7wr4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <br />
           `
@@ -661,63 +610,18 @@ for(int *ptr = arr; ptr < ptr + 5; ++ptr) {
       ],
     },
     {
-      section_id: "section_04_5",
-      title: "Array Parameters and Functions",
+      section_id: "section_03_5",
+      title: "Dangling Pointers",
       mk_description: dedent`
-        When working with arrays, it's often helpful to write helper functions that process the arrays in some way, perhaps using a loop to iterate through each element and perform some operation.
-
-        An example of this would be a function that prints out an array...
+        Finally, let's take a look at the case of **dangling pointers**, which are pointers that used to point to a valid object, but the object's lifetime has since ended. The pointer still holds the same address and is still pointing at the memory location where it used to be, but the data there is no longer valid to use.
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/esTbqG1K24U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/dmFzzMjVkrw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
-        
-        Two big takeaways here:
-
-        1. The compiler turns array parameters into pass-by-pointer behind the scenes. That gives us a pointer we can use to access the original array. This is similar to pass-by-reference, but technically different.
-
-        2. Because of this, the only thing passed into an array function is a pointer to the first element. That means we have to pass the size of the original array as a separate parameter.
       `,
-      questions: [
-        {
-          question_id: "lec04_maxValue",
-          title: "Exercise: Pass-by-Pointer",
-          points: 1,
-          mk_description: dedent`
-            Write a function called \`maxValue\` that uses **traversal-by-pointer** to find the value of the maximum element in an array.
-          `,
-          response: {
-            kind: "iframe",
-            src: "assets/maxValue.html",
-            element_class: "lobster-iframe",
-            element_style: "height: 825px;",
-            default_grader: {
-              grader_kind: "standard_iframe",
-              rubric: [
-                {
-                  points: 1,
-                  description: "Exercise must be complete.",
-                  property: "complete",
-                  value: true,
-                }
-              ]
-            }
-          },
-          verifier: {
-            verifier_kind: "full_credit"
-          },
-          mk_postscript: dedent`
-            <hr />
-            You're welcome to check your solution with this **walkthrough** video:
-
-            <div style="text-align: center;">
-              <iframe class="lec-video" src="https://www.youtube.com/embed/lJ7cLJwddYI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <br />
-          `,
-        }
-      ],
+      questions: [ ]
     },
+    
   ],
 };

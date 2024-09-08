@@ -383,11 +383,6 @@ export const LECTURE_02 : ExamSpecification = {
                       explanation: "Correct!",
                       points: 1
                     },
-                    {
-                      pattern: /10|ten/i,
-                      explanation: "Correct!",
-                      points: 1
-                    },
                   ]
                 },
                 {

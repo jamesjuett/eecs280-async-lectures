@@ -17,36 +17,36 @@ mv assets/main.html assets/vector_min.html
 mv assets/main.js assets/vector_min.js
 sed -i 's/main\.js/vector_min\.js/' assets/vector_min.html
 cd ..
-cd lecture03
+cd lecture04
 npx webpack ./src/pass_by_pointer.ts --config ../../lobster/webpack.config.js
 mv assets/main.html assets/pass_by_pointer.html
 mv assets/main.js assets/pass_by_pointer.js
 sed -i 's/main\.js/pass_by_pointer\.js/' assets/pass_by_pointer.html
 cd ..
-cd lecture03
+cd lecture04
 npx webpack ./src/pointer_mischief.ts --config ../../lobster/webpack.config.js
 mv assets/main.html assets/pointer_mischief.html
 mv assets/main.js assets/pointer_mischief.js
 sed -i 's/main\.js/pointer_mischief\.js/' assets/pointer_mischief.html
 cd ..
-cd lecture03
+cd lecture04
 npx webpack ./src/using_pointers.ts --config ../../lobster/webpack.config.js
 mv assets/main.html assets/using_pointers.html
 mv assets/main.js assets/using_pointers.js
 sed -i 's/main\.js/using_pointers\.js/' assets/using_pointers.html
 cd ..
-cd lecture04
-npx webpack ./src/maxValue.ts --config ../../lobster/webpack.config.js
-mv assets/main.html assets/maxValue.html
-mv assets/main.js assets/maxValue.js
-sed -i 's/main\.js/maxValue\.js/' assets/maxValue.html
-cd ..
-cd lecture04
-npx webpack ./src/pointer_arithmetic.ts --config ../../lobster/webpack.config.js
-mv assets/main.html assets/pointer_arithmetic.html
-mv assets/main.js assets/pointer_arithmetic.js
-sed -i 's/main\.js/pointer_arithmetic\.js/' assets/pointer_arithmetic.html
-cd ..
+# cd lecture04
+# npx webpack ./src/maxValue.ts --config ../../lobster/webpack.config.js
+# mv assets/main.html assets/maxValue.html
+# mv assets/main.js assets/maxValue.js
+# sed -i 's/main\.js/maxValue\.js/' assets/maxValue.html
+# cd ..
+# cd lecture04
+# npx webpack ./src/pointer_arithmetic.ts --config ../../lobster/webpack.config.js
+# mv assets/main.html assets/pointer_arithmetic.html
+# mv assets/main.js assets/pointer_arithmetic.js
+# sed -i 's/main\.js/pointer_arithmetic\.js/' assets/pointer_arithmetic.html
+# cd ..
 cd lecture05
 npx webpack ./src/struct_basics.ts --config ../../lobster/webpack.config.js
 mv assets/main.html assets/struct_basics.html

@@ -124,7 +124,7 @@ export const LECTURE_03 : ExamSpecification = {
                       points: 1
                     },
                     {
-                      pattern: /./i,
+                      pattern: /.{5,}/i,
                       explanation: "index / width",
                       points: 0
                     },
@@ -142,7 +142,7 @@ export const LECTURE_03 : ExamSpecification = {
                       points: 1
                     },
                     {
-                      pattern: /./i,
+                      pattern: /.{5,}/i,
                       explanation: "index % width",
                       points: 0
                     },
@@ -160,8 +160,8 @@ export const LECTURE_03 : ExamSpecification = {
                       points: 1
                     },
                     {
-                      pattern: /./i,
-                      explanation: "%",
+                      pattern: /.{5,}/i,
+                      explanation: "% num_players",
                       points: 0
                     },
                   ]

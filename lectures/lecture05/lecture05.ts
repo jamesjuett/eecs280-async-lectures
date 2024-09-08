@@ -10,7 +10,7 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 export const LECTURE_05 : ExamSpecification = {
-  exam_id: "lec_05_const_structs_c_style_adts",
+  exam_id: "f24_lec_05",
   title: "`const`, `struct`s, and C-Style ADTs",
   mk_intructions: dedent`
     
