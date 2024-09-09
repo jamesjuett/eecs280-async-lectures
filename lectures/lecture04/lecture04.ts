@@ -347,8 +347,10 @@ export const LECTURE_04 : ExamSpecification = {
 
         A regular pointer contains the address of some other object in your program, and will lead you to that object when you dereference it. But there are a few exceptional cases we should consider:
 
-        <div style="text-align: center;">
+        <div style="text-align: center;" markdown="1">
           <iframe class="lec-video" src="https://www.youtube.com/embed/BwYQmXUgqbM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <br />
+          (Please note a typo near the end of the video - the return type of \`find_by_length()\` should be \`string *\`, not \`int *\`.)
         </div>
         <br />
 
