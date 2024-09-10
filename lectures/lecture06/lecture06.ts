@@ -10,13 +10,9 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 export const LECTURE_06 : ExamSpecification = {
-  exam_id: "lec_06_streams_and_io",
+  exam_id: "f24_lec_06",
   title: "Streams and I/O",
   mk_intructions: dedent`
-    <div markdown=1 class="alert alert-success">
-      To earn participation credit, you'll need to complete the lecture within 2 days of the lecture date.
-      For lecture 6 (released Wednesday 1/31), that means completing it by <b>Friday 2/2 at 11:59pm</b>.
-    </div>
     <div markdown=1 class="alert alert-info">
 
       **Streams** are the fundamental mechanism for text-based I/O (input/output) in C++, whether it's printing messages and taking input from the user via the terminal, reading and writing to files, or a number of other applications.
@@ -24,6 +20,8 @@ export const LECTURE_06 : ExamSpecification = {
       Programs can also receive input via **command-line arguments** provided when it is initally run.
 
       We'll cover these as well as a number of miscellaneous topics related to programs and the command-line environment from which they run, including exit codes, input/output redirection, and pipelining.
+      
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2024</div>
       
     </div>
     <style>
@@ -66,7 +64,7 @@ export const LECTURE_06 : ExamSpecification = {
       `,
       questions: [
         {
-          question_id: "lec05_standard_io_mc",
+          question_id: "lec_standard_io_mc",
           points: 4,
           mk_description: dedent`
             Consider this command run at the terminal. Assume \`filter.exe\` and \`meow.exe\` are C++ programs.
@@ -158,6 +156,11 @@ export const LECTURE_06 : ExamSpecification = {
 
         The video below covers both in more detail.
 
+        <div class="alert alert-secondary" role="alert" markdown="1">
+          <h5><span class="badge badge-success">Fall 2024</span></h5>
+          Please disregard the use of the \`new\` and \`delete\` operators in the video below. We've modified project 2 such so that you do not need to use them.
+        </div>
+
         <div style="text-align: center;">
           <iframe class="lec-video" src="https://www.youtube.com/embed/a8c4coHtvKg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
@@ -245,7 +248,7 @@ export const LECTURE_06 : ExamSpecification = {
       `,
       questions: [
         {
-          question_id: "lec06_word_count",
+          question_id: "lec_word_count",
           points: 8,
           mk_description: dedent`
             Implement the program by filling in the boxes below.

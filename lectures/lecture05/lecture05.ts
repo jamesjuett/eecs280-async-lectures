@@ -33,6 +33,8 @@ export const LECTURE_05 : ExamSpecification = {
       <!-- terminate list -->
 
       But first, let's take a detour to formally acknowledge the \`const\` keyeword, which has been showing up and will start showing up even more in the near future...
+      
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2024</div>
     </div>
     <style>
       .lec-video {
@@ -58,19 +60,19 @@ export const LECTURE_05 : ExamSpecification = {
   allow_clientside_content: true,
   sections: [
     {
-      section_id: "section_05_1",
+      section_id: "section_05_01",
       title: "The `const` Keyword",
       mk_description: dedent`
         The \`const\` keyword is a _type qualifier_ that we can add to declarations to tell the compiler that we don't intend for some value to change or be changeable. For it's part, the compiler then double checks for us that we don't accidentally try to do this and gives an error if we do!
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/69d4M_Kj0bQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/qWwTIjbzdWQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
       `,
       questions: [
         {
-          question_id: "lec05_const_basics",
+          question_id: "lec_const_basics",
           title: "The `const` Keyword",
           points: 7,
           mk_description: "",
@@ -258,23 +260,26 @@ export const LECTURE_05 : ExamSpecification = {
       ],
     },
     {
-      section_id: "section_05_2",
+      section_id: "section_05_02",
       title: "`const` Conversions",
       mk_description: dedent`
         The compiler also needs to decide where implicit conversions involving \`const\` should be allowed. The motivating principle is that we should never leave the program "less safe" than it was before in terms of protecting \`const\` objects. Let's take a look at a few examples...
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/322bUCMVqTw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/1QwpORzTRYg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
 
-        Perhaps the most important place these rules are realized is in function call parameters. Following the rules above, the compiler will only allow a function to be called on a \`const\` object if the parameters also include the necessary \`const\` qualification to continue protecting that object. Essentially, only functions that "promise" not to change their parameters are allowed to be called on \`const\` objects/variables.
+        Perhaps the most important place these rules are realized is in function call parameters as a part of interface specification. Following the rules above, the compiler will only allow a function to be called on a \`const\` object if the parameters also include the necessary \`const\` qualification to continue protecting that object. Essentially, only functions that "promise" not to change their parameters are allowed to be called on \`const\` objects/variables.
 
-        The exercise below explores this idea...
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/_wM0-4zYah8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
       `,
       questions: [
         {
-          question_id: "lec05_const_function_parameters",
+          question_id: "lec_const_function_parameters",
           title: "`const` in Function Parameters",
           points: 1,
           mk_description: "",
@@ -363,7 +368,7 @@ export const LECTURE_05 : ExamSpecification = {
       ],
     },
     {
-      section_id: "section_05_3",
+      section_id: "section_05_03",
       title: "Intro to `struct`s",
       mk_description: dedent`
         Now, back to our main event... defining and using compound objects.
@@ -389,7 +394,7 @@ export const LECTURE_05 : ExamSpecification = {
       `,
       questions: [
         {
-          question_id: "lec05_struct_practice",
+          question_id: "lec_struct_practice",
           title: "Exercise: Practice with \`structs\`",
           points: 1,
           mk_description: dedent`
@@ -455,7 +460,7 @@ export const LECTURE_05 : ExamSpecification = {
       ],
     },
     {
-      section_id: "section_05_4",
+      section_id: "section_05_04",
       title: "\`struct\`s and Functions",
       mk_description: dedent`
         We'll want to package up complex operations on \`struct\`s into functions to form abstractions. Let's take a look...
@@ -473,7 +478,7 @@ export const LECTURE_05 : ExamSpecification = {
       
       questions: [
         {
-          question_id: "lec05_person_birthday",
+          question_id: "lec_person_birthday",
           title: "Exercise: \`struct\`s and Functions",
           points: 4,
           mk_description: dedent`
@@ -689,7 +694,7 @@ void Person_birthday(Person &p) {
       ],
     },
     {
-      section_id: "section_07_1",
+      section_id: "section_05_05",
       title: "C-Style ADTs",
       mk_description: dedent`
         Structs form the foundation of ADTs in C, acting as a **data representation** that allows us to model heterogeneous real-world objects. What makes a full ADT is the introduction of associated **behaviors** (i.e. functions) as well as plain **data**. We implement these behaviors as associated functions, which operate on an ADT struct via a pointer parameter.
@@ -1024,7 +1029,7 @@ void Triangle_scale(Triangle tri, double s) {
       ],
     },
     {
-      section_id: "section_07_2",
+      section_id: "section_05_06",
       title: "ADT Initialization and Representation Invariants",
       mk_description: dedent`
         An essential component of proper ADT design is the use of **representation invariants** to express conditions that differentiate valid data (e.g. a Triangle with sides 3, 4, and 5) from invalid, nonsense values (e.g. one of the side lengths is -10).
@@ -1043,7 +1048,7 @@ void Triangle_scale(Triangle tri, double s) {
       questions: [],
     },
     {
-      section_id: "section_07_3",
+      section_id: "section_05_07",
       title: "Interfaces and Implementations",
       mk_description: dedent`
 
@@ -1057,7 +1062,7 @@ void Triangle_scale(Triangle tri, double s) {
       questions: [],
     },
     {
-      section_id: "section_07_4",
+      section_id: "section_05_08",
       title: "ADTs in Project 2",
       mk_description: dedent`
         
@@ -1067,18 +1072,11 @@ void Triangle_scale(Triangle tri, double s) {
           <iframe class="lec-video" src="https://www.youtube.com/embed/n6DKUrWNyec" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
-
-        Additionally, a technical detail relevant for the project... because the structs are very large, their memory must be managed using the \`new\` and \`delete\` operators.
-
-        <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/ozS3b_4UzxE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <br />
       `,
       
       questions: [
         {
-          question_id: "lec05_adts_in_project_2",
+          question_id: "lec_adts_in_project_2",
           points: 4,
           mk_description: dedent`
             Which of the following are true about ADTs in project 2?
@@ -1086,17 +1084,15 @@ void Triangle_scale(Triangle tri, double s) {
           response: {
             kind: "multiple_choice",
             choices: [
-              "The `Matrix` and `Image` structs must be manually created using `new` and destroyed using `delete`.",
               "The `Image_init()` function implementations should call `Matrix_init()` on each color channel member.",
-              "The code you'll write for the image processing algorithm should directly access the `data` array in each `Matrix`.",
-              "The `Matrix` ADT provides a 2D grid as an abstraction, built on top of an internal 1D array.",
+              "Code you write that is external to the `Matrix` ADT is allowed to directly access the `data` vector in the `Matrix` struct.",
+              "The `Matrix` ADT provides a 2D grid as an abstraction, built on top of an internal 1D vector.",
             ],
             multiple: true,
-            sample_solution: [0,1,3],
+            sample_solution: [0,2],
             default_grader: {
               grader_kind: "summation_multiple_choice",
               rubric: [
-                {points: 1, selected: true},
                 {points: 1, selected: true},
                 {points: 1, selected: false},
                 {points: 1, selected: true},
@@ -1110,12 +1106,30 @@ void Triangle_scale(Triangle tri, double s) {
       ],
     },
     {
-      section_id: "section_07_5",
+      section_id: "section_05_09",
+      title: "Function Overloading",
+      mk_description: dedent`
+        In C++ (and some other programming languages), it's allowed to have multiple functions with the same name as long as they have different parameter types. This is called **function overloading**.
+
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/MC6xIRR8wys" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
+      `,
+      questions: [],
+    },
+    {
+      section_id: "section_05_010",
       title: "Unit Testing ADTs",
       mk_description: dedent`
         Of course, just as we write unit tests for functions (which are the realization of procedural abstractions in our code), we should also write tests for ADTs to ensure that the behavior of their implementation matches with their specified interface.
 
         Let's take a look at this with some examples for testing the \`Matrix\` ADT, including some specifics for testing C-Style ADTs without breaking their interface.
+        
+        <div class="alert alert-secondary" role="alert" markdown="1">
+          <h5><span class="badge badge-success">Fall 2024</span></h5>
+          Please disregard the use of the \`new\` and \`delete\` operators in the video below. We've modified project 2 such so that you do not need to use them.
+        </div>
 
         <div style="text-align: center;">
           <iframe class="lec-video" src="https://www.youtube.com/embed/z6qniEWelyE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
