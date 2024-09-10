@@ -1077,7 +1077,7 @@ void Triangle_scale(Triangle tri, double s) {
       questions: [
         {
           question_id: "lec_adts_in_project_2",
-          points: 4,
+          points: 3,
           mk_description: dedent`
             Which of the following are true about ADTs in project 2?
           `,
