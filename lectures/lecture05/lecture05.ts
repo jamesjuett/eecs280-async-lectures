@@ -280,26 +280,27 @@ export const LECTURE_05 : ExamSpecification = {
           response: {
             kind: "fill_in_the_blank",
             content: dedent`
-              Consider these function signatures and some variables declared in a \`main()\` function. Also recall that arrays are passed by pointer, as in \`teal()\` and \`red()\`.
+              Consider these function signatures and some variables declared in a \`main()\` function.
 
               One of the function calls in \`main()\` below is "sus" (i.e. suspicious), in that it would put potentially put \`const\` objects at risk if the compiler allowed it. Can you find which one?
 
               \`\`\`cpp
               void teal(const int *a);
-              void red(int *a);
+              void red(int &a);
               void purple(int a);
 
               int main() {
-                const int arr1[6] = { ... };
-                int arr2[6] = { ... };
-                
-                teal(arr1);
-                red(arr1);
-                purple(arr1[0]);
-                
-                teal(arr2);
-                red(arr2);
-                purple(arr2[0]);
+                const int x = 10;
+                int y = 10;
+
+                teal(&x);
+                red(x);
+                purple(x);
+
+                teal(&y);
+                red(y);
+                purple(y);
+
               }
               \`\`\`
 
@@ -310,7 +311,7 @@ export const LECTURE_05 : ExamSpecification = {
               ]]
             `,
             sample_solution: [
-              "The compiler will prohibit the call to red(arr1) since the parameter does not maintain the const. If the call were allowed, the implementation of red could then potentially change data in the arr1 array, which was supposed to be const."
+              "The compiler will prohibit the call to red(x) since the parameter is pass-by-reference and does not maintain the const. If the call were allowed, the implementation of red could then potentially change the value of x, which was supposed to be const."
             ],
             default_grader: {
               grader_kind: "manual_regex_fill_in_the_blank",
@@ -322,23 +323,29 @@ export const LECTURE_05 : ExamSpecification = {
                   description: "",
                   patterns: [
                     {
+                      pattern: /red.*x|red.*(first|1st)|x.*red|(first|1st).*red/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    // Temporarily allow credit for old version of the exercise
+                    {
                       pattern: /red.*(arr|array).*1|red.*(first|1st).*arr|(arr|array).*1.*red|(first|1st).*arr.*red/i,
                       explanation: "Correct!",
                       points: 1
                     },
                     {
                       pattern: /red/i,
-                      explanation: "Only the call to `red(arr1)` produces an error, `red(arr2)` is ok. (To receive credit, your answer needs to contain text similar to `red(arr1)`).",
+                      explanation: "Only the call to `red(x)` produces an error, `red(y)` is ok. (To receive credit, your answer needs to contain text similar to `red(x)`).",
                       points: 0
                     },
                     {
-                      pattern: /purple|teal|arr2/i,
-                      explanation: "All calls except `red(arr1)` are ok. Check the walkthrough video for details.",
+                      pattern: /purple|teal|y/i,
+                      explanation: "All calls except `red(x)` are ok. Check the sample solution for details.",
                       points: 0
                     },
                     {
                       pattern: /.{15,}/i,
-                      explanation: "The call to `red(arr1)` produces an error. Make sure your answer mentions this call specifically.",
+                      explanation: "The call to `red(x)` produces an error. Make sure your answer mentions this call specifically.",
                       points: 0
                     },
                   ]
@@ -351,12 +358,10 @@ export const LECTURE_05 : ExamSpecification = {
           },
           mk_postscript: dedent`
             <hr />
-            You're welcome to check your solution with this **walkthrough** video:
-
-            <div style="text-align: center;">
-              <iframe class="lec-video" src="https://www.youtube.com/embed/lXgZiHVwMuk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <br />
+            <details markdown="1">
+              <summary>Sample solution...</summary>
+              The compiler will prohibit the call to \`red(x)\` since the parameter is pass-by-reference and does not maintain the const. If the call were allowed, the implementation of red could then potentially change the value of \`x\`, which was supposed to be const.
+            </details>
           `,
         }
       ],
