@@ -13,12 +13,6 @@ export const LECTURE_05 : ExamSpecification = {
   exam_id: "f24_lec_05",
   title: "`const`, `struct`s, and C-Style ADTs",
   mk_intructions: dedent`
-    
-    <div markdown=1 class="alert alert-success">
-        
-      To earn participation credit, you'll need to complete the lecture within 2 days of the lecture date.
-      For lecture 5 (released Monday 1/29), that means completing it by <b>Wednesday 1/31 at 11:59pm</b>.
-    </div>
     <div markdown=1 class="alert alert-info">
       As we start to work with larger, more complex programs, abstraction helps manage that complexity. We've already discussed *procedural abstraction*, i.e. using functions to break down the flow of our program into manageable sub-tasks.
         
