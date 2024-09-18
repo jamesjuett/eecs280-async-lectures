@@ -15,7 +15,7 @@ export const LECTURE_07 : ExamSpecification = {
   mk_intructions: dedent`
     <div markdown=1 class="alert alert-danger">
 
-      Thanks to those of you who reached out to let me know the videos don't have any audio. Unfortunately, the issue was with the original recording, so I'll need to redo them... I'll have a re-recorded, fixed version ASAP, though not likely until late Wednesday evening.
+      The audio in the videos should be fixed now! Sorry about that!
       
     </div>
     <div markdown=1 class="alert alert-info">
@@ -57,10 +57,15 @@ export const LECTURE_07 : ExamSpecification = {
       title: "Pirate Treasure Program Overview",
       mk_description: dedent`
         
+        Here's an overview of where things are in the "Pirate Treasure" program with a few comments on overall program design. I go through things pretty quickly and without all the details, but the intent is primarily to orient you to what parts exist so that the debugging strategies below make more sense (don't worry if you're not quite sure about how everything works).
+
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/s2UMsHhEMfY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/A0CKtLYfHcc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
+
+        The code lives in a public repository at [https://github.com/jamesjuett/pirate-treasure](https://github.com/jamesjuett/pirate-treasure). You're welcome to browse through it if you like, but it's not required for the lecture.
+        
       `,
       questions: [
         {
@@ -97,21 +102,21 @@ export const LECTURE_07 : ExamSpecification = {
         First, we'll take a look at running the overall \`pirate.exe\` program and \`Game_tests.exe\` unit tests. We encounter and track down a segmentation fault using a visual debugger.
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/RJ-guj0rqIs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/Sw0Ax1ija0g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
 
         Next, we'll take a look at some defensive programming techniques, including using assertions, to detect bugs earlier and make them easier to fix.
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/a0SrDPXWscc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/hmNOgj1W9co" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
 
         Finally, we'll get more information about what exactly the program is doing by adding breakpoints and using print statements so that we can figure out what is happening to cause the last few bugs.
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/qobgGlBx01Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/-tEYLW-THiY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
       `,
