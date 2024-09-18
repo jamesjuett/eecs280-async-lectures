@@ -13,6 +13,11 @@ export const LECTURE_07 : ExamSpecification = {
   exam_id: "f24_lec_07",
   title: "Program Design and Debugging",
   mk_intructions: dedent`
+    <div markdown=1 class="alert alert-danger">
+
+      Thanks to those of you who reached out to let me know the videos don't have any audio. Unfortunately, the issue was with the original recording, so I'll need to redo them... I'll have a re-recorded, fixed version ASAP, though not likely until late Wednesday evening.
+      
+    </div>
     <div markdown=1 class="alert alert-info">
 
       This lecture presents a sample program that implements a "Pirate Treasure" game using C-Style ADTs and many of the programming techniques we've seen in the course so far. We also cover several debugging strategies to track down bugs in the program.
