@@ -10,17 +10,15 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 export const LECTURE_09 : ExamSpecification = {
-  exam_id: "lec_09_inheritance",
+  exam_id: "f24_lec_09",
   title: "Operator Overloading and Inheritance",
   mk_intructions: dedent`
-    <div markdown=1 class="alert alert-success">
-      To earn participation credit, you'll need to complete the lecture within 2 days of the lecture date.
-      For lecture 9 (released Monday 2/12), that means completing it by <b>Wednesday 2/14 at 11:59pm</b>.
-    </div>
     <div markdown=1 class="alert alert-info">
       We'll start by covering **function overloading** and **operator overloading**, two mechanisms in C++ (and many other langugages) that allow the use of single names (or operators) to correspond to potentially many different function implementations depending on the types they are used with.
 
       Next, we'll introduce **inheritance**, which allows us to derive one \`class\` from another, such that the **derived class** automatically "inherits" member variables and functions from its **base class**. This is helpful both to save us work (i.e. we avoid duplicating common implementation details by putting them in a base class) and to set up the foundation for meaningful hierarchies of ADTs (more on this in the next lecture).
+      
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2024</div>
     </div>
     <style>
       .lec-video {

@@ -10,19 +10,15 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 export const LECTURE_10 : ExamSpecification = {
-  exam_id: "lec_10_polymorphism",
+  exam_id: "f24_lec_10",
   title: "Polymorphism",
   mk_intructions: dedent`
-    <div markdown=1 class="alert alert-success">
-      To earn participation credit, you'll need to complete the lecture within 2 days of the lecture date.
-      For lecture 10 (released Wednesday 2/14), that means completing it by <b>Friday 2/16 at 11:59pm</b>.
-    </div>
-    
     <div markdown=1 class="alert alert-info">
       This lecture explores **polymorphism**, which makes our code more flexible and enables even just a single line of code to potentially do many different things in different contexts or situations. It's one of the most powerful concepts in programming.
 
       We'll specifically focus on **subtype polymorphism** today.
-
+      
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2024</div>
     </div>
     <style>
       .lec-video {

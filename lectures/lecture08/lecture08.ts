@@ -10,25 +10,23 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 export const LECTURE_08 : ExamSpecification = {
-  exam_id: "lec_08_adts_in_cpp",
+  exam_id: "f24_lec_08",
   title: "Abstract Data Types in C++",
   mk_intructions: dedent`
-    <div markdown=1 class="alert alert-success">
-      To earn participation credit, you'll need to complete the lecture within 2 days of the lecture date.
-      For lecture 8 (released Wednesday 2/7), that means completing it by <b>Friday 2/9 at 11:59pm</b>.
-    </div>
     <div markdown=1 class="alert alert-info">
       As we move onward to the C++ style for ADTs, we'll use \`class\` rather than \`struct\` and also use built-in features of the language (i.e. things that C++ adds beyond C) to support good practices in a more robust way. In particular, a \`class\` in C++ gives us:
 
       1. **Member Functions**  
          Both data (i.e. member variables) and behaviors (i.e. member functions) for an ADT are encapsulated as members of a \`class\`.  
 
-      2. **Access Specifications**  
-         Give **\`public\`** access to an ADT's interface, e.g. functions we want other parts of our code to call while at the same time restricting internal details like raw member data to **\`private\`** access.  
+      2. **Member Access Levels**  
+         Give **\`public\`** access to an ADT's interface, e.g. functions we want other parts of our code to call while at the same time restricting internal details like raw member data or helper functions to **\`private\`** access.  
 
       3. **Constructors**  
-         Use constructors to ensure ADTs are *always* initialized (rather than having to separately call an \`_Init()\` function).  
+         Use constructors to ensure ADTs are *always* initialized (rather than having to remember to separately call an \`_Init()\` function).  
 
+      
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2024</div>
     </div>
     <style>
       .lec-video {
@@ -427,12 +425,27 @@ export const LECTURE_08 : ExamSpecification = {
     },
     {
       section_id: "section_08_3",
-      title: "Member Accessibility and Constructors",
+      title: "Member Access Levels",
       mk_description: dedent`
-        The C++ style also involves separating member declarations into different access levels (**\`public\`** vs. **\`private\`**) and providing **constructors** as a formal mechanism for initialization.
+        In C++, you can separate member declarations into different access levels (**\`public\`** vs. **\`private\`**).
 
         <div style="text-align: center;">
           <iframe class="lec-video" src="https://www.youtube.com/embed/6zE7z1UNW_k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
+
+        (The exercise following the next section on constructors will also incorporate member access levels.)
+      `,
+      questions: [],
+    },
+    {
+      section_id: "section_08_4",
+      title: "Constructors",
+      mk_description: dedent`
+        The C++ style also uses **constructors** as a formal mechanism for initialization.
+
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/EJO4vOBXAaE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
       `,
@@ -692,7 +705,207 @@ c5.print();
       ],
     },
     {
-      section_id: "section_08_4",
+      section_id: "section_08_5",
+      title: "Implicitly Defined Constructors",
+      mk_description: dedent`
+
+        There are a few constructors the compiler may automatically provide for your classes.
+
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/eaBrLBFC7_U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
+      `,
+      
+      questions: [
+        {
+          question_id: "lec08_default_constructors",
+          title: "Exercise: Default Constructors",
+          points: 3,
+          mk_description: dedent`
+            Consider each of the following classes. Are they default-constructible (i.e. can you define a default-initialized variable with that class type)? Why or why not?
+          `,
+          response: {
+            kind: "fill_in_the_blank",
+            content: `
+<table style="width: 100%; border: none;">
+  <tr>
+    <td style="width: 350px; padding-right: 15px;">
+    <div markdown="1">
+\`\`\`cpp
+class Student {
+private:
+  string name;
+  int num_credits;
+
+public:
+  Student(const string &name, int num_credits)
+    : name(name), num_credits(num_credits) { }
+};
+
+int main() {
+  // Would this be allowed?
+  Student s;
+}
+\`\`\`
+    </div>
+    </td>
+    <td>
+    <div>
+      Write "ok" if the class is default-constructible. Otherwise, write "error". Justify your answer.
+      [[BOX
+      
+      
+      
+      ]]
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 250px; padding-right: 15px;">
+    <div markdown="1">
+\`\`\`cpp
+class Pickle {
+private:
+  bool is_sweet;
+  bool is_sour;
+  bool is_spicy;
+
+public:
+  Pickle()
+    : Pickle(false, false, false) { }
+
+  Pickle(bool is_sweet, bool is_sour, bool is_spicy)
+    : is_sweet(is_sweet),
+      is_sour(is_sour),
+      is_spicy(is_spicy) { }
+};
+
+int main() {
+  // Would this be allowed?
+  Pickle p;
+}
+\`\`\`
+    </div>
+    </td>
+    <td>
+    <div>
+      Write "ok" if the class is default-constructible. Otherwise, write "error". Justify your answer.
+      [[BOX
+      
+      
+      
+      ]]
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 250px; padding-right: 15px;">
+    <div markdown="1">
+\`\`\`cpp
+class Cow {
+private:
+  string name;
+  int num_spots;
+};
+
+int main() {
+  // Would this be allowed?
+  Cow c;
+}
+\`\`\`
+    </div>
+    </td>
+    <td>
+    <div>
+      Write "ok" if the class is default-constructible. Otherwise, write "error". Justify your answer.
+      [[BOX
+      
+      
+      
+      ]]
+    </div>
+    </td>
+  </tr>
+</table>
+            `,
+            default_grader: {
+              grader_kind: "manual_regex_fill_in_the_blank",
+              rubric: [
+                {
+                  blankIndex: 1,
+                  title: "Box 1",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /error|illegal|not.*legal|not.*allowed|wrong/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /./i,
+                      explanation: "There is no user-defined default ctor. Because there are other user-defined ctors, the compiler doesn't provide the implicitly defined default ctor. Answer = \"error\".",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 2,
+                  title: "Box 2",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /ok|allowed|legal/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /./i,
+                      explanation: "There is a user-defined default constructor. Answer = \"ok\".",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 3,
+                  title: "Box 3",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /ok|allowed|legal/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /./i,
+                      explanation: "There are no user-defined constructors at all, so the compiler provides an implicitly-defined default constructor. Answer = \"ok\".",
+                      points: 0
+                    },
+                  ]
+                },
+              ]
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
+          },
+          mk_postscript: dedent`
+            <hr />
+            You're welcome to check your solution with this **walkthrough** video:
+
+            <div style="text-align: center;">
+              <iframe class="lec-video" src="https://www.youtube.com/embed/4c1Ncn7Rw_4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <br />
+          `
+        }
+      ],
+    },
+    {
+      section_id: "section_08_6",
       title: "Composing C++ ADTs (Classes as Members)",
       mk_description: dedent`
         
@@ -920,207 +1133,7 @@ Professor(const Coffee &coffee)
       ],
     },
     {
-      section_id: "section_08_5",
-      title: "Default Initialization",
-      mk_description: dedent`
-
-        In C++, "default initialization" occurs whenever we declare a variable or otherwise create an object, but don't provide an explicit initialization. The semantics of default initialization are different for different kinds of objects. There are also a few nuances we should consider for classes, which may or may not have a default constructor.
-
-        <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/R7orvELKSVQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <br />
-      `,
-      
-      questions: [
-        {
-          question_id: "lec08_default_constructors",
-          title: "Exercise: Default Constructors",
-          points: 3,
-          mk_description: dedent`
-            Consider each of the following classes. Are they default-constructible? Why or why not?
-          `,
-          response: {
-            kind: "fill_in_the_blank",
-            content: `
-<table style="width: 100%; border: none;">
-  <tr>
-    <td style="width: 350px; padding-right: 15px;">
-    <div markdown="1">
-\`\`\`cpp
-class Student {
-private:
-  string name;
-  int num_credits;
-
-public:
-  Student(const string &name, int num_credits)
-    : name(name), num_credits(num_credits) { }
-};
-
-int main() {
-  // Would this be allowed?
-  Student s;
-}
-\`\`\`
-    </div>
-    </td>
-    <td>
-    <div>
-      Write "ok" if the class is default-constructible. Otherwise, write "error". Justify your answer.
-      [[BOX
-      
-      
-      
-      ]]
-    </div>
-    </td>
-  </tr>
-  <tr>
-    <td style="width: 250px; padding-right: 15px;">
-    <div markdown="1">
-\`\`\`cpp
-class Pickle {
-private:
-  bool is_sweet;
-  bool is_sour;
-  bool is_spicy;
-
-public:
-  Pickle()
-    : Pickle(false, false, false) { }
-
-  Pickle(bool is_sweet, bool is_sour, bool is_spicy)
-    : is_sweet(is_sweet),
-      is_sour(is_sour),
-      is_spicy(is_spicy) { }
-};
-
-int main() {
-  // Would this be allowed?
-  Pickle p;
-}
-\`\`\`
-    </div>
-    </td>
-    <td>
-    <div>
-      Write "ok" if the class is default-constructible. Otherwise, write "error". Justify your answer.
-      [[BOX
-      
-      
-      
-      ]]
-    </div>
-    </td>
-  </tr>
-  <tr>
-    <td style="width: 250px; padding-right: 15px;">
-    <div markdown="1">
-\`\`\`cpp
-class Cow {
-private:
-  string name;
-  int num_spots;
-};
-
-int main() {
-  // Would this be allowed?
-  Cow c;
-}
-\`\`\`
-    </div>
-    </td>
-    <td>
-    <div>
-      Write "ok" if the class is default-constructible. Otherwise, write "error". Justify your answer.
-      [[BOX
-      
-      
-      
-      ]]
-    </div>
-    </td>
-  </tr>
-</table>
-            `,
-            default_grader: {
-              grader_kind: "manual_regex_fill_in_the_blank",
-              rubric: [
-                {
-                  blankIndex: 1,
-                  title: "Box 1",
-                  points: 1,
-                  description: "",
-                  patterns: [
-                    {
-                      pattern: /error|illegal|not.*legal|not.*allowed|wrong/i,
-                      explanation: "Correct!",
-                      points: 1
-                    },
-                    {
-                      pattern: /./i,
-                      explanation: "There is no user-defined default ctor. Because there are other user-defined ctors, the compiler doesn't provide the implicitly defined default ctor. Answer = \"error\".",
-                      points: 0
-                    },
-                  ]
-                },
-                {
-                  blankIndex: 2,
-                  title: "Box 2",
-                  points: 1,
-                  description: "",
-                  patterns: [
-                    {
-                      pattern: /ok|allowed|legal/i,
-                      explanation: "Correct!",
-                      points: 1
-                    },
-                    {
-                      pattern: /./i,
-                      explanation: "There is a user-defined default constructor. Answer = \"ok\".",
-                      points: 0
-                    },
-                  ]
-                },
-                {
-                  blankIndex: 3,
-                  title: "Box 3",
-                  points: 1,
-                  description: "",
-                  patterns: [
-                    {
-                      pattern: /ok|allowed|legal/i,
-                      explanation: "Correct!",
-                      points: 1
-                    },
-                    {
-                      pattern: /./i,
-                      explanation: "There are no user-defined constructors at all, so the compiler provides an implicitly-defined default constructor. Answer = \"ok\".",
-                      points: 0
-                    },
-                  ]
-                },
-              ]
-            },
-          },
-          verifier: {
-            verifier_kind: "full_credit",
-          },
-          mk_postscript: dedent`
-            <hr />
-            You're welcome to check your solution with this **walkthrough** video:
-
-            <div style="text-align: center;">
-              <iframe class="lec-video" src="https://www.youtube.com/embed/4c1Ncn7Rw_4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <br />
-          `
-        }
-      ],
-    },
-    {
-      section_id: "section_08_6",
+      section_id: "section_08_7",
       title: "Best Practices for C++ ADTs",
       mk_description: dedent`
         Finally, let's consider some more miscellaneous topics and best practices for writing well-designed classes, including:
