@@ -59,7 +59,7 @@ export const LECTURE_11 : ExamSpecification = {
       mk_description: dedent`
                 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/7ehtdAdEPJg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/qjcWN_n2CtQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
       `,
@@ -73,7 +73,7 @@ export const LECTURE_11 : ExamSpecification = {
       mk_description: dedent`
                 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/kSb09sg_aMo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/0PV-zEA08z4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
       `,
@@ -87,7 +87,7 @@ export const LECTURE_11 : ExamSpecification = {
       mk_description: dedent`
                 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/xHagPSzCyFM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/9HrsiY_Hqyk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
       `,
@@ -101,7 +101,7 @@ export const LECTURE_11 : ExamSpecification = {
       mk_description: dedent`
                 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/IFmHOY8C6vI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/20lCBbM4CpI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
       `,
@@ -115,7 +115,7 @@ export const LECTURE_11 : ExamSpecification = {
       mk_description: dedent`
                 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/01Vhfh_pu18" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/B2MYNqlYB8Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
       `,
@@ -129,7 +129,7 @@ export const LECTURE_11 : ExamSpecification = {
       mk_description: dedent`
                 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/kqYju9fcbFA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/1xzy5yLeiVg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
       `,
@@ -143,7 +143,7 @@ export const LECTURE_11 : ExamSpecification = {
       mk_description: dedent`
                 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/McLdkrnLwKo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/gzHPz0BzP5U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
       `,
