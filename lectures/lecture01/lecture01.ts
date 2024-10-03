@@ -69,9 +69,19 @@ export const LECTURE_01 : ExamSpecification = {
         
         <div class="alert alert-secondary" role="alert" markdown="1">
           <h5><span class="badge badge-success">Fall 2024</span></h5>
-          We now have 6 projects instead of 5, but the workload is the same. We used to have a single project covering "Binary Search Trees" and a "Piazza Classifier Application". This term, we're splitting it into two pieces. Project 4 is now the "Piazza Classifier" half, and Project 5 is the "Binary Search Trees" half. We made this change because it aligns better with the flow of curriculum in the rest of the course and overall should make for a better student experience.
 
-          The part of Project 4 that involved implementing a tool using a linked list is now Project 5, and the new tool you'll implement is a text editor. We made this change because it's a more interesting and well-motivated application of a linked list (which we'll cover later in the course) than previous versions of the project.
+          You may have heard that previous terms of EECS 280 had 5 projects. There are now 6 projects, but the overall workload is the same - we've simply split one of the bigger projects into two pieces. This aligns better with the flow of the curriculum. We also changed what you're implementing using a linked list to a text editor, because it's a more interesting and well-motivated application.
+
+          Here's a breakdown of these changes.
+          
+          **Previous terms**
+          Project 4: Implement a linked list, then use it to build the backend for a web-based office hours queue.
+          Project 5: Implement a binary search tree, then use it to build a map. Also, make a piazza post classifier that predicts labels based on post contents.
+
+          **This term**
+          Project 4: (Part of original Project 5) Make a piazza post classifier.
+          Project 5: (Modified version of original Project 4) Implement a linked list, then use it to build a text editor.
+          Project 6: (Part of original Project 5) Implement a binary search tree, then use it to build a map.
           
           <div style="text-align: center;">
             <img src="assets/projects.png" style="width: 600px;">
