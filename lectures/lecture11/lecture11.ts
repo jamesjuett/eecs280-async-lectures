@@ -13,11 +13,6 @@ export const LECTURE_11 : ExamSpecification = {
   exam_id: "f24_lec_11",
   title: "Containers and Iterators",
   mk_intructions: dedent`
-    <div markdown=1 class="alert alert-success">
-      <p style="text-align: center;"><b>IMPORTANT</b></p>
-      <p>The participation deadlines are now strictly enforced by the async lecture site. To earn participation credit, you must complete each exercise before the deadline (shown near the top left of the page). It is your responsibility to ensure you are signed in and double check that you see the "Completion Verified" status at the top left before the deadline.</p>
-      <p style="text-align: center; margin-bottom: 0;"><b>IMPORTANT</b></p>
-    </div>
     <div markdown=1 class="alert alert-info">
       So far, we've covered a lot of the fundamental tools C++ gives us, as well as some general principles of good programming design, in particular including the design of Abstract Data Types (ADTs).
       
