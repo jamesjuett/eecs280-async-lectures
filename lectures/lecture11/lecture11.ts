@@ -10,8 +10,8 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 export const LECTURE_11 : ExamSpecification = {
-  exam_id: "lec_11_containers_1",
-  title: "Array-Based Data Structures",
+  exam_id: "f24_lec_11",
+  title: "Containers and Iterators",
   mk_intructions: dedent`
     <div markdown=1 class="alert alert-success">
       <p style="text-align: center;"><b>IMPORTANT</b></p>
@@ -23,17 +23,17 @@ export const LECTURE_11 : ExamSpecification = {
       
       We'll now look at various **Container ADTs**, which allow us to store and organize collections of other objects. Using container ADTs from the C++ standard library as examples:
       
-      - A \`vector<double>\` could store datapoints for statistical analysis
-      - A \`set<string>\` could represent uniqnames of students registered for a course
-      - A \`map<string, double>\` could allow us to look up the price of an item on a menu by providing its name
+      - A \`std::vector<double>\` could store datapoints for statistical analysis
+      - A \`std::set<string>\` could represent uniqnames of students registered for a course
+      - A \`std::map<string, double>\` could allow us to look up the price of an item on a menu by providing its name
 
       <!-- force end of list -->
 
-      If you're not familiar with all these containers, don't worry - we'll introduce each throughout the rest of the course.
+      If you're not familiar with all these containers, don't worry - we'll introduce each briefly today. throughout the rest of the course.
 
       You may also have seen that EECS 280 is called "Programming and Introductory Data Structures". We're now entering the **data structures** portion of the course. If a container ADT specifies the _interface_ for organizing information, the underlying _implementation_ is a data structure. We'll consider several possible data structures and their pros/cons for various purposes, including efficiency analysis.
-
-      In this lecture and the next, we look at array-based data structures.
+      
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2024</div>
     </div>
     <style>
       .lec-video {
@@ -60,19 +60,11 @@ export const LECTURE_11 : ExamSpecification = {
   sections: [
     {
       section_id: "section_11_1",
-      title: "An Array-Based Unsorted Set",
+      title: "Introduction to Standard Library Containers",
       mk_description: dedent`
-        Let's take a look at a data structure to represent an **unsorted set**. We'll be following our normal process for building an ADT - starting with our motivating use cases and the interface we want, followed by a fundamental data representation and invariants, and finally filling in the implementations for each member function.
-        
+                
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/oHqTh9VfrEc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <br />
-
-        Our next step is to choose a data representation and invariants. This ends up as the foundation for the data structure, the implementation of its functions, and the efficiency we can achieve. Throughout the course, we'll end up looking at several different possibilities for an unsorted set. We'll start here with an unsorted array.
-
-        <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/K6eRavvlUY0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/7ehtdAdEPJg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
       `,
@@ -82,578 +74,107 @@ export const LECTURE_11 : ExamSpecification = {
     },
     {
       section_id: "section_11_2",
-      title: "Implementation",
+      title: "Sequential Containers with Contiguous Allocation",
       mk_description: dedent`
-        Let's get into the implementation of a default constructor and a few member functions for the array-based unsorted set.
-        
+                
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/vy07Uesr0i8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/kSb09sg_aMo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
       `,
       questions: [
-        {
-          question_id: "lec11_intset_insert",
-          title: "Exercise: \`IntSet::insert()\`",
-          points: 1,
-          mk_description: dedent`
-            Implement the \`insert()\` member function for the \`IntSet\` class, which adds a given value \`v\` to the set.
-            
-            First, your code should call \`contains()\` as a helper to check if \`v\` is already in the set:
-              - If the given value is not already in the set, it should add the value to the next available position in the \`elts\` array and increase \`elts_size\` by 1.
-              - If the value is already in the set, \`insert()\` does nothing.
 
-            The \`main()\` function provided includes testing code to verify your implementation. Note that you should not worry about implementing \`remove()\` yet... save that for the next exercise below. 
-          `,
-          response: {
-            kind: "iframe",
-            src: "assets/intset_insert.html",
-            element_class: "lobster-iframe",
-            element_style: "height: 675px;",
-            default_grader: {
-              grader_kind: "standard_iframe",
-              rubric: [
-                {
-                  points: 1,
-                  description: "Exercise must be complete.",
-                  property: "complete",
-                  value: true,
-                }
-              ]
-            }
-          },
-          verifier: {
-            verifier_kind: "full_credit"
-          },
-          mk_postscript: dedent`
-            <hr />
-            You're welcome to check your solution with this **walkthrough** video:
+      ],
+    },
+    {
+      section_id: "section_11_3",
+      title: "Sequential Containers with Linked Structures",
+      mk_description: dedent`
+                
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/xHagPSzCyFM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
+      `,
+      questions: [
 
-            **Note:** This walkthrough uses several different files for the code, which is different than the above, where we had everthing embedded into one file. (The solution for \`insert()\` is the same, though!)
-
-            <div style="text-align: center;">
-              <iframe class="lec-video" src="https://www.youtube.com/embed/ajaQVu7oHKM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <br />
-          `
-        },
-        {
-          question_id: "lec11_intset_remove",
-          title: "Exercise: \`IntSet::remove()\`",
-          points: 5,
-          mk_description: dedent`
-            Below are some potential implementations of the \`remove()\` function for \`IntSet\`. Which ones work correctly?
-            
-            It may be helpful to trace through the code on this set, removing the \`1\`, for example:
-
-            <div style="text-align: center">
-             <img style="width: 450px;" src="assets/intset_example.png" />
-            </div>
-            
-            Or, you might also consider pasting them into the code for the exercise above and uncommenting the additional set of tests in \`main()\` for the \`remove()\` function.
-
-            Which of the implementations of \`remove()\` below are correct? Write **"correct"** or **"incorrect"**. For each that is not correct, explain what's wrong with it.
-          `,
-          response: {
-            kind: "fill_in_the_blank",
-            content: `
-<table style="width: 100%; border: none;">
-  <tr>
-    <td style="width: 350px; padding-right: 15px;">
-    <div markdown="1">
-\`\`\`cpp
-// Potential Implementation 1
-void remove(int v) {
-  int i = indexOf(v);
-  if (i == -1) { return; }
-  elts[i] = elts[i+1];
-  --elts_size;
-}
-\`\`\`
-    </div>
-    </td>
-    <td>
-    <div>
-      [[BOX
-      
-      
-      
-      ]]
-    </div>
-    </td>
-  </tr>
-  <tr>
-    <td style="width: 350px; padding-right: 15px;">
-    <div markdown="1">
-\`\`\`cpp
-// Potential Implementation 2
-void remove(int v) {
-  int i = indexOf(v);
-  if (i == -1) { return; }
-  elts[i] = elts[elts_size-1];
-  --elts_size;
-}
-\`\`\`
-    </div>
-    </td>
-    <td>
-    <div>
-      [[BOX
-      
-      
-      
-      ]]
-    </div>
-    </td>
-  </tr>
-  <tr>
-    <td style="width: 350px; padding-right: 15px;">
-    <div markdown="1">
-\`\`\`cpp
-// Potential Implementation 3
-void remove(int v) {
-  int i = indexOf(v);
-  if (i == -1) { return; }
-  elts[i] = elts[0];
-  ++elts;
-  --elts_size;
-}
-\`\`\`
-    </div>
-    </td>
-    <td>
-    <div>
-      [[BOX
-      
-      
-      
-      ]]
-    </div>
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="width: 350px; padding-right: 15px;">
-    <div markdown="1">
-\`\`\`cpp
-// Potential Implementation 4
-void remove(int v) {
-  int i = indexOf(v);
-  if (i == -1) { return; }
-  for( ; i < elts_size-1 ; ++i) {
-    elts[i] = elts[i+1];
-  }
-  --elts_size;
-}
-\`\`\`
-    </div>
-    </td>
-    <td>
-    <div>
-      [[BOX
-      
-      
-      
-      ]]
-    </div>
-    </td>
-  </tr>
-</table>
-
-Two of the implementations above for \`remove()\` work correctly. Which one is the most efficient for sets with lots of elements? How does this fit in with what the representation invariants require (or rather, what they don't require)?
-[[BOX
-
-
-
-]]
-            `,
-            default_grader: {
-              grader_kind: "manual_regex_fill_in_the_blank",
-              rubric: [
-                {
-                  blankIndex: 1,
-                  title: "Box 1",
-                  points: 1,
-                  description: "",
-                  patterns: [
-                    {
-                      pattern: /incorrect|not\s*correct/i,
-                      explanation: "The implementation is incorrect. Check the walkthrough video for more details.",
-                      points: 1
-                    },
-                    {
-                      pattern: /correct/i,
-                      explanation: "The implementation is incorrect. Check the walkthrough video for more details.",
-                      points: 0
-                    },
-                  ]
-                },
-                {
-                  blankIndex: 2,
-                  title: "Box 2",
-                  points: 1,
-                  description: "",
-                  patterns: [
-                    {
-                      pattern: /incorrect|not\s*correct/i,
-                      explanation: "The implementation is correct. Check the walkthrough video for more details.",
-                      points: 0
-                    },
-                    {
-                      pattern: /correct/i,
-                      explanation: "The implementation is correct. Check the walkthrough video for more details.",
-                      points: 1
-                    },
-                  ]
-                },
-                {
-                  blankIndex: 3,
-                  title: "Box 3",
-                  points: 1,
-                  description: "",
-                  patterns: [
-                    {
-                      pattern: /incorrect|not\s*correct/i,
-                      explanation: "The implementation is incorrect. Check the walkthrough video for more details.",
-                      points: 1
-                    },
-                    {
-                      pattern: /correct/i,
-                      explanation: "The implementation is incorrect. Check the walkthrough video for more details.",
-                      points: 0
-                    },
-                  ]
-                },
-                {
-                  blankIndex: 4,
-                  title: "Box 4",
-                  points: 1,
-                  description: "",
-                  patterns: [
-                    {
-                      pattern: /incorrect|not\s*correct/i,
-                      explanation: "The implementation is correct. Check the walkthrough video for more details.",
-                      points: 0
-                    },
-                    {
-                      pattern: /correct/i,
-                      explanation: "The implementation is correct. Check the walkthrough video for more details.",
-                      points: 1
-                    },
-                  ]
-                },
-                {
-                  blankIndex: 5,
-                  title: "Box 5",
-                  points: 1,
-                  description: "",
-                  patterns: [
-                    {
-                      pattern: /.{10,}/i,
-                      explanation: "This is just checked for completion. Check the walkthrough video to confirm your answer.",
-                      points: 1
-                    },
-                  ]
-                },
-              ]
-            },
-          },
-          verifier: {
-            verifier_kind: "full_credit",
-          },
-          mk_postscript: dedent`
-            <hr />
-            You're welcome to check your solution with this **walkthrough** video:
-
-            <div style="text-align: center;">
-              <iframe class="lec-video" src="https://www.youtube.com/embed/u3V4L9g_x44" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <br />
-
-            **NOTE:** For completeness, I'll mention here that ultimately both implementations that work correctly end up having similar runtime _complexities_ in that their runtime scales linearly with the amount of elements in the set - that's because even though the one I describe in the walkthrough video does less work to remove the element, it still needs to call \`indexOf\`, which has a linear runtime. We'll talk more about time complexity in the next lecture.
-          `
-        }
       ],
     },
     {
       section_id: "section_11_4",
-      title: "Member vs. Non-Member Operator Overloads",
+      title: "Iterator Interfaces and Traversal by Iterator",
       mk_description: dedent`
-
-        You know the only thing cooler than a set ADT? A set ADT with custom operators!
-
-        We'll look at two different examples:
-        - \`operator<<\`, which is implemented as a **non-member** function operator overload.
-        - \`operator[]\`, which is implemented as a **member** function operator overload.
-
+                
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/8z7QnyRcK0s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/IFmHOY8C6vI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
+      `,
+      questions: [
 
+      ],
+    },
+    {
+      section_id: "section_11_5",
+      title: "The `auto` Keyword",
+      mk_description: dedent`
+                
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/01Vhfh_pu18" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
+      `,
+      questions: [
+
+      ],
+    },
+    {
+      section_id: "section_11_6",
+      title: "Range-based `for` Loops",
+      mk_description: dedent`
+                
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/kqYju9fcbFA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
+      `,
+      questions: [
+
+      ],
+    },
+    {
+      section_id: "section_11_7",
+      title: "Sets and Maps",
+      mk_description: dedent`
+                
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/McLdkrnLwKo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
       `,
       questions: [
         {
-          question_id: "lec11_intset_operator_plus_equals",
-          title: "Exercise: Overloading \`+=\` on \`IntSet\`",
-          points: 5,
+          question_id: "lec11_participation_freebie",
+          points: 1,
           mk_description: dedent`
-            Let's add a \`+=\` operator to our \`IntSet\` class, which allows a nice syntax for adding elements to the set. Here's an example of how we might use it:
-
-            \`\`\`cpp
-            class IntSet {
-              // operator+= overload
-            };
-            int main() {
-              IntSet set;
-              set += 3;
-              set += 5;
-              cout << set; // {3, 5}
-            }
-            \`\`\`
-
-            The \`+=\` operator can be implemented either as a member function overload or a non-member function overload. Consider each of the potential implementations of \`+=\` below. For each, indicate how the \`operator+=\` overload function is being defined (write **"member"** or **"non-member"**) and whether or not it is implemented correctly (write **"correct"** or **"incorrect"**).
+            Select the item below for participation credit.
           `,
           response: {
-            kind: "fill_in_the_blank",
-            content: `
-<table style="width: 100%; border: none;">
-  <tr>
-    <td style="width: 350px; padding-right: 15px;">
-    <div markdown="1">
-      
-\`\`\`cpp
-// Version 1
-void operator+=(IntSet &s, int v) {
-  s.insert(v);
-}
-\`\`\`
-    </div>
-    </td>
-    <td>
-    <div>
-      [[BOX
-      
-      
-      ]]
-    </div>
-    </td>
-  </tr>
-  <tr>
-    <td style="width: 350px; padding-right: 15px;">
-    <div markdown="1">
-      
-\`\`\`cpp
-// Version 2
-void IntSet::operator+=(int v) {
-  this->insert(v);
-}
-\`\`\`
-    </div>
-    </td>
-    <td>
-    <div>
-      [[BOX
-      
-      
-      ]]
-    </div>
-    </td>
-  </tr>
-  <tr>
-    <td style="width: 350px; padding-right: 15px;">
-    <div markdown="1">
-      
-\`\`\`cpp
-// Version 3
-void IntSet::operator+=(IntSet &s, int v) {
-  s.insert(v);
-}
-\`\`\`
-    </div>
-    </td>
-    <td>
-    <div>
-      [[BOX
-      
-      
-      ]]
-    </div>
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="width: 350px; padding-right: 15px;">
-    <div markdown="1">
-      
-\`\`\`cpp
-// Version 4
-void operator+=(IntSet &s, int v) {
-  this->insert(v);
-}
-\`\`\`
-    </div>
-    </td>
-    <td>
-    <div>
-      [[BOX
-      
-      
-      ]]
-    </div>
-    </td>
-  </tr>
-  <tr>
-    <td style="width: 350px; padding-right: 15px;">
-    <div markdown="1">
-      
-\`\`\`cpp
-// Version 5
-void IntSet::operator+=(int v) {
-  insert(v);
-}
-\`\`\`
-    </div>
-    </td>
-    <td>
-    <div>
-      [[BOX
-      
-      
-      ]]
-    </div>
-    </td>
-  </tr>
-</table>
-            `,
+            kind: "multiple_choice",
+            choices: [
+              "Select this for participation credit.",
+            ],
+            multiple: false,
+            sample_solution: [0],
             default_grader: {
-              grader_kind: "manual_regex_fill_in_the_blank",
-              rubric: [
-                {
-                  blankIndex: 1,
-                  title: "Box 1",
-                  points: 1,
-                  description: "",
-                  patterns: [
-                    {
-                      pattern: /incorrect/i,
-                      explanation: "`operator+=` is being implemented as a non-member function. The implementation is correct.",
-                      points: 0
-                    },
-                    {
-                      pattern: /non\s*-?\s*member.*correct|correct.*non\s*-?\s*member/i,
-                      explanation: "`operator+=` is being implemented as a non-member function. The implementation is correct.",
-                      points: 1
-                    },
-                    {
-                      pattern: /.{12,}/i,
-                      explanation: "`operator+=` is being implemented as a non-member function. The implementation is correct.",
-                      points: 0
-                    },
-                  ]
-                },
-                {
-                  blankIndex: 2,
-                  title: "Box 2",
-                  points: 1,
-                  description: "",
-                  patterns: [
-                    {
-                      pattern: /non\s*-?\s*member|incorrect/i,
-                      explanation: "`operator+=` is being implemented as a member function. The implementation is correct.",
-                      points: 0
-                    },
-                    {
-                      pattern: /member.*correct|correct.*member/i,
-                      explanation: "`operator+=` is being implemented as a member function. The implementation is correct.",
-                      points: 1
-                    },
-                    {
-                      pattern: /.{12,}/i,
-                      explanation: "`operator+=` is being implemented as a member function. The implementation is correct.",
-                      points: 0
-                    },
-                  ]
-                },
-                {
-                  blankIndex: 3,
-                  title: "Box 3",
-                  points: 1,
-                  description: "",
-                  patterns: [
-                    {
-                      pattern: /non\s*-?\s*member/i,
-                      explanation: "`operator+=` is being implemented as a member function. The implementation is incorrect.",
-                      points: 0
-                    },
-                    {
-                      pattern: /member.*incorrect|incorrect.*member/i,
-                      explanation: "`operator+=` is being implemented as a member function. The implementation is incorrect.",
-                      points: 1
-                    },
-                    {
-                      pattern: /.{12,}/i,
-                      explanation: "`operator+=` is being implemented as a member function. The implementation is incorrect.",
-                      points: 0
-                    },
-                  ]
-                },
-                {
-                  blankIndex: 4,
-                  title: "Box 4",
-                  points: 1,
-                  description: "",
-                  patterns: [
-                    {
-                      pattern: /non\s*-?\s*member.*incorrect|incorrect.*non\s*-?\s*member/i,
-                      explanation: "`operator+=` is being implemented as a non-member function. The implementation is incorrect.",
-                      points: 1
-                    },
-                    {
-                      pattern: /.{12,}/i,
-                      explanation: "`operator+=` is being implemented as a non-member function. The implementation is incorrect.",
-                      points: 0
-                    },
-                  ]
-                },
-                {
-                  blankIndex: 5,
-                  title: "Box 5",
-                  points: 1,
-                  description: "",
-                  patterns: [
-                    {
-                      pattern: /non\s*-?\s*member|incorrect/i,
-                      explanation: "`operator+=` is being implemented as a member function. The implementation is correct.",
-                      points: 0
-                    },
-                    {
-                      pattern: /member.*correct|correct.*member/i,
-                      explanation: "`operator+=` is being implemented as a member function. The implementation is correct.",
-                      points: 1
-                    },
-                    {
-                      pattern: /.{12,}/i,
-                      explanation: "`operator+=` is being implemented as a member function. The implementation is correct.",
-                      points: 0
-                    },
-                  ]
-                },
-              ]
+              grader_kind: "freebie",
+              points: 1,
+              allow_blanks: false
             },
           },
           verifier: {
             verifier_kind: "full_credit",
           },
-          mk_postscript: dedent`
-            <hr />
-            You're welcome to check your solution with this **walkthrough** video:
-
-            <div style="text-align: center;">
-              <iframe class="lec-video" src="https://www.youtube.com/embed/Z4FmzZ4ppQQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <br />
-          `
         }
       ],
     },
