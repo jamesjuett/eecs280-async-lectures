@@ -9,8 +9,7 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 
-export const LECTURE_16 : ExamSpecification = {
-  exam_id: "lec_16_linked_lists",
+export const LINKED_LISTS : Omit<ExamSpecification, "exam_id"> = {
   title: "Linked Lists",
   mk_intructions: `
 

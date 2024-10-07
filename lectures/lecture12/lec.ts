@@ -9,31 +9,15 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 
-export const LECTURE_11 : ExamSpecification = {
-  exam_id: "lec_11_containers_1",
+export const ARRAY_BASED_DATA_STRUCTURES : Omit<ExamSpecification, "exam_id"> = {
   title: "Array-Based Data Structures",
   mk_intructions: dedent`
-    <div markdown=1 class="alert alert-success">
-      <p style="text-align: center;"><b>IMPORTANT</b></p>
-      <p>The participation deadlines are now strictly enforced by the async lecture site. To earn participation credit, you must complete each exercise before the deadline (shown near the top left of the page). It is your responsibility to ensure you are signed in and double check that you see the "Completion Verified" status at the top left before the deadline.</p>
-      <p style="text-align: center; margin-bottom: 0;"><b>IMPORTANT</b></p>
-    </div>
     <div markdown=1 class="alert alert-info">
-      So far, we've covered a lot of the fundamental tools C++ gives us, as well as some general principles of good programming design, in particular including the design of Abstract Data Types (ADTs).
+      In this lecture and the next, we'll implement a **set** (an associative container for storing unique elements) based on an array.
       
-      We'll now look at various **Container ADTs**, which allow us to store and organize collections of other objects. Using container ADTs from the C++ standard library as examples:
+      We'll be following our normal process for building an ADT - starting with our motivating use cases and the interface we want, followed by a fundamental data representation and invariants, and finally filling in the implementations for each member function.
       
-      - A \`vector<double>\` could store datapoints for statistical analysis
-      - A \`set<string>\` could represent uniqnames of students registered for a course
-      - A \`map<string, double>\` could allow us to look up the price of an item on a menu by providing its name
-
-      <!-- force end of list -->
-
-      If you're not familiar with all these containers, don't worry - we'll introduce each throughout the rest of the course.
-
-      You may also have seen that EECS 280 is called "Programming and Introductory Data Structures". We're now entering the **data structures** portion of the course. If a container ADT specifies the _interface_ for organizing information, the underlying _implementation_ is a data structure. We'll consider several possible data structures and their pros/cons for various purposes, including efficiency analysis.
-
-      In this lecture and the next, we look at array-based data structures.
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2024</div>
     </div>
     <style>
       .lec-video {

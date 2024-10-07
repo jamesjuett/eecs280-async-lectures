@@ -9,13 +9,14 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 
-export const LECTURE_13 : ExamSpecification = {
-  exam_id: "lec_13_dynamic_memory",
+export const DYNAMIC_MEMORY : Omit<ExamSpecification, "exam_id"> = {
   title: "Dynamic Memory",
   mk_intructions: dedent`
     
     <div markdown=1 class="alert alert-info">
       In today's lecture, we'll consider the lifetimes we need for different objects in our program, how lifetime corresponds to the way objects are managed in memory, and how we as the programmer can use a new technique - **dynamic memory** to have more precise control of all this when we need it.
+      
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2024</div>
     </div>
     <style>
       .lec-video {

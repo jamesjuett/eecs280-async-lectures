@@ -9,8 +9,7 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 
-export const LECTURE_14 : ExamSpecification = {
-  exam_id: "lec_14_raii_growable_containers",
+export const RAII_AND_GROWABLE_CONTAINERS : Omit<ExamSpecification, "exam_id"> = {
   title: "RAII and Growable Containers",
   mk_intructions: dedent`
     
@@ -18,6 +17,8 @@ export const LECTURE_14 : ExamSpecification = {
       Let's take a look at two common strategies for managing dynamic memory:
       1. **RAII** - The use of constructors and destructors to manage dynamic resources within a class-based ADT.
       2. **Growable Containers** - Dynamic memory enables a data structure to allocate additional space for elements as needed.
+      
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2024</div>
     </div>
     <style>
       .lec-video {

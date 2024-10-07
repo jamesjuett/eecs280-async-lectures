@@ -9,8 +9,7 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 
-export const LECTURE_19 : ExamSpecification = {
-  exam_id: "lec_19_recursion_and_tail_recursion",
+export const RECURSION : Omit<ExamSpecification, "exam_id"> = {
   title: "Recursion and Tail Recursion",
   mk_intructions: `
 <div markdown=1 class="alert alert-info">

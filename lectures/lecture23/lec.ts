@@ -9,8 +9,7 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 
-export const LECTURE_22 : ExamSpecification = {
-  exam_id: "lec_22_error_handling_and_exceptions",
+export const EXCEPTIONS : Omit<ExamSpecification, "exam_id"> = {
   title: "Error Handling and Exceptions",
   mk_intructions: `
 <div markdown=1 class="alert alert-info">

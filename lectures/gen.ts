@@ -12,17 +12,19 @@ import { LECTURE_08 } from "./lecture08/lecture08";
 import { LECTURE_09 } from "./lecture09/lecture09";
 import { LECTURE_10 } from "./lecture10/lecture10";
 import { LECTURE_11 } from "./lecture11/lecture11";
-import { LECTURE_12 } from "./lecture12/lecture12";
-import { LECTURE_13 } from "./lecture13/lecture13";
-import { LECTURE_14 } from "./lecture14/lecture14";
-import { LECTURE_15 } from "./lecture15/lecture15";
-import { LECTURE_16 } from "./lecture16/lecture16";
-import { LECTURE_17 } from "./lecture17/lecture17";
-import { LECTURE_18 } from "./lecture18/lecture18";
-import { LECTURE_19 } from "./lecture19/lecture19";
-import { LECTURE_20 } from "./lecture20/lecture20";
-import { LECTURE_21 } from "./lecture21/lecture21";
-import { LECTURE_22 } from "./lecture22/lecture22";
+import { ARRAYS_AND_TIME_COMPLEXITY } from "./lecture11_5/lec";
+import { ARRAY_BASED_DATA_STRUCTURES } from "./lecture12/lec";
+import { SORTED_VS_UNSORTED_DATA_STRUCTURES } from "./lecture13/lec";
+import { DYNAMIC_MEMORY } from "./lecture14/lec";
+import { RAII_AND_GROWABLE_CONTAINERS } from "./lecture15/lec";
+import { DEEP_COPIES_AND_THE_BIG_THREE } from "./lecture16/lec";
+import { LINKED_LISTS } from "./lecture17/lec";
+import { LINKED_LIST_ITERATORS } from "./lecture18/lec";
+import { FUNCTORS_AND_IMPOSTOR_SYNDROME } from "./lecture19/lec";
+import { RECURSION } from "./lecture20/lec";
+import { STRUCTURAL_RECURSION } from "./lecture21/lec";
+import { BINARY_SEARCH_TREES } from "./lecture22/lec";
+import { EXCEPTIONS } from "./lecture23/lec";
 import dedent from "ts-dedent";
 import { MK_BOTTOM_MESSAGE, MK_DOWNLOAD_MESSAGE, MK_QUESTIONS_MESSAGE, MK_SAVER_MESSAGE } from "../common/messages";
 
@@ -37,37 +39,38 @@ function addW24Warning(spec: ExamSpecification) {
 }
 
 export const LECTURE_SPECS = [
-  { spec: LECTURE_01, updated: true, deadline: DateTime.fromISO("2024-08-26", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  { spec: LECTURE_02, updated: true, deadline: DateTime.fromISO("2024-08-28", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  { spec: LECTURE_03, updated: true, deadline: DateTime.fromISO("2024-09-04", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  { spec: LECTURE_04, updated: true, deadline: DateTime.fromISO("2024-09-09", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  { spec: LECTURE_05, updated: true, deadline: DateTime.fromISO("2024-09-11", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  { spec: LECTURE_06, updated: true, deadline: DateTime.fromISO("2024-09-16", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  { spec: LECTURE_07, updated: true, deadline: DateTime.fromISO("2024-09-27", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  { spec: LECTURE_08, updated: true, deadline: DateTime.fromISO("2024-09-23", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  { spec: LECTURE_09, updated: true, deadline: DateTime.fromISO("2024-09-25", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  { spec: LECTURE_10, updated: true, deadline: DateTime.fromISO("2024-09-30", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  { spec: LECTURE_11, updated: true, deadline: DateTime.fromISO("2024-10-06", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: LECTURE_12, updated: false, deadline: DateTime.fromISO("2024-10-07", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: LECTURE_13, updated: false, deadline: DateTime.fromISO("2024-10-09", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: LECTURE_14, updated: false, deadline: DateTime.fromISO("2024-10-16", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: LECTURE_15, updated: false, deadline: DateTime.fromISO("2024-10-21", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: LECTURE_16, updated: false, deadline: DateTime.fromISO("2024-10-23", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: LECTURE_17, updated: false, deadline: DateTime.fromISO("2024-10-30", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: LECTURE_18, updated: false, deadline: DateTime.fromISO("2024-11-04", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: LECTURE_19, updated: false, deadline: DateTime.fromISO("2024-11-06", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: LECTURE_20, updated: false, deadline: DateTime.fromISO("2024-11-11", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: LECTURE_21, updated: false, deadline: DateTime.fromISO("2024-11-13", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: LECTURE_22, updated: false, deadline: DateTime.fromISO("2024-11-18", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: LECTURE_23, updated: false, deadline: DateTime.fromISO("2024-11-20", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: LECTURE_24, updated: false, deadline: DateTime.fromISO("2024-11-25", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-].map((lec) => {
+  { spec: LECTURE_01                         , updated: true, deadline: DateTime.fromISO("2024-08-26", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: LECTURE_02                         , updated: true, deadline: DateTime.fromISO("2024-08-28", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: LECTURE_03                         , updated: true, deadline: DateTime.fromISO("2024-09-04", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: LECTURE_04                         , updated: true, deadline: DateTime.fromISO("2024-09-09", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: LECTURE_05                         , updated: true, deadline: DateTime.fromISO("2024-09-11", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: LECTURE_06                         , updated: true, deadline: DateTime.fromISO("2024-09-16", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: LECTURE_07                         , updated: true, deadline: DateTime.fromISO("2024-09-27", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: LECTURE_08                         , updated: true, deadline: DateTime.fromISO("2024-09-23", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: LECTURE_09                         , updated: true, deadline: DateTime.fromISO("2024-09-25", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: LECTURE_10                         , updated: true, deadline: DateTime.fromISO("2024-09-30", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: LECTURE_11                         , updated: true, deadline: DateTime.fromISO("2024-10-06", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: ARRAYS_AND_TIME_COMPLEXITY         , updated: true, deadline: DateTime.fromISO("2024-10-07", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: ARRAY_BASED_DATA_STRUCTURES        , updated: true, deadline: DateTime.fromISO("2024-10-09", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: SORTED_VS_UNSORTED_DATA_STRUCTURES , updated: true, deadline: DateTime.fromISO("2024-10-16", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: DYNAMIC_MEMORY                     , updated: true, deadline: DateTime.fromISO("2024-10-21", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: RAII_AND_GROWABLE_CONTAINERS       , updated: true, deadline: DateTime.fromISO("2024-10-23", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: DEEP_COPIES_AND_THE_BIG_THREE      , updated: true, deadline: DateTime.fromISO("2024-10-30", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  // { spec: LINKED_LISTS                       , updated: true, deadline: DateTime.fromISO("2024-11-04", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  // { spec: LINKED_LIST_ITERATORS              , updated: true, deadline: DateTime.fromISO("2024-11-06", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  // { spec: FUNCTORS_AND_IMPOSTOR_SYNDROME     , updated: true, deadline: DateTime.fromISO("2024-11-11", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  // { spec: RECURSION                          , updated: true, deadline: DateTime.fromISO("2024-11-13", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  // { spec: STRUCTURAL_RECURSION               , updated: true, deadline: DateTime.fromISO("2024-11-18", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  // { spec: BINARY_SEARCH_TREES                , updated: true, deadline: DateTime.fromISO("2024-11-20", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  // { spec: EXCEPTIONS                         , updated: true, deadline: DateTime.fromISO("2024-11-20", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+].map((lec, i) => {
   let spec = CUSTOMIZE(lec.spec, {
     // mk_intructions: dedent`
     //   <div markdown="1" class="alert alert-danger">
     //     <p>Due to electrical work affecting a North Campus server room, the participation server is temporarily down. Once it comes back up you'll be able to see your participation credit again.</p>
     //   </div>` +
     //   lec.spec.mk_intructions,
+    exam_id: `f24_lec_${String(i + 1).padStart(2, "0")}`,
     mk_questions_message: MK_QUESTIONS_MESSAGE,
     mk_bottom_message: MK_BOTTOM_MESSAGE,
     mk_download_message: MK_DOWNLOAD_MESSAGE,

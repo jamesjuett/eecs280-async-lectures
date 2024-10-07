@@ -9,8 +9,7 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 
-export const LECTURE_18 : ExamSpecification = {
-  exam_id: "lec_18_functors",
+export const FUNCTORS_AND_IMPOSTOR_SYNDROME : Omit<ExamSpecification, "exam_id"> = {
   title: "Functors and Impostor Syndrome",
   mk_intructions: `
 <div markdown=1 class="alert alert-info">

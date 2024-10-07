@@ -9,8 +9,7 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 
-export const LECTURE_04 : ExamSpecification = {
-  exam_id: "f24_lec_04",
+export const LECTURE_04 : Omit<ExamSpecification, "exam_id"> = {
   title: "Machine Model, Part 2",
   mk_intructions: dedent`
 

@@ -9,8 +9,7 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 
-export const LECTURE_02 : ExamSpecification = {
-  exam_id: "f24_lec_02",
+export const LECTURE_02 : Omit<ExamSpecification, "exam_id"> = {
   title: "Types, Control Structures, and Procedural Abstraction",
   mk_intructions: dedent`
 

@@ -9,8 +9,7 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 
-export const LECTURE_01 : ExamSpecification = {
-  exam_id: "f24_lec_01",
+export const LECTURE_01 : Omit<ExamSpecification, "exam_id"> = {
   title: "Course Introduction, Intro to C++",
   mk_intructions: dedent`
     

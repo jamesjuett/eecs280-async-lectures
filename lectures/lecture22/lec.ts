@@ -9,8 +9,7 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 
-export const LECTURE_21 : ExamSpecification = {
-  exam_id: "lec_21_bsts_sets_and_maps",
+export const BINARY_SEARCH_TREES : Omit<ExamSpecification, "exam_id"> = {
   title: "Binary Search Trees, Sets, and Maps",
   mk_intructions: `
 <div markdown=1 class="alert alert-info">

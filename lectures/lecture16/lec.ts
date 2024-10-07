@@ -27,13 +27,14 @@ const BIG_THREE_PATTERNS = BIG_THREE_SOLUTIONS.map(
 );
 
 
-export const LECTURE_15 : ExamSpecification = {
-  exam_id: "lec_15_deep_copies_and_the_big_three",
+export const DEEP_COPIES_AND_THE_BIG_THREE : Omit<ExamSpecification, "exam_id"> = {
   title: "Deep Copies and The Big Three",
   mk_intructions: dedent`
     
     <div markdown=1 class="alert alert-info">
       In this lecture, we'll introduce the idea of **shallow copies** vs. **deep copies**, its connection to dynamic resource management, and the way these concepts are realized specifically in C++ via the **Big Three**.
+      
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2024</div>
     </div>
     <style>
       .lec-video {
