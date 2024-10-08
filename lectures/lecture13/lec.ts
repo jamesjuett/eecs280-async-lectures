@@ -9,8 +9,7 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 
-export const SORTED_VS_UNSORTED_DATA_STRUCTURES : ExamSpecification = {
-  exam_id: "f24_lec_13",
+export const SORTED_VS_UNSORTED_DATA_STRUCTURES : Omit<ExamSpecification, "exam_id"> = {
   title: "Sorted vs. Unsorted Data Structures, Templates",
   mk_intructions: dedent`
     <div markdown=1 class="alert alert-info">
@@ -43,283 +42,293 @@ export const SORTED_VS_UNSORTED_DATA_STRUCTURES : ExamSpecification = {
   assets_dir: __dirname + `/assets`,
   allow_clientside_content: true,
   sections: [
-//     {
-//       section_id: "section_12_1",
-//       title: "Time Complexity",
-//       mk_description: dedent`
-//         As we're asessing the fitness of a data structure for a given task, it's helpful to determine its **time complexity**, which quantifies how well it performs as the size of the data we're working with scales up.
+    {
+      section_id: "section_12_1",
+      title: "Time Complexity",
+      mk_description: dedent`
+        As we're asessing the fitness of a data structure for a given task, it's helpful to determine its **time complexity**, which quantifies how well it performs as the size of the data we're working with scales up. Recall two key types of time complexity:
         
-//         <div style="text-align: center;">
-//           <iframe class="lec-video" src="https://www.youtube.com/embed/Uh8NYvg1Sa8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-//         </div>
-//         <br />
-//       `,
-//       questions: [
-//         {
-//           question_id: "lec12_time_complexity",
-//           title: "Exercise: Time Complexity",
-//           points: 6,
-//           mk_description: dedent`
-//             Below are several implementations of functions for the unsorted \`IntSet\` from last time. Determine whether each function has _O(1)_ constant time complexity or _O(n)_ linear time complexity. Explain your reasoning. 
-//           `,
-//           response: {
-//             kind: "fill_in_the_blank",
-//             content: `
-// <table style="width: 100%; border: none;">
-//   <tr>
-//     <td style="width: 350px; padding-right: 15px;">
-//     <div markdown="1">
-// \`\`\`cpp
-// // IntSet constructor
-// IntSet::IntSet()
-//   : elts_size(0) { }
-//   \`\`\`
-//     </div>
-//     </td>
-//     <td>
-//     <div>
-//       [[BOX
-      
-//       ]]
-//     </div>
-//     </td>
-//   </tr>
-//   <tr>
-//     <td style="width: 350px; padding-right: 15px;">
-//     <div markdown="1">
-// \`\`\`cpp
-// IntSet::size() {
-//   return elts_size;
-// }
-// \`\`\`
-//     </div>
-//     </td>
-//     <td>
-//     <div>
-//       [[BOX
-      
-//       ]]
-//     </div>
-//     </td>
-//   </tr>
-//   <tr>
-//     <td style="width: 350px; padding-right: 15px;">
-//     <div markdown="1">
-// \`\`\`cpp
-// int IntSet::indexOf(int v) const {
-//   for (int i = 0; i < elts_size; ++i) {
-//     if (elts[i] == v) {
-//         return i;
-//     }
-//   }
-//   return -1;
-// }
-// \`\`\`
-//     </div>
-//     </td>
-//     <td>
-//     <div>
-//       [[BOX
-      
-//       ]]
-//     </div>
-//     </td>
-//   </tr>
-  
-//   <tr>
-//     <td style="width: 350px; padding-right: 15px;">
-//     <div markdown="1">
-// \`\`\`cpp
-// bool IntSet::contains(int v) const {
-//   return indexOf(v) != -1;
-// }
-// \`\`\`
-//     </div>
-//     </td>
-//     <td>
-//     <div>
-//       [[BOX
-      
-//       ]]
-//     </div>
-//     </td>
-//   </tr>
-//   <tr>
-//     <td style="width: 350px; padding-right: 15px;">
-//     <div markdown="1">
-// \`\`\`cpp
-// void IntSet::insert(int v) {
-//   assert(size() < ELTS_CAPACITY);
-//   if (contains(v)) {
-//     return;
-//   }
-//   elts[elts_size] = v;
-//   ++elts_size;
-// }
-// \`\`\`
-//     </div>
-//     </td>
-//     <td>
-//     <div>
-//       [[BOX
-      
-//       ]]
-//     </div>
-//     </td>
-//   </tr>
-//   <tr>
-//     <td style="width: 350px; padding-right: 15px;">
-//     <div markdown="1">
-// \`\`\`cpp
-// void IntSet::remove(int v) {
-//   if (!contains(v)) {
-//     return;
-//   }
-//   elts[indexOf(v)] = elts[elts_size - 1];
-//   --elts_size;
-// }
-// \`\`\`
-//     </div>
-//     </td>
-//     <td>
-//     <div>
-//       [[BOX
-      
-//       ]]
-//     </div>
-//     </td>
-//   </tr>
-// </table>
-//             `,
-//             default_grader: {
-//               grader_kind: "manual_regex_fill_in_the_blank",
-//               rubric: [
-//                 {
-//                   blankIndex: 1,
-//                   title: "Box 1",
-//                   points: 1,
-//                   description: "",
-//                   patterns: [
-//                     {
-//                       pattern: /constant|O\s*\(\s*1\s*\)/i,
-//                       explanation: "Correct!",
-//                       points: 1
-//                     },
-//                     {
-//                       pattern: /linear|O\s*\(\s*n\s*\)/i,
-//                       explanation: "The implementation has constant time complexity. Check the walkthrough video for details.",
-//                       points: 0
-//                     },
-//                   ]
-//                 },
-//                 {
-//                   blankIndex: 2,
-//                   title: "Box 2",
-//                   points: 1,
-//                   description: "",
-//                   patterns: [
-//                     {
-//                       pattern: /constant|O\s*\(\s*1\s*\)/i,
-//                       explanation: "Correct!",
-//                       points: 1
-//                     },
-//                     {
-//                       pattern: /linear|O\s*\(\s*n\s*\)/i,
-//                       explanation: "The implementation has constant time complexity. Check the walkthrough video for details.",
-//                       points: 0
-//                     },
-//                   ]
-//                 },
-//                 {
-//                   blankIndex: 3,
-//                   title: "Box 3",
-//                   points: 1,
-//                   description: "",
-//                   patterns: [
-//                     {
-//                       pattern: /linear|O\s*\(\s*n\s*\)/i,
-//                       explanation: "Correct!",
-//                       points: 1
-//                     },
-//                     {
-//                       pattern: /constant|O\s*\(\s*1\s*\)/i,
-//                       explanation: "The implementation has linear time complexity. Check the walkthrough video for details.",
-//                       points: 0
-//                     },
-//                   ]
-//                 },
-//                 {
-//                   blankIndex: 4,
-//                   title: "Box 4",
-//                   points: 1,
-//                   description: "",
-//                   patterns: [
-//                     {
-//                       pattern: /linear|O\s*\(\s*n\s*\)/i,
-//                       explanation: "Correct!",
-//                       points: 1
-//                     },
-//                     {
-//                       pattern: /constant|O\s*\(\s*1\s*\)/i,
-//                       explanation: "The implementation has linear time complexity. Check the walkthrough video for details.",
-//                       points: 0
-//                     },
-//                   ]
-//                 },
-//                 {
-//                   blankIndex: 5,
-//                   title: "Box 5",
-//                   points: 1,
-//                   description: "",
-//                   patterns: [
-//                     {
-//                       pattern: /linear|O\s*\(\s*n\s*\)/i,
-//                       explanation: "Correct!",
-//                       points: 1
-//                     },
-//                     {
-//                       pattern: /constant|O\s*\(\s*1\s*\)/i,
-//                       explanation: "The implementation has linear time complexity. Check the walkthrough video for details.",
-//                       points: 0
-//                     },
-//                   ]
-//                 },
-//                 {
-//                   blankIndex: 6,
-//                   title: "Box 6",
-//                   points: 1,
-//                   description: "",
-//                   patterns: [
-//                     {
-//                       pattern: /linear|O\s*\(\s*n\s*\)/i,
-//                       explanation: "Correct!",
-//                       points: 1
-//                     },
-//                     {
-//                       pattern: /constant|O\s*\(\s*1\s*\)/i,
-//                       explanation: "The implementation has linear time complexity. Check the walkthrough video for details.",
-//                       points: 0
-//                     },
-//                   ]
-//                 },
-//               ]
-//             },
-//           },
-//           verifier: {
-//             verifier_kind: "full_credit",
-//           },
-//           mk_postscript: dedent`
-//             <hr />
-//             You're welcome to check your solution with this **walkthrough** video:
+        - _O(1)_ constant time complexity, where the time taken does not depend on the size of the data, _n_.
+        - _O(n)_ linear time complexity, where the time taken is linearly proportional to the size of the data, _n_.
+      `,
+      questions: [
+        {
+          question_id: "lec12_time_complexity",
+          title: "Exercise: Time Complexity",
+          points: 6,
+          mk_description: dedent`
+            Recall the unsorted \`IntSet\` from last time. We used an array for the underlying data representation:
 
-//             <div style="text-align: center;">
-//               <iframe class="lec-video" src="https://www.youtube.com/embed/LU8JMGBOLBM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-//             </div>
-//             <br />
-//           `
-//         }
-//       ],
-//     },
+            \`\`\`cpp
+            class IntSet {
+            private:
+              int elts[ELTS_CAPACITY];
+              int elts_size;
+            public:
+              ...
+            };
+            \`\`\`
+
+            Below are several implementations of functions for the unsorted \`IntSet\` from last time. Using a worst-case analysis, determine whether each function has _O(1)_ constant time complexity or _O(n)_ linear time complexity. Explain your reasoning. 
+          `,
+          response: {
+            kind: "fill_in_the_blank",
+            content: `
+<table style="width: 100%; border: none;">
+  <tr>
+    <td style="width: 350px; padding-right: 15px;">
+    <div markdown="1">
+\`\`\`cpp
+// IntSet constructor
+IntSet::IntSet()
+  : elts_size(0) { }
+  \`\`\`
+    </div>
+    </td>
+    <td>
+    <div>
+      [[BOX
+      
+      ]]
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 350px; padding-right: 15px;">
+    <div markdown="1">
+\`\`\`cpp
+IntSet::size() {
+  return elts_size;
+}
+\`\`\`
+    </div>
+    </td>
+    <td>
+    <div>
+      [[BOX
+      
+      ]]
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 350px; padding-right: 15px;">
+    <div markdown="1">
+\`\`\`cpp
+int IntSet::indexOf(int v) const {
+  for (int i = 0; i < elts_size; ++i) {
+    if (elts[i] == v) {
+        return i;
+    }
+  }
+  return -1;
+}
+\`\`\`
+    </div>
+    </td>
+    <td>
+    <div>
+      [[BOX
+      
+      ]]
+    </div>
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="width: 350px; padding-right: 15px;">
+    <div markdown="1">
+\`\`\`cpp
+bool IntSet::contains(int v) const {
+  return indexOf(v) != -1;
+}
+\`\`\`
+    </div>
+    </td>
+    <td>
+    <div>
+      [[BOX
+      
+      ]]
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 350px; padding-right: 15px;">
+    <div markdown="1">
+\`\`\`cpp
+void IntSet::insert(int v) {
+  assert(size() < ELTS_CAPACITY);
+  if (contains(v)) {
+    return;
+  }
+  elts[elts_size] = v;
+  ++elts_size;
+}
+\`\`\`
+    </div>
+    </td>
+    <td>
+    <div>
+      [[BOX
+      
+      ]]
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 350px; padding-right: 15px;">
+    <div markdown="1">
+\`\`\`cpp
+void IntSet::remove(int v) {
+  if (!contains(v)) {
+    return;
+  }
+  elts[indexOf(v)] = elts[elts_size - 1];
+  --elts_size;
+}
+\`\`\`
+    </div>
+    </td>
+    <td>
+    <div>
+      [[BOX
+      
+      ]]
+    </div>
+    </td>
+  </tr>
+</table>
+            `,
+            default_grader: {
+              grader_kind: "manual_regex_fill_in_the_blank",
+              rubric: [
+                {
+                  blankIndex: 1,
+                  title: "Box 1",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /constant|O\s*\(\s*1\s*\)/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /linear|O\s*\(\s*n\s*\)/i,
+                      explanation: "The implementation has constant time complexity. Check the walkthrough video for details.",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 2,
+                  title: "Box 2",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /constant|O\s*\(\s*1\s*\)/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /linear|O\s*\(\s*n\s*\)/i,
+                      explanation: "The implementation has constant time complexity. Check the walkthrough video for details.",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 3,
+                  title: "Box 3",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /linear|O\s*\(\s*n\s*\)/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /constant|O\s*\(\s*1\s*\)/i,
+                      explanation: "The implementation has linear time complexity. Check the walkthrough video for details.",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 4,
+                  title: "Box 4",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /linear|O\s*\(\s*n\s*\)/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /constant|O\s*\(\s*1\s*\)/i,
+                      explanation: "The implementation has linear time complexity. Check the walkthrough video for details.",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 5,
+                  title: "Box 5",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /linear|O\s*\(\s*n\s*\)/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /constant|O\s*\(\s*1\s*\)/i,
+                      explanation: "The implementation has linear time complexity. Check the walkthrough video for details.",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 6,
+                  title: "Box 6",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /linear|O\s*\(\s*n\s*\)/i,
+                      explanation: "Correct!",
+                      points: 1
+                    },
+                    {
+                      pattern: /constant|O\s*\(\s*1\s*\)/i,
+                      explanation: "The implementation has linear time complexity. Check the walkthrough video for details.",
+                      points: 0
+                    },
+                  ]
+                },
+              ]
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
+          },
+          mk_postscript: dedent`
+            <hr />
+            You're welcome to check your solution with this **walkthrough** video:
+
+            <div style="text-align: center;">
+              <iframe class="lec-video" src="https://www.youtube.com/embed/LU8JMGBOLBM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <br />
+          `
+        }
+      ],
+    },
     {
       section_id: "section_12_2",
       title: "A Sorted \`IntSet\`",
