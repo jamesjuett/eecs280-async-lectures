@@ -17,6 +17,12 @@ Abstraction is quite likely the most powerful tool in programming. We've seen it
 
 To do this, we'll first define a common *interface* for iteration. But not all containers will naturally conform to this interface - traversing over an array looks a whole lot different than traversing over a linked list. So, we'll define custom objects called "**iterators**" for each different kind of sequence or container that act as the "tour guide" that conforms to our common interface but handles the container-specific details behind the scenes.
 </div>
+<div class="alert alert-secondary" role="alert" markdown="1">
+<h5><span class="badge badge-success">Fall 2024</span></h5>
+<p>We briefly covered the use of iterators from the standard library in a previous lecture. We hadn't done that in previous terms, so in some of the older videos here it will seem like I'm introducing them for the first time. That said, it's been a while, and the review is probably useful anyway. Plus, much of the material here is new, since it concerns actually implementing our own iterators, not just using provided ones. 
+</p>
+<p>In some of the videos, I might refer to implementing a linked list and its iterators on project 4. That's project 5 this term.</p>
+</div>
 <style>
   .lec-video {
     width: 80%;

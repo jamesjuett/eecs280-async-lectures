@@ -21,6 +21,12 @@ Most any data structure uses one of two fundamental approaches in its underlying
 
 We've previously covered the contiguous memory approach. In this lecture, we'll begin to explore linked structures. As an initial example, we'll implement a **linked list**.
 </div>
+
+<div class="alert alert-secondary" role="alert" markdown="1">
+<h5><span class="badge badge-success">Fall 2024</span></h5>
+In some of the videos for this lecture, I might refer to implementing a linked list on project 4. That's project 5 this term.
+</div>
+
 <style>
   .lec-video {
     width: 80%;
