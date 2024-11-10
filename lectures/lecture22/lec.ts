@@ -18,6 +18,10 @@ This lecture covers **Binary Search Trees (BSTs)**, which are a special kind of 
 BSTs are the foundation of "industry-strength" implementations of several application-oriented data structures, including sets and maps. We'll particularly focus on maps, since we haven't discussed them previously and they are a key part of project 5 in EECS 280.
 
 </div>
+<div class="alert alert-secondary" role="alert" markdown="1">
+<h5><span class="badge badge-success">Fall 2024</span></h5>
+In some of the videos for this lecture, I might refer to implementing a binary search tree or map in project 5. That's project 6 this term.
+</div>
 <style>
   .lec-video {
     width: 80%;

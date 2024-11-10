@@ -15,8 +15,6 @@ export const FUNCTORS_AND_IMPOSTOR_SYNDROME : Omit<ExamSpecification, "exam_id">
 <div markdown=1 class="alert alert-info">
 This lecture covers **functors** in C++, including their use in **higher-order functions** as **predicates** and **comparators**.
 
-With functors, we're also fully equipped to consider the implementation of \`Map.h\` from EECS 280 project 5.
-
 Finally, we cover **impostor syndrome** - a concept not directly related to programming but that is nevertheless relevant for many in our community.
 </div>
 
