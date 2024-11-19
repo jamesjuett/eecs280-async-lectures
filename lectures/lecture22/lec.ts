@@ -114,10 +114,10 @@ In some of the videos for this lecture, I might refer to implementing a binary s
     },
     {
       section_id: "section_21_3",
-      title: "BST Implementation on Project 5",
+      title: "BST Implementation on Project 6",
       mk_description: dedent`
 
-        It's also worth a bit of time to take a look at how a binary search tree could be realized as a C++ class, including some of the specifics for the implementation you'll work with in EECS 280 project 5.
+        It's also worth a bit of time to take a look at how a binary search tree could be realized as a C++ class, including some of the specifics for the implementation you'll work with in EECS 280 project 6. (Sorry - I recorded this video last year, when it was project 5.)
 
         <div style="text-align: center;">
           <iframe class="lec-video" src="https://www.youtube.com/embed/T-RWJ_-Mt6E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -131,7 +131,7 @@ In some of the videos for this lecture, I might refer to implementing a binary s
       title: "Building a Set on a BST",
       mk_description: dedent`
         Now, let's turn to some useful data structures implemented via a binary search tree.
-        First, we'll consider a BST-based set, which will outperform the other array-based implementations we've seen previously.
+        First, we'll consider a BST-based set, which will outperform the other array-based implementations we've seen previously. (Please ignore the references to the classifier application where you use a map... you've already done that this term in project 4.)
 
         <div style="text-align: center;">
           <iframe class="lec-video" src="https://www.youtube.com/embed/jSiwdyPCz_A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -156,9 +156,9 @@ In some of the videos for this lecture, I might refer to implementing a binary s
     },
     {
       section_id: "section_21_6",
-      title: "`Map` Implementation (and tips for Project 5)",
+      title: "`Map` Implementation",
       mk_description: dedent`
-        Finally, a few practical tips and tricks for \`Map.h\` from project 5.
+        Finally, a few practical tips and tricks for \`Map.h\` from project 6.
 
         Let's take a tour of each component in the \`Map\` class, including the BST member variable (i.e. the "has-a" pattern), the template parameters, and a custom comparator to compare key-value pairs in the BST based on the keys only.
 
@@ -168,42 +168,10 @@ In some of the videos for this lecture, I might refer to implementing a binary s
         <br />
 
         
-        Here's also an overview of what each of the three main \`Map\` functions (\`find\`, \`insert\`, and \`operator[]\`) should do. You'll use each in various places thoughout the project 5 driver.
+        Here's also an overview of what each of the three main \`Map\` functions (\`find\`, \`insert\`, and \`operator[]\`) should do. You'll use each in various places thoughout the project 6 driver.
 
         <div style="text-align: center;">
           <iframe class="lec-video" src="https://www.youtube.com/embed/DlBMShisMkQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <br />
-      `,
-      questions: [],
-    },
-    {
-      section_id: "section_21_7",
-      title: "Map Example with Range-Based For Loops",
-      mk_description: dedent`
-        I'd like to build up to an example of using a \`std::map<string,int>\` to count the number of times each individual word occurs in a string of text. Each word will act as a key into the map, associated with a value representing its frequency.
-        
-        But, before we get there, let me introduce a few miscellaneous C++ features that will make the code a bit more elegant.
-
-        First, the \`auto\` keyword, which tells the compiler to deduce the type of a variable for us - this can be useful with types like iterators that are a pain to write out by hand. (Depending on the term you're taking EECS 280, we may have also covered \`auto\` previously.)
-
-        <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/R5fQKw69np0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <br />
-
-        
-        Next, *range-based for loops*, which allow convenient iteration over any container that supports an iterator interface.
-
-        <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/JJ3dH0WsE4U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <br />
-
-        Finally, back to the word-counting example...
-
-        <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/RqFV6PqvJuI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
       `,
