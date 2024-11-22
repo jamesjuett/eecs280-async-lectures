@@ -68,205 +68,35 @@ In many modern programming languages, **exceptions** are the tool of choice to c
         </div>
         <br />
       `,
+      questions: [],
+    },
+    
+    {
+      section_id: "section_22_3",
+      title: "Exceptions in Interface Specification",
+      mk_description: dedent`
+        Exceptions play an important role in interface specification - if an "exceptional" situation occurs (e.g. an invalid input), the function can't do its job and will throw an exception.
+
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/ccfHo05FvW0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
+      `,
       questions: [
         {
-          question_id: "lec22_drive_thru_1",
-          title: "Exercise: Drive Thru Part 1",
-          points: 4,
-          mk_description: dedent`
-            <div style="text-align: center;">
-              <iframe class="lec-video" src="https://www.youtube.com/embed/DlcYD2w5Rm4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <br />
-
-            Here's a copy of the slide with the question from the video:
-
-            <div style="text-align: center">
-              <img src="assets/drive_thru_part_1.png" style="width: 650px;">
-            </div>
-            <br />
-          `,
-          response: {
-            kind: "fill_in_the_blank",
-            content: `
-Determine which of the following potential implementations of \`getPrice()\` are correct. Write **"correct"** or **"incorrect"**. If they are not correct, additionally describe what's wrong with them.
-
-<table style="width: 100%; border: none;">
-  <tr>
-    <td style="width: 200px; padding-right: 15px;">
-    <div markdown="1">
-      Implementation A
-    </div>
-    </td>
-    <td>
-    <div>
-      [[BOX
-      
-      
-      
-      
-      ]]
-    </div>
-    </td>
-  </tr>
-  <tr>
-    <td style="width: 200px; padding-right: 15px;">
-    <div markdown="1">
-      Implementation B
-    </div>
-    </td>
-    <td>
-    <div>
-      [[BOX
-      
-      
-      
-      
-      ]]
-    </div>
-    </td>
-  </tr>
-  <tr>
-    <td style="width: 200px; padding-right: 15px;">
-    <div markdown="1">
-      Implementation C
-    </div>
-    </td>
-    <td>
-    <div>
-      [[BOX
-      
-      
-      
-      
-      ]]
-    </div>
-    </td>
-  </tr>
-  
-  <tr>
-    <td style="width: 200px; padding-right: 15px;">
-    <div markdown="1">
-      Implementation D
-    </div>
-    </td>
-    <td>
-    <div>
-      [[BOX
-      
-      
-      
-      
-      ]]
-    </div>
-    </td>
-  </tr>
-</table>`,
-            default_grader: {
-              grader_kind: "manual_regex_fill_in_the_blank",
-              rubric: [
-                {
-                  blankIndex: 1,
-                  title: "Box 1",
-                  points: 1,
-                  description: "",
-                  patterns: [
-                    {
-                      pattern: /incorrect|not\s*correct/i,
-                      explanation: "The implementation is incorrect since an iterator cannot be implicitly converted to a boolean. Check the walkthrough video for more details.",
-                      points: 1
-                    },
-                    {
-                      pattern: /correct/i,
-                      explanation: "The implementation is incorrect since an iterator cannot be implicitly converted to a boolean. Check the walkthrough video for more details.",
-                      points: 0
-                    },
-                  ]
-                },
-                {
-                  blankIndex: 2,
-                  title: "Box 2",
-                  points: 1,
-                  description: "",
-                  patterns: [
-                    {
-                      pattern: /incorrect|not\s*correct/i,
-                      explanation: "The implementation is correct. Check the walkthrough video for more details.",
-                      points: 0
-                    },
-                    {
-                      pattern: /correct/i,
-                      explanation: "The implementation is correct. Check the walkthrough video for more details.",
-                      points: 1
-                    },
-                  ]
-                },
-                {
-                  blankIndex: 3,
-                  title: "Box 3",
-                  points: 1,
-                  description: "",
-                  patterns: [
-                    {
-                      pattern: /incorrect|not\s*correct/i,
-                      explanation: "The implementation is incorrect. The logic is ok, but the use of the `[]` operator is forbidden in a const-qualified member function. Check the walkthrough video for more details.",
-                      points: 1
-                    },
-                    {
-                      pattern: /correct/i,
-                      explanation: "The implementation is incorrect. The logic is ok, but the use of the `[]` operator is forbidden in a const-qualified member function. Check the walkthrough video for more details.",
-                      points: 0
-                    },
-                  ]
-                },
-                {
-                  blankIndex: 4,
-                  title: "Box 4",
-                  points: 1,
-                  description: "",
-                  patterns: [
-                    {
-                      pattern: /incorrect|not\s*correct/i,
-                      explanation: "The implementation is correct. Check the walkthrough video for more details.",
-                      points: 0
-                    },
-                    {
-                      pattern: /correct/i,
-                      explanation: "The implementation is correct. Check the walkthrough video for more details.",
-                      points: 1
-                    },
-                  ]
-                },
-              ]
-            },
-          },
-          verifier: {
-            verifier_kind: "full_credit",
-          },
-          mk_postscript: dedent`
-            <hr />
-            You're welcome to check your solution with this **walkthrough** video:
-
-            <div style="text-align: center;">
-              <iframe class="lec-video" src="https://www.youtube.com/embed/2s_i47H1FYE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <br />
-          `
-        },
-        {
-          question_id: "lec22_drive_thru_2",
-          title: "Exercise: Drive Thru Part 2",
+          question_id: "lec22_drive_thru",
+          title: "Exercise: Drive Thru Exceptions",
           points: 1,
           mk_description: dedent`
             <div style="text-align: center;">
-              <iframe class="lec-video" src="https://www.youtube.com/embed/khPkxia2y64" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe class="lec-video" src="https://www.youtube.com/embed/PSgm5Z0DM8g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <br />
 
             Here's a copy of the slide with the question from the video:
 
             <div style="text-align: center">
-              <img src="assets/drive_thru_part_2.png" style="width: 650px;">
+              <img src="assets/drive_thru.png" style="width: 650px;">
             </div>
             <br />
           `,
@@ -319,7 +149,7 @@ Determine which of the following potential implementations of \`getPrice()\` are
       ],
     },
     {
-      section_id: "section_22_3",
+      section_id: "section_22_4",
       title: "Exceptions and Program Design",
       mk_description: dedent`
 

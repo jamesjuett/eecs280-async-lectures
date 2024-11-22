@@ -62,7 +62,7 @@ export const LECTURE_SPECS = [
   { spec: RECURSION                          , updated: true, deadline: DateTime.fromISO("2024-11-13", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   { spec: STRUCTURAL_RECURSION               , updated: true, deadline: DateTime.fromISO("2024-11-18", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   { spec: BINARY_SEARCH_TREES                , updated: true, deadline: DateTime.fromISO("2024-11-20", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: EXCEPTIONS                         , updated: true, deadline: DateTime.fromISO("2024-11-20", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: EXCEPTIONS                         , updated: true, deadline: DateTime.fromISO("2024-11-25", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
 ].map((lec, i) => {
   let spec = CUSTOMIZE(lec.spec, {
     // mk_intructions: dedent`
