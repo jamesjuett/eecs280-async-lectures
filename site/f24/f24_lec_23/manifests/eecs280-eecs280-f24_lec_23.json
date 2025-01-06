@@ -1,0 +1,64 @@
+{
+  "exam_id": "f24_lec_23",
+  "uuid": "eecs280-f24_lec_23",
+  "student": {
+    "name": "eecs280",
+    "uniqname": "eecs280"
+  },
+  "timestamp": 1736173793739,
+  "trusted": true,
+  "transparent": true,
+  "saverId": 0,
+  "sections": [
+    {
+      "section_id": "section_21_1",
+      "skin_id": "__DEFAULT",
+      "uuid": "eecs280-f24_lec_23-s-section_21_1",
+      "display_index": "1",
+      "questions": []
+    },
+    {
+      "section_id": "section_21_2",
+      "skin_id": "__DEFAULT",
+      "uuid": "eecs280-f24_lec_23-s-section_21_2",
+      "display_index": "2",
+      "questions": [
+        {
+          "question_id": "lec21_bst_contains",
+          "skin_id": "__DEFAULT",
+          "uuid": "eecs280-f24_lec_23-q-lec21_bst_contains",
+          "display_index": "2.1",
+          "kind": "iframe"
+        }
+      ]
+    },
+    {
+      "section_id": "section_21_3",
+      "skin_id": "__DEFAULT",
+      "uuid": "eecs280-f24_lec_23-s-section_21_3",
+      "display_index": "3",
+      "questions": []
+    },
+    {
+      "section_id": "section_21_4",
+      "skin_id": "__DEFAULT",
+      "uuid": "eecs280-f24_lec_23-s-section_21_4",
+      "display_index": "4",
+      "questions": []
+    },
+    {
+      "section_id": "section_21_5",
+      "skin_id": "__DEFAULT",
+      "uuid": "eecs280-f24_lec_23-s-section_21_5",
+      "display_index": "5",
+      "questions": []
+    },
+    {
+      "section_id": "section_21_6",
+      "skin_id": "__DEFAULT",
+      "uuid": "eecs280-f24_lec_23-s-section_21_6",
+      "display_index": "6",
+      "questions": []
+    }
+  ]
+}

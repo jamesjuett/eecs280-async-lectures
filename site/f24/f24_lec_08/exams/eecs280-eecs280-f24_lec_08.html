@@ -1,0 +1,1207 @@
+
+      <!DOCTYPE html>
+      <html>
+      <head>
+  <meta charset="UTF-8">
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://unpkg.com/@popperjs/core@2" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+  <script src="https://accounts.google.com/gsi/client" async></script>
+      <script src="js/frontend-doc.js"></script>
+    
+</head>
+      <body>
+        <div id="examma-ray-exam" class="container-fluid" data-uniqname="eecs280" data-name="eecs280" data-exam-id="f24_lec_08" data-exam-uuid="eecs280-f24_lec_08" data-clientside-content="yes">
+      <div class="row">
+        <div class="bg-light examma-ray-left-panel">
+          <div class="text-center pb-1 pl-4 pr-4 border-bottom">
+            <b>Abstract Data Types in C++</b>
+          </div>
+          <div class="pt-1 pb-1 border-bottom">
+              <b>Participation</b> 
+      <button id="examma-ray-exam-sign-in-button" class="btn btn-primary btn-sm" style="line-height: 1;" data-toggle="modal" data-target="#exam-sign-in-modal" aria-expanded="false" aria-controls="exam-sign-in-modal">
+        <svg class="examma-ray-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+</svg> <span style="vertical-align: middle">Sign In</span>
+      </button>
+    
+              <br />
+              
+      <span id="examma-ray-exam-completion-status">
+        Loading...
+      </span>
+    
+            </div>
+          <ul class="nav er-exam-nav show-small-scrollbar" style="display: unset; flex-grow: 1; font-weight: 500; overflow-y: scroll">
+      
+        <li class="nav-item">
+          <a class="nav-link text-truncate" style="padding: 0.1rem" href="#section-eecs280-f24_lec_08-s-section_08_1">
+      <span style="float: right;">
+      
+        
+    <span class="examma-ray-verifier-status examma-ray-verifier-status-mini" data-question-uuid="eecs280-f24_lec_08-q-lec08_warm_up">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">1.1</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+      
+      </span>
+     1: Warm Up Exercise</a>
+        </li>
+        
+          <li id="starred-question-eecs280-f24_lec_08-q-lec08_warm_up" class="nav-item examma-ray-starred-nav" data-question-uuid="eecs280-f24_lec_08-q-lec08_warm_up" style="display: none">
+            <span class="badge examma-ray-score-badge btn-secondary">4 pts</span>
+            <a class="nav-link text-truncate" style="padding: 0.1rem; display: inline" href="#question-anchor-eecs280-f24_lec_08-q-lec08_warm_up">
+              1.1: Exercise: Warm Up
+            </a>
+          </li>
+        
+      
+        <li class="nav-item">
+          <a class="nav-link text-truncate" style="padding: 0.1rem" href="#section-eecs280-f24_lec_08-s-section_08_2">
+      <span style="float: right;">
+      
+        
+    <span class="examma-ray-verifier-status examma-ray-verifier-status-mini" data-question-uuid="eecs280-f24_lec_08-q-lec08_halfPerimeter">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">2.1</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+      
+      </span>
+     2: Introduction to Classes and Member Functions</a>
+        </li>
+        
+          <li id="starred-question-eecs280-f24_lec_08-q-lec08_halfPerimeter" class="nav-item examma-ray-starred-nav" data-question-uuid="eecs280-f24_lec_08-q-lec08_halfPerimeter" style="display: none">
+            <span class="badge examma-ray-score-badge btn-secondary">4 pts</span>
+            <a class="nav-link text-truncate" style="padding: 0.1rem; display: inline" href="#question-anchor-eecs280-f24_lec_08-q-lec08_halfPerimeter">
+              2.1: Exercise: <code>halfPerimeter()</code>
+            </a>
+          </li>
+        
+      
+        <li class="nav-item">
+          <a class="nav-link text-truncate" style="padding: 0.1rem" href="#section-eecs280-f24_lec_08-s-section_08_3">
+      <span style="float: right;">
+      
+      </span>
+     3: Member Access Levels</a>
+        </li>
+        
+      
+        <li class="nav-item">
+          <a class="nav-link text-truncate" style="padding: 0.1rem" href="#section-eecs280-f24_lec_08-s-section_08_4">
+      <span style="float: right;">
+      
+        
+    <span class="examma-ray-verifier-status examma-ray-verifier-status-mini" data-question-uuid="eecs280-f24_lec_08-q-lec08_coffee">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">4.1</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+      
+      </span>
+     4: Constructors</a>
+        </li>
+        
+          <li id="starred-question-eecs280-f24_lec_08-q-lec08_coffee" class="nav-item examma-ray-starred-nav" data-question-uuid="eecs280-f24_lec_08-q-lec08_coffee" style="display: none">
+            <span class="badge examma-ray-score-badge btn-secondary">5 pts</span>
+            <a class="nav-link text-truncate" style="padding: 0.1rem; display: inline" href="#question-anchor-eecs280-f24_lec_08-q-lec08_coffee">
+              4.1: Exercise: <code>Coffee</code> class
+            </a>
+          </li>
+        
+      
+        <li class="nav-item">
+          <a class="nav-link text-truncate" style="padding: 0.1rem" href="#section-eecs280-f24_lec_08-s-section_08_5">
+      <span style="float: right;">
+      
+        
+    <span class="examma-ray-verifier-status examma-ray-verifier-status-mini" data-question-uuid="eecs280-f24_lec_08-q-lec08_default_constructors">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">5.1</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+      
+      </span>
+     5: Implicitly Defined Constructors</a>
+        </li>
+        
+          <li id="starred-question-eecs280-f24_lec_08-q-lec08_default_constructors" class="nav-item examma-ray-starred-nav" data-question-uuid="eecs280-f24_lec_08-q-lec08_default_constructors" style="display: none">
+            <span class="badge examma-ray-score-badge btn-secondary">3 pts</span>
+            <a class="nav-link text-truncate" style="padding: 0.1rem; display: inline" href="#question-anchor-eecs280-f24_lec_08-q-lec08_default_constructors">
+              5.1: Exercise: Default Constructors
+            </a>
+          </li>
+        
+      
+        <li class="nav-item">
+          <a class="nav-link text-truncate" style="padding: 0.1rem" href="#section-eecs280-f24_lec_08-s-section_08_6">
+      <span style="float: right;">
+      
+        
+    <span class="examma-ray-verifier-status examma-ray-verifier-status-mini" data-question-uuid="eecs280-f24_lec_08-q-lec08_professor">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">6.1</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+      
+      </span>
+     6: Composing C++ ADTs (Classes as Members)</a>
+        </li>
+        
+          <li id="starred-question-eecs280-f24_lec_08-q-lec08_professor" class="nav-item examma-ray-starred-nav" data-question-uuid="eecs280-f24_lec_08-q-lec08_professor" style="display: none">
+            <span class="badge examma-ray-score-badge btn-secondary">4 pts</span>
+            <a class="nav-link text-truncate" style="padding: 0.1rem; display: inline" href="#question-anchor-eecs280-f24_lec_08-q-lec08_professor">
+              6.1: Exercise: <code>Professor</code> Constructors
+            </a>
+          </li>
+        
+      
+        <li class="nav-item">
+          <a class="nav-link text-truncate" style="padding: 0.1rem" href="#section-eecs280-f24_lec_08-s-section_08_7">
+      <span style="float: right;">
+      
+      </span>
+     7: Best Practices for C++ ADTs</a>
+        </li>
+        
+      
+    </ul>
+          
+      <div class="examma-ray-exam-saver-status border-top">
+        <div>
+          <div style="text-align: left">
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
+  <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z"></path>
+  <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293z"></path>
+</svg>
+<a style="vertical-align: middle;" href="/eecs280-async-lectures">
+  Table of Contents
+</a>
+<br>
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-slides" viewBox="0 0 16 16">
+  <path d="M5 6a.5.5 0 0 0-.496.438l-.5 4A.5.5 0 0 0 4.5 11h3v2.016c-.863.055-1.5.251-1.5.484 0 .276.895.5 2 .5s2-.224 2-.5c0-.233-.637-.429-1.5-.484V11h3a.5.5 0 0 0 .496-.562l-.5-4A.5.5 0 0 0 11 6H5zm2 3.78V7.22c0-.096.106-.156.19-.106l2.13 1.279a.125.125 0 0 1 0 .214l-2.13 1.28A.125.125 0 0 1 7 9.778z"></path>
+  <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"></path>
+</svg>
+<a style="vertical-align: middle;" target="_blank" href="https://drive.google.com/drive/u/1/folders/1VUqkQwKtoMeOFGllcuh3OnJ0XmIXj9Nr">
+  Slides (Powerpoint, PDF)
+</a>
+<br>
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+<path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+</svg>
+<a style="vertical-align: middle;" target="_blank" href="https://github.com/jamesjuett/eecs280-async-lectures">
+  Report issues or make suggestions
+</a>
+</div>
+        </div>
+        <br />
+        <div><button class="examma-ray-exam-answers-file-button btn btn-primary" data-toggle="modal" data-target="#exam-saver" aria-expanded="false" aria-controls="exam-saver">Answers File</button></div>
+        <div class="examma-ray-exam-saver-status-note">Export your exercise answers to use with another computer or browser.</div>
+      </div>
+        </div>
+        <div class="examma-ray-main-panel">
+          
+      <div class="examma-ray-header">
+        <div class="text-center mb-3 border-bottom">
+          <h2>Abstract Data Types in C++</h2>
+          
+        </div>
+        <div>
+          <div class="container examma-ray-instructions">
+    <div markdown="1" class="alert alert-info"><p>As we move onward to the C++ style for ADTs, we'll use <code>class</code> rather than <code>struct</code> and also use built-in features of the language (i.e. things that C++ adds beyond C) to support good practices in a more robust way. In particular, a <code>class</code> in C++ gives us:</p>
+<ol>
+<li><p><strong>Member Functions</strong><br>
+ Both data (i.e. member variables) and behaviors (i.e. member functions) for an ADT are encapsulated as members of a <code>class</code>.  </p></li>
+<li><p><strong>Member Access Levels</strong><br>
+ Give <strong><code>public</code></strong> access to an ADT's interface, e.g. functions we want other parts of our code to call while at the same time restricting internal details like raw member data or helper functions to <strong><code>private</code></strong> access.  </p></li>
+<li><p><strong>Constructors</strong><br>
+ Use constructors to ensure ADTs are <em>always</em> initialized (rather than having to remember to separately call an <code>_Init()</code> function).  </p></li>
+</ol>
+<div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2024</div></div>
+<style>
+  .lec-video {
+    width: 80%;
+    aspect-ratio: 16/9;
+  }
+
+  iframe.lobster-iframe {
+    border: none;
+    width: 80%;
+    height: 450px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+</style>
+  </div>
+          <div class="examma-ray-announcements">
+    
+  </div>
+        </div>
+      </div>
+    
+          
+      <div id="section-eecs280-f24_lec_08-s-section_08_1" class="examma-ray-section examma-ray-section-no-reference" data-section-uuid="eecs280-f24_lec_08-s-section_08_1" data-section-display-index="1">
+        <hr />
+        <table class="examma-ray-section-contents">
+          <tr>
+            <td class="examma-ray-questions-container">
+              
+      <div class="examma-ray-section-heading">
+        <div class="badge badge-primary">
+          1: Warm Up Exercise
+        </div>
+        <span class="examma-ray-section-verifier-statuses">
+          
+            
+    <span class="examma-ray-verifier-status" data-question-uuid="eecs280-f24_lec_08-q-lec08_warm_up">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">1.1</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+          
+        </span>
+      </div>
+    
+              <div class="examma-ray-section-description"><p>Let's start today with a quick exercise that helps motivate the transition we'll make from C-Style to C++ Style ADTs.</p></div>
+              
+      <div id="question-eecs280-f24_lec_08-q-lec08_warm_up" data-question-uuid="eecs280-f24_lec_08-q-lec08_warm_up" data-question-display-index="1.1" class="examma-ray-question card-group">
+        <div id="question-anchor-eecs280-f24_lec_08-q-lec08_warm_up" class="examma-ray-question-anchor"></div>
+        <div class="card">
+          <div class="card-header">
+            
+      <b>1.1 Exercise: Warm Up</b>
+    
+          </div>
+          <div class="card-body">
+            <div class="examma-ray-question-description">
+              <p>Consider the code here that creates and uses a C-style ADT, specifically the <code>Triangle</code> ADT from last time:</p>
+<pre><code class="hljs cpp language-cpp"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+  Triangle t; <span class="hljs-comment">// line 2</span>
+  <span class="hljs-built_in">Triangle_init</span>(&amp;t, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>); <span class="hljs-comment">// line 3</span>
+  cout &lt;&lt; <span class="hljs-built_in">Triangle_perimeter</span>(&amp;t) &lt;&lt; endl;
+  <span class="hljs-built_in">Triangle_scale</span>(&amp;t, <span class="hljs-number">2</span>);
+  cout &lt;&lt; t.a &lt;&lt; endl; <span class="hljs-comment">// line 6</span>
+}
+</code></pre>
+            </div>
+            <div class="examma-ray-question-response examma-ray-question-response-fill_in_the_blank" data-response-kind="fill_in_the_blank"><table style="width: 100%; border: none;">
+  <tbody><tr>
+    <td style="width: 200px; padding-right: 15px;">
+    <div markdown="1">
+      What would happen if the programmer forgot to write line 2?
+    </div>
+    </td>
+    <td>
+    <div>
+      <div class="examma-ray-fitb-box-input-holder" style=" width: 100%;"><textarea rows="5" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-box-input nohighlight" style="resize: none; overflow: auto; width: 100%;"></textarea><span class="examma-ray-fitb-input-annotation examma-ray-fitb-box-annotation"></span></div>
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 200px; padding-right: 15px;">
+    <div markdown="1">
+      What would happen if the programmer forgot to write line 3?
+    </div>
+    </td>
+    <td>
+    <div>
+      <div class="examma-ray-fitb-box-input-holder" style=" width: 100%;"><textarea rows="5" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-box-input nohighlight" style="resize: none; overflow: auto; width: 100%;"></textarea><span class="examma-ray-fitb-input-annotation examma-ray-fitb-box-annotation"></span></div>
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 200px; padding-right: 15px;">
+    <div markdown="1">
+      Which parameter do all of the <code>Triangle_</code> functions have in common?
+    </div>
+    </td>
+    <td>
+    <div>
+      <div class="examma-ray-fitb-box-input-holder" style=" width: 100%;"><textarea rows="5" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-box-input nohighlight" style="resize: none; overflow: auto; width: 100%;"></textarea><span class="examma-ray-fitb-input-annotation examma-ray-fitb-box-annotation"></span></div>
+    </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td style="width: 200px; padding-right: 15px;">
+    <div markdown="1">
+      What's wrong with line 6? Does the compiler give us an error here?
+    </div>
+    </td>
+    <td>
+    <div>
+      <div class="examma-ray-fitb-box-input-holder" style=" width: 100%;"><textarea rows="5" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-box-input nohighlight" style="resize: none; overflow: auto; width: 100%;"></textarea><span class="examma-ray-fitb-input-annotation examma-ray-fitb-box-annotation"></span></div>
+    </div>
+    </td>
+  </tr>
+</tbody></table></div>
+            <div class="examma-ray-question-postscript">
+              <p></p><hr>
+You're welcome to check your solution with this <strong>walkthrough</strong> video:<p></p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/HhA8b7MFySo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+            </td>
+            
+          </tr>
+        </table>
+      </div>
+    <br />
+      <div id="section-eecs280-f24_lec_08-s-section_08_2" class="examma-ray-section examma-ray-section-no-reference" data-section-uuid="eecs280-f24_lec_08-s-section_08_2" data-section-display-index="2">
+        <hr />
+        <table class="examma-ray-section-contents">
+          <tr>
+            <td class="examma-ray-questions-container">
+              
+      <div class="examma-ray-section-heading">
+        <div class="badge badge-primary">
+          2: Introduction to Classes and Member Functions
+        </div>
+        <span class="examma-ray-section-verifier-statuses">
+          
+            
+    <span class="examma-ray-verifier-status" data-question-uuid="eecs280-f24_lec_08-q-lec08_halfPerimeter">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">2.1</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+          
+        </span>
+      </div>
+    
+              <div class="examma-ray-section-description"><p>The C++ builds on the C language by adding language features to formalize several of the patterns for ADTs that we've used so far. We'll call this the "C++ Style" for ADTs and generally switch to using <code>class</code> rather than <code>struct</code>.</p>
+<p>Here's an introduction:</p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/Ht1tMUc0OIs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p></div>
+              
+      <div id="question-eecs280-f24_lec_08-q-lec08_halfPerimeter" data-question-uuid="eecs280-f24_lec_08-q-lec08_halfPerimeter" data-question-display-index="2.1" class="examma-ray-question card-group">
+        <div id="question-anchor-eecs280-f24_lec_08-q-lec08_halfPerimeter" class="examma-ray-question-anchor"></div>
+        <div class="card">
+          <div class="card-header">
+            
+      <b>2.1 Exercise: <code>halfPerimeter()</code></b>
+    
+          </div>
+          <div class="card-body">
+            <div class="examma-ray-question-description">
+              <p>Consider another member function, <code>halfPerimeter()</code>, which is intended to return a value that is half of the triangle's perimeter. The (questionable) algorithm we choose for our implementation is to first shrink the triangle in half and then return its perimeter.</p>
+<div style="text-align: center;">
+  <iframe class="lobster-iframe" style="height: 650px;" src="assets/halfPerimeter.html"></iframe>
+</div>
+            </div>
+            <div class="examma-ray-question-response examma-ray-question-response-fill_in_the_blank" data-response-kind="fill_in_the_blank"><table style="width: 100%; border: none;">
+  <tbody><tr>
+    <td style="width: 300px; padding-right: 15px;">
+    <div markdown="1">
+      The lines <code>shrink(2);</code> and <code>return perimeter();</code> call member functions, but what object are they called on?
+    </div>
+    </td>
+    <td>
+    <div>
+      <div class="examma-ray-fitb-box-input-holder" style=" width: 100%;"><textarea rows="5" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-box-input nohighlight" style="resize: none; overflow: auto; width: 100%;"></textarea><span class="examma-ray-fitb-input-annotation examma-ray-fitb-box-annotation"></span></div>
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 300px; padding-right: 15px;">
+    <div markdown="1">
+      The compiler says there's some kind of <code>const</code> error with the <code>shrink(2);</code> line. Try adding <code>const</code> to the signature of <code>shrink</code>. Does this fix the problem? (Hint: Nope. But why not?)
+    </div>
+    </td>
+    <td>
+    <div>
+      <div class="examma-ray-fitb-box-input-holder" style=" width: 100%;"><textarea rows="5" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-box-input nohighlight" style="resize: none; overflow: auto; width: 100%;"></textarea><span class="examma-ray-fitb-input-annotation examma-ray-fitb-box-annotation"></span></div>
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 300px; padding-right: 15px;">
+    <div markdown="1">
+      Try removing the <code>const</code> on <code>halfPerimeter()</code>. Now the code compiles. Are there any situations in which calling <code>halfPerimeter()</code> from <code>main()</code> wouldn't compile now?
+    </div>
+    </td>
+    <td>
+    <div>
+      <div class="examma-ray-fitb-box-input-holder" style=" width: 100%;"><textarea rows="5" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-box-input nohighlight" style="resize: none; overflow: auto; width: 100%;"></textarea><span class="examma-ray-fitb-input-annotation examma-ray-fitb-box-annotation"></span></div>
+    </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td style="width: 300px; padding-right: 15px;">
+    <div markdown="1">
+      The original call to <code>t1.halfPerimeter()</code> compiles now, but what's wrong with the code? What does this mean about using <code>const</code> and the algorithm we chose for <code>halfPerimeter()</code> (i.e. shrink then return perimeter)?
+    </div>
+    </td>
+    <td>
+    <div>
+      <div class="examma-ray-fitb-box-input-holder" style=" width: 100%;"><textarea rows="5" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-box-input nohighlight" style="resize: none; overflow: auto; width: 100%;"></textarea><span class="examma-ray-fitb-input-annotation examma-ray-fitb-box-annotation"></span></div>
+    </div>
+    </td>
+  </tr>
+</tbody></table></div>
+            <div class="examma-ray-question-postscript">
+              <p></p><hr>
+You're welcome to check your solution with this <strong>walkthrough</strong> video:<p></p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/Bk3y7udPIgk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+            </td>
+            
+          </tr>
+        </table>
+      </div>
+    <br />
+      <div id="section-eecs280-f24_lec_08-s-section_08_3" class="examma-ray-section examma-ray-section-no-reference" data-section-uuid="eecs280-f24_lec_08-s-section_08_3" data-section-display-index="3">
+        <hr />
+        <table class="examma-ray-section-contents">
+          <tr>
+            <td class="examma-ray-questions-container">
+              
+      <div class="examma-ray-section-heading">
+        <div class="badge badge-primary">
+          3: Member Access Levels
+        </div>
+        <span class="examma-ray-section-verifier-statuses">
+          
+        </span>
+      </div>
+    
+              <div class="examma-ray-section-description"><p>In C++, you can separate member declarations into different access levels (<strong><code>public</code></strong> vs. <strong><code>private</code></strong>).</p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/6zE7z1UNW_k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p>
+<p>(The exercise following the next section on constructors will also incorporate member access levels.)</p></div>
+              
+            </td>
+            
+          </tr>
+        </table>
+      </div>
+    <br />
+      <div id="section-eecs280-f24_lec_08-s-section_08_4" class="examma-ray-section examma-ray-section-no-reference" data-section-uuid="eecs280-f24_lec_08-s-section_08_4" data-section-display-index="4">
+        <hr />
+        <table class="examma-ray-section-contents">
+          <tr>
+            <td class="examma-ray-questions-container">
+              
+      <div class="examma-ray-section-heading">
+        <div class="badge badge-primary">
+          4: Constructors
+        </div>
+        <span class="examma-ray-section-verifier-statuses">
+          
+            
+    <span class="examma-ray-verifier-status" data-question-uuid="eecs280-f24_lec_08-q-lec08_coffee">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">4.1</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+          
+        </span>
+      </div>
+    
+              <div class="examma-ray-section-description"><p>The C++ style also uses <strong>constructors</strong> as a formal mechanism for initialization.</p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/EJO4vOBXAaE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p></div>
+              
+      <div id="question-eecs280-f24_lec_08-q-lec08_coffee" data-question-uuid="eecs280-f24_lec_08-q-lec08_coffee" data-question-display-index="4.1" class="examma-ray-question card-group">
+        <div id="question-anchor-eecs280-f24_lec_08-q-lec08_coffee" class="examma-ray-question-anchor"></div>
+        <div class="card">
+          <div class="card-header">
+            
+      <b>4.1 Exercise: <code>Coffee</code> class</b>
+    
+          </div>
+          <div class="card-body">
+            <div class="examma-ray-question-description">
+              <p>Consider the <code>class</code> below, used as an ADT for a cup of coffee. Note that the implementations for the member functions are omitted for brevity.</p>
+<pre><code class="hljs cpp language-cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Coffee</span> {</span>
+<span class="hljs-keyword">private</span>:
+  <span class="hljs-keyword">int</span> creams;
+  <span class="hljs-keyword">int</span> sugars;
+  <span class="hljs-keyword">bool</span> isDecaf;
+
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-comment">// Construct a coffee with the given details</span>
+  <span class="hljs-built_in">Coffee</span>(<span class="hljs-keyword">int</span> creams, <span class="hljs-keyword">int</span> sugars, <span class="hljs-keyword">bool</span> isDecaf);
+
+  <span class="hljs-comment">// This constructor internally defaults decaf to false</span>
+  <span class="hljs-built_in">Coffee</span>(<span class="hljs-keyword">int</span> creams, <span class="hljs-keyword">int</span> sugars);
+
+  <span class="hljs-comment">// Adds one more cream to the coffee</span>
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">addCream</span><span class="hljs-params">()</span></span>;
+
+  <span class="hljs-comment">// Adds one more sugar to the coffee</span>
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">addSugar</span><span class="hljs-params">()</span></span>;
+
+  <span class="hljs-comment">// Prints a description of the coffee</span>
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">print</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span></span>;
+};
+</code></pre>
+<p>Consider each of the following code snippets that we might write in a <code>main</code> function to use the <code>Coffee</code> class? If the compiler would allow the code, write "ok". Otherwise, write "error" and a very brief explanation of the problem.</p>
+            </div>
+            <div class="examma-ray-question-response examma-ray-question-response-fill_in_the_blank" data-response-kind="fill_in_the_blank"><table style="width: 100%; border: none;">
+  <tbody><tr>
+    <td style="width: 250px; padding-right: 15px;">
+    <div markdown="1"><pre><code class="hljs cpp language-cpp">Coffee c1;
+c1.<span class="hljs-built_in">addCream</span>();
+c1.<span class="hljs-built_in">print</span>();
+</code></pre>
+    </div>
+    </td>
+    <td>
+    <div>
+      <div class="examma-ray-fitb-box-input-holder" style=" width: 100%;"><textarea rows="5" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-box-input nohighlight" style="resize: none; overflow: auto; width: 100%;"></textarea><span class="examma-ray-fitb-input-annotation examma-ray-fitb-box-annotation"></span></div>
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 250px; padding-right: 15px;">
+    <div markdown="1"><pre><code class="hljs cpp language-cpp"><span class="hljs-function">Coffee <span class="hljs-title">c2</span><span class="hljs-params">(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>)</span></span>;
+<span class="hljs-keyword">if</span> (c2.isDecaf) {
+  c2.<span class="hljs-built_in">print</span>();
+}
+</code></pre>
+    </div>
+    </td>
+    <td>
+    <div>
+      <div class="examma-ray-fitb-box-input-holder" style=" width: 100%;"><textarea rows="5" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-box-input nohighlight" style="resize: none; overflow: auto; width: 100%;"></textarea><span class="examma-ray-fitb-input-annotation examma-ray-fitb-box-annotation"></span></div>
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 250px; padding-right: 15px;">
+    <div markdown="1"><pre><code class="hljs cpp language-cpp"><span class="hljs-function">Coffee <span class="hljs-title">c3</span><span class="hljs-params">(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-literal">false</span>)</span></span>;
+c3.<span class="hljs-built_in">addCream</span>();
+c3.<span class="hljs-built_in">print</span>();
+</code></pre>
+    </div>
+    </td>
+    <td>
+    <div>
+      <div class="examma-ray-fitb-box-input-holder" style=" width: 100%;"><textarea rows="5" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-box-input nohighlight" style="resize: none; overflow: auto; width: 100%;"></textarea><span class="examma-ray-fitb-input-annotation examma-ray-fitb-box-annotation"></span></div>
+    </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td style="width: 250px; padding-right: 15px;">
+    <div markdown="1"><pre><code class="hljs cpp language-cpp"><span class="hljs-function"><span class="hljs-keyword">const</span> Coffee <span class="hljs-title">c4</span><span class="hljs-params">(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>)</span></span>;
+c4.<span class="hljs-built_in">addCream</span>();
+c4.<span class="hljs-built_in">print</span>();
+</code></pre>
+    </div>
+    </td>
+    <td>
+    <div>
+      <div class="examma-ray-fitb-box-input-holder" style=" width: 100%;"><textarea rows="5" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-box-input nohighlight" style="resize: none; overflow: auto; width: 100%;"></textarea><span class="examma-ray-fitb-input-annotation examma-ray-fitb-box-annotation"></span></div>
+    </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td style="width: 250px; padding-right: 15px;">
+    <div markdown="1"><pre><code class="hljs cpp language-cpp"><span class="hljs-function">Coffee <span class="hljs-title">c5</span><span class="hljs-params">(<span class="hljs-literal">true</span>)</span></span>;
+c5.<span class="hljs-built_in">addSugar</span>();
+c5.<span class="hljs-built_in">print</span>();
+</code></pre>
+    </div>
+    </td>
+    <td>
+    <div>
+      <div class="examma-ray-fitb-box-input-holder" style=" width: 100%;"><textarea rows="5" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-box-input nohighlight" style="resize: none; overflow: auto; width: 100%;"></textarea><span class="examma-ray-fitb-input-annotation examma-ray-fitb-box-annotation"></span></div>
+    </div>
+    </td>
+  </tr>
+</tbody></table></div>
+            <div class="examma-ray-question-postscript">
+              <p></p><hr>
+You're welcome to check your solution with this <strong>walkthrough</strong> video:<p></p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/LzqPCH-gKik" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+            </td>
+            
+          </tr>
+        </table>
+      </div>
+    <br />
+      <div id="section-eecs280-f24_lec_08-s-section_08_5" class="examma-ray-section examma-ray-section-no-reference" data-section-uuid="eecs280-f24_lec_08-s-section_08_5" data-section-display-index="5">
+        <hr />
+        <table class="examma-ray-section-contents">
+          <tr>
+            <td class="examma-ray-questions-container">
+              
+      <div class="examma-ray-section-heading">
+        <div class="badge badge-primary">
+          5: Implicitly Defined Constructors
+        </div>
+        <span class="examma-ray-section-verifier-statuses">
+          
+            
+    <span class="examma-ray-verifier-status" data-question-uuid="eecs280-f24_lec_08-q-lec08_default_constructors">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">5.1</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+          
+        </span>
+      </div>
+    
+              <div class="examma-ray-section-description"><p>There are a few constructors the compiler may automatically provide for your classes.</p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/eaBrLBFC7_U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p></div>
+              
+      <div id="question-eecs280-f24_lec_08-q-lec08_default_constructors" data-question-uuid="eecs280-f24_lec_08-q-lec08_default_constructors" data-question-display-index="5.1" class="examma-ray-question card-group">
+        <div id="question-anchor-eecs280-f24_lec_08-q-lec08_default_constructors" class="examma-ray-question-anchor"></div>
+        <div class="card">
+          <div class="card-header">
+            
+      <b>5.1 Exercise: Default Constructors</b>
+    
+          </div>
+          <div class="card-body">
+            <div class="examma-ray-question-description">
+              <p>Consider each of the following classes. Are they default-constructible (i.e. can you define a default-initialized variable with that class type)? Why or why not?</p>
+            </div>
+            <div class="examma-ray-question-response examma-ray-question-response-fill_in_the_blank" data-response-kind="fill_in_the_blank"><table style="width: 100%; border: none;">
+  <tbody><tr>
+    <td style="width: 350px; padding-right: 15px;">
+    <div markdown="1"><pre><code class="hljs cpp language-cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Student</span> {</span>
+<span class="hljs-keyword">private</span>:
+  string name;
+  <span class="hljs-keyword">int</span> num_credits;
+
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-built_in">Student</span>(<span class="hljs-keyword">const</span> string &amp;name, <span class="hljs-keyword">int</span> num_credits)
+    : <span class="hljs-built_in">name</span>(name), <span class="hljs-built_in">num_credits</span>(num_credits) { }
+};
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-comment">// Would this be allowed?</span>
+  Student s;
+}
+</code></pre>
+    </div>
+    </td>
+    <td>
+    <div>
+      Write "ok" if the class is default-constructible. Otherwise, write "error". Justify your answer.
+      <div class="examma-ray-fitb-box-input-holder" style=" width: 100%;"><textarea rows="5" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-box-input nohighlight" style="resize: none; overflow: auto; width: 100%;"></textarea><span class="examma-ray-fitb-input-annotation examma-ray-fitb-box-annotation"></span></div>
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 250px; padding-right: 15px;">
+    <div markdown="1"><pre><code class="hljs cpp language-cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Pickle</span> {</span>
+<span class="hljs-keyword">private</span>:
+  <span class="hljs-keyword">bool</span> is_sweet;
+  <span class="hljs-keyword">bool</span> is_sour;
+  <span class="hljs-keyword">bool</span> is_spicy;
+
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-built_in">Pickle</span>()
+    : <span class="hljs-built_in">Pickle</span>(<span class="hljs-literal">false</span>, <span class="hljs-literal">false</span>, <span class="hljs-literal">false</span>) { }
+
+  <span class="hljs-built_in">Pickle</span>(<span class="hljs-keyword">bool</span> is_sweet, <span class="hljs-keyword">bool</span> is_sour, <span class="hljs-keyword">bool</span> is_spicy)
+    : <span class="hljs-built_in">is_sweet</span>(is_sweet),
+      <span class="hljs-built_in">is_sour</span>(is_sour),
+      <span class="hljs-built_in">is_spicy</span>(is_spicy) { }
+};
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-comment">// Would this be allowed?</span>
+  Pickle p;
+}
+</code></pre>
+    </div>
+    </td>
+    <td>
+    <div>
+      Write "ok" if the class is default-constructible. Otherwise, write "error". Justify your answer.
+      <div class="examma-ray-fitb-box-input-holder" style=" width: 100%;"><textarea rows="5" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-box-input nohighlight" style="resize: none; overflow: auto; width: 100%;"></textarea><span class="examma-ray-fitb-input-annotation examma-ray-fitb-box-annotation"></span></div>
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 250px; padding-right: 15px;">
+    <div markdown="1"><pre><code class="hljs cpp language-cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Cow</span> {</span>
+<span class="hljs-keyword">private</span>:
+  string name;
+  <span class="hljs-keyword">int</span> num_spots;
+};
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-comment">// Would this be allowed?</span>
+  Cow c;
+}
+</code></pre>
+    </div>
+    </td>
+    <td>
+    <div>
+      Write "ok" if the class is default-constructible. Otherwise, write "error". Justify your answer.
+      <div class="examma-ray-fitb-box-input-holder" style=" width: 100%;"><textarea rows="5" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-box-input nohighlight" style="resize: none; overflow: auto; width: 100%;"></textarea><span class="examma-ray-fitb-input-annotation examma-ray-fitb-box-annotation"></span></div>
+    </div>
+    </td>
+  </tr>
+</tbody></table></div>
+            <div class="examma-ray-question-postscript">
+              <p></p><hr>
+You're welcome to check your solution with this <strong>walkthrough</strong> video:<p></p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/4c1Ncn7Rw_4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+            </td>
+            
+          </tr>
+        </table>
+      </div>
+    <br />
+      <div id="section-eecs280-f24_lec_08-s-section_08_6" class="examma-ray-section examma-ray-section-no-reference" data-section-uuid="eecs280-f24_lec_08-s-section_08_6" data-section-display-index="6">
+        <hr />
+        <table class="examma-ray-section-contents">
+          <tr>
+            <td class="examma-ray-questions-container">
+              
+      <div class="examma-ray-section-heading">
+        <div class="badge badge-primary">
+          6: Composing C++ ADTs (Classes as Members)
+        </div>
+        <span class="examma-ray-section-verifier-statuses">
+          
+            
+    <span class="examma-ray-verifier-status" data-question-uuid="eecs280-f24_lec_08-q-lec08_professor">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">6.1</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+          
+        </span>
+      </div>
+    
+              <div class="examma-ray-section-description"><p>As we did for C-style ADTs, let's take a look at composing more complex ADTs in C++ as classes with other classes for member variables. In this case, we need to ensure that the constructor for the outside class calls each of the constructors for its members (and the compiler double checks this for us).</p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/pH8OPd_adQw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p></div>
+              
+      <div id="question-eecs280-f24_lec_08-q-lec08_professor" data-question-uuid="eecs280-f24_lec_08-q-lec08_professor" data-question-display-index="6.1" class="examma-ray-question card-group">
+        <div id="question-anchor-eecs280-f24_lec_08-q-lec08_professor" class="examma-ray-question-anchor"></div>
+        <div class="card">
+          <div class="card-header">
+            
+      <b>6.1 Exercise: <code>Professor</code> Constructors</b>
+    
+          </div>
+          <div class="card-body">
+            <div class="examma-ray-question-description">
+              <p>Here again are the classes from the video:</p>
+<pre><code class="hljs cpp language-cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Coffee</span> {</span>
+<span class="hljs-keyword">public</span>: 
+  <span class="hljs-built_in">Coffee</span>(<span class="hljs-keyword">int</span> creams, <span class="hljs-keyword">int</span> sugars);
+  <span class="hljs-built_in">Coffee</span>(<span class="hljs-keyword">int</span> creams, <span class="hljs-keyword">int</span> sugars,
+        <span class="hljs-keyword">bool</span> isDecaf);
+};
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Triangle</span> {</span>
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-built_in">Triangle</span>();
+  <span class="hljs-built_in">Triangle</span>(<span class="hljs-keyword">double</span> side);
+  <span class="hljs-built_in">Triangle</span>(<span class="hljs-keyword">double</span> a_in, <span class="hljs-keyword">double</span> b_in,
+          <span class="hljs-keyword">double</span> c_in);
+};
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Professor</span> {</span>
+<span class="hljs-keyword">private</span>:
+  string name;
+  vector&lt;string&gt; students;
+  Coffee favCoffee;
+  Triangle favTriangle;
+  ...
+};
+</code></pre>
+<p>Consider several possible constructors for the <code>Professor</code> class. If the constructor definition would compile successfully, write "ok". Otherwise, write "error" and a very brief explanation of the problem (including which member is not initialized correctly).</p>
+            </div>
+            <div class="examma-ray-question-response examma-ray-question-response-fill_in_the_blank" data-response-kind="fill_in_the_blank"><table style="width: 100%; border: none;">
+  <tbody><tr>
+    <td style="width: 350px; padding-right: 15px;">
+    <div markdown="1"><pre><code class="hljs cpp language-cpp"><span class="hljs-built_in">Professor</span>(<span class="hljs-keyword">const</span> string &amp;name)
+ : <span class="hljs-built_in">name</span>(name) { }
+</code></pre>
+    </div>
+    </td>
+    <td>
+    <div>
+      <div class="examma-ray-fitb-box-input-holder" style=" width: 100%;"><textarea rows="5" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-box-input nohighlight" style="resize: none; overflow: auto; width: 100%;"></textarea><span class="examma-ray-fitb-input-annotation examma-ray-fitb-box-annotation"></span></div>
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 250px; padding-right: 15px;">
+    <div markdown="1"><pre><code class="hljs cpp language-cpp"><span class="hljs-built_in">Professor</span>(<span class="hljs-keyword">int</span> creams, <span class="hljs-keyword">int</span> sugars)
+ : <span class="hljs-built_in">favCoffee</span>(creams, sugars) { }
+</code></pre>
+    </div>
+    </td>
+    <td>
+    <div>
+      <div class="examma-ray-fitb-box-input-holder" style=" width: 100%;"><textarea rows="5" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-box-input nohighlight" style="resize: none; overflow: auto; width: 100%;"></textarea><span class="examma-ray-fitb-input-annotation examma-ray-fitb-box-annotation"></span></div>
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 250px; padding-right: 15px;">
+    <div markdown="1"><pre><code class="hljs cpp language-cpp"><span class="hljs-built_in">Professor</span>(<span class="hljs-keyword">const</span> string &amp;name, <span class="hljs-keyword">const</span> string &amp;student)
+ : <span class="hljs-built_in">name</span>(name) {
+  students.<span class="hljs-built_in">push_back</span>(student);
+}
+</code></pre>
+    </div>
+    </td>
+    <td>
+    <div>
+      <div class="examma-ray-fitb-box-input-holder" style=" width: 100%;"><textarea rows="5" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-box-input nohighlight" style="resize: none; overflow: auto; width: 100%;"></textarea><span class="examma-ray-fitb-input-annotation examma-ray-fitb-box-annotation"></span></div>
+    </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td style="width: 250px; padding-right: 15px;">
+    <div markdown="1"><pre><code class="hljs cpp language-cpp"><span class="hljs-built_in">Professor</span>(<span class="hljs-keyword">const</span> Coffee &amp;coffee)
+ : <span class="hljs-built_in">name</span>(<span class="hljs-string">&quot;Laura&quot;</span>), <span class="hljs-built_in">favCoffee</span>(coffee), <span class="hljs-built_in">favTriangle</span>(<span class="hljs-number">3</span>, <span class="hljs-number">5</span>) { }
+</code></pre>
+    </div>
+    </td>
+    <td>
+    <div>
+      <div class="examma-ray-fitb-box-input-holder" style=" width: 100%;"><textarea rows="5" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-box-input nohighlight" style="resize: none; overflow: auto; width: 100%;"></textarea><span class="examma-ray-fitb-input-annotation examma-ray-fitb-box-annotation"></span></div>
+    </div>
+    </td>
+  </tr>
+</tbody></table></div>
+            <div class="examma-ray-question-postscript">
+              <p></p><hr>
+You're welcome to check your solution with this <strong>walkthrough</strong> video. (Please accept my apologies for the notification sounds in the video… apparently some group chat of mine was going nuts.)<p></p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/VSLPLyI3LHk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+            </td>
+            
+          </tr>
+        </table>
+      </div>
+    <br />
+      <div id="section-eecs280-f24_lec_08-s-section_08_7" class="examma-ray-section examma-ray-section-no-reference" data-section-uuid="eecs280-f24_lec_08-s-section_08_7" data-section-display-index="7">
+        <hr />
+        <table class="examma-ray-section-contents">
+          <tr>
+            <td class="examma-ray-questions-container">
+              
+      <div class="examma-ray-section-heading">
+        <div class="badge badge-primary">
+          7: Best Practices for C++ ADTs
+        </div>
+        <span class="examma-ray-section-verifier-statuses">
+          
+        </span>
+      </div>
+    
+              <div class="examma-ray-section-description"><p>Finally, let's consider some more miscellaneous topics and best practices for writing well-designed classes, including:</p>
+<ul>
+<li>The difference between <code>struct</code> and <code>class</code> in C++</li>
+<li>Why you should always use <em>member initializer lists</em> in constructors</li>
+<li>Using assertions to double check representation invariants</li>
+<li>Separating classes into <code>.h</code> and <code>.cpp</code> files</li>
+<li>Testing C++ style ADTs</li>
+</ul>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/TnnE_tRlkQ0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p></div>
+              
+            </td>
+            
+          </tr>
+        </table>
+      </div>
+    
+          <div class="container examma-ray-bottom-message">
+            <div class="alert alert-success" style="margin: 2em; margin-top: 4em;">
+              You've reached the end of this lecture! Your work on any exercises will be saved if you re-open this page in the same web browser.</p>
+<p><strong>Participation Credit</strong><br>
+Make sure to sign in to the page, complete each of the exercises, and <strong>double check</strong> the participation indicator at the top left of this page to ensure you've earned credit.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+        
+      <div id="exam-saver" class="exam-saver-modal modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Answers File</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="alert alert-info"><p>Your work on exercises is <strong>automatically</strong> saved in your web browser's local storage. That means you don't need to do anything to save your work as long as:</p>
+<ul>
+<li>You use the same computer</li>
+<li>You use the same web browser</li>
+<li>You don't use incognito or private browsing (which disables local storage)</li>
+</ul>
+<p>To transfer answers between computers or browsers, use the import/export options below.</p></div>
+              <div style="text-align: center;">
+                <div id="exam-saver-download-status" style="margin-bottom: 5px;"></div>
+                <div><a id="exam-saver-download-link" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-down" viewBox="0 0 16 16">
+<path d="M8.5 6.5a.5.5 0 0 0-1 0v3.793L6.354 9.146a.5.5 0 1 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L8.5 10.293V6.5z"/>
+<path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+</svg> Download Answers</a></div>
+                <br />
+                <div style="margin-bottom: 5px;">Or, you may restore answers you previously saved to a file.<br /><b>WARNING!</b> This will overwrite ALL answers on this page.</div>
+                <div>
+                  <button id="exam-saver-load-button" class="btn btn-danger disabled" disabled><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-up" viewBox="0 0 16 16">
+<path d="M8.5 11.5a.5.5 0 0 1-1 0V7.707L6.354 8.854a.5.5 0 1 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 7.707V11.5z"/>
+<path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+</svg> Load Answers</button>
+                  <input id="exam-saver-file-input" type="file"></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  
+      <div id="exam-welcome-restored-modal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Abstract Data Types in C++</h5>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+              <div class="alert alert-info">This page was reloaded, and we've restored your answers from a local backup.</div>
+              <div>
+                <button class="btn btn-success" data-dismiss="modal"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
+<path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
+<path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+</svg> OK</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  
+      <div id="exam-welcome-restored-error-modal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Abstract Data Types in C++</h5>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+              <div class="alert alert-danger">
+                An error was encountered while attempting to restore your answers from a local backup.
+                If you are in the process of creating and previewing an exam, this may have occurred due
+                to a change to a question's type. If so, clear your browser's local storage before continuing.
+                <br />
+                If you're taking an exam, this should never happen. But, if it does, contact your instructor,
+                course staff, or proctor as soon as possible.
+              </div>
+              <div>
+                <button class="btn btn-success" data-dismiss="modal"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
+<path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
+<path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+</svg> OK</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  
+      <div id="exam-welcome-normal-modal" class="modal" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Abstract Data Types in C++</h5>
+            </div>
+            <div class="modal-body">
+              <div class="alert alert-info">This exam is for <b>eecs280</b>. If this is not you, please close this page.</div>
+              <div class="alert alert-info">This page shows your exam questions and gives you a place to work. <b>However, we will not grade anything here</b>. You must <b>download</b> an "answers file" and submit that to <b>Canvas</b> BEFORE the exam ends</b>.</div>
+              <div class="alert alert-warning">If something goes wrong (e.g. in case your computer crashes, you accidentally close the page, etc.), this page will attempt to restore your work when you come back. <b>Warning!</b> If you take the exam in private/incognito mode, or if you have certain privacy extensions/add-ons enabled, this won't work.</div>
+  
+              <p style="margin-left: 2em; margin-right: 2em;">
+                By taking this exam and submitting an answers file, you attest to the CoE Honor Pledge:
+              </p>
+              <p style="margin-left: 4em; margin-right: 4em;">
+                <span style="font-style: italic">I have neither given nor received unauthorized aid on this examination, nor have I concealed any violations of the Honor Code."
+              </p>
+              
+              <div style="text-align: center;">
+                <button class="btn btn-primary" data-dismiss="modal">I am <b>eecs280</b> and I understand</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  
+      <div id="exam-welcome-no-autosave-modal" class="modal" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Abstract Data Types in C++</h5>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+              <div class="alert alert-info">This exam is for <b>eecs280</b>. If this is not you, please close this page.</div>
+              <div class="alert alert-info">This page shows your exam questions and gives you a place to work. <b>However, we will not grade anything here</b>. You must <b>download</b> an "answers file" and submit that to <b>Canvas</b> BEFORE the exam ends</b>.</div>
+              <div class="alert alert-danger">It appears your browser will not support backing up your answers to local storage (e.g. in case your computer crashes, you accidentally close the page, etc.).<br /><br />While you may still take the exam like this, we do not recommend it. Make sure you are <b>not</b> using private/incognito mode, temporarily disable privacy add-ons/extensions, or try a different web browser to get autosave to work.</div>
+              <div>
+                <button class="btn btn-primary" data-dismiss="modal">I am <b>eecs280</b> and I understand</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div id="multiple-tabs-modal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">WARNING</h5>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+              <div class="alert alert-danger">It appears you have this page open in multiple tabs/windows. That's a bad idea. Close whichever one you just opened.</div>
+              <div>
+                <button class="btn btn-primary" data-dismiss="modal">OK</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div id="exam-sign-in-modal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-sm" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Sign In</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div style="font-size: 11pt;">
+                <p>Sign in with your @umich.edu Google account to earn participation credit for completing embedded exercises.</p>
+              </div>
+              <div style="text-align: center">
+                <div class="g_id_signin"
+                  data-type="standard"
+                  data-shape="rectangular"
+                  data-theme="outline"
+                  data-text="signin_with"
+                  data-size="large"
+                  data-logo_alignment="left"
+                  style="display: inline-block"
+                ></div>
+              </div>
+
+              <div id="g_id_onload"
+                data-client_id="444801118749-m2g9gl3gvvkh5ru959dmka0lsk94d9uq.apps.googleusercontent.com"
+                data-context="signin"
+                data-ux_mode="popup"
+                data-callback="on_google_sign_in"
+                data-auto_prompt="false"
+              ></div>
+
+              <script>
+                function on_google_sign_in(response) {
+                  window.google_sign_in_callback(response);
+                }
+              </script>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      </body>
+      </html>
+    

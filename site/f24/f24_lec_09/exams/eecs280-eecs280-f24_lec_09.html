@@ -1,0 +1,765 @@
+
+      <!DOCTYPE html>
+      <html>
+      <head>
+  <meta charset="UTF-8">
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://unpkg.com/@popperjs/core@2" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+  <script src="https://accounts.google.com/gsi/client" async></script>
+      <script src="js/frontend-doc.js"></script>
+    
+</head>
+      <body>
+        <div id="examma-ray-exam" class="container-fluid" data-uniqname="eecs280" data-name="eecs280" data-exam-id="f24_lec_09" data-exam-uuid="eecs280-f24_lec_09" data-clientside-content="yes">
+      <div class="row">
+        <div class="bg-light examma-ray-left-panel">
+          <div class="text-center pb-1 pl-4 pr-4 border-bottom">
+            <b>Operator Overloading and Inheritance</b>
+          </div>
+          <div class="pt-1 pb-1 border-bottom">
+              <b>Participation</b> 
+      <button id="examma-ray-exam-sign-in-button" class="btn btn-primary btn-sm" style="line-height: 1;" data-toggle="modal" data-target="#exam-sign-in-modal" aria-expanded="false" aria-controls="exam-sign-in-modal">
+        <svg class="examma-ray-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+</svg> <span style="vertical-align: middle">Sign In</span>
+      </button>
+    
+              <br />
+              
+      <span id="examma-ray-exam-completion-status">
+        Loading...
+      </span>
+    
+            </div>
+          <ul class="nav er-exam-nav show-small-scrollbar" style="display: unset; flex-grow: 1; font-weight: 500; overflow-y: scroll">
+      
+        <li class="nav-item">
+          <a class="nav-link text-truncate" style="padding: 0.1rem" href="#section-eecs280-f24_lec_09-s-section_9_1">
+      <span style="float: right;">
+      
+      </span>
+     1: Function Overloading</a>
+        </li>
+        
+      
+        <li class="nav-item">
+          <a class="nav-link text-truncate" style="padding: 0.1rem" href="#section-eecs280-f24_lec_09-s-section_9_2">
+      <span style="float: right;">
+      
+        
+    <span class="examma-ray-verifier-status examma-ray-verifier-status-mini" data-question-uuid="eecs280-f24_lec_09-q-lec9_pixel_operator_overloads">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">2.1</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+      
+      </span>
+     2: Operator Overloading</a>
+        </li>
+        
+          <li id="starred-question-eecs280-f24_lec_09-q-lec9_pixel_operator_overloads" class="nav-item examma-ray-starred-nav" data-question-uuid="eecs280-f24_lec_09-q-lec9_pixel_operator_overloads" style="display: none">
+            <span class="badge examma-ray-score-badge btn-secondary">1 pt</span>
+            <a class="nav-link text-truncate" style="padding: 0.1rem; display: inline" href="#question-anchor-eecs280-f24_lec_09-q-lec9_pixel_operator_overloads">
+              2.1: Exercise: <code>Pixel</code> Operator Overloads
+            </a>
+          </li>
+        
+      
+        <li class="nav-item">
+          <a class="nav-link text-truncate" style="padding: 0.1rem" href="#section-eecs280-f24_lec_09-s-section_9_3">
+      <span style="float: right;">
+      
+        
+    <span class="examma-ray-verifier-status examma-ray-verifier-status-mini" data-question-uuid="eecs280-f24_lec_09-q-lec09_rectangle">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">3.1</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+      
+      </span>
+     3: Delegating Constructors</a>
+        </li>
+        
+          <li id="starred-question-eecs280-f24_lec_09-q-lec09_rectangle" class="nav-item examma-ray-starred-nav" data-question-uuid="eecs280-f24_lec_09-q-lec09_rectangle" style="display: none">
+            <span class="badge examma-ray-score-badge btn-secondary">1 pt</span>
+            <a class="nav-link text-truncate" style="padding: 0.1rem; display: inline" href="#question-anchor-eecs280-f24_lec_09-q-lec09_rectangle">
+              3.1: Exercise: <code>Rectangle</code> Constructors
+            </a>
+          </li>
+        
+      
+        <li class="nav-item">
+          <a class="nav-link text-truncate" style="padding: 0.1rem" href="#section-eecs280-f24_lec_09-s-section_9_4">
+      <span style="float: right;">
+      
+      </span>
+     4: Introduction to Inheritance</a>
+        </li>
+        
+      
+        <li class="nav-item">
+          <a class="nav-link text-truncate" style="padding: 0.1rem" href="#section-eecs280-f24_lec_09-s-section_9_5">
+      <span style="float: right;">
+      
+        
+    <span class="examma-ray-verifier-status examma-ray-verifier-status-mini" data-question-uuid="eecs280-f24_lec_09-q-lec09_inheritance_details_multiple_choice">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">5.1</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+      
+      </span>
+     5: Inheritance Details</a>
+        </li>
+        
+          <li id="starred-question-eecs280-f24_lec_09-q-lec09_inheritance_details_multiple_choice" class="nav-item examma-ray-starred-nav" data-question-uuid="eecs280-f24_lec_09-q-lec09_inheritance_details_multiple_choice" style="display: none">
+            <span class="badge examma-ray-score-badge btn-secondary">4 pts</span>
+            <a class="nav-link text-truncate" style="padding: 0.1rem; display: inline" href="#question-anchor-eecs280-f24_lec_09-q-lec09_inheritance_details_multiple_choice">
+              Question 5.1
+            </a>
+          </li>
+        
+      
+    </ul>
+          
+      <div class="examma-ray-exam-saver-status border-top">
+        <div>
+          <div style="text-align: left">
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
+  <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z"></path>
+  <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293z"></path>
+</svg>
+<a style="vertical-align: middle;" href="/eecs280-async-lectures">
+  Table of Contents
+</a>
+<br>
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-slides" viewBox="0 0 16 16">
+  <path d="M5 6a.5.5 0 0 0-.496.438l-.5 4A.5.5 0 0 0 4.5 11h3v2.016c-.863.055-1.5.251-1.5.484 0 .276.895.5 2 .5s2-.224 2-.5c0-.233-.637-.429-1.5-.484V11h3a.5.5 0 0 0 .496-.562l-.5-4A.5.5 0 0 0 11 6H5zm2 3.78V7.22c0-.096.106-.156.19-.106l2.13 1.279a.125.125 0 0 1 0 .214l-2.13 1.28A.125.125 0 0 1 7 9.778z"></path>
+  <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"></path>
+</svg>
+<a style="vertical-align: middle;" target="_blank" href="https://drive.google.com/drive/u/1/folders/1VUqkQwKtoMeOFGllcuh3OnJ0XmIXj9Nr">
+  Slides (Powerpoint, PDF)
+</a>
+<br>
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+<path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+</svg>
+<a style="vertical-align: middle;" target="_blank" href="https://github.com/jamesjuett/eecs280-async-lectures">
+  Report issues or make suggestions
+</a>
+</div>
+        </div>
+        <br />
+        <div><button class="examma-ray-exam-answers-file-button btn btn-primary" data-toggle="modal" data-target="#exam-saver" aria-expanded="false" aria-controls="exam-saver">Answers File</button></div>
+        <div class="examma-ray-exam-saver-status-note">Export your exercise answers to use with another computer or browser.</div>
+      </div>
+        </div>
+        <div class="examma-ray-main-panel">
+          
+      <div class="examma-ray-header">
+        <div class="text-center mb-3 border-bottom">
+          <h2>Operator Overloading and Inheritance</h2>
+          
+        </div>
+        <div>
+          <div class="container examma-ray-instructions">
+    <div markdown="1" class="alert alert-info"><p>We'll start by covering <strong>function overloading</strong> and <strong>operator overloading</strong>, two mechanisms in C++ (and many other langugages) that allow the use of single names (or operators) to correspond to potentially many different function implementations depending on the types they are used with.</p>
+<p>Next, we'll introduce <strong>inheritance</strong>, which allows us to derive one <code>class</code> from another, such that the <strong>derived class</strong> automatically "inherits" member variables and functions from its <strong>base class</strong>. This is helpful both to save us work (i.e. we avoid duplicating common implementation details by putting them in a base class) and to set up the foundation for meaningful hierarchies of ADTs (more on this in the next lecture).</p>
+<div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2024</div></div>
+<style>
+  .lec-video {
+    width: 80%;
+    aspect-ratio: 16/9;
+  }
+
+  iframe.lobster-iframe {
+    border: none;
+    width: 80%;
+    height: 450px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+</style>
+  </div>
+          <div class="examma-ray-announcements">
+    
+  </div>
+        </div>
+      </div>
+    
+          
+      <div id="section-eecs280-f24_lec_09-s-section_9_1" class="examma-ray-section examma-ray-section-no-reference" data-section-uuid="eecs280-f24_lec_09-s-section_9_1" data-section-display-index="1">
+        <hr />
+        <table class="examma-ray-section-contents">
+          <tr>
+            <td class="examma-ray-questions-container">
+              
+      <div class="examma-ray-section-heading">
+        <div class="badge badge-primary">
+          1: Function Overloading
+        </div>
+        <span class="examma-ray-section-verifier-statuses">
+          
+        </span>
+      </div>
+    
+              <div class="examma-ray-section-description"><p>In C++, multiple functions are allowed to have the same name, even within the same scope, as long as they have different parameter types and can be distinguished by the compiler (and presumably by human programmers, too!). This is called <strong>function overloading</strong>.</p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/HoQWM3GfFcA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p></div>
+              
+            </td>
+            
+          </tr>
+        </table>
+      </div>
+    <br />
+      <div id="section-eecs280-f24_lec_09-s-section_9_2" class="examma-ray-section examma-ray-section-no-reference" data-section-uuid="eecs280-f24_lec_09-s-section_9_2" data-section-display-index="2">
+        <hr />
+        <table class="examma-ray-section-contents">
+          <tr>
+            <td class="examma-ray-questions-container">
+              
+      <div class="examma-ray-section-heading">
+        <div class="badge badge-primary">
+          2: Operator Overloading
+        </div>
+        <span class="examma-ray-section-verifier-statuses">
+          
+            
+    <span class="examma-ray-verifier-status" data-question-uuid="eecs280-f24_lec_09-q-lec9_pixel_operator_overloads">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">2.1</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+          
+        </span>
+      </div>
+    
+              <div class="examma-ray-section-description"><p>We can also apply the concept of overloading to <em>operators</em> as well. For example, the <code>+</code> operator means one thing when it's used on <code>int</code>, something else when it's used on <code>string</code>, and yet another thing when it's used for pointer arithmetic!</p>
+<p>In C++, we can also define what an operator should do if used on our own custom classes. Take a look:</p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/4ETw1p8brbc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p></div>
+              
+      <div id="question-eecs280-f24_lec_09-q-lec9_pixel_operator_overloads" data-question-uuid="eecs280-f24_lec_09-q-lec9_pixel_operator_overloads" data-question-display-index="2.1" class="examma-ray-question card-group">
+        <div id="question-anchor-eecs280-f24_lec_09-q-lec9_pixel_operator_overloads" class="examma-ray-question-anchor"></div>
+        <div class="card">
+          <div class="card-header">
+            
+      <b>2.1 Exercise: <code>Pixel</code> Operator Overloads</b>
+    
+          </div>
+          <div class="card-body">
+            <div class="examma-ray-question-description">
+              <p>Let's upgrade <code>Pixel</code> from project 2 to a <code>class</code> and add some overloaded operators:</p>
+<ul>
+<li>An overloaded <code>&lt;&lt;</code> operator that prints a pixel in the format <code>rgb(R,G,B)</code></li>
+<li>An overloaded <code>-</code> operator that computes the squared difference of two pixels</li>
+</ul>
+<p>Implement each operator (as a non-member function) so that the code in main works correctly.</p>
+            </div>
+            <div class="examma-ray-question-response examma-ray-question-response-iframe" data-response-kind="iframe">
+    <div style="text-align: center;">
+      <iframe id="iframe-response-eecs280-f24_lec_09-q-lec9_pixel_operator_overloads-__DEFAULT-__DEFAULT" src="assets/pixel_operator_overloads.html" class="lobster-iframe" style="height: 675px;"></iframe>
+    </div>
+  </div>
+            <div class="examma-ray-question-postscript">
+              <p></p><hr>
+<details>
+  <summary>Sample solution…</summary><p></p>
+<pre><code class="hljs cpp language-cpp">  <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+  <span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+  <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Pixel</span> {</span>
+  <span class="hljs-keyword">public</span>:
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> r;
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> g;
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> b;
+
+    <span class="hljs-built_in">Pixel</span>(<span class="hljs-keyword">int</span> r, <span class="hljs-keyword">int</span> g, <span class="hljs-keyword">int</span> b)
+      : <span class="hljs-built_in">r</span>(r), <span class="hljs-built_in">g</span>(g), <span class="hljs-built_in">b</span>(b) { }
+
+  };
+
+  <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">squared_difference</span><span class="hljs-params">(<span class="hljs-keyword">const</span> Pixel &amp;p1, <span class="hljs-keyword">const</span> Pixel &amp;p2)</span></span>;
+
+  <span class="hljs-comment">// TASK 1: Add an overloaded operator- that</span>
+  <span class="hljs-comment">// returns the squared difference between two</span>
+  <span class="hljs-comment">// pixels (you can just call squared_difference</span>
+  <span class="hljs-comment">// in your implementation)</span>
+
+  <span class="hljs-keyword">int</span> <span class="hljs-keyword">operator</span>-(<span class="hljs-keyword">const</span> Pixel &amp;p1, <span class="hljs-keyword">const</span> Pixel &amp;p2) {
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">squared_difference</span>(p1, p2);
+  }
+
+  <span class="hljs-comment">// TASK 2: Add an overloaded operator&lt;&lt; that</span>
+  <span class="hljs-comment">// prints out the pixel in this format:</span>
+  <span class="hljs-comment">//   rgb({R},{G},{B})</span>
+  ostream &amp;<span class="hljs-keyword">operator</span>&lt;&lt;(ostream &amp;os, <span class="hljs-keyword">const</span> Pixel &amp;p) {
+    cout &lt;&lt; <span class="hljs-string">&quot;rgb(&quot;</span> &lt;&lt; p.r &lt;&lt; <span class="hljs-string">&quot;, &quot;</span> &lt;&lt; p.g
+          &lt;&lt; <span class="hljs-string">&quot;, &quot;</span> &lt;&lt; p.b &lt;&lt; <span class="hljs-string">&quot;)&quot;</span>;
+    <span class="hljs-keyword">return</span> os;
+  }
+
+  <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-function">Pixel <span class="hljs-title">p1</span><span class="hljs-params">(<span class="hljs-number">174</span>, <span class="hljs-number">129</span>, <span class="hljs-number">255</span>)</span></span>;
+    <span class="hljs-function">Pixel <span class="hljs-title">p2</span><span class="hljs-params">(<span class="hljs-number">166</span>, <span class="hljs-number">226</span>, <span class="hljs-number">46</span>)</span></span>;
+
+    cout &lt;&lt; <span class="hljs-string">&quot;p1: &quot;</span> &lt;&lt; p1 &lt;&lt; endl; <span class="hljs-comment">// p1: rgb(174,129,255)</span>
+    cout &lt;&lt; <span class="hljs-string">&quot;p2: &quot;</span> &lt;&lt; p2 &lt;&lt; endl; <span class="hljs-comment">// p2: rgb(166,226,46)</span>
+
+    cout &lt;&lt; <span class="hljs-string">&quot;sq diff: &quot;</span> &lt;&lt; p2 - p1 &lt;&lt; endl; <span class="hljs-comment">// sq diff: 531</span>
+  }
+
+  <span class="hljs-comment">// From processing.cpp in P2 starter code</span>
+  <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">squared_difference</span><span class="hljs-params">(<span class="hljs-keyword">const</span> Pixel &amp;p1, <span class="hljs-keyword">const</span> Pixel &amp;p2)</span> </span>{
+    <span class="hljs-keyword">int</span> dr = p2.r - p1.r;
+    <span class="hljs-keyword">int</span> dg = p2.g - p1.g;
+    <span class="hljs-keyword">int</span> db = p2.b - p1.b;
+    <span class="hljs-comment">// Divide by 100 is to avoid possible overflows</span>
+    <span class="hljs-comment">// later on in the algorithm.</span>
+    <span class="hljs-keyword">return</span> (dr*dr + dg*dg + db*db) / <span class="hljs-number">100</span>;
+  }
+</code></pre>
+<p></p></details><p></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+            </td>
+            
+          </tr>
+        </table>
+      </div>
+    <br />
+      <div id="section-eecs280-f24_lec_09-s-section_9_3" class="examma-ray-section examma-ray-section-no-reference" data-section-uuid="eecs280-f24_lec_09-s-section_9_3" data-section-display-index="3">
+        <hr />
+        <table class="examma-ray-section-contents">
+          <tr>
+            <td class="examma-ray-questions-container">
+              
+      <div class="examma-ray-section-heading">
+        <div class="badge badge-primary">
+          3: Delegating Constructors
+        </div>
+        <span class="examma-ray-section-verifier-statuses">
+          
+            
+    <span class="examma-ray-verifier-status" data-question-uuid="eecs280-f24_lec_09-q-lec09_rectangle">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">3.1</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+          
+        </span>
+      </div>
+    
+              <div class="examma-ray-section-description"><p>Before moving on to inheritance, here's a quick miscellaneous topic that we didn't get to last time. <strong>Delegating constructors</strong> allow one constructor to call another to promote code reuse and overall elegant design.</p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/3ZjP0D6J4K4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p></div>
+              
+      <div id="question-eecs280-f24_lec_09-q-lec09_rectangle" data-question-uuid="eecs280-f24_lec_09-q-lec09_rectangle" data-question-display-index="3.1" class="examma-ray-question card-group">
+        <div id="question-anchor-eecs280-f24_lec_09-q-lec09_rectangle" class="examma-ray-question-anchor"></div>
+        <div class="card">
+          <div class="card-header">
+            
+      <b>3.1 Exercise: <code>Rectangle</code> Constructors</b>
+    
+          </div>
+          <div class="card-body">
+            <div class="examma-ray-question-description">
+              <p>Add two additional constructors to the <code>Rectangle</code> class. They should use delegation to call the constructor already provided in the starter code.</p>
+<ul>
+<li>A default constructor that takes no arguments and initializes a <code>1</code>x<code>1</code> rectangle.</li>
+<li>A constructor that takes in one side length <code>s</code> and then creates an <code>s</code>x<code>s</code> rectangle.</li>
+</ul>
+            </div>
+            <div class="examma-ray-question-response examma-ray-question-response-iframe" data-response-kind="iframe">
+    <div style="text-align: center;">
+      <iframe id="iframe-response-eecs280-f24_lec_09-q-lec09_rectangle-__DEFAULT-__DEFAULT" src="assets/rectangle.html" class="lobster-iframe" style="height: 675px;"></iframe>
+    </div>
+  </div>
+            <div class="examma-ray-question-postscript">
+              <p></p><hr>
+<details>
+  <summary>Sample solution…</summary><p></p>
+<pre><code class="hljs cpp language-cpp">  <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+  <span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+  <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Rectangle</span> {</span>
+  <span class="hljs-keyword">private</span>:
+    <span class="hljs-keyword">double</span> width;
+    <span class="hljs-keyword">double</span> height;
+
+  <span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">Rectangle</span>(<span class="hljs-keyword">double</span> w, <span class="hljs-keyword">double</span> h)
+    : <span class="hljs-built_in">width</span>(w), <span class="hljs-built_in">height</span>(h) { }
+
+    <span class="hljs-built_in">Rectangle</span>(<span class="hljs-keyword">double</span> s) : <span class="hljs-built_in">Rectangle</span>(s,s) { }
+
+    <span class="hljs-built_in">Rectangle</span>() : <span class="hljs-built_in">Rectangle</span>(<span class="hljs-number">1</span>,<span class="hljs-number">1</span>) { }
+
+    <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">area</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>{ <span class="hljs-keyword">return</span> width * height; }
+    <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">perimeter</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span> </span>{ <span class="hljs-keyword">return</span> <span class="hljs-number">2</span> * (width + height); }
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">scale</span><span class="hljs-params">(<span class="hljs-keyword">double</span> s)</span> </span>{ width *= s; height *= s; }
+  };
+</code></pre>
+<p></p></details><p></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+            </td>
+            
+          </tr>
+        </table>
+      </div>
+    <br />
+      <div id="section-eecs280-f24_lec_09-s-section_9_4" class="examma-ray-section examma-ray-section-no-reference" data-section-uuid="eecs280-f24_lec_09-s-section_9_4" data-section-display-index="4">
+        <hr />
+        <table class="examma-ray-section-contents">
+          <tr>
+            <td class="examma-ray-questions-container">
+              
+      <div class="examma-ray-section-heading">
+        <div class="badge badge-primary">
+          4: Introduction to Inheritance
+        </div>
+        <span class="examma-ray-section-verifier-statuses">
+          
+        </span>
+      </div>
+    
+              <div class="examma-ray-section-description"><p>Let's start with a bit of motivation for inheritance and a brief introduction to the way it's available as a fundamental language feature in C++.</p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/fMMKT-LlREA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p>
+<p>To recap:</p>
+<ul>
+<li>A derived class contains the <strong>member variables</strong> from the base class and may define additional ones.</li>
+<li>You can call <strong>member functions</strong> of the base class on any derived class instances.</li>
+<li>A derived class may <strong>"hide"</strong> a member function from the base class by defining its own version with the same signature.</li>
+<li>A <strong>derived class constructor</strong> must call some version of the base class constructor in its constructor-initializer-list. (Unless there's a default constructor for the base class.)</li>
+</ul>
+<p>Let's return to apply inheritance to our <code>Bird</code>, <code>Chicken</code>, and <code>Duck</code> classes as well…</p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/J75zMbO3eV0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p></div>
+              
+            </td>
+            
+          </tr>
+        </table>
+      </div>
+    <br />
+      <div id="section-eecs280-f24_lec_09-s-section_9_5" class="examma-ray-section examma-ray-section-no-reference" data-section-uuid="eecs280-f24_lec_09-s-section_9_5" data-section-display-index="5">
+        <hr />
+        <table class="examma-ray-section-contents">
+          <tr>
+            <td class="examma-ray-questions-container">
+              
+      <div class="examma-ray-section-heading">
+        <div class="badge badge-primary">
+          5: Inheritance Details
+        </div>
+        <span class="examma-ray-section-verifier-statuses">
+          
+            
+    <span class="examma-ray-verifier-status" data-question-uuid="eecs280-f24_lec_09-q-lec09_inheritance_details_multiple_choice">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">5.1</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+          
+        </span>
+      </div>
+    
+              <div class="examma-ray-section-description"><p>Finally, let's investigate some "behind-the-scenes" details on how inheritance works.</p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/8jULLGraPN0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p></div>
+              
+      <div id="question-eecs280-f24_lec_09-q-lec09_inheritance_details_multiple_choice" data-question-uuid="eecs280-f24_lec_09-q-lec09_inheritance_details_multiple_choice" data-question-display-index="5.1" class="examma-ray-question card-group">
+        <div id="question-anchor-eecs280-f24_lec_09-q-lec09_inheritance_details_multiple_choice" class="examma-ray-question-anchor"></div>
+        <div class="card">
+          <div class="card-header">
+            
+      <b>5.1</b>
+    
+          </div>
+          <div class="card-body">
+            <div class="examma-ray-question-description">
+              <p>Which of the following are true?</p>
+            </div>
+            <div class="examma-ray-question-response examma-ray-question-response-multiple_choice" data-response-kind="multiple_choice">
+    <form>
+    
+    
+      <div class="form-check" style="">
+        <input id="eecs280-f24_lec_09-q-lec09_inheritance_details_multiple_choice_choice_0" class="form-check-input" type="checkbox" name="eecs280-f24_lec_09-q-lec09_inheritance_details_multiple_choice_choice" value="0"/>
+        <label for="eecs280-f24_lec_09-q-lec09_inheritance_details_multiple_choice_choice_0" class="form-check-label examma-ray-mc-option"><p>Both constructors and destructors generally run in a "top-down" ordering.</p></label>
+      </div>
+      <div class="form-check" style="">
+        <input id="eecs280-f24_lec_09-q-lec09_inheritance_details_multiple_choice_choice_1" class="form-check-input" type="checkbox" name="eecs280-f24_lec_09-q-lec09_inheritance_details_multiple_choice_choice" value="1"/>
+        <label for="eecs280-f24_lec_09-q-lec09_inheritance_details_multiple_choice_choice_1" class="form-check-label examma-ray-mc-option"><p>If member name lookup finds a function in the derived class with a matching name but invalid parameter types, the base class will be checked as well.</p></label>
+      </div>
+      <div class="form-check" style="">
+        <input id="eecs280-f24_lec_09-q-lec09_inheritance_details_multiple_choice_choice_2" class="form-check-input" type="checkbox" name="eecs280-f24_lec_09-q-lec09_inheritance_details_multiple_choice_choice" value="2"/>
+        <label for="eecs280-f24_lec_09-q-lec09_inheritance_details_multiple_choice_choice_2" class="form-check-label examma-ray-mc-option"><p>The <code>::</code> operator may be used to call the base class version of a function, even in a context where the derived class version would normally be found first.</p></label>
+      </div>
+      <div class="form-check" style="">
+        <input id="eecs280-f24_lec_09-q-lec09_inheritance_details_multiple_choice_choice_3" class="form-check-input" type="checkbox" name="eecs280-f24_lec_09-q-lec09_inheritance_details_multiple_choice_choice" value="3"/>
+        <label for="eecs280-f24_lec_09-q-lec09_inheritance_details_multiple_choice_choice_3" class="form-check-label examma-ray-mc-option"><p>Generally, it is good practice to make member variables in a base class protected to ensure derived classes have full access to implementation details.</p></label>
+      </div>
+    </form>
+  </div>
+            <div class="examma-ray-question-postscript">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+            </td>
+            
+          </tr>
+        </table>
+      </div>
+    
+          <div class="container examma-ray-bottom-message">
+            <div class="alert alert-success" style="margin: 2em; margin-top: 4em;">
+              You've reached the end of this lecture! Your work on any exercises will be saved if you re-open this page in the same web browser.</p>
+<p><strong>Participation Credit</strong><br>
+Make sure to sign in to the page, complete each of the exercises, and <strong>double check</strong> the participation indicator at the top left of this page to ensure you've earned credit.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+        
+      <div id="exam-saver" class="exam-saver-modal modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Answers File</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="alert alert-info"><p>Your work on exercises is <strong>automatically</strong> saved in your web browser's local storage. That means you don't need to do anything to save your work as long as:</p>
+<ul>
+<li>You use the same computer</li>
+<li>You use the same web browser</li>
+<li>You don't use incognito or private browsing (which disables local storage)</li>
+</ul>
+<p>To transfer answers between computers or browsers, use the import/export options below.</p></div>
+              <div style="text-align: center;">
+                <div id="exam-saver-download-status" style="margin-bottom: 5px;"></div>
+                <div><a id="exam-saver-download-link" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-down" viewBox="0 0 16 16">
+<path d="M8.5 6.5a.5.5 0 0 0-1 0v3.793L6.354 9.146a.5.5 0 1 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L8.5 10.293V6.5z"/>
+<path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+</svg> Download Answers</a></div>
+                <br />
+                <div style="margin-bottom: 5px;">Or, you may restore answers you previously saved to a file.<br /><b>WARNING!</b> This will overwrite ALL answers on this page.</div>
+                <div>
+                  <button id="exam-saver-load-button" class="btn btn-danger disabled" disabled><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-up" viewBox="0 0 16 16">
+<path d="M8.5 11.5a.5.5 0 0 1-1 0V7.707L6.354 8.854a.5.5 0 1 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 7.707V11.5z"/>
+<path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+</svg> Load Answers</button>
+                  <input id="exam-saver-file-input" type="file"></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  
+      <div id="exam-welcome-restored-modal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Operator Overloading and Inheritance</h5>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+              <div class="alert alert-info">This page was reloaded, and we've restored your answers from a local backup.</div>
+              <div>
+                <button class="btn btn-success" data-dismiss="modal"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
+<path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
+<path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+</svg> OK</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  
+      <div id="exam-welcome-restored-error-modal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Operator Overloading and Inheritance</h5>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+              <div class="alert alert-danger">
+                An error was encountered while attempting to restore your answers from a local backup.
+                If you are in the process of creating and previewing an exam, this may have occurred due
+                to a change to a question's type. If so, clear your browser's local storage before continuing.
+                <br />
+                If you're taking an exam, this should never happen. But, if it does, contact your instructor,
+                course staff, or proctor as soon as possible.
+              </div>
+              <div>
+                <button class="btn btn-success" data-dismiss="modal"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
+<path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
+<path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+</svg> OK</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  
+      <div id="exam-welcome-normal-modal" class="modal" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Operator Overloading and Inheritance</h5>
+            </div>
+            <div class="modal-body">
+              <div class="alert alert-info">This exam is for <b>eecs280</b>. If this is not you, please close this page.</div>
+              <div class="alert alert-info">This page shows your exam questions and gives you a place to work. <b>However, we will not grade anything here</b>. You must <b>download</b> an "answers file" and submit that to <b>Canvas</b> BEFORE the exam ends</b>.</div>
+              <div class="alert alert-warning">If something goes wrong (e.g. in case your computer crashes, you accidentally close the page, etc.), this page will attempt to restore your work when you come back. <b>Warning!</b> If you take the exam in private/incognito mode, or if you have certain privacy extensions/add-ons enabled, this won't work.</div>
+  
+              <p style="margin-left: 2em; margin-right: 2em;">
+                By taking this exam and submitting an answers file, you attest to the CoE Honor Pledge:
+              </p>
+              <p style="margin-left: 4em; margin-right: 4em;">
+                <span style="font-style: italic">I have neither given nor received unauthorized aid on this examination, nor have I concealed any violations of the Honor Code."
+              </p>
+              
+              <div style="text-align: center;">
+                <button class="btn btn-primary" data-dismiss="modal">I am <b>eecs280</b> and I understand</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  
+      <div id="exam-welcome-no-autosave-modal" class="modal" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Operator Overloading and Inheritance</h5>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+              <div class="alert alert-info">This exam is for <b>eecs280</b>. If this is not you, please close this page.</div>
+              <div class="alert alert-info">This page shows your exam questions and gives you a place to work. <b>However, we will not grade anything here</b>. You must <b>download</b> an "answers file" and submit that to <b>Canvas</b> BEFORE the exam ends</b>.</div>
+              <div class="alert alert-danger">It appears your browser will not support backing up your answers to local storage (e.g. in case your computer crashes, you accidentally close the page, etc.).<br /><br />While you may still take the exam like this, we do not recommend it. Make sure you are <b>not</b> using private/incognito mode, temporarily disable privacy add-ons/extensions, or try a different web browser to get autosave to work.</div>
+              <div>
+                <button class="btn btn-primary" data-dismiss="modal">I am <b>eecs280</b> and I understand</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div id="multiple-tabs-modal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">WARNING</h5>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+              <div class="alert alert-danger">It appears you have this page open in multiple tabs/windows. That's a bad idea. Close whichever one you just opened.</div>
+              <div>
+                <button class="btn btn-primary" data-dismiss="modal">OK</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div id="exam-sign-in-modal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-sm" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Sign In</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div style="font-size: 11pt;">
+                <p>Sign in with your @umich.edu Google account to earn participation credit for completing embedded exercises.</p>
+              </div>
+              <div style="text-align: center">
+                <div class="g_id_signin"
+                  data-type="standard"
+                  data-shape="rectangular"
+                  data-theme="outline"
+                  data-text="signin_with"
+                  data-size="large"
+                  data-logo_alignment="left"
+                  style="display: inline-block"
+                ></div>
+              </div>
+
+              <div id="g_id_onload"
+                data-client_id="444801118749-m2g9gl3gvvkh5ru959dmka0lsk94d9uq.apps.googleusercontent.com"
+                data-context="signin"
+                data-ux_mode="popup"
+                data-callback="on_google_sign_in"
+                data-auto_prompt="false"
+              ></div>
+
+              <script>
+                function on_google_sign_in(response) {
+                  window.google_sign_in_callback(response);
+                }
+              </script>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      </body>
+      </html>
+    

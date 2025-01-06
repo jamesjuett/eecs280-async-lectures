@@ -1,0 +1,442 @@
+{
+  "title": "Sorted vs. Unsorted Data Structures, Templates",
+  "mk_intructions": "<div markdown=1 class=\"alert alert-info\">\n  Continuing from last time, we'll consider another potential implementation of a set, this time based on an underlying array that is kept in sorted order. The addition of a sorting invariant means some of our functions are more complicated (i.e. you can't just put elements wherever), but searching for elements in the array can be done much more efficiently.\n\n  Finally, it makes sense to introduce **templates** as a miscellaneous topic here. In particular, templates can be used to implement generic containers with flexible element types (e.g. `set<int>` and `set<string>`). Generally speaking, they also complete our exploration (started a few lectures ago) of different kinds of polymorphism.\n  \n  <div style=\"position: absolute; bottom: 5px; right: 10px; font-weight: bold;\">Updated Fall 2024</div>\n</div>\n<style>\n  .lec-video {\n    width: 80%;\n    aspect-ratio: 16/9;\n  }\n\n  iframe.lobster-iframe {\n    border: none;\n    width: 80%;\n    height: 450px;\n    margin-left: auto;\n    margin-right: auto;\n  }\n\n</style>",
+  "mk_questions_message": "\n<div style=\"text-align: left\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-house-fill\" viewBox=\"0 0 16 16\">\n  <path d=\"M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z\"/>\n  <path d=\"m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293z\"/>\n</svg>\n<a style=\"vertical-align: middle;\" href=\"/eecs280-async-lectures\">\n  Table of Contents\n</a>\n<br />\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-file-earmark-slides\" viewBox=\"0 0 16 16\">\n  <path d=\"M5 6a.5.5 0 0 0-.496.438l-.5 4A.5.5 0 0 0 4.5 11h3v2.016c-.863.055-1.5.251-1.5.484 0 .276.895.5 2 .5s2-.224 2-.5c0-.233-.637-.429-1.5-.484V11h3a.5.5 0 0 0 .496-.562l-.5-4A.5.5 0 0 0 11 6H5zm2 3.78V7.22c0-.096.106-.156.19-.106l2.13 1.279a.125.125 0 0 1 0 .214l-2.13 1.28A.125.125 0 0 1 7 9.778z\"/>\n  <path d=\"M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z\"/>\n</svg>\n<a style=\"vertical-align: middle;\" target=\"_blank\" href=\"https://drive.google.com/drive/u/1/folders/1VUqkQwKtoMeOFGllcuh3OnJ0XmIXj9Nr\">\n  Slides (Powerpoint, PDF)\n</a>\n<br />\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-github\" viewBox=\"0 0 16 16\">\n<path d=\"M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z\"/>\n</svg>\n<a style=\"vertical-align: middle;\" target=\"_blank\" href=\"https://github.com/jamesjuett/eecs280-async-lectures\">\n  Report issues or make suggestions\n</a>\n</div>\n",
+  "mk_bottom_message": "You've reached the end of this lecture! Your work on any exercises will be saved if you re-open this page in the same web browser.\n\n**Participation Credit**  \nMake sure to sign in to the page, complete each of the exercises, and **double check** the participation indicator at the top left of this page to ensure you've earned credit.",
+  "mk_download_message": "Export your exercise answers to use with another computer or browser.",
+  "mk_saver_message": "Your work on exercises is **automatically** saved in your web browser's local storage. That means you don't need to do anything to save your work as long as:\n- You use the same computer\n- You use the same web browser\n- You don't use incognito or private browsing (which disables local storage)\n\nTo transfer answers between computers or browsers, use the import/export options below.",
+  "assets_dir": "/home/jjuett/eecs280/async-lectures/lectures/lecture13/assets",
+  "allow_clientside_content": true,
+  "sections": [
+    {
+      "section_id": "section_12_1",
+      "title": "Time Complexity",
+      "mk_description": "As we're asessing the fitness of a data structure for a given task, it's helpful to determine its **time complexity**, which quantifies how well it performs as the size of the data we're working with scales up. Recall two key types of time complexity:\n\n- _O(1)_ constant time complexity, where the time taken does not depend on the size of the data, _n_.\n- _O(n)_ linear time complexity, where the time taken is linearly proportional to the size of the data, _n_.",
+      "questions": [
+        {
+          "question_id": "lec12_time_complexity",
+          "title": "Exercise: Time Complexity",
+          "points": 6,
+          "mk_description": "Recall the unsorted `IntSet` from last time. We used an array for the underlying data representation:\n\n```cpp\nclass IntSet {\nprivate:\n  int elts[ELTS_CAPACITY];\n  int elts_size;\npublic:\n  ...\n};\n```\n\nBelow are several implementations of functions for the unsorted `IntSet` from last time. Using a worst-case analysis, determine whether each function has _O(1)_ constant time complexity or _O(n)_ linear time complexity. Explain your reasoning. ",
+          "response": {
+            "kind": "fill_in_the_blank",
+            "content": "\n<table style=\"width: 100%; border: none;\">\n  <tr>\n    <td style=\"width: 350px; padding-right: 15px;\">\n    <div markdown=\"1\">\n```cpp\n// IntSet constructor\nIntSet::IntSet()\n  : elts_size(0) { }\n  ```\n    </div>\n    </td>\n    <td>\n    <div>\n      [[BOX\n      \n      ]]\n    </div>\n    </td>\n  </tr>\n  <tr>\n    <td style=\"width: 350px; padding-right: 15px;\">\n    <div markdown=\"1\">\n```cpp\nIntSet::size() {\n  return elts_size;\n}\n```\n    </div>\n    </td>\n    <td>\n    <div>\n      [[BOX\n      \n      ]]\n    </div>\n    </td>\n  </tr>\n  <tr>\n    <td style=\"width: 350px; padding-right: 15px;\">\n    <div markdown=\"1\">\n```cpp\nint IntSet::indexOf(int v) const {\n  for (int i = 0; i < elts_size; ++i) {\n    if (elts[i] == v) {\n        return i;\n    }\n  }\n  return -1;\n}\n```\n    </div>\n    </td>\n    <td>\n    <div>\n      [[BOX\n      \n      ]]\n    </div>\n    </td>\n  </tr>\n  \n  <tr>\n    <td style=\"width: 350px; padding-right: 15px;\">\n    <div markdown=\"1\">\n```cpp\nbool IntSet::contains(int v) const {\n  return indexOf(v) != -1;\n}\n```\n    </div>\n    </td>\n    <td>\n    <div>\n      [[BOX\n      \n      ]]\n    </div>\n    </td>\n  </tr>\n  <tr>\n    <td style=\"width: 350px; padding-right: 15px;\">\n    <div markdown=\"1\">\n```cpp\nvoid IntSet::insert(int v) {\n  assert(size() < ELTS_CAPACITY);\n  if (contains(v)) {\n    return;\n  }\n  elts[elts_size] = v;\n  ++elts_size;\n}\n```\n    </div>\n    </td>\n    <td>\n    <div>\n      [[BOX\n      \n      ]]\n    </div>\n    </td>\n  </tr>\n  <tr>\n    <td style=\"width: 350px; padding-right: 15px;\">\n    <div markdown=\"1\">\n```cpp\nvoid IntSet::remove(int v) {\n  if (!contains(v)) {\n    return;\n  }\n  elts[indexOf(v)] = elts[elts_size - 1];\n  --elts_size;\n}\n```\n    </div>\n    </td>\n    <td>\n    <div>\n      [[BOX\n      \n      ]]\n    </div>\n    </td>\n  </tr>\n</table>\n            ",
+            "default_grader": {
+              "grader_kind": "manual_regex_fill_in_the_blank",
+              "rubric": [
+                {
+                  "blankIndex": 1,
+                  "title": "Box 1",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "constant|O\\s*\\(\\s*1\\s*\\)",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct!",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "linear|O\\s*\\(\\s*n\\s*\\)",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "The implementation has constant time complexity. Check the walkthrough video for details.",
+                      "points": 0
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 2,
+                  "title": "Box 2",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "constant|O\\s*\\(\\s*1\\s*\\)",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct!",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "linear|O\\s*\\(\\s*n\\s*\\)",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "The implementation has constant time complexity. Check the walkthrough video for details.",
+                      "points": 0
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 3,
+                  "title": "Box 3",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "linear|O\\s*\\(\\s*n\\s*\\)",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct!",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "constant|O\\s*\\(\\s*1\\s*\\)",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "The implementation has linear time complexity. Check the walkthrough video for details.",
+                      "points": 0
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 4,
+                  "title": "Box 4",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "linear|O\\s*\\(\\s*n\\s*\\)",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct!",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "constant|O\\s*\\(\\s*1\\s*\\)",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "The implementation has linear time complexity. Check the walkthrough video for details.",
+                      "points": 0
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 5,
+                  "title": "Box 5",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "linear|O\\s*\\(\\s*n\\s*\\)",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct!",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "constant|O\\s*\\(\\s*1\\s*\\)",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "The implementation has linear time complexity. Check the walkthrough video for details.",
+                      "points": 0
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 6,
+                  "title": "Box 6",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "linear|O\\s*\\(\\s*n\\s*\\)",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct!",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "constant|O\\s*\\(\\s*1\\s*\\)",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "The implementation has linear time complexity. Check the walkthrough video for details.",
+                      "points": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "verifier": {
+            "verifier_kind": "full_credit"
+          },
+          "mk_postscript": "<hr />\nYou're welcome to check your solution with this **walkthrough** video:\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/LU8JMGBOLBM\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />"
+        }
+      ]
+    },
+    {
+      "section_id": "section_12_2",
+      "title": "A Sorted `IntSet`",
+      "mk_description": "\nLet's make a key change to the fundamental strategy and data representation for our set - keeping all the elements in sorted order - and see if we can improve the performance of the data structure...\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/-ljA2Ecmn74\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />\n",
+      "questions": [
+        {
+          "question_id": "lec12_sortedintset_insert",
+          "title": "Exercise: `SortedIntSet::insert()`",
+          "points": 1,
+          "mk_description": "Implement the `insert()` member function for the `SortedIntSet` class. If the given value is not already in the set, it should be inserted into the `elts` array at the appropriate position to maintain the sorting invariant. Elements greater than the inserted value will need to be shifted to the right to create the space to insert the element. `elts_size` should also increase by 1. However, if the value is already in the array, `insert()` does nothing.\n\nThe `main()` function provided includes testing code to verify your implementation.",
+          "response": {
+            "kind": "iframe",
+            "src": "assets/sortedintset_insert.html",
+            "element_class": "lobster-iframe",
+            "element_style": "height: 675px;",
+            "default_grader": {
+              "grader_kind": "standard_iframe",
+              "rubric": [
+                {
+                  "points": 1,
+                  "description": "Exercise must be complete.",
+                  "property": "complete",
+                  "value": true
+                }
+              ]
+            }
+          },
+          "verifier": {
+            "verifier_kind": "full_credit"
+          },
+          "mk_postscript": "<hr />\nYou're welcome to check your solution with this **walkthrough** video:\n\n**Note:** This walkthrough uses several different files for the code, which is different than the above, where we had everthing embedded into one file. (The solution for `insert()` is the same, though!)\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/TR4nYlsL74g\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />"
+        }
+      ]
+    },
+    {
+      "section_id": "section_12_3",
+      "title": "Templates",
+      "mk_description": "\nFinally, let's use **templates** to implement a generic set container with a flexible element type.\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/vQRn75mtf0w\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />\n",
+      "questions": [
+        {
+          "question_id": "lec12_fillFromArray",
+          "title": "Exercise: `fillFromArray()` Function Template",
+          "points": 4,
+          "mk_description": "Fill in the blanks to make the function work as intended (the `main` function shows examples).",
+          "response": {
+            "kind": "fill_in_the_blank",
+            "content": "```cpp\ntemplate <_BLANK_______________________________>\nvoid fillFromArray(_BLANK_______________________________ set, _BLANK_______________________ arr, int n) {\n  for (int i = 0; i < n; ++i) {\n    _BLANK_______________________________\n  }\n}\nint main() {\n  UnsortedSet<int> set1;\n  int arr1[4] = { 1, 2, 3, 2 };\n  fillFromArray(set1, arr1, 4); // set1 now contains 1, 2, 3\n  UnsortedSet<char> set2;\n  char arr2[3] = { 'a', 'b', 'a' };\n  fillFromArray(set2, arr2, 3); // set2 now contains 'a', 'b'\n}\n```",
+            "default_grader": {
+              "grader_kind": "manual_regex_fill_in_the_blank",
+              "rubric": [
+                {
+                  "blankIndex": 1,
+                  "title": "Box 1",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "^\\s*(typename|class)\\s+[a-zA-Z0-9_]+\\s*$",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct!",
+                      "points": 1
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 2,
+                  "title": "Box 2",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "int",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Make sure not to hardcode `<int>` on the `UnsortedSet`. Instead, plug in the type from your template parameter.",
+                      "points": 0
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "^\\s*UnsortedSet\\s*<\\s*[a-zA-Z0-9_]+\\s*>\\s*&\\s*$",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct!",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "^\\s*UnsortedSet\\s*&\\s*<\\s*[a-zA-Z0-9_]+\\s*>\\s*$",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Almost! Your `&` is misplaced.",
+                      "points": 0
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "^\\s*UnsortedSet\\s*<\\s*[a-zA-Z0-9_]+\\s*>\\s*$",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Make sure to pass the `UnsortedSet` by reference to ensure elements are actually added to the original (not just to a local copy).",
+                      "points": 0
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "^\\s*UnsortedSet\\s*$",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "The UnsortedSet parameter will need to specify the element type as well, i.e. `UnsortedSet<____>` with the `____` replaced by your template parameter.",
+                      "points": 0
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 3,
+                  "title": "Box 3",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "int",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Make sure not to hardcode `int` as the element type of the array. Instead, use the type from your template parameter.",
+                      "points": 0
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "^\\s*const\\s*[a-zA-Z0-9_]+\\s*\\*\\s*$",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct!",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "^\\s*[a-zA-Z0-9_]+\\s*const\\s*\\*\\s*$",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct!",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "^\\s*[a-zA-Z0-9_]+\\s*\\*\\s*$",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "The element type should be const qualified here since the function does not modify the source array.",
+                      "points": 0
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "\\[.*\\]",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Given the placement of the fill-in-the-blank boxes, you'll need to pass the array parameter by pointer (recall that all arrays are ultimately passed this way due to array decay).",
+                      "points": 0
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 4,
+                  "title": "Box 4",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": ".*insert.*arr.*i",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct!",
+                      "points": 1
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "verifier": {
+            "verifier_kind": "full_credit"
+          },
+          "mk_postscript": "<hr />\nYou're welcome to check your solution with this **walkthrough** video:\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/7tyRQjYejw0\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />"
+        }
+      ]
+    }
+  ],
+  "exam_id": "f24_lec_14",
+  "credentials_strategy": {
+    "strategy": "google_local",
+    "client_id": "444801118749-m2g9gl3gvvkh5ru959dmka0lsk94d9uq.apps.googleusercontent.com",
+    "auth_endpoint": "https://examma-ray.eecs.umich.edu/public_api/participation/auth/",
+    "message": "Sign in with your @umich.edu Google account to earn participation credit for completing embedded exercises."
+  },
+  "completion": {
+    "threshold": 1,
+    "tooltip": "",
+    "endpoints": {
+      "check": "https://examma-ray.eecs.umich.edu/public_api/participation/me/",
+      "submit": "https://examma-ray.eecs.umich.edu/public_api/participation/me/"
+    },
+    "local_deadline": {
+      "when": {
+        "examma_ray_serialized_datetime": {
+          "iso": "2024-10-16T23:59:59.000-04:00",
+          "timezone": "America/Detroit"
+        }
+      },
+      "grace_minutes": 5
+    }
+  }
+}
