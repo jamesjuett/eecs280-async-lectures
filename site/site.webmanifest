@@ -1,6 +1,6 @@
 {
-  "name": "MyWebSite",
-  "short_name": "MySite",
+  "name": "EECS 280 Async Lectures",
+  "short_name": "Async Lecs",
   "icons": [
     {
       "src": "/eecs280-async-lectures/web-app-manifest-192x192.png",
