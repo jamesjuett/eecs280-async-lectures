@@ -38,6 +38,15 @@ function addW24Warning(spec: ExamSpecification) {
   });
 }
 
+const FAVICON_LINKS = `
+<link rel="icon" type="image/png" href="/eecs280-async-lectures/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/eecs280-async-lectures/favicon.svg" />
+<link rel="shortcut icon" href="/eecs280-async-lectures/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/eecs280-async-lectures/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="Async Lecs" />
+<link rel="manifest" href="/eecs280-async-lectures/site.webmanifest" />
+`;
+
 export const LECTURE_SPECS = [
   { spec: INTRO                                                 , updated: true, deadline: DateTime.fromISO("2025-01-08", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   { spec: TYPES_CONTROL_STRUCTURES_AND_PROCEDURAL_ABSTRACTION   , updated: true, deadline: DateTime.fromISO("2025-01-13", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
@@ -72,6 +81,7 @@ export const LECTURE_SPECS = [
     //   </div>` +
     //   lec.spec.mk_intructions,
     exam_id: `w25_lec_${String(i + 1).padStart(2, "0")}`,
+    mk_intructions: FAVICON_LINKS + lec.spec.mk_intructions,
     mk_questions_message: MK_QUESTIONS_MESSAGE,
     mk_bottom_message: MK_BOTTOM_MESSAGE,
     mk_download_message: MK_DOWNLOAD_MESSAGE,
