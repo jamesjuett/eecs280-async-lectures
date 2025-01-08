@@ -9,7 +9,7 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 
-export const LECTURE_02 : Omit<ExamSpecification, "exam_id"> = {
+export const TYPES_CONTROL_STRUCTURES_AND_PROCEDURAL_ABSTRACTION : Omit<ExamSpecification, "exam_id"> = {
   title: "Types, Control Structures, and Procedural Abstraction",
   mk_intructions: dedent`
 
@@ -21,8 +21,6 @@ export const LECTURE_02 : Omit<ExamSpecification, "exam_id"> = {
       - Defining and using functions (for procedural abstraction), including when they're split across several files.
       
       <!-- end list -->
-
-      Also, this lecture is a bit long. They won't all be like this, I promise!
 
       <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2024</div>
     </div>
@@ -51,38 +49,6 @@ export const LECTURE_02 : Omit<ExamSpecification, "exam_id"> = {
   sections: [
     {
       section_id: "section_02_1",
-      title: "Fundamental Types and Implicit Conversions",
-      mk_description: dedent`
-        Let's take a look at the set of fundamental data types built in to the C++ language, as well as the rules for implicit conversion between them.
-
-        <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/BFt_3sLGMy4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <br />
-
-        I'll also point out that **explicit conversions** are possible, where we directly request a conversion. In some cases this may be necessary. In others, it's stylistically preferrable to make an otherwise implicit conversion more obvious. Here's a few examples:
-
-        \`\`\`cpp
-        int main() {
-          double value = 4.3;
-
-          // implicit conversion, too easy to miss
-          int x = value;
-
-          // C-style cast, avoid doing this
-          int x = (int)value;
-
-          // C++-style cast, this is preferred
-          int x = static_cast<int>(value);
-        }
-        \`\`\`
-
-        In C++, the \`static_cast\` form is preferred because the compiler generally performs stronger checks to ensure the conversion makes sense.
-      `,
-      questions: [],
-    },
-    {
-      section_id: "section_02_2",
       title: "Functions",
       mk_description: dedent`
         In more complex programs, it's essential to define functions to abstract away details.
@@ -95,7 +61,7 @@ export const LECTURE_02 : Omit<ExamSpecification, "exam_id"> = {
       questions: [],
     },
     {
-      section_id: "section_02_3",
+      section_id: "section_02_2",
       title: "Standard Library Types",
       mk_description: dedent`
         The C++ Standard Library provides a variety of container and utility types. We'll take a look at a few now, including \`std::vector\` which is used extensively in project 1.
@@ -108,7 +74,7 @@ export const LECTURE_02 : Omit<ExamSpecification, "exam_id"> = {
       questions: [],
     },
     {
-      section_id: "section_02_4",
+      section_id: "section_02_3",
       title: "Iteration",
       mk_description: dedent`
         In imperative programming, loops allow us to iterate through a set of instructions multiple times as long as some condition is true. C++ has two primary looping constructs, \`for\` and \`while\`.
@@ -186,7 +152,7 @@ export const LECTURE_02 : Omit<ExamSpecification, "exam_id"> = {
       ],
     },
     {
-      section_id: "section_02_5",
+      section_id: "section_02_4",
       title: "Branching",
       mk_description: dedent`
         The \`if\` and \`else\` constructs are used for branching in C++, often in conjunction with loops.
@@ -265,7 +231,7 @@ export const LECTURE_02 : Omit<ExamSpecification, "exam_id"> = {
       ],
     },
     {
-      section_id: "section_02_6",
+      section_id: "section_02_5",
       title: "Logical Operations and Short-Circuit Evaluation",
       mk_description: dedent`
         Sometimes we need to create compound boolean expressions using the \`&&\`, \`||\`, and \`!\` operators. In C++ (and some other languages), \`&&\` and \`||\` have special behavior called *short-circuit evaluation*. Here's the details.
@@ -278,7 +244,7 @@ export const LECTURE_02 : Omit<ExamSpecification, "exam_id"> = {
       questions: [],
     },
     {
-      section_id: "section_02_7",
+      section_id: "section_02_6",
       title: "`break;` and `continue;`",
       mk_description: dedent`
         Finally, a miscellaneous topic. C++ also has special \`break;\` and \`continue\` statements that affect the execution of loops.
@@ -291,7 +257,7 @@ export const LECTURE_02 : Omit<ExamSpecification, "exam_id"> = {
       questions: [],
     },
     {
-      section_id: "section_02_8",
+      section_id: "section_02_7",
       title: "Procedural Abstraction",
       mk_description: dedent`
         Switching gears a bit, let's take a look at the high-level organization of a program using procedural abstraction to make our code easier to write, understand, and maintain.
@@ -304,7 +270,7 @@ export const LECTURE_02 : Omit<ExamSpecification, "exam_id"> = {
       questions: []
     },
     {
-      section_id: "section_02_9",
+      section_id: "section_02_8",
       title: "Header Files, Makefiles, and Project 1",
       mk_description: dedent`
         As projects grow more complex, we often need to split the code into several different modules. In C++, we often use use a \`.hpp\` header files to provide declarations of the interfaces for implementation code in a \`.cpp\` file. These headers facilitate compilation across many files. But, as a project grows and compilation becomes more complex, we'll also turn to using build tools like \`Makefiles\` to automate the process.
@@ -457,7 +423,7 @@ export const LECTURE_02 : Omit<ExamSpecification, "exam_id"> = {
       ],
     },
     {
-      section_id: "section_02_10",
+      section_id: "section_02_9",
       title: "RMEs for Interface Specification",
       mk_description: dedent`
         It's useful to adopt a common patten for comments that specify function interfaces. In EECS 280, we'll use RMEs:
@@ -475,7 +441,7 @@ export const LECTURE_02 : Omit<ExamSpecification, "exam_id"> = {
       questions: [ ]
     },
     {
-      section_id: "section_02_11",
+      section_id: "section_02_10",
       title: "Unit Testing",
       mk_description: dedent`
         Finally, let's take a bit of time to talk about unit testing. We need to make sure the code we write actually works.
@@ -522,7 +488,7 @@ export const LECTURE_02 : Omit<ExamSpecification, "exam_id"> = {
       ],
     },
     // {
-    //   section_id: "section_02_12",
+    //   section_id: "section_02_11",
     //   title: "System and Regression Testing",
     //   mk_description: dedent`
     //     TODO

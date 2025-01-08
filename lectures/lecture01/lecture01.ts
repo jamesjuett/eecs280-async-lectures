@@ -9,7 +9,7 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 
-export const LECTURE_01 : Omit<ExamSpecification, "exam_id"> = {
+export const INTRO : Omit<ExamSpecification, "exam_id"> = {
   title: "Course Introduction, Intro to C++",
   mk_intructions: dedent`
     
@@ -53,29 +53,19 @@ export const LECTURE_01 : Omit<ExamSpecification, "exam_id"> = {
   sections: [
     {
       section_id: "section_01_1",
-      title: "The Big Picture",
+      title: "Introductions, The Big Picture",
       mk_description: dedent`
-        What's EECS 280 all about? Why are we here? Why do we care?
+        Hello! Let's get started with EECS 280!
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/d_aE2QjQyAI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/Betq1ebfZLM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
-
-        While the overall goals of EECS 280 haven't changed since... *checks video*... 2021... a few specific things have! I'll make sure to call out anything specific you need to know for the current term.
         
-        Where course content has changed or I figure out a better way to teach something, I'll also make sure to record updated videos. Sometimes I reuse a video and point out a few minor differences. Because course policies change slightly each term, this lecture has more cases of that than usual...
-        
-        <div class="alert alert-secondary" role="alert" markdown="1">
-          <h5><span class="badge badge-success">Fall 2024</span></h5>
-          We now have 6 projects instead of 5, but the workload is the same. We used to have a single project covering "Binary Search Trees" and a "Piazza Classifier Application". This term, we're splitting it into two pieces. Project 4 is now the "Piazza Classifier" half, and Project 5 is the "Binary Search Trees" half. We made this change because it aligns better with the flow of curriculum in the rest of the course and overall should make for a better student experience.
-
-          The application on the old project 4 has changed to implementing a text editor using a linked list, and it now sits at project 5. We made this change because it's a more interesting and well-motivated application of a linked list (which we'll cover later in the course) than previous versions of the project.
-          
-          <div style="text-align: center;">
-            <img src="assets/projects.png" style="width: 600px;">
-          </div>
-        </div>
+        A notes for async lectures:
+        - They cover the same material as the regular lectures and are kept up-to-date with any changes for the current term.
+        - It's just as important as with live lectures to keep up with the material. Async participation is due by 11:59pm the day of the lecture.
+        - Generally speaking, I'll post the lectures several days ahead of time so you have a bit more flexibility in when to do them.
       `,
       questions: [ ]
     },
@@ -83,22 +73,18 @@ export const LECTURE_01 : Omit<ExamSpecification, "exam_id"> = {
       section_id: "section_01_2",
       title: "Course Essentials",
       mk_description: dedent`
-        Let's take a look at the major parts of the course, including resources and websites you'll use to engage with the course and how the overall course is graded.
+
+        Let's take a look at the major components of EECS 280 and course resources, all accessible from our website at [eecs280.org](https://eecs280.org).
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/tAE1kGzAwPI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/NL7m2GcfQeI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
 
-        <div class="alert alert-secondary" role="alert" markdown="1">
-          <h5><span class="badge badge-success">Fall 2024</span></h5>
-          One correction to this video. This term, we're using Ed rather than Piazza for our Q&A forum.
-        </div>
-
-        Don't worry if this all seems a bit overwhelming. There are a lot of different components to the course and a bunch of different resources to get used to. You can find everything from [eecs280.org](https://eecs280.org), and we'll try to keep you up-to-date with the most relevant material. I also highly encourage that you ask questions if you're feeling lost - on Ed, Discord, in office hours, in lab, etc.
+        Don't worry if this all seems a bit overwhelming. There are a lot of different components to the course and a bunch of different resources to get used to. You can find everything from [eecs280.org](https://eecs280.org), and we'll try to keep it up-to-date with the most relevant material. I also highly encourage that you ask questions if you're feeling lost - on Ed, Discord, in office hours, in lab, etc.
 
         **Setup Tutorials**  
-        Here's my recommended approach to getting your computer set up for C++ development:
+        Here's my recommended approach to getting your computer set up for C++ development (i.e. in the text bubbles below):
         
         <div style="text-align: center;">
           <img src="assets/tutorials.png" style="width: 600px;">
@@ -106,11 +92,17 @@ export const LECTURE_01 : Omit<ExamSpecification, "exam_id"> = {
         <br />
 
         **C++ Walkthrough Sessions**  
-        Join us for a live walkthrough session via Zoom on C++ development including set up, compilers, makefiles, C++ IDEs, EECS 280 project workflow, and open Q&A.
+        Our live walkthrough sessions cover setting up your computer, using a command-line interface, compilers, makefiles, IDEs, EECS 280 project workflow, and open Q&A.
 
-        - **Wednesday, Aug 28 at 7-8:30pm** via Zoom.  
+        - **Tues, Jan 14 at 7-8:30pm** via Zoom.  
         - Separate, concurrent sessions for Windows/Mac.  
         - Links on eecs280.org. Recordings will be posted.  
+
+        <br />
+        <br />
+
+        **Syllabus**  
+        For more details, course polices, etc. - check out our course syllabus at [eecs280.org/syllabus.html](https://eecs280.org/syllabus.html).
       `,
       questions: [ ]
     },
@@ -118,22 +110,21 @@ export const LECTURE_01 : Omit<ExamSpecification, "exam_id"> = {
       section_id: "section_01_3",
       title: "Evaluation and Grading",
       mk_description: dedent`
-        It's not terribly exciting, but let's take a bit of time to discuss assignment weights, exams, and overall grading in the course.
+        Here's a very quick look at assignments, exams, and grading policies in EECS 280.
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/9q_tGX4h2XY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/Zda5HC44oew" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
 
-        <div class="alert alert-secondary" role="alert" markdown="1">
-          <h5><span class="badge badge-success">Fall 2024</span></h5>
-          Recall that we're splitting up project 5 for this term, into projects 4 and 6. Each of those halves is worth 5% each.
+        We'll come back to review this and add more detail later in the term. (Although it's all there in the syllabus and grade calculator on the website if you'd like to look now.)
 
-          Please also note a key difference for Fall 2024 - **lecture participation** is _optionally_ worth 3% of your overall grade. We'll compute your grade with and without it and take the better.
+        I also want to emphasize the importance of keeping up with lectures and actively participating...
 
-          You can find full details in our syllabus at [https://eecs280.org/syllabus.html#lecture-participation](https://eecs280.org/syllabus.html#lecture-participation).
-
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/mFzvKwcxnjE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
+        <br />
       `,
       questions: [
         {
@@ -149,7 +140,7 @@ export const LECTURE_01 : Omit<ExamSpecification, "exam_id"> = {
             content: dedent`
               _______________BLANK______________ are the only part of the grade computation that is curved.
 
-              In previous terms, _BLANK_________________ were not graded, but now they are worth an optional 3%.
+              Participation in _BLANK_________________ is *optionally* graded, worth 3% if it helps you.
               
               A student scoring 89.7% overall (with 91.8% on projects, 86.8% on exams) would earn a grade of _BLANK__.
               
@@ -250,12 +241,14 @@ export const LECTURE_01 : Omit<ExamSpecification, "exam_id"> = {
       title: "Lab Groups and Exercises",
       mk_description: dedent`
 
-        Lectures are followed up with labs, where you work with small groups of other students to further explore and pratice the course material.
+        You'll work small groups of other students to further explore and pratice the course material in lab exercises.
         
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/hcF1NbPVuu0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/HGJ8AgFRL-8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
+
+        <img style="inline-block; height: 2em;" src="assets/eddie.jpg"> Pretty sure I heard a meow at the end of that video... 
       `,
       questions: [ ]
     },
@@ -264,7 +257,7 @@ export const LECTURE_01 : Omit<ExamSpecification, "exam_id"> = {
       title: "Machine Code and Compilation",
       mk_description: dedent`
         
-        Let's take a break from talking about course logistics and dive into our first sequence of course material! We'll start with a brief introduction to the nature of C++ as a **compiled** language.
+        Let's take a break from talking about logistics and dive into our first sequence of course material! We'll start with a brief introduction to the nature of C++ as a **compiled** language.
 
         <div style="text-align: center;">
           <iframe class="lec-video" src="https://www.youtube.com/embed/5I_gpGCwlGY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -379,45 +372,66 @@ export const LECTURE_01 : Omit<ExamSpecification, "exam_id"> = {
     },
     {
       section_id: "section_01_8",
+      title: "Fundamental Types and Implicit Conversions",
+      mk_description: dedent`
+        Let's take a look at the set of fundamental data types built in to the C++ language, as well as the rules for implicit conversion between them.
+
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/BFt_3sLGMy4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
+
+        I'll also point out that **explicit conversions** are possible, where we directly request a conversion. In some cases this may be necessary. In others, it's stylistically preferrable to make an otherwise implicit conversion more obvious. Here's a few examples:
+
+        \`\`\`cpp
+        int main() {
+          double value = 4.3;
+
+          // implicit conversion, too easy to miss
+          int x = value;
+
+          // C-style cast, avoid doing this
+          int x = (int)value;
+
+          // C++-style cast, this is preferred
+          int x = static_cast<int>(value);
+        }
+        \`\`\`
+
+        In C++, the \`static_cast\` form is preferred because it involves stronger compiler checks to ensure the conversion makes sense.
+      `,
+      questions: [],
+    },
+    {
+      section_id: "section_01_9",
       title: "Projects and Autograder",
       mk_description: dedent`
         You get to exercise the skills you learn in lecture and lab in six large-scale programming projects throughout the course, designed to solidify your understanding and give you a chance to build some neat applications with real-world appeal!
         
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/CY21lS9FQtA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/Bsr_bXDhaUE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
-      `,
-      questions: [ ]
-    },
-    {
-      section_id: "section_01_9",
-      title: "Collaboration and Honor Code",
-      mk_description: dedent`
-        We want you to learn with and from each other! Enjoying the class with others and having a network you can reach out to for help is highly encouraged. At the same time, we want to make sure everyone has an opportunity to learn for themselves and that nobody takes credit for someone else's work. We follow the UM CoE Honor Code.
-        
-        <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/nxYgqqXjIhc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <br />
-
-        The stuff I said in that video all still applies... but that chart is pretty old. Here's a more recent chart from the terms of EECS 280 (and excluding ENGR 101) that I've been involved with. The takeaway is the same - we only report cases to the honor council where there is compelling evidence plagiarism occurred.
-
-        <div style="text-align: center;">
-          <img src="assets/hc_resolutions.png" style="width: 600px; border: solid 1px gray;">
-        </div>
-
-        <br />
-
-        **Generative AI Policy**  
-        Finally, it's worth mentioning our Generative AI Policy. The short version - you're encouraged to use tools like ChatGPT, Copilot, etc. to help you learn, but you aren't allowed to use them to do your work for you. The [full version](https://eecs280.org/syllabus.html#generative-ai-policy) in our syllabus is also worth a read.
-
-        In almost all cases in EECS 280, I highly recommend against using generative AI tools for writing ANY code, regardless of the amount. A huge part of this course is building up your own programming skills.
       `,
       questions: [ ]
     },
     {
       section_id: "section_01_10",
+      title: "Collaboration and Academic Integrity",
+      mk_description: dedent`
+        We want you to learn with and from each other! Enjoying the class with others and having a network you can reach out to for help is highly encouraged. At the same time, we want to make sure everyone has an opportunity to learn for themselves and that nobody takes credit for someone else's work.
+        
+        It's also important to do the (sometimes challenging, sometimes frustrating!) work yourself, because otherwise you're not going to get much out of the course. This informs our Generative AI Policy. The short version - you're encouraged to use tools like ChatGPT, Copilot, etc. to help you learn, but you aren't allowed to use them to do your work for you. I recommend against using such tools for *any* code generation, no matter how small. The [full version](https://eecs280.org/syllabus.html#generative-ai-policy) in our syllabus is also worth a read.
+        
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/UGL_kCo1P1Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
+      `,
+      questions: [ ]
+    },
+    {
+      section_id: "section_01_11",
       title: "Wrapping Up",
       mk_description: dedent`
         Just a few parting thoughts.
