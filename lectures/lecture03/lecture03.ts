@@ -9,7 +9,7 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 
-export const LECTURE_03 : Omit<ExamSpecification, "exam_id"> = {
+export const MACHINE_MODEL_PART_1 : Omit<ExamSpecification, "exam_id"> = {
   title: "Machine Model, Part 1",
   mk_intructions: dedent`
     <div markdown=1 class="alert alert-info">
@@ -19,7 +19,17 @@ export const LECTURE_03 : Omit<ExamSpecification, "exam_id"> = {
       
       Likewise, in a program we might want several different parts of our code to refer to the same data structure, but we don't want them all to literally have a local copy of that data. It would be better to use a pointer to store the address of the data and just go look it up when we need to.
 
-      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2024</div>
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Winter 2025</div>
+    </div>
+    
+    <div markdown=1 class="alert">
+      We're sharing an announcement on behalf of the RenewCS tutoring and mentoring program.
+
+      <hr >
+
+      <div style="text-align: center;">
+        <img src="assets/RenewCS.jpg" style="width: 650px;">
+      </div>
     </div>
 
     <style>
@@ -205,7 +215,67 @@ export const LECTURE_03 : Omit<ExamSpecification, "exam_id"> = {
 
         <br />
       `,
-      questions: [],
+      questions: [
+        {
+          question_id: "lec03_value_semantics_addresses_references",
+          points: 5,
+          mk_description: dedent`
+            Consider the following code:
+            
+            \`\`\`cpp
+            int main() {
+              int x = 3;
+              int y = x;
+              int &z = x;
+              x = 10;
+              // consider the state of the program at this point
+            }
+            \`\`\`
+
+            Which of the following are true?
+          `,
+          response: {
+            kind: "multiple_choice",
+            choices: [
+              "The value of `x` is 10.",
+              "The value of `y` is 10.",
+              "The value of `z` is 10.",
+              "The expression &x == &z will always yield true.",
+              "If the line `z = y` is run, z will now refer to `y` instead of `x`.",
+            ],
+            multiple: true,
+            sample_solution: [0, 2, 3],
+            default_grader: {
+              grader_kind: "summation_multiple_choice",
+              rubric: [
+                {points: 1, selected: true},
+                {points: 1, selected: false},
+                {points: 1, selected: true},
+                {points: 1, selected: true},
+                {points: 1, selected: false},
+              ]
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
+          },
+          mk_postscript: dedent`
+            <details>
+              <summary>Sample solution...</summary>
+
+              <input type="text" size="8" value="true" readonly</input> The value of \`x\` is 10.
+              
+              <input type="text" size="8" value="false" readonly</input> The value of \`y\` is 10.
+              
+              <input type="text" size="8" value="true" readonly</input> The value of \`z\` is 10.
+              
+              <input type="text" size="8" value="true" readonly</input> The expression &x == &z will always yield true.
+              
+              <input type="text" size="8" value="false" readonly</input> If the line \`z = y\` is run, z will now refer to \`y\` instead of \`x\`.
+            </details>
+          `,
+        }
+      ],
     },
     {
       section_id: "section_03_5",
@@ -565,7 +635,55 @@ int main() {
         </div>
         <br />
       `,
-      questions: [ ]
+      questions: [
+        {
+          question_id: "lec03_value_categories",
+          points: 5,
+          mk_description: dedent`
+            Which of the following are true about **expression value categories** in C++?
+          `,
+          response: {
+            kind: "multiple_choice",
+            choices: [
+              "An lvalue is an expression that yields an object at some memory location.",
+              "An lvalue may appear on the left hand side of an assignment.",
+              "An lvalue may appear on the right hand side of an assignment.",
+              "An rvalue may appear on the left hand side of an assignment.",
+              "An rvalue may appear on the right hand side of an assignment.",
+            ],
+            multiple: true,
+            sample_solution: [0, 1, 2, 4],
+            default_grader: {
+              grader_kind: "summation_multiple_choice",
+              rubric: [
+                {points: 1, selected: true},
+                {points: 1, selected: true},
+                {points: 1, selected: true},
+                {points: 1, selected: false},
+                {points: 1, selected: true},
+              ]
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
+          },
+          mk_postscript: dedent`
+            <details>
+              <summary>Sample solution...</summary>
+
+              <input type="text" size="8" value="true" readonly</input> An lvalue is an expression that yields an object at some memory location.
+              
+              <input type="text" size="8" value="true" readonly</input> An lvalue may appear on the left hand side of an assignment.
+              
+              <input type="text" size="8" value="true" readonly</input> An lvalue may appear on the right hand side of an assignment.
+              
+              <input type="text" size="8" value="false" readonly</input> An rvalue may appear on the left hand side of an assignment.
+              
+              <input type="text" size="8" value="true" readonly</input> An rvalue may appear on the right hand side of an assignment.
+            </details>
+          `,
+        }
+      ],
     },
   ],
 };

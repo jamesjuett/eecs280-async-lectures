@@ -3,7 +3,7 @@ import { ExamGenerator } from "examma-ray/dist/ExamGenerator";
 import { DateTime } from "luxon";
 import { INTRO } from "./lecture01/lecture01";
 import { TYPES_CONTROL_STRUCTURES_AND_PROCEDURAL_ABSTRACTION } from "./lecture02/lecture02";
-import { LECTURE_03 } from "./lecture03/lecture03";
+import { MACHINE_MODEL_PART_1 } from "./lecture03/lecture03";
 import { LECTURE_04 } from "./lecture04/lecture04";
 import { LECTURE_05 } from "./lecture05/lecture05";
 import { LECTURE_06 } from "./lecture06/lecture06";
@@ -50,7 +50,7 @@ const FAVICON_LINKS = `
 export const LECTURE_SPECS = [
   { spec: INTRO                                                 , updated: true, deadline: DateTime.fromISO("2025-01-08", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   { spec: TYPES_CONTROL_STRUCTURES_AND_PROCEDURAL_ABSTRACTION   , updated: true, deadline: DateTime.fromISO("2025-01-13", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: LECTURE_03                                         , updated: true, deadline: DateTime.fromISO("2025-01-15", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: MACHINE_MODEL_PART_1                                  , updated: true, deadline: DateTime.fromISO("2025-01-15", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   // { spec: LECTURE_04                                         , updated: true, deadline: DateTime.fromISO("2025-01-22", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   // { spec: LECTURE_05                                         , updated: true, deadline: DateTime.fromISO("2025-01-27", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   // { spec: LECTURE_06                                         , updated: true, deadline: DateTime.fromISO("2025-01-29", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },

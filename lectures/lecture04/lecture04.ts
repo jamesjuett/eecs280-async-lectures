@@ -18,6 +18,17 @@ export const LECTURE_04 : Omit<ExamSpecification, "exam_id"> = {
       
       <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2024</div>
     </div>
+
+    <div markdown=1 class="alert">
+      CSE at UofM is hosting a panel session this Friday, Jan 24 that we think you might be interested in.
+
+      <hr >
+
+      <div style="text-align: center;">
+        <img src="assets/pathways_in_computing_w25.jpg" style="width: 650px;">
+      </div>
+    </div>
+
     <style>
       .lec-video {
         width: 80%;
