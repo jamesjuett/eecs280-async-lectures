@@ -9,14 +9,14 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 
-export const LECTURE_04 : Omit<ExamSpecification, "exam_id"> = {
+export const MACHINE_MODEL_PART_2 : Omit<ExamSpecification, "exam_id"> = {
   title: "Machine Model, Part 2",
   mk_intructions: dedent`
 
     <div markdown=1 class="alert alert-info">
       This is part two of our exploration of the underlying machine model. A primary focus will be on the way local objects and their underlying memory is managed by the function call stack. We'll also cover different mechanisms for parameter passing and returned results from functions.
       
-      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2024</div>
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Winter 2025</div>
     </div>
 
     <div markdown=1 class="alert">
