@@ -9,7 +9,7 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 
-export const LECTURE_06 : Omit<ExamSpecification, "exam_id"> = {
+export const STREAMS_AND_IO : Omit<ExamSpecification, "exam_id"> = {
   title: "Streams and I/O",
   mk_intructions: dedent`
     <div markdown=1 class="alert alert-info">
@@ -20,7 +20,7 @@ export const LECTURE_06 : Omit<ExamSpecification, "exam_id"> = {
 
       We'll cover these as well as a number of miscellaneous topics related to programs and the command-line environment from which they run, including exit codes, input/output redirection, and pipelining.
       
-      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2024</div>
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Winter 2025</div>
       
     </div>
     <style>
@@ -156,8 +156,8 @@ export const LECTURE_06 : Omit<ExamSpecification, "exam_id"> = {
         The video below covers both in more detail.
 
         <div class="alert alert-secondary" role="alert" markdown="1">
-          <h5><span class="badge badge-success">Fall 2024</span></h5>
-          Please disregard the use of the \`new\` and \`delete\` operators in the video below. We've modified project 2 such so that you do not need to use them.
+          <h5><span class="badge badge-primary">Winter 2025</span></h5>
+          Please disregard the use of the \`new\` and \`delete\` operators in the video below. We've recently modified project 2 such so that you do not need to (and should not) use them.
         </div>
 
         <div style="text-align: center;">

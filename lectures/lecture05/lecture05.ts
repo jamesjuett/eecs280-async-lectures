@@ -9,7 +9,7 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 
-export const LECTURE_05 : Omit<ExamSpecification, "exam_id"> = {
+export const CONST_STRUCTS_AND_C_STYLE_ADTS : Omit<ExamSpecification, "exam_id"> = {
   title: "`const`, `struct`s, and C-Style ADTs",
   mk_intructions: dedent`
     <div markdown=1 class="alert alert-info">
@@ -17,7 +17,7 @@ export const LECTURE_05 : Omit<ExamSpecification, "exam_id"> = {
         
       Today, we'll introduce **Abstract Data Types (ADTs)**, which serve as a combined abstraction for data and the functions that operate on that data.
 
-      Specifically, we'll define some conventions for ADTs as they could be implemented in the C language (which is both the precursor to C++ and also a contemporary language that used in lower-level systems development). We're starting here for a few reasons:
+      Specifically, we'll define some conventions for ADTs as they could be implemented in the C language (which is both the precursor to C++ and also a contemporary language used in lower-level systems development). We're starting here for a few reasons:
     
       - The C style will expose more plainly some of the basic fundamentals of ADTs.
       - More practice with pointers! (spoiler alert, we'll be using pointers)
@@ -27,7 +27,7 @@ export const LECTURE_05 : Omit<ExamSpecification, "exam_id"> = {
 
       But first, let's take a detour to formally acknowledge the \`const\` keyeword, which has been showing up and will start showing up even more in the near future...
       
-      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2024</div>
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Winter 2025</div>
     </div>
     <style>
       .lec-video {
@@ -59,7 +59,7 @@ export const LECTURE_05 : Omit<ExamSpecification, "exam_id"> = {
         The \`const\` keyword is a _type qualifier_ that we can add to declarations to tell the compiler that we don't intend for some value to change or be changeable. For it's part, the compiler then double checks for us that we don't accidentally try to do this and gives an error if we do!
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/qWwTIjbzdWQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/YDLOgHq68W8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
       `,
@@ -1061,10 +1061,10 @@ void Triangle_scale(Triangle tri, double s) {
     },
     {
       section_id: "section_05_08",
-      title: "ADTs in Project 2",
+      title: "Composing ADTs",
       mk_description: dedent`
         
-        Let's take a quick look at the way abstraction is used in project 2 to build \`Matrix\` and \`Image\` ADTs.
+        It's common to build one ADT by using another. A nice example of this is the \`Image\` ADT from project 2, which is composed of three \`Matrix\` ADTs that represent the red/green/blue color channels of an image.
 
         <div style="text-align: center;">
           <iframe class="lec-video" src="https://www.youtube.com/embed/n6DKUrWNyec" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -1124,13 +1124,8 @@ void Triangle_scale(Triangle tri, double s) {
 
         Let's take a look at this with some examples for testing the \`Matrix\` ADT, including some specifics for testing C-Style ADTs without breaking their interface.
         
-        <div class="alert alert-secondary" role="alert" markdown="1">
-          <h5><span class="badge badge-success">Fall 2024</span></h5>
-          Please disregard the use of the \`new\` and \`delete\` operators in the video below. We've modified project 2 such so that you do not need to use them.
-        </div>
-
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/z6qniEWelyE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/arLNZZsnZBc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
       `,
