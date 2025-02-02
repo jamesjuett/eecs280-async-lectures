@@ -53,7 +53,6 @@ export const PROGRAM_DESIGN_AND_DEBUGGING : Omit<ExamSpecification, "exam_id"> =
           <iframe class="lec-video" src="https://www.youtube.com/embed/A0CKtLYfHcc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
-        The code lives in a public repository at .
       `,
       questions: [
         {
