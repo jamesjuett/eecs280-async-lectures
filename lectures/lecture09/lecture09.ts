@@ -9,7 +9,7 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 
-export const LECTURE_09 : Omit<ExamSpecification, "exam_id"> = {
+export const OPERATOR_OVERLOADING_AND_INHERITANCE : Omit<ExamSpecification, "exam_id"> = {
   title: "Operator Overloading and Inheritance",
   mk_intructions: dedent`
     <div markdown=1 class="alert alert-info">
@@ -17,7 +17,7 @@ export const LECTURE_09 : Omit<ExamSpecification, "exam_id"> = {
 
       Next, we'll introduce **inheritance**, which allows us to derive one \`class\` from another, such that the **derived class** automatically "inherits" member variables and functions from its **base class**. This is helpful both to save us work (i.e. we avoid duplicating common implementation details by putting them in a base class) and to set up the foundation for meaningful hierarchies of ADTs (more on this in the next lecture).
       
-      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2024</div>
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Winter 2025</div>
     </div>
     <style>
       .lec-video {
@@ -243,7 +243,7 @@ export const LECTURE_09 : Omit<ExamSpecification, "exam_id"> = {
       section_id: "section_9_4",
       title: "Introduction to Inheritance",
       mk_description: dedent`
-        Let's start with a bit of motivation for inheritance and a brief introduction to the way it's available as a fundamental language feature in C++.
+        Let's start with a bit of motivation for **inheritance** and a brief introduction to the way it's available as a fundamental language feature in C++.
 
         <div style="text-align: center;">
           <iframe class="lec-video" src="https://www.youtube.com/embed/fMMKT-LlREA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

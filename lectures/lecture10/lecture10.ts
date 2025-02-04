@@ -9,7 +9,7 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 
-export const LECTURE_10 : Omit<ExamSpecification, "exam_id"> = {
+export const POLYMORPHISM : Omit<ExamSpecification, "exam_id"> = {
   title: "Polymorphism",
   mk_intructions: dedent`
     <div markdown=1 class="alert alert-info">
@@ -17,7 +17,7 @@ export const LECTURE_10 : Omit<ExamSpecification, "exam_id"> = {
 
       We'll specifically focus on **subtype polymorphism** today.
       
-      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2024</div>
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Winter 2025</div>
     </div>
     <style>
       .lec-video {

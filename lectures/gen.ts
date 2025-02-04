@@ -8,9 +8,9 @@ import { MACHINE_MODEL_PART_2 } from "./lecture04/lecture04";
 import { CONST_STRUCTS_AND_C_STYLE_ADTS } from "./lecture05/lecture05";
 import { STREAMS_AND_IO } from "./lecture06/lecture06";
 import { PROGRAM_DESIGN_AND_DEBUGGING } from "./lecture07/lecture07";
-import { LECTURE_08 } from "./lecture08/lecture08";
-import { LECTURE_09 } from "./lecture09/lecture09";
-import { LECTURE_10 } from "./lecture10/lecture10";
+import { ADTS_IN_CPP } from "./lecture08/lecture08";
+import { OPERATOR_OVERLOADING_AND_INHERITANCE } from "./lecture09/lecture09";
+import { POLYMORPHISM } from "./lecture10/lecture10";
 import { LECTURE_11 } from "./lecture11/lecture11";
 import { ARRAYS_AND_TIME_COMPLEXITY } from "./lecture11_5/lec";
 import { ARRAY_BASED_DATA_STRUCTURES } from "./lecture12/lec";
@@ -55,9 +55,9 @@ export const LECTURE_SPECS = [
   { spec: CONST_STRUCTS_AND_C_STYLE_ADTS                        , updated: true, deadline: DateTime.fromISO("2025-01-27", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   { spec: STREAMS_AND_IO                                        , updated: true, deadline: DateTime.fromISO("2025-01-29", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   { spec: PROGRAM_DESIGN_AND_DEBUGGING                          , updated: true, deadline: DateTime.fromISO("2025-02-03", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: LECTURE_08                                         , updated: true, deadline: DateTime.fromISO("2025-02-05", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: LECTURE_09                                         , updated: true, deadline: DateTime.fromISO("2025-02-10", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: LECTURE_10                                         , updated: true, deadline: DateTime.fromISO("2025-02-12", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: ADTS_IN_CPP                                         , updated: true, deadline: DateTime.fromISO("2025-02-05", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: OPERATOR_OVERLOADING_AND_INHERITANCE                                         , updated: true, deadline: DateTime.fromISO("2025-02-10", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: POLYMORPHISM                                         , updated: true, deadline: DateTime.fromISO("2025-02-12", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   // { spec: LECTURE_11                                         , updated: true, deadline: DateTime.fromISO("2025-02-17", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   // { spec: ARRAYS_AND_TIME_COMPLEXITY                         , updated: true, deadline: DateTime.fromISO("2025-02-19", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   // { spec: ARRAY_BASED_DATA_STRUCTURES                        , updated: true, deadline: DateTime.fromISO("2025-02-24", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },

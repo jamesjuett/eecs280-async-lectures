@@ -9,7 +9,7 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 
-export const LECTURE_08 : Omit<ExamSpecification, "exam_id"> = {
+export const ADTS_IN_CPP : Omit<ExamSpecification, "exam_id"> = {
   title: "Abstract Data Types in C++",
   mk_intructions: dedent`
     <div markdown=1 class="alert alert-info">
@@ -25,7 +25,7 @@ export const LECTURE_08 : Omit<ExamSpecification, "exam_id"> = {
          Use constructors to ensure ADTs are *always* initialized (rather than having to remember to separately call an \`_Init()\` function).  
 
       
-      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2024</div>
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Winter 2025</div>
     </div>
     <style>
       .lec-video {
