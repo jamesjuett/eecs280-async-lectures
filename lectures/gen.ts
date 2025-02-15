@@ -11,8 +11,8 @@ import { PROGRAM_DESIGN_AND_DEBUGGING } from "./lecture07/lecture07";
 import { ADTS_IN_CPP } from "./lecture08/lecture08";
 import { OPERATOR_OVERLOADING_AND_INHERITANCE } from "./lecture09/lecture09";
 import { POLYMORPHISM } from "./lecture10/lecture10";
-import { LECTURE_11 } from "./lecture11/lecture11";
-import { ARRAYS_AND_TIME_COMPLEXITY } from "./lecture11_5/lec";
+import { CONTAINERS_AND_ITERATORS } from "./lecture12_old/lecture12_old";
+import { ARRAYS_POINTER_ARITHMETIC_C_STRINGS } from "./lecture11/lecture11";
 import { ARRAY_BASED_DATA_STRUCTURES } from "./lecture12/lec";
 import { SORTED_VS_UNSORTED_DATA_STRUCTURES } from "./lecture13/lec";
 import { DYNAMIC_MEMORY } from "./lecture14/lec";
@@ -55,13 +55,13 @@ export const LECTURE_SPECS = [
   { spec: CONST_STRUCTS_AND_C_STYLE_ADTS                        , updated: true, deadline: DateTime.fromISO("2025-01-27", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   { spec: STREAMS_AND_IO                                        , updated: true, deadline: DateTime.fromISO("2025-01-29", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   { spec: PROGRAM_DESIGN_AND_DEBUGGING                          , updated: true, deadline: DateTime.fromISO("2025-02-03", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  { spec: ADTS_IN_CPP                                         , updated: true, deadline: DateTime.fromISO("2025-02-05", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  { spec: OPERATOR_OVERLOADING_AND_INHERITANCE                                         , updated: true, deadline: DateTime.fromISO("2025-02-10", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  { spec: POLYMORPHISM                                         , updated: true, deadline: DateTime.fromISO("2025-02-12", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: LECTURE_11                                         , updated: true, deadline: DateTime.fromISO("2025-02-17", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: ARRAYS_AND_TIME_COMPLEXITY                         , updated: true, deadline: DateTime.fromISO("2025-02-19", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: ARRAY_BASED_DATA_STRUCTURES                        , updated: true, deadline: DateTime.fromISO("2025-02-24", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: SORTED_VS_UNSORTED_DATA_STRUCTURES                 , updated: true, deadline: DateTime.fromISO("2025-02-26", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: ADTS_IN_CPP                                           , updated: true, deadline: DateTime.fromISO("2025-02-05", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: OPERATOR_OVERLOADING_AND_INHERITANCE                  , updated: true, deadline: DateTime.fromISO("2025-02-10", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: POLYMORPHISM                                          , updated: true, deadline: DateTime.fromISO("2025-02-12", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: ARRAYS_POINTER_ARITHMETIC_C_STRINGS                   , updated: true, deadline: DateTime.fromISO("2025-02-19", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  // { spec: ARRAY_BASED_DATA_STRUCTURES                           , updated: true, deadline: DateTime.fromISO("2025-02-24", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  // { spec: SORTED_VS_UNSORTED_DATA_STRUCTURES                    , updated: true, deadline: DateTime.fromISO("2025-02-26", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  // { spec: CONTAINERS_AND_ITERATORS                              , updated: true, deadline: DateTime.fromISO("2025-02-17", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   // { spec: DYNAMIC_MEMORY                                     , updated: true, deadline: DateTime.fromISO("2025-03-10", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   // { spec: RAII_AND_GROWABLE_CONTAINERS                       , updated: true, deadline: DateTime.fromISO("2025-03-12", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   // { spec: DEEP_COPIES_AND_THE_BIG_THREE                      , updated: true, deadline: DateTime.fromISO("2025-03-19", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },

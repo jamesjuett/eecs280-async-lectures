@@ -17,6 +17,13 @@ export const ARRAY_BASED_DATA_STRUCTURES : Omit<ExamSpecification, "exam_id"> = 
       
       We'll be following our normal process for building an ADT - starting with our motivating use cases and the interface we want, followed by a fundamental data representation and invariants, and finally filling in the implementations for each member function.
       
+      We'll also introduce the notion of **time complexity** to formally analyze the efficiency of operations on data structures.
+      
+      It turns out that arrays (and data structures built using them) provide very efficient access to data in a couple different ways:
+      
+      - **Sequential Access**: Iterating through a sequence of elements from start to end.
+      - **Random Access**: Accessing an element at a particular index (i.e. position) in the sequence.
+
       <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2024</div>
     </div>
     <style>
@@ -360,7 +367,7 @@ Two of the implementations above for \`remove()\` work correctly. Which one is t
       ],
     },
     {
-      section_id: "section_11_4",
+      section_id: "section_11_3",
       title: "Member vs. Non-Member Operator Overloads",
       mk_description: dedent`
 
@@ -640,6 +647,19 @@ void IntSet::operator+=(int v) {
           `
         }
       ],
+    },
+    {
+      section_id: "section_11_4",
+      title: "Time Complexity",
+      mk_description: dedent`
+        As we're asessing the fitness of a data structure for a given task, it's helpful to determine its **time complexity**, which quantifies how well it performs as the size of the data we're working with scales up.
+        
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/Uh8NYvg1Sa8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
+      `,
+      questions: [],
     },
   ],
 };
