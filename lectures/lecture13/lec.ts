@@ -42,34 +42,45 @@ export const SORTED_VS_UNSORTED_DATA_STRUCTURES : Omit<ExamSpecification, "exam_
   assets_dir: __dirname + `/assets`,
   allow_clientside_content: true,
   sections: [
+    
     {
-      section_id: "section_12_1",
-      title: "Time Complexity",
+      section_id: "section_12_0",
+      title: "Member vs. Non-Member Operator Overloads",
       mk_description: dedent`
-        As we're asessing the fitness of a data structure for a given task, it's helpful to determine its **time complexity**, which quantifies how well it performs as the size of the data we're working with scales up. Recall two key types of time complexity:
-        
-        - _O(1)_ constant time complexity, where the time taken does not depend on the size of the data, _n_.
-        - _O(n)_ linear time complexity, where the time taken is linearly proportional to the size of the data, _n_.
+
+        You know the only thing cooler than a set ADT? A set ADT with custom operators!
+
+        We'll look at two different examples:
+        - \`operator<<\`, which is implemented as a **non-member** function operator overload.
+        - \`operator[]\`, which is implemented as a **member** function operator overload.
+
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/8z7QnyRcK0s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
+
       `,
       questions: [
         {
-          question_id: "lec12_time_complexity",
-          title: "Exercise: Time Complexity",
-          points: 6,
+          question_id: "lec11_intset_operator_plus_equals",
+          title: "Exercise: Overloading \`+=\` on \`IntSet\`",
+          points: 5,
           mk_description: dedent`
-            Recall the unsorted \`IntSet\` from last time. We used an array for the underlying data representation:
+            Let's add a \`+=\` operator to our \`IntSet\` class, which allows a nice syntax for adding elements to the set. Here's an example of how we might use it:
 
             \`\`\`cpp
             class IntSet {
-            private:
-              int elts[ELTS_CAPACITY];
-              int elts_size;
-            public:
-              ...
+              // operator+= overload
             };
+            int main() {
+              IntSet set;
+              set += 3;
+              set += 5;
+              cout << set; // {3, 5}
+            }
             \`\`\`
 
-            Below are several implementations of functions for the unsorted \`IntSet\` from last time. Using a worst-case analysis, determine whether each function has _O(1)_ constant time complexity or _O(n)_ linear time complexity. Explain your reasoning. 
+            The \`+=\` operator can be implemented either as a member function overload or a non-member function overload. Consider each of the potential implementations of \`+=\` below. For each, indicate how the \`operator+=\` overload function is being defined (write **"member"** or **"non-member"**) and whether or not it is implemented correctly (write **"correct"** or **"incorrect"**).
           `,
           response: {
             kind: "fill_in_the_blank",
@@ -78,27 +89,11 @@ export const SORTED_VS_UNSORTED_DATA_STRUCTURES : Omit<ExamSpecification, "exam_
   <tr>
     <td style="width: 350px; padding-right: 15px;">
     <div markdown="1">
-\`\`\`cpp
-// IntSet constructor
-IntSet::IntSet()
-  : elts_size(0) { }
-  \`\`\`
-    </div>
-    </td>
-    <td>
-    <div>
-      [[BOX
       
-      ]]
-    </div>
-    </td>
-  </tr>
-  <tr>
-    <td style="width: 350px; padding-right: 15px;">
-    <div markdown="1">
 \`\`\`cpp
-IntSet::size() {
-  return elts_size;
+// Version 1
+void operator+=(IntSet &s, int v) {
+  s.insert(v);
 }
 \`\`\`
     </div>
@@ -107,6 +102,7 @@ IntSet::size() {
     <div>
       [[BOX
       
+      
       ]]
     </div>
     </td>
@@ -114,14 +110,11 @@ IntSet::size() {
   <tr>
     <td style="width: 350px; padding-right: 15px;">
     <div markdown="1">
+      
 \`\`\`cpp
-int IntSet::indexOf(int v) const {
-  for (int i = 0; i < elts_size; ++i) {
-    if (elts[i] == v) {
-        return i;
-    }
-  }
-  return -1;
+// Version 2
+void IntSet::operator+=(int v) {
+  this->insert(v);
 }
 \`\`\`
     </div>
@@ -129,6 +122,28 @@ int IntSet::indexOf(int v) const {
     <td>
     <div>
       [[BOX
+      
+      
+      ]]
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 350px; padding-right: 15px;">
+    <div markdown="1">
+      
+\`\`\`cpp
+// Version 3
+void IntSet::operator+=(IntSet &s, int v) {
+  s.insert(v);
+}
+\`\`\`
+    </div>
+    </td>
+    <td>
+    <div>
+      [[BOX
+      
       
       ]]
     </div>
@@ -138,9 +153,11 @@ int IntSet::indexOf(int v) const {
   <tr>
     <td style="width: 350px; padding-right: 15px;">
     <div markdown="1">
+      
 \`\`\`cpp
-bool IntSet::contains(int v) const {
-  return indexOf(v) != -1;
+// Version 4
+void operator+=(IntSet &s, int v) {
+  this->insert(v);
 }
 \`\`\`
     </div>
@@ -149,28 +166,6 @@ bool IntSet::contains(int v) const {
     <div>
       [[BOX
       
-      ]]
-    </div>
-    </td>
-  </tr>
-  <tr>
-    <td style="width: 350px; padding-right: 15px;">
-    <div markdown="1">
-\`\`\`cpp
-void IntSet::insert(int v) {
-  assert(size() < ELTS_CAPACITY);
-  if (contains(v)) {
-    return;
-  }
-  elts[elts_size] = v;
-  ++elts_size;
-}
-\`\`\`
-    </div>
-    </td>
-    <td>
-    <div>
-      [[BOX
       
       ]]
     </div>
@@ -179,13 +174,11 @@ void IntSet::insert(int v) {
   <tr>
     <td style="width: 350px; padding-right: 15px;">
     <div markdown="1">
+      
 \`\`\`cpp
-void IntSet::remove(int v) {
-  if (!contains(v)) {
-    return;
-  }
-  elts[indexOf(v)] = elts[elts_size - 1];
-  --elts_size;
+// Version 5
+void IntSet::operator+=(int v) {
+  insert(v);
 }
 \`\`\`
     </div>
@@ -193,6 +186,7 @@ void IntSet::remove(int v) {
     <td>
     <div>
       [[BOX
+      
       
       ]]
     </div>
@@ -210,13 +204,18 @@ void IntSet::remove(int v) {
                   description: "",
                   patterns: [
                     {
-                      pattern: /constant|O\s*\(\s*1\s*\)/i,
-                      explanation: "Correct!",
+                      pattern: /incorrect/i,
+                      explanation: "`operator+=` is being implemented as a non-member function. The implementation is correct.",
+                      points: 0
+                    },
+                    {
+                      pattern: /non\s*-?\s*member.*correct|correct.*non\s*-?\s*member/i,
+                      explanation: "`operator+=` is being implemented as a non-member function. The implementation is correct.",
                       points: 1
                     },
                     {
-                      pattern: /linear|O\s*\(\s*n\s*\)/i,
-                      explanation: "The implementation has constant time complexity. Check the walkthrough video for details.",
+                      pattern: /.{12,}/i,
+                      explanation: "`operator+=` is being implemented as a non-member function. The implementation is correct.",
                       points: 0
                     },
                   ]
@@ -228,13 +227,18 @@ void IntSet::remove(int v) {
                   description: "",
                   patterns: [
                     {
-                      pattern: /constant|O\s*\(\s*1\s*\)/i,
-                      explanation: "Correct!",
+                      pattern: /non\s*-?\s*member|incorrect/i,
+                      explanation: "`operator+=` is being implemented as a member function. The implementation is correct.",
+                      points: 0
+                    },
+                    {
+                      pattern: /member.*correct|correct.*member/i,
+                      explanation: "`operator+=` is being implemented as a member function. The implementation is correct.",
                       points: 1
                     },
                     {
-                      pattern: /linear|O\s*\(\s*n\s*\)/i,
-                      explanation: "The implementation has constant time complexity. Check the walkthrough video for details.",
+                      pattern: /.{12,}/i,
+                      explanation: "`operator+=` is being implemented as a member function. The implementation is correct.",
                       points: 0
                     },
                   ]
@@ -246,13 +250,18 @@ void IntSet::remove(int v) {
                   description: "",
                   patterns: [
                     {
-                      pattern: /linear|O\s*\(\s*n\s*\)/i,
-                      explanation: "Correct!",
+                      pattern: /non\s*-?\s*member/i,
+                      explanation: "`operator+=` is being implemented as a member function. The implementation is incorrect.",
+                      points: 0
+                    },
+                    {
+                      pattern: /member.*incorrect|incorrect.*member/i,
+                      explanation: "`operator+=` is being implemented as a member function. The implementation is incorrect.",
                       points: 1
                     },
                     {
-                      pattern: /constant|O\s*\(\s*1\s*\)/i,
-                      explanation: "The implementation has linear time complexity. Check the walkthrough video for details.",
+                      pattern: /.{12,}/i,
+                      explanation: "`operator+=` is being implemented as a member function. The implementation is incorrect.",
                       points: 0
                     },
                   ]
@@ -264,13 +273,13 @@ void IntSet::remove(int v) {
                   description: "",
                   patterns: [
                     {
-                      pattern: /linear|O\s*\(\s*n\s*\)/i,
-                      explanation: "Correct!",
+                      pattern: /non\s*-?\s*member.*incorrect|incorrect.*non\s*-?\s*member/i,
+                      explanation: "`operator+=` is being implemented as a non-member function. The implementation is incorrect.",
                       points: 1
                     },
                     {
-                      pattern: /constant|O\s*\(\s*1\s*\)/i,
-                      explanation: "The implementation has linear time complexity. Check the walkthrough video for details.",
+                      pattern: /.{12,}/i,
+                      explanation: "`operator+=` is being implemented as a non-member function. The implementation is incorrect.",
                       points: 0
                     },
                   ]
@@ -282,31 +291,18 @@ void IntSet::remove(int v) {
                   description: "",
                   patterns: [
                     {
-                      pattern: /linear|O\s*\(\s*n\s*\)/i,
-                      explanation: "Correct!",
-                      points: 1
-                    },
-                    {
-                      pattern: /constant|O\s*\(\s*1\s*\)/i,
-                      explanation: "The implementation has linear time complexity. Check the walkthrough video for details.",
+                      pattern: /non\s*-?\s*member|incorrect/i,
+                      explanation: "`operator+=` is being implemented as a member function. The implementation is correct.",
                       points: 0
                     },
-                  ]
-                },
-                {
-                  blankIndex: 6,
-                  title: "Box 6",
-                  points: 1,
-                  description: "",
-                  patterns: [
                     {
-                      pattern: /linear|O\s*\(\s*n\s*\)/i,
-                      explanation: "Correct!",
+                      pattern: /member.*correct|correct.*member/i,
+                      explanation: "`operator+=` is being implemented as a member function. The implementation is correct.",
                       points: 1
                     },
                     {
-                      pattern: /constant|O\s*\(\s*1\s*\)/i,
-                      explanation: "The implementation has linear time complexity. Check the walkthrough video for details.",
+                      pattern: /.{12,}/i,
+                      explanation: "`operator+=` is being implemented as a member function. The implementation is correct.",
                       points: 0
                     },
                   ]
@@ -322,7 +318,7 @@ void IntSet::remove(int v) {
             You're welcome to check your solution with this **walkthrough** video:
 
             <div style="text-align: center;">
-              <iframe class="lec-video" src="https://www.youtube.com/embed/LU8JMGBOLBM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe class="lec-video" src="https://www.youtube.com/embed/Z4FmzZ4ppQQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <br />
           `

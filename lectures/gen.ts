@@ -59,7 +59,7 @@ export const LECTURE_SPECS = [
   { spec: OPERATOR_OVERLOADING_AND_INHERITANCE                  , updated: true, deadline: DateTime.fromISO("2025-02-10", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   { spec: POLYMORPHISM                                          , updated: true, deadline: DateTime.fromISO("2025-02-12", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   { spec: ARRAYS_POINTER_ARITHMETIC_C_STRINGS                   , updated: true, deadline: DateTime.fromISO("2025-02-17", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: ARRAY_BASED_DATA_STRUCTURES                           , updated: true, deadline: DateTime.fromISO("2025-02-19", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: ARRAY_BASED_DATA_STRUCTURES                           , updated: true, deadline: DateTime.fromISO("2025-02-19", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   // { spec: SORTED_VS_UNSORTED_DATA_STRUCTURES                    , updated: true, deadline: DateTime.fromISO("2025-02-24", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   // { spec: CONTAINERS_AND_ITERATORS                              , updated: true, deadline: DateTime.fromISO("2025-02-26", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   // { spec: DYNAMIC_MEMORY                                     , updated: true, deadline: DateTime.fromISO("2025-03-10", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
