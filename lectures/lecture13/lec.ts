@@ -10,14 +10,19 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 export const SORTED_VS_UNSORTED_DATA_STRUCTURES : Omit<ExamSpecification, "exam_id"> = {
-  title: "Sorted vs. Unsorted Data Structures, Templates",
+  title: "Sorted Data Structures, Templates",
   mk_intructions: dedent`
     <div markdown=1 class="alert alert-info">
       Continuing from last time, we'll consider another potential implementation of a set, this time based on an underlying array that is kept in sorted order. The addition of a sorting invariant means some of our functions are more complicated (i.e. you can't just put elements wherever), but searching for elements in the array can be done much more efficiently.
 
-      Finally, it makes sense to introduce **templates** as a miscellaneous topic here. In particular, templates can be used to implement generic containers with flexible element types (e.g. \`set<int>\` and \`set<string>\`). Generally speaking, they also complete our exploration (started a few lectures ago) of different kinds of polymorphism.
-      
-      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2024</div>
+      We'll also introduce **templates**, which are a C++ mechanism for compile-time parametric polymorphism and can be used to implement generic containers with flexible element types (e.g. \`set<int>\` or \`set<string>\`).
+
+      But first, we'll cover a few miscellaneous topics that didn't fit in the last lecture:  
+      - The difference between the prefix and postfix versions of the \`++\` and \`--\` operators.  
+      - Overloading operators with member functions (as opposed to regular, non-member functions).
+      <br />
+      <br />
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Winter 2025</div>
     </div>
     <style>
       .lec-video {
@@ -44,7 +49,22 @@ export const SORTED_VS_UNSORTED_DATA_STRUCTURES : Omit<ExamSpecification, "exam_
   sections: [
     
     {
-      section_id: "section_12_0",
+      section_id: "section_12_1",
+      title: "Prefix `++` vs. Postfix `++`",
+      mk_description: dedent`
+
+        Ever wanted to know the difference between \`++i\` and \`i++\`? Here's the scoop:
+
+                <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/gY3jOra3kZo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
+
+      `,
+      questions: [],
+    },
+    {
+      section_id: "section_12_2",
       title: "Member vs. Non-Member Operator Overloads",
       mk_description: dedent`
 
@@ -326,7 +346,7 @@ void IntSet::operator+=(int v) {
       ],
     },
     {
-      section_id: "section_12_2",
+      section_id: "section_12_3",
       title: "A Sorted \`IntSet\`",
       mk_description: dedent`
 
@@ -383,7 +403,7 @@ void IntSet::operator+=(int v) {
       ],
     },
     {
-      section_id: "section_12_3",
+      section_id: "section_12_4",
       title: "Templates",
       mk_description: dedent`
 
