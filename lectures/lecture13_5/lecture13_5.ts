@@ -12,6 +12,9 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 export const CONTAINERS_AND_ITERATORS : Omit<ExamSpecification, "exam_id"> = {
   title: "Containers and Iterators",
   mk_intructions: dedent`
+    <div markdown=1 class="alert alert-success">
+      I didn't get this one published as early as usual, so I've extended the participation deadline by 24 hours to give a little extra flexibility.
+    </div>
     <div markdown=1 class="alert alert-info">
       This lecture covers a broad overview of **Containers** as well as the fundamental approaches to , which allow us to store and organize collections of other objects. Using container ADTs from the C++ standard library as examples:
       
@@ -23,7 +26,7 @@ export const CONTAINERS_AND_ITERATORS : Omit<ExamSpecification, "exam_id"> = {
 
       If you're not familiar with all these containers, don't worry - we'll introduce each briefly today. throughout the rest of the course.
       
-      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2024</div>
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Winter 2025</div>
     </div>
     <style>
       .lec-video {
