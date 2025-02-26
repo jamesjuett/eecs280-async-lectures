@@ -16,7 +16,9 @@ export const CONTAINERS_AND_ITERATORS : Omit<ExamSpecification, "exam_id"> = {
       I didn't get this one published as early as usual, so I've extended the participation deadline by 24 hours to give a little extra flexibility.
     </div>
     <div markdown=1 class="alert alert-info">
-      This lecture covers a broad overview of **Containers** as well as the fundamental approaches to , which allow us to store and organize collections of other objects. Using container ADTs from the C++ standard library as examples:
+      This lecture covers a broad overview of **containers** as well as the fundamental approaches to implementing their underlying **data structures**.
+      
+      Containers serve a variety of purposes. Here's a few containers from the C++ standard library as examples:
       
       - A \`std::vector<double>\` could store datapoints for statistical analysis
       - A \`std::set<string>\` could represent uniqnames of students registered for a course
@@ -24,7 +26,7 @@ export const CONTAINERS_AND_ITERATORS : Omit<ExamSpecification, "exam_id"> = {
 
       <!-- force end of list -->
 
-      If you're not familiar with all these containers, don't worry - we'll introduce each briefly today. throughout the rest of the course.
+      We'll also take a look at the way the standard library uses **iterators** as the abstraction for locating and traversing through elements.
       
       <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Winter 2025</div>
     </div>
