@@ -882,7 +882,40 @@ int main() {
         </div>
         <br />
       `,
-      questions: [ ],
+      questions: [
+        {
+          question_id: "lec_dangling_pointers_mc",
+          points: 5,
+          mk_description: dedent`
+            Which of the following are true about dangling pointers?
+          `,
+          response: {
+            kind: "multiple_choice",
+            choices: [
+              "A dangling pointer points to an object whose lifetime has ended (e.g. a local object gone out of scope or dynamic object that has been deleted).",
+              "In some cases, limiting the scope of a pointer variable can reduce the likelihood of accidentally dereferencing a dangling pointer.",
+              "Setting a pointer to \`nullptr\` after deleting the object it points to can prevent all memory/lifetime related errors.",
+              "After deleting an object through a pointer, it would be safe to re-point that pointer at some other object.",
+              "Potential memory access through dangling pointers and the resulting undefined behavior can lead to security vulnerabilities in a program.",
+            ],
+            multiple: true,
+            sample_solution: [0, 1, 3, 4],
+            default_grader: {
+              grader_kind: "summation_multiple_choice",
+              rubric: [
+                {points: 1, selected: true},
+                {points: 1, selected: true},
+                {points: 1, selected: false},
+                {points: 1, selected: true},
+                {points: 1, selected: true},
+              ]
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
+          },
+        }
+      ],
     },
     {
       section_id: "section_13_6",
