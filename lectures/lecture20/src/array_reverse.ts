@@ -88,7 +88,7 @@ $(() => {
           checkpoints: [
             new OutputCheckpoint("Correct Reversed Output", (output: string) => {
               return output.indexOf("Reversed: 4 3 2 1") !== -1;
-            }),
+            },"", 10000),
           ],
           completionCriteria: COMPLETION_ALL_CHECKPOINTS,
           completionMessage: "Nice work! Exercise complete!"

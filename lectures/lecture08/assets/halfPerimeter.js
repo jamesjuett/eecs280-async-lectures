@@ -79032,10 +79032,15 @@ __webpack_require__(3659);
 const SimpleExerciseLobsterOutlet_1 = __webpack_require__(5588);
 const ts_dedent_1 = __importDefault(__webpack_require__(1893));
 $(() => {
-    var _a;
     $(".lobster-ex").each(function () {
         var _a, _b, _c, _d, _e, _f, _g;
         $(this).append((0, embeddedExerciseOutlet_1.createEmbeddedExerciseOutlet)("single"));
+        $(this).find(".lobster-ex-checkpoints")
+            .detach().prependTo($(this))
+            .css("position", "sticky")
+            .css("top", "0")
+            .css("background-color", "white")
+            .css("z-index", "100000");
         let filename = "code";
         let exerciseSpec = {
             starterCode: (0, ts_dedent_1.default) `
@@ -79064,7 +79069,7 @@ $(() => {
             }
           `,
             checkpoints: [],
-            completionCriteria: Project_1.COMPLETION_LAST_CHECKPOINT,
+            completionCriteria: Project_1.COMPLETION_ALL_CHECKPOINTS,
             completionMessage: "Nice work! Exercise complete!"
         };
         let completionMessage = (_b = (_a = $(this).find(".lobster-ex-completion-message").html()) === null || _a === void 0 ? void 0 : _a.trim()) !== null && _b !== void 0 ? _b : (_c = $(this).find(".lobster-ex-complete-message").html()) === null || _c === void 0 ? void 0 : _c.trim();
@@ -79081,46 +79086,7 @@ $(() => {
             $(this).find(".lobster-embedded-height-control").addClass("lobster-ex-no-checkpoints");
         }
         let exOutlet = new SimpleExerciseLobsterOutlet_1.SimpleExerciseLobsterOutlet($(this), project);
-        window.addEventListener("message", (event) => {
-            // ignore messages from anywhere other than parent
-            if (event.source !== window.parent) {
-                return;
-            }
-            // ignore spurious messages
-            if (!event.data["examma_ray_message"]) {
-                return;
-            }
-            let msg = event.data["examma_ray_message"];
-            if (msg.message_kind === "set_submission") {
-                exOutlet.project.setFileContents({
-                    name: "main.cpp",
-                    text: msg.submission,
-                });
-            }
-        });
-        setInterval(() => {
-            var _a;
-            try {
-                (_a = window.parent) === null || _a === void 0 ? void 0 : _a.postMessage({
-                    examma_ray_message: {
-                        message_kind: "update",
-                        submission: exOutlet.project.sourceFiles[0].text,
-                    }
-                }, "*");
-            }
-            catch (e) {
-            }
-        }, 1000);
     });
-    try {
-        (_a = window.parent) === null || _a === void 0 ? void 0 : _a.postMessage({
-            examma_ray_message: {
-                message_kind: "ready",
-            }
-        }, "*");
-    }
-    catch (e) {
-    }
 });
 
 

@@ -153,7 +153,7 @@ $(() => {
           checkpoints: [
             new OutputCheckpoint("Correct Output", (output: string) => {
                 return output.indexOf("{ 1, 2, 3, 5, 7 }") !== -1;
-            }),
+            },"", 10000),
           ],
           completionCriteria: COMPLETION_ALL_CHECKPOINTS,
           completionMessage: "Nice work! Exercise complete!"

@@ -206,7 +206,7 @@ $(() => {
             new OutputCheckpoint("Correct Output", (output: string) => {
               return output.indexOf("{ 2, 3 }") !== -1
                 && output.indexOf("{ 2, 5 }") !== -1;
-            }),
+            },"", 10000),
             new EndOfMainStateCheckpoint("No Undefined Behavior", (sim: Simulation) => {
               return !sim.hasAnyEventOccurred;
             }, "", 5000),

@@ -79228,10 +79228,10 @@ $(() => {
             checkpoints: [
                 new checkpoints_1.OutputCheckpoint("- Subtraction Operator", (output, project) => {
                     return output.indexOf("sq diff: 531") !== -1;
-                }),
+                }, "", 10000),
                 new checkpoints_1.OutputCheckpoint("<< Output Operator", (output, project) => {
                     return ["rgb", "174", "129", "255", "166", "226", "46"].every(str => output.indexOf(str) !== -1);
-                }),
+                }, "", 10000),
             ],
             completionCriteria: Project_1.COMPLETION_ALL_CHECKPOINTS,
             completionMessage: "Nice work! Exercise complete!"

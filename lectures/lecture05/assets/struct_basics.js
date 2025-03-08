@@ -79160,6 +79160,7 @@ const checkpoints_1 = __webpack_require__(7939);
 const predicates_1 = __webpack_require__(7227);
 const analysis_1 = __webpack_require__(1112);
 const ts_dedent_1 = __importDefault(__webpack_require__(1893));
+const errors_1 = __webpack_require__(9221);
 const types_1 = __webpack_require__(2551);
 $(() => {
     var _a, _b, _c, _d, _e, _f, _g, _h;
@@ -79280,8 +79281,17 @@ $(() => {
     if (initCode) {
         exerciseSpec.starterCode = initCode;
     }
-    let extras = [(program) => {
-        }];
+    let extras = [
+        (program) => {
+            var _a;
+            const classes = (0, analysis_1.findConstructs)(program, predicates_1.Predicates.byKind("class_definition"));
+            const sandwich_struct = classes.find(c => c.name === "Sandwich");
+            const mem_price = sandwich_struct === null || sandwich_struct === void 0 ? void 0 : sandwich_struct.memberDeclarationsByName["price"];
+            if ((_a = mem_price === null || mem_price === void 0 ? void 0 : mem_price.type) === null || _a === void 0 ? void 0 : _a.similarType(types_1.Int.INT)) {
+                mem_price.addNote(new errors_1.CompilerNote(mem_price, errors_1.NoteKind.STYLE, "analysis.1", "Make sure the type here can accommodate decimal values like 7.99"));
+            }
+        }
+    ];
     let project = new Project_1.Project("project", undefined, [{ name: filename, code: exerciseSpec.starterCode, isTranslationUnit: true }], new Project_1.Exercise(exerciseSpec), extras);
     project.turnOnAutoCompile(500);
     if (exerciseSpec.checkpoints.length === 0) {

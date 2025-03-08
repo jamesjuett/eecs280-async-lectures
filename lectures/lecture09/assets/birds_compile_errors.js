@@ -20302,132 +20302,6 @@ exports.isUpdateAssignment = isUpdateAssignment;
 
 /***/ }),
 
-/***/ 7939:
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.StaticAnalysisCheckpoint = exports.EndOfMainStateCheckpoint = exports.outputComparator = exports.OutputCheckpoint = exports.removeWhitespace = exports.IsCompiledCheckpoint = exports.Checkpoint = void 0;
-const Simulation_1 = __webpack_require__(2895);
-const simulationRunners_1 = __webpack_require__(138);
-class Checkpoint {
-    constructor(name) {
-        this.name = name;
-    }
-}
-exports.Checkpoint = Checkpoint;
-class IsCompiledCheckpoint extends Checkpoint {
-    evaluate(project) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return project.program.isCompiled();
-        });
-    }
-}
-exports.IsCompiledCheckpoint = IsCompiledCheckpoint;
-function removeWhitespace(str) {
-    return str.replace(/\s+/g, '');
-}
-exports.removeWhitespace = removeWhitespace;
-// TODO: reduce duplication with EndOfMainStateCheckpoint
-class OutputCheckpoint extends Checkpoint {
-    constructor(name, expected, input = "", stepLimit = 1000) {
-        super(name);
-        this.expected = expected;
-        this.input = input;
-        this.stepLimit = stepLimit;
-    }
-    // May throw if interrupted during async running
-    evaluate(project) {
-        return __awaiter(this, void 0, void 0, function* () {
-            if (this.runner) {
-                this.runner.pause();
-                delete this.runner;
-            }
-            let program = project.program;
-            if (!program.isRunnable()) {
-                return false;
-            }
-            let sim = new Simulation_1.Simulation(program);
-            if (this.input !== "") {
-                sim.cin.addToBuffer(this.input);
-            }
-            let runner = this.runner = new simulationRunners_1.AsynchronousSimulationRunner(sim);
-            // may throw if interrupted
-            yield runner.stepToEnd(0, this.stepLimit, true);
-            return sim.atEnd && this.expected(sim.allOutput, project);
-        });
-    }
-}
-exports.OutputCheckpoint = OutputCheckpoint;
-function outputComparator(desiredOutput, ignoreWhitespace = false) {
-    if (ignoreWhitespace) {
-        return (output) => {
-            return removeWhitespace(output) === removeWhitespace(desiredOutput);
-        };
-    }
-    else {
-        return (output) => {
-            return output === desiredOutput;
-        };
-    }
-}
-exports.outputComparator = outputComparator;
-class EndOfMainStateCheckpoint extends Checkpoint {
-    constructor(name, criteria, input = "", stepLimit = 1000) {
-        super(name);
-        this.criteria = criteria;
-        this.input = input;
-        this.stepLimit = stepLimit;
-    }
-    // May throw if interrupted during async running
-    evaluate(project) {
-        return __awaiter(this, void 0, void 0, function* () {
-            if (this.runner) {
-                this.runner.pause();
-                delete this.runner;
-            }
-            let program = project.program;
-            if (!program.isRunnable()) {
-                return false;
-            }
-            let sim = new Simulation_1.Simulation(program);
-            if (this.input !== "") {
-                sim.cin.addToBuffer(this.input);
-            }
-            let runner = this.runner = new simulationRunners_1.AsynchronousSimulationRunner(sim);
-            // may throw if interrupted
-            yield runner.stepToEndOfMain(0, this.stepLimit, true);
-            return sim.atEndOfMain() && this.criteria(sim);
-        });
-    }
-}
-exports.EndOfMainStateCheckpoint = EndOfMainStateCheckpoint;
-class StaticAnalysisCheckpoint extends Checkpoint {
-    constructor(name, criterion) {
-        super(name);
-        this.criterion = criterion;
-    }
-    evaluate(project) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return this.criterion(project.program, project);
-        });
-    }
-}
-exports.StaticAnalysisCheckpoint = StaticAnalysisCheckpoint;
-//# sourceMappingURL=checkpoints.js.map
-
-/***/ }),
-
 /***/ 7227:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -79137,7 +79011,7 @@ function dedent(templ) {
 
 /***/ }),
 
-/***/ 5075:
+/***/ 882:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -79156,10 +79030,8 @@ __webpack_require__(5005);
 __webpack_require__(9991);
 __webpack_require__(3659);
 const SimpleExerciseLobsterOutlet_1 = __webpack_require__(5588);
-const checkpoints_1 = __webpack_require__(7939);
 const ts_dedent_1 = __importDefault(__webpack_require__(1893));
 $(() => {
-    var _a;
     $(".lobster-ex").each(function () {
         var _a, _b, _c, _d, _e, _f, _g;
         $(this).append((0, embeddedExerciseOutlet_1.createEmbeddedExerciseOutlet)("single"));
@@ -79169,36 +79041,77 @@ $(() => {
             .css("top", "0")
             .css("background-color", "white")
             .css("z-index", "100000");
-        let filename = "exercise.cpp";
+        let filename = "code";
         let exerciseSpec = {
             starterCode: (0, ts_dedent_1.default) `
             #include <iostream>
-            #include <vector>
+            #include <string>
             using namespace std;
             
-            int main() {
-              vector<double> v = {1, 5, 3.5, 6.5};
-
-              // Keep track of the "best" candidate we've seen.
-              
-              __________;
-
-              for (size_t i = 0; i < v.size(); ++i) {
-                // If v[i] is less than the current min, update min.
-                __________
-
+            class Bird {
+            private:
+              int age;
+              string name;
+            
+            public:
+              Bird(string name_in) : age(0), name(name_in) {
+                cout << "Bird ctor " << name << endl;
               }
-
-              cout << "Min: " << min << endl;
+              
+              const string &getName() const { return name; }
+              int getAge() const { return age; }
+            
+              void talk() const { cout << "tweet" << endl; }
+            };
+            
+            class Chicken : public Bird {
+            private:
+              int roadsCrossed;
+            
+            public:
+              Chicken(string name_in) : roadsCrossed(0) {
+                cout << "Chicken ctor " << getName() << endl;
+              }
+              
+            
+              void crossRoad() { ++roadsCrossed; }
+            
+              void talk() const { cout << "bawwk" << endl; }
+            };
+            
+            class Duck {
+            private:
+              int numDucklings;
+            
+            public:
+              Duck(string name_in) : Bird(name_in) {
+                cout << "Duck ctor " << getName() << endl;
+              }
+              
+            
+              void babyDucklings() { numDucklings += 7; }
+              void talk() { cout << "quack" << endl; }
+            };
+            
+            int main() {
+              string bName = "Big Bird";
+              Bird b(bName);
+              b.talk();
+              b.crossRoad();
+            
+              string cName = "Myrtle";
+              Chicken c(cName);
+              c.talk();
+            
+              string dName = "Scrooge";
+              const Duck d(dName);
+              d.talk();
+              pause();
             }
           `,
-            checkpoints: [
-                new checkpoints_1.OutputCheckpoint("Correct Min", (output) => {
-                    return output.indexOf("1") !== -1;
-                }, "", 10000),
-            ],
+            checkpoints: [],
             completionCriteria: Project_1.COMPLETION_ALL_CHECKPOINTS,
-            completionMessage: "Nice work! Exercise complete!",
+            completionMessage: "Nice work! Exercise complete!"
         };
         let completionMessage = (_b = (_a = $(this).find(".lobster-ex-completion-message").html()) === null || _a === void 0 ? void 0 : _a.trim()) !== null && _b !== void 0 ? _b : (_c = $(this).find(".lobster-ex-complete-message").html()) === null || _c === void 0 ? void 0 : _c.trim();
         if (completionMessage) {
@@ -79208,56 +79121,13 @@ $(() => {
         if (initCode) {
             exerciseSpec.starterCode = initCode;
         }
-        let extras = [(program) => { }];
-        let project = new Project_1.Project("project", undefined, [{ name: filename, code: exerciseSpec.starterCode, isTranslationUnit: true }], new Project_1.Exercise(exerciseSpec), extras);
+        let project = new Project_1.Project("project", undefined, [{ name: filename, code: exerciseSpec.starterCode, isTranslationUnit: true }], new Project_1.Exercise(exerciseSpec));
         project.turnOnAutoCompile(500);
         if (exerciseSpec.checkpoints.length === 0) {
             $(this).find(".lobster-embedded-height-control").addClass("lobster-ex-no-checkpoints");
         }
         let exOutlet = new SimpleExerciseLobsterOutlet_1.SimpleExerciseLobsterOutlet($(this), project);
-        window.addEventListener("message", (event) => {
-            // ignore messages from anywhere other than parent
-            if (event.source !== window.parent) {
-                return;
-            }
-            // ignore spurious messages
-            if (!event.data["examma_ray_message"]) {
-                return;
-            }
-            let msg = event.data["examma_ray_message"];
-            if (msg.message_kind === "set_submission") {
-                exOutlet.project.setFileContents({
-                    name: "exercise.cpp",
-                    text: msg.submission.code
-                });
-            }
-        });
-        setInterval(() => {
-            var _a;
-            try {
-                (_a = window.parent) === null || _a === void 0 ? void 0 : _a.postMessage({
-                    examma_ray_message: {
-                        message_kind: "update",
-                        submission: {
-                            code: exOutlet.project.sourceFiles[0].text,
-                            complete: project.exercise.isComplete
-                        }
-                    }
-                }, "*");
-            }
-            catch (e) {
-            }
-        }, 1000);
     });
-    try {
-        (_a = window.parent) === null || _a === void 0 ? void 0 : _a.postMessage({
-            examma_ray_message: {
-                message_kind: "ready",
-            }
-        }, "*");
-    }
-    catch (e) {
-    }
 });
 
 
@@ -79364,7 +79234,7 @@ $(() => {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __webpack_require__(5075);
+/******/ 	var __webpack_exports__ = __webpack_require__(882);
 /******/ 	
 /******/ })()
 ;

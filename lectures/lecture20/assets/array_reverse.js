@@ -79213,7 +79213,7 @@ $(() => {
             checkpoints: [
                 new checkpoints_1.OutputCheckpoint("Correct Reversed Output", (output) => {
                     return output.indexOf("Reversed: 4 3 2 1") !== -1;
-                }),
+                }, "", 10000),
             ],
             completionCriteria: Project_1.COMPLETION_ALL_CHECKPOINTS,
             completionMessage: "Nice work! Exercise complete!"

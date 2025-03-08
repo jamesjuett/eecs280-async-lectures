@@ -80,7 +80,7 @@ $(() => {
             new OutputCheckpoint("Correct Output", (output: string) => {
                 return output.indexOf("a = 5") !== -1
                     && output.indexOf("b = 3") !== -1;
-            })
+            },"", 10000),
           ],
           completionCriteria: COMPLETION_ALL_CHECKPOINTS,
           completionMessage: "Nice work! Exercise complete!",

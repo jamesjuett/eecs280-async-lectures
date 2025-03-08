@@ -79279,7 +79279,7 @@ $(() => {
             checkpoints: [
                 new checkpoints_1.OutputCheckpoint("Correct Output", (output) => {
                     return output.indexOf("{ 1, 2, 3, 5, 7 }") !== -1;
-                }),
+                }, "", 10000),
             ],
             completionCriteria: Project_1.COMPLETION_ALL_CHECKPOINTS,
             completionMessage: "Nice work! Exercise complete!"

@@ -20428,6 +20428,50 @@ exports.StaticAnalysisCheckpoint = StaticAnalysisCheckpoint;
 
 /***/ }),
 
+/***/ 5249:
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.findLoopControlVars = void 0;
+const predicates_1 = __webpack_require__(7227);
+const analysis_1 = __webpack_require__(1112);
+// Note that this doesn't account for traversal by iterator at all
+function findLoopControlVars(loop) {
+    // all variables available based on the loop's context
+    let vars = loop.body.context.contextualScope.availableVars();
+    if (loop.construct_type === "while_statement") {
+        // candidates are used in the condition
+        let candidates = vars.filter(v => (0, analysis_1.containsConstruct)(loop.condition, predicates_1.Predicates.byVariableIdentifier(v)));
+        ;
+        // candidates must be incremented in some way within the loop
+        // (i.e. in either the body or condition)
+        candidates = candidates.filter(cand => (0, analysis_1.containsConstruct)(loop, predicates_1.Predicates.byVariableAssignedTo(cand)) ||
+            (0, analysis_1.containsConstruct)(loop, predicates_1.Predicates.byVariableIncremented(cand)));
+        return candidates;
+    }
+    else { // for loop
+        // candiates are used in the condition and one other place
+        let candidates = vars.filter(v => {
+            if (!(0, analysis_1.containsConstruct)(loop.condition, predicates_1.Predicates.byVariableIdentifier(v))) {
+                return false;
+            }
+            return (0, analysis_1.containsConstruct)(loop.initial, predicates_1.Predicates.byVariableIdentifier(v)) ||
+                (0, analysis_1.containsConstruct)(loop.body, predicates_1.Predicates.byVariableIdentifier(v)) ||
+                loop.post && (0, analysis_1.containsConstruct)(loop.post, predicates_1.Predicates.byVariableIdentifier(v));
+        });
+        // candidates must be incremented in some way within the loop
+        candidates = candidates.filter(cand => (0, analysis_1.containsConstruct)(loop, predicates_1.Predicates.byVariableAssignedTo(cand)) ||
+            (0, analysis_1.containsConstruct)(loop, predicates_1.Predicates.byVariableIncremented(cand)));
+        return candidates;
+    }
+}
+exports.findLoopControlVars = findLoopControlVars;
+//# sourceMappingURL=loops.js.map
+
+/***/ }),
+
 /***/ 7227:
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -79137,7 +79181,7 @@ function dedent(templ) {
 
 /***/ }),
 
-/***/ 5075:
+/***/ 35:
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -79157,100 +79201,223 @@ __webpack_require__(9991);
 __webpack_require__(3659);
 const SimpleExerciseLobsterOutlet_1 = __webpack_require__(5588);
 const checkpoints_1 = __webpack_require__(7939);
+const Program_1 = __webpack_require__(7776);
+const predicates_1 = __webpack_require__(7227);
+const analysis_1 = __webpack_require__(1112);
+const loops_1 = __webpack_require__(5249);
 const ts_dedent_1 = __importDefault(__webpack_require__(1893));
+const errors_1 = __webpack_require__(9221);
+const types_1 = __webpack_require__(2551);
+const contexts_1 = __webpack_require__(9303);
+const SAMPLE_NULLPTR_CHECKS = (() => {
+    let p = new Program_1.Program([
+        new Program_1.SourceFile("temp", `
+      #include <iostream>
+      using namespace std;
+      
+      void strcpy(char *dst, const char *src){
+        
+        const char *ptr = src;
+
+        while (src != nullptr) {
+          @anything@
+        }
+        
+        while (!(src == nullptr)) {
+          @anything@
+        }
+        
+        for (@anything@; src != nullptr; @anything@) {
+          @anything@
+        }
+        
+        for (@anything@; !(src == nullptr); @anything@) {
+          @anything@
+        }
+
+        while (ptr != nullptr) {
+          @anything@
+        }
+        
+        while (!(ptr == nullptr)) {
+          @anything@
+        }
+        
+        for (@anything@; ptr != nullptr; @anything@) {
+          @anything@
+        }
+        
+        for (@anything@; !(ptr == nullptr); @anything@) {
+          @anything@
+        }
+        
+      }
+    `)
+    ], new Set(["temp"]));
+    let fn = (0, analysis_1.findFirstConstruct)(p, predicates_1.Predicates.byFunctionName("strcpy"));
+    return (0, analysis_1.findConstructs)(fn, predicates_1.Predicates.byKinds(["while_statement", "for_statement"]));
+})();
 $(() => {
-    var _a;
-    $(".lobster-ex").each(function () {
-        var _a, _b, _c, _d, _e, _f, _g;
-        $(this).append((0, embeddedExerciseOutlet_1.createEmbeddedExerciseOutlet)("single"));
-        $(this).find(".lobster-ex-checkpoints")
-            .detach().prependTo($(this))
-            .css("position", "sticky")
-            .css("top", "0")
-            .css("background-color", "white")
-            .css("z-index", "100000");
-        let filename = "exercise.cpp";
-        let exerciseSpec = {
-            starterCode: (0, ts_dedent_1.default) `
-            #include <iostream>
-            #include <vector>
-            using namespace std;
-            
-            int main() {
-              vector<double> v = {1, 5, 3.5, 6.5};
+    var _a, _b, _c, _d, _e, _f, _g, _h;
+    const ex_elem = $(".lobster-ex");
+    ex_elem.append((0, embeddedExerciseOutlet_1.createEmbeddedExerciseOutlet)("single"));
+    let filename = "exercise.cpp";
+    let exerciseSpec = {
+        starterCode: (0, ts_dedent_1.default) `
+        #include <iostream>
+        #include <string>
+        using namespace std;
 
-              // Keep track of the "best" candidate we've seen.
-              
-              __________;
+        class Plant {
+        private:
+          int height;
 
-              for (size_t i = 0; i < v.size(); ++i) {
-                // If v[i] is less than the current min, update min.
-                __________
+        public:
+          Plant(int height_in)
+           : height(height_in) { }
 
-              }
+          void print() const {
+            cout << "h=" << height << endl;
+          }
 
-              cout << "Min: " << min << endl;
-            }
-          `,
-            checkpoints: [
-                new checkpoints_1.OutputCheckpoint("Correct Min", (output) => {
-                    return output.indexOf("1") !== -1;
-                }, "", 10000),
-            ],
-            completionCriteria: Project_1.COMPLETION_ALL_CHECKPOINTS,
-            completionMessage: "Nice work! Exercise complete!",
+          void grow(int growth) {
+            height += growth;
+          }
         };
-        let completionMessage = (_b = (_a = $(this).find(".lobster-ex-completion-message").html()) === null || _a === void 0 ? void 0 : _a.trim()) !== null && _b !== void 0 ? _b : (_c = $(this).find(".lobster-ex-complete-message").html()) === null || _c === void 0 ? void 0 : _c.trim();
-        if (completionMessage) {
-            exerciseSpec.completionMessage = completionMessage;
+
+        // Define the Flower class here
+        class Flower : public Plant {
+        private:
+          int num_blooms;
+
+        public:
+          Flower(int height_in)
+           : Plant(height_in), num_blooms(0) { }
+
+          void print() const {
+            cout << "h=" << height << endl;
+            cout << "blooms=" << num_blooms << endl;
+          }
+
+          void bloom() {
+            num_blooms += 1;
+          }
+        };
+
+        int main(){
+          Flower f(5);
+          f.print();
+          f.grow(2);
+          f.bloom();
+          f.print();
         }
-        let initCode = (0, he_1.decode)((_g = (_e = (_d = $(this).find(".lobster-ex-starter-code").html()) === null || _d === void 0 ? void 0 : _d.trim()) !== null && _e !== void 0 ? _e : (_f = $(this).find(".lobster-ex-init-code").html()) === null || _f === void 0 ? void 0 : _f.trim()) !== null && _g !== void 0 ? _g : "");
-        if (initCode) {
-            exerciseSpec.starterCode = initCode;
-        }
-        let extras = [(program) => { }];
-        let project = new Project_1.Project("project", undefined, [{ name: filename, code: exerciseSpec.starterCode, isTranslationUnit: true }], new Project_1.Exercise(exerciseSpec), extras);
-        project.turnOnAutoCompile(500);
-        if (exerciseSpec.checkpoints.length === 0) {
-            $(this).find(".lobster-embedded-height-control").addClass("lobster-ex-no-checkpoints");
-        }
-        let exOutlet = new SimpleExerciseLobsterOutlet_1.SimpleExerciseLobsterOutlet($(this), project);
-        window.addEventListener("message", (event) => {
-            // ignore messages from anywhere other than parent
-            if (event.source !== window.parent) {
-                return;
-            }
-            // ignore spurious messages
-            if (!event.data["examma_ray_message"]) {
-                return;
-            }
-            let msg = event.data["examma_ray_message"];
-            if (msg.message_kind === "set_submission") {
-                exOutlet.project.setFileContents({
-                    name: "exercise.cpp",
-                    text: msg.submission.code
-                });
-            }
-        });
-        setInterval(() => {
-            var _a;
-            try {
-                (_a = window.parent) === null || _a === void 0 ? void 0 : _a.postMessage({
-                    examma_ray_message: {
-                        message_kind: "update",
-                        submission: {
-                            code: exOutlet.project.sourceFiles[0].text,
-                            complete: project.exercise.isComplete
-                        }
+      `,
+        checkpoints: [
+            new checkpoints_1.StaticAnalysisCheckpoint("Traversal By Pointer", (program, project) => {
+                let strcpy_fn = (0, analysis_1.findFirstConstruct)(program, predicates_1.Predicates.byFunctionName("strcpy"));
+                if (!strcpy_fn) {
+                    return false;
+                }
+                let loop = (0, analysis_1.findFirstConstruct)(strcpy_fn, predicates_1.Predicates.byKinds(["while_statement", "for_statement"]));
+                if (!loop) {
+                    return false;
+                }
+                let loopControlVars = (0, loops_1.findLoopControlVars)(loop);
+                return loopControlVars.some(v => v.isTyped(types_1.isPointerType));
+            }),
+            new checkpoints_1.OutputCheckpoint("Correct Output", (output, project) => {
+                if (output.indexOf("frogrd") !== -1) {
+                    let strcpyFn = (0, analysis_1.findFirstConstruct)(project.program, predicates_1.Predicates.byFunctionName("strcpy"));
+                    if (strcpyFn) {
+                        project.addNote(new errors_1.CompilerNote(strcpyFn.declaration.declarator, errors_1.NoteKind.STYLE, "hint_strcpy_null_char", `Hint: It looks like you're quite close to the right answer! Check out the simulation output. What gets printed? How does that relate to the placement of the null characters in memory?`));
                     }
-                }, "*");
+                    return false;
+                }
+                let first = output.indexOf("frog");
+                if (first === -1) {
+                    return false;
+                }
+                let second = output.indexOf("frog", first + 1);
+                return second !== -1;
+            }, "", 10000),
+        ],
+        completionCriteria: Project_1.COMPLETION_ALL_CHECKPOINTS,
+        completionMessage: "Nice work! Exercise complete!",
+    };
+    let completionMessage = (_b = (_a = ex_elem.find(".lobster-ex-completion-message").html()) === null || _a === void 0 ? void 0 : _a.trim()) !== null && _b !== void 0 ? _b : (_c = ex_elem.find(".lobster-ex-complete-message").html()) === null || _c === void 0 ? void 0 : _c.trim();
+    if (completionMessage) {
+        exerciseSpec.completionMessage = completionMessage;
+    }
+    let initCode = (0, he_1.decode)((_g = (_e = (_d = ex_elem.find(".lobster-ex-starter-code").html()) === null || _d === void 0 ? void 0 : _d.trim()) !== null && _e !== void 0 ? _e : (_f = ex_elem.find(".lobster-ex-init-code").html()) === null || _f === void 0 ? void 0 : _f.trim()) !== null && _g !== void 0 ? _g : "");
+    if (initCode) {
+        exerciseSpec.starterCode = initCode;
+    }
+    let extras = [(program) => {
+            var _a;
+            let strcpy_fn = (0, analysis_1.findFirstConstruct)(program, predicates_1.Predicates.byFunctionName("strcpy"));
+            if (!strcpy_fn) {
+                return false;
             }
-            catch (e) {
+            let loop = (0, analysis_1.findFirstConstruct)(strcpy_fn, predicates_1.Predicates.byKinds(["while_statement", "for_statement"]));
+            let dst_param = strcpy_fn.parameters[0].declaredEntity;
+            let src_param = strcpy_fn.parameters[1].declaredEntity;
+            if (loop && src_param && dst_param
+                && (0, analysis_1.containsConstruct)(loop.condition, predicates_1.Predicates.byVariableIdentifier(dst_param))
+                && !(0, analysis_1.containsConstruct)(loop.condition, predicates_1.Predicates.byVariableIdentifier(src_param))) {
+                loop.condition.addNote(new errors_1.CompilerNote(loop.condition, errors_1.NoteKind.STYLE, "lec6.strcpy.1", `The condition of your loop should depend on the source string.`));
             }
-        }, 1000);
+            const nullptr_traversal_loop = (0, analysis_1.findConstructs)(program, predicates_1.Predicates.byKinds(["for_statement", "while_statement"]))
+                .find((construct) => SAMPLE_NULLPTR_CHECKS.some(sample => (0, contexts_1.areSemanticallyEquivalent)(sample, construct, {})));
+            (_a = nullptr_traversal_loop === null || nullptr_traversal_loop === void 0 ? void 0 : nullptr_traversal_loop.condition) === null || _a === void 0 ? void 0 : _a.addNote(new errors_1.CompilerNote(nullptr_traversal_loop === null || nullptr_traversal_loop === void 0 ? void 0 : nullptr_traversal_loop.condition, errors_1.NoteKind.STYLE, "lec6.strcpy.2", `It looks like this condition is checking whether the pointer becomes null. That's checking whether it gets to address 0x0, which isn't quite right. Instead, try dereferencing the pointer to check whether the character it points to is the null character.`));
+            (0, analysis_1.findConstructs)(program, predicates_1.Predicates.byKind("assignment_expression")).forEach(assn => {
+                const lhs = assn.lhs.analytic();
+                const rhs = assn.rhs.analytic();
+                if (lhs.construct_type === "identifier_expression" && lhs.entity === dst_param) {
+                    lhs.addNote(new errors_1.CompilerNote(lhs, errors_1.NoteKind.STYLE, "lec6.strcpy.3", `Make sure to dereference when assigning, since we want to work with the characters the pointers point to (and not just the addresses the pointers store).`));
+                }
+            });
+        }];
+    let project = new Project_1.Project("project", undefined, [{ name: filename, code: exerciseSpec.starterCode, isTranslationUnit: true }], new Project_1.Exercise(exerciseSpec), extras);
+    project.turnOnAutoCompile(500);
+    if (exerciseSpec.checkpoints.length === 0) {
+        ex_elem.find(".lobster-embedded-height-control").addClass("lobster-ex-no-checkpoints");
+    }
+    let exOutlet = new SimpleExerciseLobsterOutlet_1.SimpleExerciseLobsterOutlet(ex_elem, project);
+    window.addEventListener("message", (event) => {
+        // ignore messages from anywhere other than parent
+        if (event.source !== window.parent) {
+            return;
+        }
+        // ignore spurious messages
+        if (!event.data["examma_ray_message"]) {
+            return;
+        }
+        let msg = event.data["examma_ray_message"];
+        if (msg.message_kind === "set_submission") {
+            exOutlet.project.setFileContents({
+                name: "exercise.cpp",
+                text: msg.submission.code
+            });
+        }
     });
+    setInterval(() => {
+        var _a;
+        try {
+            (_a = window.parent) === null || _a === void 0 ? void 0 : _a.postMessage({
+                examma_ray_message: {
+                    message_kind: "update",
+                    submission: {
+                        code: exOutlet.project.sourceFiles[0].text,
+                        complete: project.exercise.isComplete
+                    }
+                }
+            }, "*");
+        }
+        catch (e) {
+        }
+    }, 1000);
     try {
-        (_a = window.parent) === null || _a === void 0 ? void 0 : _a.postMessage({
+        (_h = window.parent) === null || _h === void 0 ? void 0 : _h.postMessage({
             examma_ray_message: {
                 message_kind: "ready",
             }
@@ -79259,6 +79426,24 @@ $(() => {
     catch (e) {
     }
 });
+function findSandwichStruct(program) {
+    var _a, _b, _c;
+    let classes = (0, analysis_1.findConstructs)(program, predicates_1.Predicates.byKind("class_definition"));
+    let sandwich_struct = classes.find(c => c.name === "Sandwich");
+    let mem_name = sandwich_struct === null || sandwich_struct === void 0 ? void 0 : sandwich_struct.memberDeclarationsByName["name"];
+    let mem_is_veg = sandwich_struct === null || sandwich_struct === void 0 ? void 0 : sandwich_struct.memberDeclarationsByName["is_veg"];
+    let mem_price = sandwich_struct === null || sandwich_struct === void 0 ? void 0 : sandwich_struct.memberDeclarationsByName["price"];
+    if (!(((_a = mem_name === null || mem_name === void 0 ? void 0 : mem_name.type) === null || _a === void 0 ? void 0 : _a.isCompleteClassType()) && mem_name.type.className === "string")) {
+        return;
+    }
+    if (!((_b = mem_is_veg === null || mem_is_veg === void 0 ? void 0 : mem_is_veg.type) === null || _b === void 0 ? void 0 : _b.similarType(types_1.Bool.BOOL))) {
+        return;
+    }
+    if (!((_c = mem_price === null || mem_price === void 0 ? void 0 : mem_price.type) === null || _c === void 0 ? void 0 : _c.similarType(types_1.Double.DOUBLE))) {
+        return;
+    }
+    return sandwich_struct;
+}
 
 
 /***/ })
@@ -79364,7 +79549,7 @@ $(() => {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __webpack_require__(5075);
+/******/ 	var __webpack_exports__ = __webpack_require__(35);
 /******/ 	
 /******/ })()
 ;

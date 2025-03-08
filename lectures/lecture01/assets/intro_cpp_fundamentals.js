@@ -79201,10 +79201,10 @@ $(() => {
                     return false;
                 }
                 return predicates_1.Predicates.byVariableInitialValue(4)(priceDef);
-            }), ,
+            }),
             new checkpoints_1.OutputCheckpoint("Task 3", (output) => {
                 return output.indexOf("31.96") !== -1;
-            })
+            }, "", 10000),
         ],
         completionCriteria: Project_1.COMPLETION_ALL_CHECKPOINTS,
         completionMessage: "Nice work! Exercise complete!",

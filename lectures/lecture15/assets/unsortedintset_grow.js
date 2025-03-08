@@ -79300,7 +79300,7 @@ $(() => {
             checkpoints: [
                 new checkpoints_1.OutputCheckpoint("Correct Set Output", (output) => {
                     return output.indexOf("{ 2, 3, 4, 5, 1 }") !== -1;
-                }),
+                }, "", 10000),
                 new checkpoints_1.EndOfMainStateCheckpoint("Final Array Size 8", (sim) => {
                     var _a, _b;
                     let set = (_b = (_a = sim.topFunction()) === null || _a === void 0 ? void 0 : _a.stackFrame) === null || _b === void 0 ? void 0 : _b.localObjectsByName["set"];

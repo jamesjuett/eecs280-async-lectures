@@ -79195,7 +79195,7 @@ $(() => {
             checkpoints: [
                 new checkpoints_1.OutputCheckpoint("Correct Sum", (output) => {
                     return output.indexOf("16") !== -1;
-                }),
+                }, "", 10000),
             ],
             completionCriteria: Project_1.COMPLETION_ALL_CHECKPOINTS,
             completionMessage: "Nice work! Exercise complete!",

@@ -72,7 +72,7 @@ $(() => {
         }),
         new OutputCheckpoint("Task 3", (output: string) => {
             return output.indexOf("31.96") !== -1;
-        })
+        },"", 10000),
       ],
       completionCriteria: COMPLETION_ALL_CHECKPOINTS,
       completionMessage: "Nice work! Exercise complete!",

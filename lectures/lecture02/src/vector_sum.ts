@@ -71,7 +71,7 @@ $(() => {
           checkpoints: [
             new OutputCheckpoint("Correct Sum", (output: string) => {
                 return output.indexOf("16") !== -1;
-            }),
+            },"", 10000),
           ],
           completionCriteria: COMPLETION_ALL_CHECKPOINTS,
           completionMessage: "Nice work! Exercise complete!",

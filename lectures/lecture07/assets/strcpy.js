@@ -79316,7 +79316,7 @@ $(() => {
                 }
                 let second = output.indexOf("frog", first + 1);
                 return second !== -1;
-            }),
+            }, "", 10000),
         ],
         completionCriteria: Project_1.COMPLETION_ALL_CHECKPOINTS,
         completionMessage: "Nice work! Exercise complete!",

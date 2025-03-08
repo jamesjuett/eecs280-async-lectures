@@ -71,7 +71,7 @@ $(() => {
           checkpoints: [
             new OutputCheckpoint("Correct Min", (output: string) => {
                 return output.indexOf("1") !== -1;
-            }),
+            },"", 10000),
           ],
           completionCriteria: COMPLETION_ALL_CHECKPOINTS,
           completionMessage: "Nice work! Exercise complete!",

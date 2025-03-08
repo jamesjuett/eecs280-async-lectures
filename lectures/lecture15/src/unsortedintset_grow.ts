@@ -172,7 +172,7 @@ $(() => {
           checkpoints: [
             new OutputCheckpoint("Correct Set Output", (output: string) => {
               return output.indexOf("{ 2, 3, 4, 5, 1 }") !== -1;
-            }),
+            },"", 10000),
             new EndOfMainStateCheckpoint("Final Array Size 8", (sim: Simulation) => {
               let set = <AutoObject<CompleteClassType>>sim.topFunction()?.stackFrame?.localObjectsByName["set"];
               if (!set) { return false; }

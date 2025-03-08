@@ -79319,7 +79319,7 @@ $(() => {
                 new checkpoints_1.OutputCheckpoint("Correct Output", (output) => {
                     return output.indexOf("{ 2, 3 }") !== -1
                         && output.indexOf("{ 2, 5 }") !== -1;
-                }),
+                }, "", 10000),
                 new checkpoints_1.EndOfMainStateCheckpoint("No Undefined Behavior", (sim) => {
                     return !sim.hasAnyEventOccurred;
                 }, "", 5000),
