@@ -18,7 +18,7 @@ export const RAII_AND_GROWABLE_CONTAINERS : Omit<ExamSpecification, "exam_id"> =
       1. **RAII** - The use of constructors and destructors to manage dynamic resources within a class-based ADT.
       2. **Growable Containers** - Dynamic memory enables a data structure to allocate additional space for elements as needed.
       
-      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2024</div>
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Winter 2025</div>
     </div>
     <style>
       .lec-video {
@@ -125,7 +125,7 @@ export const RAII_AND_GROWABLE_CONTAINERS : Omit<ExamSpecification, "exam_id"> =
         This strategy is often called **"Resource Acquisition Is Initialization (RAII)"**. Here's some motivation and the details:
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/uljsiNouVuY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/tv1WyPEQV8Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
 
@@ -140,7 +140,7 @@ export const RAII_AND_GROWABLE_CONTAINERS : Omit<ExamSpecification, "exam_id"> =
           title: "Exercise: RAII and Memory Management",
           points: 4,
           mk_description: dedent`
-            Which of these functions leak memory? Write either **"ok"** or **"memory leak"**, as well as a brief justification. You should assume the constructors and destructor for \`UnsortedSet\` are defined (correctly) as described above for \`DynamicIntArray\`, such that the constructor and destructor take care of creating and destroying the internal array used to store set elements.
+            Which of these functions leak memory? Write either **"ok"** or **"memory leak"**, as well as a brief justification. You should assume the constructors and destructor for \`UnsortedSet\` are defined (correctly) as described above, such that the constructor and destructor take care of creating and destroying the internal array used to store set elements.
           `,
           response: {
             kind: "fill_in_the_blank",
@@ -337,7 +337,7 @@ void func() {
         Previously, we implemented containers with a fixed-capacity restriction. Using dynamic memory, we can instead implement growable containers that start with a small amount of dynamic memory and allocate more as needed.
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/NM9ONBQzM8c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/0bI8jDQ_Ggw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
 
@@ -348,6 +348,13 @@ void func() {
           title: "Exercise: \`UnsortedIntSet::grow()\`",
           points: 1,
           mk_description: dedent`
+            Let's look at the specific steps required to implement the \`grow()\` function for a growable, array-based container.
+
+            <div style="text-align: center;">
+              <iframe class="lec-video" src="https://www.youtube.com/embed/UgEVDkbn5pI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <br />
+
             Fill in the code for the \`grow()\` function for \`UnsortedIntSet\` using the algorithm described in the video (it is also repeated in the comments above the function in the code below).
 
             The \`main()\` function provided includes testing code to verify your implementation.
