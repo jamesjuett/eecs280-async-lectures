@@ -16,6 +16,7 @@ export const FUNCTORS_AND_IMPOSTOR_SYNDROME : Omit<ExamSpecification, "exam_id">
 This lecture covers **functors** in C++, including their use in **higher-order functions** as **predicates** and **comparators**.
 
 Finally, we cover **impostor syndrome** - a concept not directly related to programming but that is nevertheless relevant for many in our community.
+<div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Winter 2025</div>
 </div>
 
 <style>
