@@ -15,11 +15,11 @@ export const BINARY_SEARCH_TREES : Omit<ExamSpecification, "exam_id"> = {
 <div markdown=1 class="alert alert-info">
 This lecture covers **Binary Search Trees (BSTs)**, which are a special kind of binary tree that maintains a sorting invariant on its elements. It combines the advantages of a sorted array (i.e. fast lookup with binary search) with the flexibility of a linked list (i.e. efficient insert/remove operations anywhere in the data structure).
 
-BSTs are the foundation of "industry-strength" implementations of several application-oriented data structures, including sets and maps. We'll particularly focus on maps, since we haven't discussed them previously and they are a key part of project 5 in EECS 280.
+BSTs are the foundation of "industry-strength" implementations of several application-oriented data structures, including sets and maps. We'll particularly focus on maps, since we haven't discussed them previously and they are a key part of project 6 in EECS 280.
 
 </div>
 <div class="alert alert-secondary" role="alert" markdown="1">
-<h5><span class="badge badge-success">Fall 2024</span></h5>
+<h5><span class="badge badge-success">Winter 2025</span></h5>
 In some of the videos for this lecture, I might refer to implementing a binary search tree or map in project 5. That's project 6 this term.
 </div>
 <style>
@@ -117,7 +117,7 @@ In some of the videos for this lecture, I might refer to implementing a binary s
       title: "BST Implementation on Project 6",
       mk_description: dedent`
 
-        It's also worth a bit of time to take a look at how a binary search tree could be realized as a C++ class, including some of the specifics for the implementation you'll work with in EECS 280 project 6. (Sorry - I recorded this video last year, when it was project 5.)
+        It's also worth a bit of time to take a look at how a binary search tree could be realized as a C++ class, including some of the specifics for the implementation you'll work with in EECS 280 project 6. (This video was recorded in a previous term, when it was project 5.)
 
         <div style="text-align: center;">
           <iframe class="lec-video" src="https://www.youtube.com/embed/T-RWJ_-Mt6E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -145,6 +145,11 @@ In some of the videos for this lecture, I might refer to implementing a binary s
       section_id: "section_21_5",
       title: "Building a Map on a BST",
       mk_description: dedent`
+        <div class="alert alert-secondary" role="alert" markdown="1">
+        <h5><span class="badge badge-success">Winter 2025</span></h5>
+        We've covered the general idea of a map and its interface earlier this term. The video below contains a brief re-introduction to maps, but also new material on implementing a map using a BST (if you want to skip the review, jump to ~3 minutes).
+        </div>
+
         In this video, we'll introduce the idea of a map as an associative container where we can store and retrieve *values* according to a particular *key*. Then we'll look at the fundamental approach we could use to implement a map with a BST.
 
         <div style="text-align: center;">
@@ -158,7 +163,7 @@ In some of the videos for this lecture, I might refer to implementing a binary s
       section_id: "section_21_6",
       title: "`Map` Implementation",
       mk_description: dedent`
-        Finally, a few practical tips and tricks for \`Map.h\` from project 6.
+        Finally, a few practical tips and tricks for \`Map.h\` in project 6.
 
         Let's take a tour of each component in the \`Map\` class, including the BST member variable (i.e. the "has-a" pattern), the template parameters, and a custom comparator to compare key-value pairs in the BST based on the keys only.
 

@@ -9,15 +9,26 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 
-export const STRUCTURAL_RECURSION : ExamSpecification = {
-  exam_id: "f24_lec_21",
+export const STRUCTURAL_RECURSION : Omit<ExamSpecification, "exam_id"> = {
   title: "Structural Recursion",
   mk_intructions: `
 <div markdown=1 class="alert alert-info">
 Recursion is well-suited for problems that have an intrinsic **recursive structure**. This also applies directly for many data structures, including **linked lists** (which we've seen before) and **trees** (which we introduce today). It will also turn out that for some operations, a recursive approach is natural while an iterative approach requires significant additional work.
 
 By the way, I want to give a big thanks to **Ashvin**, who recorded walkthrough videos for this lecture.
+<div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Winter 2025</div>
 </div>
+</div>
+
+<div>
+<p>
+Before we get started, I want to share with all of you some thoughts on recent events around U of M.
+<div style="text-align: center;">
+<iframe class="lec-video" src="https://www.youtube.com/embed/18Da82iITr0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+<br />
+</div>
+
 <style>
   .lec-video {
     width: 80%;

@@ -69,8 +69,8 @@ export const LECTURE_SPECS = [
   { spec: LINKED_LIST_ITERATORS                                 , updated: true, deadline: DateTime.fromISO("2025-03-26", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   { spec: FUNCTORS_AND_IMPOSTOR_SYNDROME                        , updated: true, deadline: DateTime.fromISO("2025-03-31", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   { spec: RECURSION                                             , updated: true, deadline: DateTime.fromISO("2025-04-02", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: STRUCTURAL_RECURSION                               , updated: true, deadline: DateTime.fromISO("2025-04-07", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: BINARY_SEARCH_TREES                                , updated: true, deadline: DateTime.fromISO("2025-04-09", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: STRUCTURAL_RECURSION                                  , updated: true, deadline: DateTime.fromISO("2025-04-07", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  // { spec: BINARY_SEARCH_TREES                                   , updated: true, deadline: DateTime.fromISO("2025-04-09", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   // { spec: EXCEPTIONS                                         , updated: true, deadline: DateTime.fromISO("2025-04-14", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   // { spec: EXCEPTIONS                                         , updated: true, deadline: DateTime.fromISO("2025-04-16", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
 ].map((lec, i) => {
