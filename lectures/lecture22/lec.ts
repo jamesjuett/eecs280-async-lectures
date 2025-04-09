@@ -134,7 +134,7 @@ In some of the videos for this lecture, I might refer to implementing a binary s
         First, we'll consider a BST-based set, which will outperform the other array-based implementations we've seen previously. (Please ignore the references to the classifier application where you use a map... you've already done that this term in project 4.)
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/jSiwdyPCz_A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/8wehWSpAM6I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
 
@@ -173,10 +173,10 @@ In some of the videos for this lecture, I might refer to implementing a binary s
         <br />
 
         
-        Here's also an overview of what each of the three main \`Map\` functions (\`find\`, \`insert\`, and \`operator[]\`) should do. You'll use each in various places thoughout the project 6 driver.
+        Here's also an example of implementing a \`Map\` function based on the underlying \`BinarySearchTree\`.
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/DlBMShisMkQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/7NWye5g4syU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
       `,
