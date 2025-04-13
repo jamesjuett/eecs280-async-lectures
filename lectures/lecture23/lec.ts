@@ -16,6 +16,8 @@ export const EXCEPTIONS : Omit<ExamSpecification, "exam_id"> = {
 This lecture covers error handling, with a primary focus on mechanisms for communicating information about an error detected in one part of your code to the rest of the program where there is sufficient context to decide how to handle the problem.
 
 In many modern programming languages, **exceptions** are the tool of choice to connect error detection and handling. We'll take a look at the basics of exception handling in C++.
+<div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Winter 2025</div>
+</div>
 </div>
 
 <style>
@@ -68,7 +70,83 @@ In many modern programming languages, **exceptions** are the tool of choice to c
         </div>
         <br />
       `,
-      questions: [],
+      questions: [
+        {
+          question_id: "lec_exception_throw_catch",
+          points: 1,
+          mk_description: dedent`
+Trace through this code, which may throw/catch exceptions. What is printed?
+<table style="border: none;">
+  <tr>
+    <td style="padding-right: 15px;">
+    <div markdown="1">
+\`\`\`cpp
+class GoodbyeError { };
+void goodbye() {
+  cout << "goodbye called. ";
+  GoodbyeError e; throw e;
+  cout << "goodbye returns. ";
+}
+
+class HelloError { };
+void hello() {
+  cout << "hello called. ";
+  goodbye();
+  throw HelloError();
+  cout << "hello returns. ";
+}
+\`\`\`
+    </div>
+    </td>
+    <td>
+\`\`\`cpp
+int main() {
+  try {
+    hello();
+    cout << "done. ";
+  }
+  catch (const HelloError &h) {
+    cout << "caught hello. ";
+  }
+  catch (const GoodbyeError &g) {
+    cout << "caught goodbye. ";
+  }
+  cout << "main returns.";
+}
+\`\`\`
+    </td>
+  </tr>
+</table>
+          `,
+          response: {
+            kind: "multiple_choice",
+            choices: [
+              "hello called. goodbye called. hello returns. caught hello. main returns.",
+              "hello called. goodbye called. caught goodbye. done. main returns.",
+              "hello called. goodbye called. done. caught goodbye. main returns.",
+              "hello called. goodbye called. caught goodbye. main returns.",
+            ],
+            multiple: false,
+            sample_solution: [3],
+            default_grader: {
+              grader_kind: "simple_multiple_choice",
+              correct_index: 3,
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
+          },
+          mk_postscript: dedent`
+            <hr />
+            You're welcome to check your solution with this **walkthrough** video:
+
+            <div style="text-align: center;">
+              <iframe class="lec-video" src="https://www.youtube.com/embed/OVqRSThCJj4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <br />
+          `,
+        },
+      ],
     },
     
     {
