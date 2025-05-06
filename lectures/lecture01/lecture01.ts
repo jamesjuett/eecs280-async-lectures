@@ -423,6 +423,11 @@ export const INTRO : Omit<ExamSpecification, "exam_id"> = {
           <iframe class="lec-video" src="https://www.youtube.com/embed/Bsr_bXDhaUE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
+        
+        <div class="alert alert-secondary" role="alert" markdown="1">
+          <h5><span class="badge badge-primary">Spring 2025</span></h5>
+          One other difference for the accelerated spring term - the project deadlines are 11:59pm rather than 8pm (as in the video). But, you're welcome to pretend they're due at 8pm to make sure you get them in with plenty of time to spare! :)
+        </div>
       `,
       questions: [ ]
     },
