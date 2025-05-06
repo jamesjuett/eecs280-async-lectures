@@ -19,17 +19,7 @@ export const MACHINE_MODEL_PART_1 : Omit<ExamSpecification, "exam_id"> = {
       
       Likewise, in a program we might want several different parts of our code to refer to the same data structure, but we don't want them all to literally have a local copy of that data. It would be better to use a pointer to store the address of the data and just go look it up when we need to.
 
-      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Winter 2025</div>
-    </div>
-    
-    <div markdown=1 class="alert">
-      We're sharing an announcement on behalf of the RenewCS tutoring and mentoring program.
-
-      <hr >
-
-      <div style="text-align: center;">
-        <img src="assets/RenewCS.jpg" style="width: 650px;">
-      </div>
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Spring 2025</div>
     </div>
 
     <style>

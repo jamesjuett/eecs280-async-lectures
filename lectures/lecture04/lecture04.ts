@@ -16,17 +16,7 @@ export const MACHINE_MODEL_PART_2 : Omit<ExamSpecification, "exam_id"> = {
     <div markdown=1 class="alert alert-info">
       This is part two of our exploration of the underlying machine model. A primary focus will be on the way local objects and their underlying memory is managed by the function call stack. We'll also cover different mechanisms for parameter passing and returned results from functions.
       
-      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Winter 2025</div>
-    </div>
-
-    <div markdown=1 class="alert">
-      CSE at UofM is hosting a panel session this Friday, Jan 24 that we think you might be interested in.
-
-      <hr >
-
-      <div style="text-align: center;">
-        <img src="assets/pathways_in_computing_w25.jpg" style="width: 650px;">
-      </div>
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Spring 2025</div>
     </div>
 
     <style>
