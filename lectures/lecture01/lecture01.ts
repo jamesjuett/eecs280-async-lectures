@@ -62,7 +62,7 @@ export const INTRO : Omit<ExamSpecification, "exam_id"> = {
         </div>
         <br />
         
-        A notes for async lectures:
+        A few notes for async lectures:
         - They cover the same material as the regular lectures and are kept up-to-date with any changes for the current term.
         - It's just as important as with live lectures to keep up with the material. Async participation is due by 11:59pm the day of the lecture.
         - Generally speaking, I'll post the lectures several days ahead of time so you have a bit more flexibility in when to do them.
