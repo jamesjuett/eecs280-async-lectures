@@ -15,7 +15,7 @@ export const INTRO : Omit<ExamSpecification, "exam_id"> = {
     
     <div markdown=1 class="alert alert-info">
       Welcome to **EECS 280**! This lecture presents our motivations and big-picture goals, some course logistics, and an introduction to programming in C++.
-      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Winter 2025</div>
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Spring 2025</div>
     </div>
 
     <div markdown=1 class="alert alert-success">
@@ -58,7 +58,7 @@ export const INTRO : Omit<ExamSpecification, "exam_id"> = {
         Hello! Let's get started with EECS 280!
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/Betq1ebfZLM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/8vEKA0Znpzk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
         
@@ -77,7 +77,7 @@ export const INTRO : Omit<ExamSpecification, "exam_id"> = {
         Let's take a look at the major components of EECS 280 and course resources, all accessible from our website at [eecs280.org](https://eecs280.org).
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/NL7m2GcfQeI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/-ONgvp2xLJc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
 
@@ -91,14 +91,20 @@ export const INTRO : Omit<ExamSpecification, "exam_id"> = {
         </div>
         <br />
 
-        **C++ Walkthrough Sessions**  
-        Our live walkthrough sessions cover setting up your computer, using a command-line interface, compilers, makefiles, IDEs, EECS 280 project workflow, and open Q&A.
-
-        - **Tues, Jan 14 at 7-8:30pm** via Zoom.  
-        - Separate, concurrent sessions for Windows/Mac.  
-        - Links on eecs280.org. Recordings will be posted.  
+        **Setup Walkthrough Videos**  
+        We've posted recordings on eecs280.org of setup walkthrough sessions from last term - these take you all the way through:
+        - Initial Setup
+        - Using a command-line interface
+        - Using the VS Code Editor
+        - Workflow for compiling, running, testing, and debugging C++.
 
         <br />
+        
+        **Setup Support**  
+        Stop by either of the regular lab sessions on the first day of classes (Tue May 6) to work through setup or ask any questions.
+        - 10am-12pm in 1014 DOW
+        - 2pm-4pm in 1014 DOW
+
         <br />
 
         **Syllabus**  
@@ -111,6 +117,11 @@ export const INTRO : Omit<ExamSpecification, "exam_id"> = {
       title: "Evaluation and Grading",
       mk_description: dedent`
         Here's a very quick look at assignments, exams, and grading policies in EECS 280.
+
+        <div class="alert alert-secondary" role="alert" markdown="1">
+          <h5><span class="badge badge-primary">Soring 2025</span></h5>
+          One quick difference for this term from the video below - there are no entry/exit surveys for the accelerated spring term. The 1% credit for those is added to project 1, making it worth 5% this term.
+        </div>
 
         <div style="text-align: center;">
           <iframe class="lec-video" src="https://www.youtube.com/embed/Zda5HC44oew" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
