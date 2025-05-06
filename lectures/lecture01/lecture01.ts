@@ -119,7 +119,7 @@ export const INTRO : Omit<ExamSpecification, "exam_id"> = {
         Here's a very quick look at assignments, exams, and grading policies in EECS 280.
 
         <div class="alert alert-secondary" role="alert" markdown="1">
-          <h5><span class="badge badge-primary">Soring 2025</span></h5>
+          <h5><span class="badge badge-primary">Spring 2025</span></h5>
           One quick difference for this term from the video below - there are no entry/exit surveys for the accelerated spring term. The 1% credit for those is added to project 1, making it worth 5% this term.
         </div>
 
