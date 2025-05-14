@@ -17,7 +17,7 @@ export const POLYMORPHISM : Omit<ExamSpecification, "exam_id"> = {
 
       We'll specifically focus on **subtype polymorphism** today.
       
-      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Winter 2025</div>
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Spring 2025</div>
     </div>
     <style>
       .lec-video {

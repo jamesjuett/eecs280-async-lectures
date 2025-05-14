@@ -20,7 +20,7 @@ export const STREAMS_AND_IO : Omit<ExamSpecification, "exam_id"> = {
 
       We'll cover these as well as a number of miscellaneous topics related to programs and the command-line environment from which they run, including exit codes, input/output redirection, and pipelining.
       
-      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Winter 2025</div>
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Spring 2025</div>
       
     </div>
     <style>
@@ -156,7 +156,7 @@ export const STREAMS_AND_IO : Omit<ExamSpecification, "exam_id"> = {
         The video below covers both in more detail.
 
         <div class="alert alert-secondary" role="alert" markdown="1">
-          <h5><span class="badge badge-primary">Winter 2025</span></h5>
+          <h5><span class="badge badge-primary">Spring 2025</span></h5>
           Please disregard the use of the \`new\` and \`delete\` operators in the video below. We've recently modified project 2 such so that you do not need to (and should not) use them.
         </div>
 

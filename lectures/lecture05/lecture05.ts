@@ -27,7 +27,16 @@ export const CONST_STRUCTS_AND_C_STYLE_ADTS : Omit<ExamSpecification, "exam_id">
 
       But first, let's take a detour to formally acknowledge the \`const\` keyeword, which has been showing up and will start showing up even more in the near future...
       
-      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Winter 2025</div>
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Spring 2025</div>
+    </div>
+    <div markdown=1 class="alert alert-warning">
+      <p>
+      <b>Switching over from live lecture?</b><br />
+      Live lectures usually run a bit behind for the first several lectures and we move some things around. If you attended live lecture 1, but have since switched over to async:
+      </p>
+      <ul>
+        <li>Section 9 and 10 from async lecture 1 related to projects, the autograder, and academic integrity.</li>
+      </ul>
     </div>
     <style>
       .lec-video {

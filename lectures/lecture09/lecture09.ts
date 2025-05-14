@@ -17,7 +17,7 @@ export const OPERATOR_OVERLOADING_AND_INHERITANCE : Omit<ExamSpecification, "exa
 
       Next, we'll introduce **inheritance**, which allows us to derive one \`class\` from another, such that the **derived class** automatically "inherits" member variables and functions from its **base class**. This is helpful both to save us work (i.e. we avoid duplicating common implementation details by putting them in a base class) and to set up the foundation for meaningful hierarchies of ADTs (more on this in the next lecture).
       
-      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Winter 2025</div>
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Spring 2025</div>
     </div>
     <style>
       .lec-video {
