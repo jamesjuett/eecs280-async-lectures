@@ -28,7 +28,7 @@ export const ARRAY_BASED_DATA_STRUCTURES : Omit<ExamSpecification, "exam_id"> = 
 
       - **Shift Elements**: If we need to preserve the order of elements after inserting/removing from the middle of an array, we have to shift them one-by-one.
 
-      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Winter 2025</div>
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Spring 2025</div>
     </div>
     <style>
       .lec-video {

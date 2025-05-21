@@ -22,7 +22,7 @@ export const SORTED_VS_UNSORTED_DATA_STRUCTURES : Omit<ExamSpecification, "exam_
       - Overloading operators with member functions (as opposed to regular, non-member functions).
       <br />
       <br />
-      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Winter 2025</div>
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Spring 2025</div>
     </div>
     <style>
       .lec-video {
