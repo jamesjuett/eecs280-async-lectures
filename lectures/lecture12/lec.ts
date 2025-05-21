@@ -24,6 +24,8 @@ export const ARRAY_BASED_DATA_STRUCTURES : Omit<ExamSpecification, "exam_id"> = 
       - **Sequential Access**: Iterating through a sequence of elements from start to end.
       - **Random Access**: Accessing an element at a particular index (i.e. position) in the sequence.
 
+      <!-- Comment to end list -->
+
       On the other hand, arrays are less efficient in cases where we need to:
 
       - **Shift Elements**: If we need to preserve the order of elements after inserting/removing from the middle of an array, we have to shift them one-by-one.
