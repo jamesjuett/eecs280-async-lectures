@@ -7,7 +7,7 @@ import { MACHINE_MODEL_PART_1 } from "./lecture03/lecture03";
 import { MACHINE_MODEL_PART_2 } from "./lecture04/lecture04";
 import { CONST_STRUCTS_AND_C_STYLE_ADTS } from "./lecture05/lecture05";
 import { STREAMS_AND_IO } from "./lecture06/lecture06";
-import { PROGRAM_DESIGN_AND_DEBUGGING } from "./lecture07/lecture07";
+import { SP25_DEBUGGING } from "./Sp25_lec13/debugging";
 import { ADTS_IN_CPP } from "./lecture08/lecture08";
 import { OPERATOR_OVERLOADING_AND_INHERITANCE } from "./lecture09/lecture09";
 import { POLYMORPHISM } from "./lecture10/lecture10";
@@ -61,6 +61,7 @@ export const LECTURE_SPECS = [
   { spec: ARRAY_BASED_DATA_STRUCTURES                           , updated: true, deadline: DateTime.fromISO("2025-05-23", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   { spec: SORTED_VS_UNSORTED_DATA_STRUCTURES                    , updated: true, deadline: DateTime.fromISO("2025-05-27", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   // { spec: PROGRAM_DESIGN_AND_DEBUGGING                          , updated: true, deadline: DateTime.fromISO("2025-05-28", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: SP25_DEBUGGING                                        , updated: true, deadline: DateTime.fromISO("2025-05-30", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   // { spec: CONTAINERS_AND_ITERATORS                              , updated: true, deadline: DateTime.fromISO("2025-06-02", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   // { spec: DYNAMIC_MEMORY                                        , updated: true, deadline: DateTime.fromISO("2025-06-03", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   // { spec: RAII_AND_GROWABLE_CONTAINERS                          , updated: true, deadline: DateTime.fromISO("2025-06-04", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
