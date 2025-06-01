@@ -34,7 +34,7 @@ export const DEEP_COPIES_AND_THE_BIG_THREE : Omit<ExamSpecification, "exam_id"> 
     <div markdown=1 class="alert alert-info">
       In this lecture, we'll introduce the idea of **shallow copies** vs. **deep copies**, its connection to dynamic resource management, and the way these concepts are realized specifically in C++ via the **Big Three**.
       
-      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Winter 2025</div>
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Spring 2025</div>
     </div>
     <style>
       .lec-video {

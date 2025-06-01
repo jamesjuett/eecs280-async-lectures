@@ -12,9 +12,6 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 export const CONTAINERS_AND_ITERATORS : Omit<ExamSpecification, "exam_id"> = {
   title: "Containers and Iterators",
   mk_intructions: dedent`
-    <div markdown=1 class="alert alert-success">
-      I didn't get this one published as early as usual, so I've extended the participation deadline by 24 hours to give a little extra flexibility.
-    </div>
     <div markdown=1 class="alert alert-info">
       This lecture covers a broad overview of **containers** as well as the fundamental approaches to implementing their underlying **data structures**.
       
@@ -28,7 +25,7 @@ export const CONTAINERS_AND_ITERATORS : Omit<ExamSpecification, "exam_id"> = {
 
       We'll also take a look at the way the standard library uses **iterators** as the abstraction for locating and traversing through elements.
       
-      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Winter 2025</div>
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Spring 2025</div>
     </div>
     <style>
       .lec-video {
@@ -57,7 +54,6 @@ export const CONTAINERS_AND_ITERATORS : Omit<ExamSpecification, "exam_id"> = {
       section_id: "section_11_1",
       title: "Introduction to Standard Library Containers",
       mk_description: dedent`
-                
         <div style="text-align: center;">
           <iframe class="lec-video" src="https://www.youtube.com/embed/OsOmWAPXySA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
@@ -69,6 +65,57 @@ export const CONTAINERS_AND_ITERATORS : Omit<ExamSpecification, "exam_id"> = {
     },
     {
       section_id: "section_11_2",
+      title: "Exceptions",
+      mk_description: dedent`
+        We'll briefly cover a miscellaneous topic, exception handling. Some functions on containers (and other functions, generally) from the C++ standard library "throw" exceptions in cases of invalid input.
+
+        For example, consider hypothetical RMEs for the \`[]\` operator and \`.at()\` functions on a \`std::vector<T>\`:
+        \`\`\`cpp
+        // REQUIRES: The vector is not empty.
+        // EFFECTS: Returns (by reference) the element at the given index.
+        T & operator[](size_t index);
+
+        // EFFECTS: Returns (by reference) the element at the given index,
+        // unless the index is out of bounds, in which casea std::out_of_range
+        // exception is thrown.
+        T & at(size_t index);
+        \`\`\`
+
+        The \`[]\` operator uses a \`REQUIRES\` clause to specify that the vector must not be empty, otherwise undefined behavior may occur. On the other hand, the \`.at()\` function uses an \`EFFECTS\` clause to specify that it will deterministically throw a \`std::out_of_range\` exception if the index is out of bounds.
+        
+        So what does "throwing an exception" mean? First, an exception is an object that represents an error that has occurred. When the function throws the exception, it does not return in the normal way or yield a result, but instead begins an alternate control flow path to seek out appropriate error handling code.
+        
+        Error handling code is specifed with a \`try\`/\`catch\` construct. The \`try\` block contains the code that may throw an exception, and the \`catch\` block contains the code that will handle the exception if it is thrown. The \`catch\` block also specifies the type of exception it can handle. If an exception is thrown, but not caught, the program terminates with an error message.
+        
+        Here's an example:
+
+        \`\`\`cpp
+        #include <iostream>
+        #include <vector>
+        #include <stdexcept>
+        int main() {
+          std::vector<int> vec = {1, 2, 3};
+          try {
+            int value = vec.at(3); // 3 is out of bounds
+          }
+          catch (const std::out_of_range &e) {
+            cout << "Error - index was out of bounds." << endl;
+          }
+        }
+        \`\`\`
+
+        This also works across function calls, so if an exception were to be thrown in a helper function, it could be caught by the caller (or the caller's caller, and so on...).
+
+        In project 4, you'll use the \`csvstream\` library to read CSV (Comma Separated Values) input files, and you'll catch an exception thrown by the library if the input file cannot be opened. The project spec links to an example of how to do this.
+
+        We'll return to exceptions near the end of the course and discuss them in more detail.
+      `,
+      questions: [
+
+      ],
+    },
+    {
+      section_id: "section_11_3",
       title: "Sequential Containers with Contiguous Allocation",
       mk_description: dedent`
         
@@ -115,7 +162,7 @@ export const CONTAINERS_AND_ITERATORS : Omit<ExamSpecification, "exam_id"> = {
       ],
     },
     {
-      section_id: "section_11_3",
+      section_id: "section_11_4",
       title: "Sequential Containers with Linked Structures",
       mk_description: dedent`
 
@@ -346,7 +393,7 @@ export const CONTAINERS_AND_ITERATORS : Omit<ExamSpecification, "exam_id"> = {
       ],
     },
     {
-      section_id: "section_11_4",
+      section_id: "section_11_5",
       title: "Iterators and Traversal by Iterator",
       mk_description: dedent`
 
@@ -364,7 +411,7 @@ export const CONTAINERS_AND_ITERATORS : Omit<ExamSpecification, "exam_id"> = {
       ],
     },
     {
-      section_id: "section_11_5",
+      section_id: "section_11_6",
       title: "The `auto` Keyword",
       mk_description: dedent`
                 
@@ -378,7 +425,7 @@ export const CONTAINERS_AND_ITERATORS : Omit<ExamSpecification, "exam_id"> = {
       ],
     },
     {
-      section_id: "section_11_6",
+      section_id: "section_11_7",
       title: "Range-based `for` Loops",
       mk_description: dedent`
                 
@@ -392,7 +439,7 @@ export const CONTAINERS_AND_ITERATORS : Omit<ExamSpecification, "exam_id"> = {
       ],
     },
     {
-      section_id: "section_11_7",
+      section_id: "section_11_8",
       title: "Iterator Interfaces",
       mk_description: dedent`
 
@@ -408,7 +455,7 @@ export const CONTAINERS_AND_ITERATORS : Omit<ExamSpecification, "exam_id"> = {
       ],
     },
     {
-      section_id: "section_11_8",
+      section_id: "section_11_9",
       title: "Sets and Maps",
       mk_description: dedent`
                 

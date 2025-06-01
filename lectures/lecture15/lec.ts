@@ -18,7 +18,7 @@ export const RAII_AND_GROWABLE_CONTAINERS : Omit<ExamSpecification, "exam_id"> =
       1. **RAII** - The use of constructors and destructors to manage dynamic resources within a class-based ADT.
       2. **Growable Containers** - Dynamic memory enables a data structure to allocate additional space for elements as needed.
       
-      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Winter 2025</div>
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Spring 2025</div>
     </div>
     <style>
       .lec-video {
