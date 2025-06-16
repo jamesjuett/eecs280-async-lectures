@@ -16,11 +16,11 @@ export const BINARY_SEARCH_TREES : Omit<ExamSpecification, "exam_id"> = {
 This lecture covers **Binary Search Trees (BSTs)**, which are a special kind of binary tree that maintains a sorting invariant on its elements. It combines the advantages of a sorted array (i.e. fast lookup with binary search) with the flexibility of a linked list (i.e. efficient insert/remove operations anywhere in the data structure).
 
 BSTs are the foundation of "industry-strength" implementations of several application-oriented data structures, including sets and maps. We'll particularly focus on maps, since we haven't discussed them previously and they are a key part of project 6 in EECS 280.
-<div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Winter 2025</div>
+<div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Spring 2025</div>
 </div>
 </div>
 <div class="alert alert-secondary" role="alert" markdown="1">
-<h5><span class="badge badge-success">Winter 2025</span></h5>
+<h5><span class="badge badge-success">Spring 2025</span></h5>
 In some of the videos for this lecture, I might refer to implementing a binary search tree or map in project 5. That's project 6 this term.
 </div>
 <style>
@@ -147,7 +147,7 @@ In some of the videos for this lecture, I might refer to implementing a binary s
       title: "Building a Map on a BST",
       mk_description: dedent`
         <div class="alert alert-secondary" role="alert" markdown="1">
-        <h5><span class="badge badge-success">Winter 2025</span></h5>
+        <h5><span class="badge badge-success">Spring 2025</span></h5>
         We've covered the general idea of a map and its interface earlier this term. The video below contains a brief re-introduction to maps, but also new material on implementing a map using a BST (if you want to skip the review, jump to ~3 minutes).
         </div>
 

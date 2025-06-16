@@ -15,14 +15,13 @@ export const STRUCTURAL_RECURSION : Omit<ExamSpecification, "exam_id"> = {
 <div markdown=1 class="alert alert-info">
 Recursion is well-suited for problems that have an intrinsic **recursive structure**. This also applies directly for many data structures, including **linked lists** (which we've seen before) and **trees** (which we introduce today). It will also turn out that for some operations, a recursive approach is natural while an iterative approach requires significant additional work.
 
-By the way, I want to give a big thanks to **Ashvin**, who recorded walkthrough videos for this lecture.
-<div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Winter 2025</div>
+<div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Spring 2025</div>
 </div>
 </div>
 
 <div>
 <p>
-Before we get started, I want to share with all of you some thoughts on recent events around U of M.
+Before we get started, I want to share with all of you some thoughts on recent changes to U of M programs and policies. Below is a brief video from a lecture near the end of the Winter 2025 term. The content is still relevant, and I hope may take a moment to reflect and consider your own values and perspective.
 <div style="text-align: center;">
 <iframe class="lec-video" src="https://www.youtube.com/embed/18Da82iITr0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
@@ -60,7 +59,7 @@ Before we get started, I want to share with all of you some thoughts on recent e
         As an initial example, let's consider the recursive structure implicit in a linked list as well as strategies for recursively processing the data stored in the list.
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/oLDv_mYmvGc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/_nb3TaK3grk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
       `,
@@ -347,27 +346,11 @@ Before we get started, I want to share with all of you some thoughts on recent e
             You're welcome to check your solution with this **walkthrough** video.
 
             <div style="text-align: center;">
-              <iframe class="lec-video" src="https://www.youtube.com/embed/qj1c_BU3EBo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe class="lec-video" src="https://www.youtube.com/embed/9liMsgq0OfU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <br />
           `
         },
-      ],
-    },
-    {
-      section_id: "section_20_2",
-      title: "Coding Recursive List Functions",
-      mk_description: dedent`
-
-        Next, we'll take a quick look at coding up an implementation of a recursive list function. As usual, we primarily follow the conceptual base case and recurrence relation we've already worked out, but there are a few more details to consider once we get to the actual code.
-
-        <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/ybgmPmWsgf0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <br />
-
-      `,
-      questions: [
         {
           question_id: "lec20_list_max",
           title: "Exercise: Coding \`list_max()\`",
@@ -397,12 +380,25 @@ Before we get started, I want to share with all of you some thoughts on recent e
           },
           mk_postscript: dedent`
             <hr />
-            You're welcome to check your solution with this **walkthrough** video.
 
-            <div style="text-align: center;">
-              <iframe class="lec-video" src="https://www.youtube.com/embed/3H6qPjwzwXU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <br />
+            <details>
+              <summary>Sample solution...</summary>
+              \`\`\`cpp
+              // REQUIRES: 'node' must not be null (i.e. the list
+              //           starting at 'node' may not be empty)
+              // EFFECTS:  Returns the largest element in the list.
+              int list_max(Node *node) {
+                // (1) base case - hint: take a second look at REQUIRES clause
+                if(!node->next) {
+                  return node->datum;
+                }
+                // (2) recursive case
+                else {
+                  return max(node->datum, list_max(node->next));
+                }
+              }
+              \`\`\`
+            </details>
           `
         },
       ],
@@ -417,7 +413,12 @@ Before we get started, I want to share with all of you some thoughts on recent e
         Because trees are also a naturally recursive data structure, we'll apply recursion here as well.
 
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/4XJgvfQsvwo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/OyeEIGJTX80" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
+
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/-AG9nsVV4P4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
       `,
@@ -701,26 +702,11 @@ Before we get started, I want to share with all of you some thoughts on recent e
             You're welcome to check your solution with this **walkthrough** video.
 
             <div style="text-align: center;">
-              <iframe class="lec-video" src="https://www.youtube.com/embed/GggjCqNt9eU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe class="lec-video" src="https://www.youtube.com/embed/5vfT6JSnWNw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <br />
           `
         },
-      ],
-    },
-    {
-      section_id: "section_20_4",
-      title: "Coding Recursive Tree Functions",
-      mk_description: dedent`
-        Let's take a look at a specific representation of trees in code, using a \`Node\` structure much like we had used for linked lists. We'll also work through a quick example of code that processes a tree recursively.
-
-        <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/OinWaXbmkm0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <br />
-
-      `,
-      questions: [
         {
           question_id: "lec20_tree_height",
           title: "Exercise: Coding \`tree_height()\`",
@@ -750,12 +736,20 @@ Before we get started, I want to share with all of you some thoughts on recent e
           },
           mk_postscript: dedent`
             <hr />
-            You're welcome to check your solution with this **walkthrough** video.
 
-            <div style="text-align: center;">
-              <iframe class="lec-video" src="https://www.youtube.com/embed/aPbU04V-87Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            <br />
+            <details>
+              <summary>Sample solution...</summary>
+              \`\`\`cpp
+              // REQUIRES: 'node' must be a binary search tree
+              // EFFECTS: Returns the height of the tree rooted at 'node'.
+              int tree_height(Node *node) {
+                if(!node) {
+                  return 0;
+                }
+                return 1 + max(tree_height(node->left), tree_height(node->right));
+              }
+              \`\`\`
+            </details>
           `
         },
       ],
