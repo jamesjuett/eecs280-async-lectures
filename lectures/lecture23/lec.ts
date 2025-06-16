@@ -16,7 +16,7 @@ export const EXCEPTIONS : Omit<ExamSpecification, "exam_id"> = {
 This lecture covers error handling, with a primary focus on mechanisms for communicating information about an error detected in one part of your code to the rest of the program where there is sufficient context to decide how to handle the problem.
 
 In many modern programming languages, **exceptions** are the tool of choice to connect error detection and handling. We'll take a look at the basics of exception handling in C++.
-<div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Winter 2025</div>
+<div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Spring 2025</div>
 </div>
 </div>
 
