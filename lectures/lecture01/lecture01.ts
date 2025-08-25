@@ -91,24 +91,20 @@ export const INTRO : Omit<ExamSpecification, "exam_id"> = {
         </div>
         <br />
 
-        **Setup Walkthrough Videos**  
-        We've posted recordings on eecs280.org of setup walkthrough sessions from last term - these take you all the way through:
-        - Initial Setup
-        - Using a command-line interface
-        - Using the VS Code Editor
-        - Workflow for compiling, running, testing, and debugging C++.
+        **Computer/C++ Setup Walkthrough Sessions**  
+        Join us for a live walkthrough session via Zoom on C++ development including set up, compilers, makefiles, C++ IDEs, EECS 280 project workflow, and open Q&A.
+        - Tuesday, Aug 26 at 3-4:30pm via Zoom.
+        - Separate, concurrent sessions for Windows/Mac.
+        - Links on eecs280.org. Recordings will be posted.
 
-        <br />
-        
         **Setup Support**  
-        Stop by either of the regular lab sessions on the first day of classes (Tue May 6) to work through setup or ask any questions.
-        - 10am-12pm in 1014 DOW
-        - 2pm-4pm in 1014 DOW
-
-        <br />
+        If you run into any issues with setup, please stop by office hours sometime later this week.
 
         **Syllabus**  
         For more details, course polices, etc. - check out our course syllabus at [eecs280.org/syllabus.html](https://eecs280.org/syllabus.html).
+
+        **Course Schedule**  
+        Reminder - the [schedule](https://eecs280.org/#schedule) for the entire term including all assignments and exams is available via the website. It's worth taking a look ahead now and noting any significant dates.
       `,
       questions: [ ]
     },
@@ -118,17 +114,21 @@ export const INTRO : Omit<ExamSpecification, "exam_id"> = {
       mk_description: dedent`
         Here's a very quick look at assignments, exams, and grading policies in EECS 280.
 
-        <div class="alert alert-secondary" role="alert" markdown="1">
-          <h5><span class="badge badge-primary">Spring 2025</span></h5>
-          One quick difference for this term from the video below - there are no entry/exit surveys for the accelerated spring term. The 1% credit for those is added to project 1, making it worth 5% this term.
-        </div>
-
         <div style="text-align: center;">
           <iframe class="lec-video" src="https://www.youtube.com/embed/Zda5HC44oew" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
+        
+        <div class="alert alert-secondary" role="alert" markdown="1">
+          <h5><span class="badge badge-primary">Fall 2025</span></h5>
+          One quick difference for this term from the video above - we're introducing quizzes during some lab sessions, taken electronically on your own laptop/tablet. The quizzes are intended to provide formative evaluation and feedback and will include questions covering material from lecture, lab, and projects. Quizzes are worth 5% of the overall grade, and the lowest quiz score will be dropped. (The 5% for quizzes comes from 2% taken off regular lab, plus 1% off of each of the 3 bigger projects - you can find the full grade breakdown in the syllabus.)
 
-        We'll come back to review this and add more detail later in the term. (Although it's all there in the syllabus and grade calculator on the website if you'd like to look now.)
+          There are 6 quizzes during the term - you can see which labs contain a quiz on the [course schedule](https://eecs280.org/#schedule).
+
+          Quizzes are a new course component and we're finalizing a few details. We'll share additional information in a future lecture.
+        </div>
+
+        For the full details on grading, see our course [syllabus](https://eecs280.org/syllabus.html) and the [grade calculator](https://eecs280.org/calculator.html) available on our website. (Don't feel like you need to dwell on all this now - but the information is there when you're ready to come back to it.)
 
         I also want to emphasize the importance of keeping up with lectures and actively participating...
 
@@ -260,6 +260,11 @@ export const INTRO : Omit<ExamSpecification, "exam_id"> = {
         <br />
 
         <img style="inline-block; height: 2em;" src="assets/eddie.jpg"> Pretty sure I heard a meow at the end of that video... 
+
+        <div class="alert alert-secondary" role="alert" markdown="1">
+          <h5><span class="badge badge-primary">Fall 2025</span></h5>
+          Recall from the previous section that some lab sessions will include a quiz.
+        </div>
       `,
       questions: [ ]
     },
@@ -423,11 +428,6 @@ export const INTRO : Omit<ExamSpecification, "exam_id"> = {
           <iframe class="lec-video" src="https://www.youtube.com/embed/Bsr_bXDhaUE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
-        
-        <div class="alert alert-secondary" role="alert" markdown="1">
-          <h5><span class="badge badge-primary">Spring 2025</span></h5>
-          One other difference for the accelerated spring term - the project deadlines are 11:59pm rather than 8pm (as in the video). But, you're welcome to pretend they're due at 8pm to make sure you get them in with plenty of time to spare! :)
-        </div>
       `,
       questions: [ ]
     },
