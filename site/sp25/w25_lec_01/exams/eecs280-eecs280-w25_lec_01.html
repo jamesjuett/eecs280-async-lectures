@@ -1,0 +1,911 @@
+
+      <!DOCTYPE html>
+      <html>
+      <head>
+  <meta charset="UTF-8">
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://unpkg.com/@popperjs/core@2" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+  <script src="https://accounts.google.com/gsi/client" async></script>
+      <script src="js/frontend-doc.js"></script>
+    
+</head>
+      <body>
+        <div id="examma-ray-exam" class="container-fluid" data-uniqname="eecs280" data-name="eecs280" data-exam-id="w25_lec_01" data-exam-uuid="eecs280-w25_lec_01" data-clientside-content="yes">
+      <div class="row">
+        <div class="bg-light examma-ray-left-panel">
+          <div class="text-center pb-1 pl-4 pr-4 border-bottom">
+            <b>Course Introduction, Intro to C++</b>
+          </div>
+          <div class="pt-1 pb-1 border-bottom">
+              <b>Participation</b> 
+      <button id="examma-ray-exam-sign-in-button" class="btn btn-primary btn-sm" style="line-height: 1;" data-toggle="modal" data-target="#exam-sign-in-modal" aria-expanded="false" aria-controls="exam-sign-in-modal">
+        <svg class="examma-ray-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+</svg> <span style="vertical-align: middle">Sign In</span>
+      </button>
+    
+              <br />
+              
+      <span id="examma-ray-exam-completion-status">
+        Loading...
+      </span>
+    
+            </div>
+          <ul class="nav er-exam-nav show-small-scrollbar" style="display: unset; flex-grow: 1; font-weight: 500; overflow-y: scroll">
+      
+        <li class="nav-item">
+          <a class="nav-link text-truncate" style="padding: 0.1rem" href="#section-eecs280-w25_lec_01-s-section_01_1">
+      <span style="float: right;">
+      
+      </span>
+     1: Introductions, The Big Picture</a>
+        </li>
+        
+      
+        <li class="nav-item">
+          <a class="nav-link text-truncate" style="padding: 0.1rem" href="#section-eecs280-w25_lec_01-s-section_01_2">
+      <span style="float: right;">
+      
+      </span>
+     2: Course Essentials</a>
+        </li>
+        
+      
+        <li class="nav-item">
+          <a class="nav-link text-truncate" style="padding: 0.1rem" href="#section-eecs280-w25_lec_01-s-section_01_3">
+      <span style="float: right;">
+      
+        
+    <span class="examma-ray-verifier-status examma-ray-verifier-status-mini" data-question-uuid="eecs280-w25_lec_01-q-lec_intro_grading">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">3.1</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+      
+      </span>
+     3: Evaluation and Grading</a>
+        </li>
+        
+          <li id="starred-question-eecs280-w25_lec_01-q-lec_intro_grading" class="nav-item examma-ray-starred-nav" data-question-uuid="eecs280-w25_lec_01-q-lec_intro_grading" style="display: none">
+            <span class="badge examma-ray-score-badge btn-secondary">4 pts</span>
+            <a class="nav-link text-truncate" style="padding: 0.1rem; display: inline" href="#question-anchor-eecs280-w25_lec_01-q-lec_intro_grading">
+              3.1: Exercise: Evaluation and Grading
+            </a>
+          </li>
+        
+      
+        <li class="nav-item">
+          <a class="nav-link text-truncate" style="padding: 0.1rem" href="#section-eecs280-w25_lec_01-s-section_01_4">
+      <span style="float: right;">
+      
+      </span>
+     4: Lab Groups and Exercises</a>
+        </li>
+        
+      
+        <li class="nav-item">
+          <a class="nav-link text-truncate" style="padding: 0.1rem" href="#section-eecs280-w25_lec_01-s-section_01_5">
+      <span style="float: right;">
+      
+      </span>
+     5: Machine Code and Compilation</a>
+        </li>
+        
+      
+        <li class="nav-item">
+          <a class="nav-link text-truncate" style="padding: 0.1rem" href="#section-eecs280-w25_lec_01-s-section_01_6">
+      <span style="float: right;">
+      
+      </span>
+     6: Demo: A First Progam in C++</a>
+        </li>
+        
+      
+        <li class="nav-item">
+          <a class="nav-link text-truncate" style="padding: 0.1rem" href="#section-eecs280-w25_lec_01-s-section_01_7">
+      <span style="float: right;">
+      
+        
+    <span class="examma-ray-verifier-status examma-ray-verifier-status-mini" data-question-uuid="eecs280-w25_lec_01-q-lec_intro_cpp_fundamentals">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">7.1</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+      
+      </span>
+     7: A Tour of C++</a>
+        </li>
+        
+          <li id="starred-question-eecs280-w25_lec_01-q-lec_intro_cpp_fundamentals" class="nav-item examma-ray-starred-nav" data-question-uuid="eecs280-w25_lec_01-q-lec_intro_cpp_fundamentals" style="display: none">
+            <span class="badge examma-ray-score-badge btn-secondary">1 pt</span>
+            <a class="nav-link text-truncate" style="padding: 0.1rem; display: inline" href="#question-anchor-eecs280-w25_lec_01-q-lec_intro_cpp_fundamentals">
+              7.1: Exercise: C++ Fundamentals
+            </a>
+          </li>
+        
+      
+        <li class="nav-item">
+          <a class="nav-link text-truncate" style="padding: 0.1rem" href="#section-eecs280-w25_lec_01-s-section_01_8">
+      <span style="float: right;">
+      
+      </span>
+     8: Fundamental Types and Implicit Conversions</a>
+        </li>
+        
+      
+        <li class="nav-item">
+          <a class="nav-link text-truncate" style="padding: 0.1rem" href="#section-eecs280-w25_lec_01-s-section_01_9">
+      <span style="float: right;">
+      
+      </span>
+     9: Projects and Autograder</a>
+        </li>
+        
+      
+        <li class="nav-item">
+          <a class="nav-link text-truncate" style="padding: 0.1rem" href="#section-eecs280-w25_lec_01-s-section_01_10">
+      <span style="float: right;">
+      
+      </span>
+     10: Collaboration and Academic Integrity</a>
+        </li>
+        
+      
+        <li class="nav-item">
+          <a class="nav-link text-truncate" style="padding: 0.1rem" href="#section-eecs280-w25_lec_01-s-section_01_11">
+      <span style="float: right;">
+      
+      </span>
+     11: Wrapping Up</a>
+        </li>
+        
+      
+    </ul>
+          
+      <div class="examma-ray-exam-saver-status border-top">
+        <div>
+          <div style="text-align: left">
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
+  <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z"></path>
+  <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293z"></path>
+</svg>
+<a style="vertical-align: middle;" href="/eecs280-async-lectures">
+  Table of Contents
+</a>
+<br>
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-slides" viewBox="0 0 16 16">
+  <path d="M5 6a.5.5 0 0 0-.496.438l-.5 4A.5.5 0 0 0 4.5 11h3v2.016c-.863.055-1.5.251-1.5.484 0 .276.895.5 2 .5s2-.224 2-.5c0-.233-.637-.429-1.5-.484V11h3a.5.5 0 0 0 .496-.562l-.5-4A.5.5 0 0 0 11 6H5zm2 3.78V7.22c0-.096.106-.156.19-.106l2.13 1.279a.125.125 0 0 1 0 .214l-2.13 1.28A.125.125 0 0 1 7 9.778z"></path>
+  <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"></path>
+</svg>
+<a style="vertical-align: middle;" target="_blank" href="https://drive.google.com/drive/folders/1wdIk41500J4SILWprRAxB1-c4m8A2Wux">
+  Slides (Powerpoint, PDF)
+</a>
+<br>
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+<path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+</svg>
+<a style="vertical-align: middle;" target="_blank" href="https://github.com/jamesjuett/eecs280-async-lectures">
+  Report issues or make suggestions
+</a>
+</div>
+        </div>
+        <br />
+        <div><button class="examma-ray-exam-answers-file-button btn btn-primary" data-toggle="modal" data-target="#exam-saver" aria-expanded="false" aria-controls="exam-saver">Answers File</button></div>
+        <div class="examma-ray-exam-saver-status-note">Export your exercise answers to use with another computer or browser.</div>
+      </div>
+        </div>
+        <div class="examma-ray-main-panel">
+          
+      <div class="examma-ray-header">
+        <div class="text-center mb-3 border-bottom">
+          <h2>Course Introduction, Intro to C++</h2>
+          
+        </div>
+        <div>
+          <div class="container examma-ray-instructions">
+    <p><link rel="icon" type="image/png" href="/eecs280-async-lectures/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/svg+xml" href="/eecs280-async-lectures/favicon.svg">
+<link rel="shortcut icon" href="/eecs280-async-lectures/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/eecs280-async-lectures/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="Async Lecs">
+<link rel="manifest" href="/eecs280-async-lectures/site.webmanifest"></p>
+<div markdown="1" class="alert alert-info"><p>Welcome to <strong>EECS 280</strong>! This lecture presents our motivations and big-picture goals, some course logistics, and an introduction to programming in C++.
+  </p>
+<div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Winter 2025</div></div>
+<div markdown="1" class="alert alert-success"><p><b>Participation credit</b> for async lectures is automatically recorded once you complete
+  the embedded exercises. Take a look at the top left of the page. You'll need to <b>sign in</b> with
+  your @umich.edu Google account so that we know it's you.</p>
+<p>Completion of individual exercises is tracked in the navigation panel to the left and section headers within the page. Once all exercises are complete, you'll see a "Completion Verified" message.</p>
+<p>To earn participation credit, complete the lecture by 11:59pm on the day the lecture is scheduled.</p></div>
+<style>
+  .lec-video {
+    width: 80%;
+    aspect-ratio: 16/9;
+  }
+
+  iframe.lobster-iframe {
+    border: none;
+    width: 80%;
+    height: 450px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+</style>
+  </div>
+          <div class="examma-ray-announcements">
+    
+  </div>
+        </div>
+      </div>
+    
+          
+      <div id="section-eecs280-w25_lec_01-s-section_01_1" class="examma-ray-section examma-ray-section-no-reference" data-section-uuid="eecs280-w25_lec_01-s-section_01_1" data-section-display-index="1">
+        <hr />
+        <table class="examma-ray-section-contents">
+          <tr>
+            <td class="examma-ray-questions-container">
+              
+      <div class="examma-ray-section-heading">
+        <div class="badge badge-primary">
+          1: Introductions, The Big Picture
+        </div>
+        <span class="examma-ray-section-verifier-statuses">
+          
+        </span>
+      </div>
+    
+              <div class="examma-ray-section-description"><p>Hello! Let's get started with EECS 280!</p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/8vEKA0Znpzk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p>
+<p>A notes for async lectures:</p>
+<ul>
+<li>They cover the same material as the regular lectures and are kept up-to-date with any changes for the current term.</li>
+<li>It's just as important as with live lectures to keep up with the material. Async participation is due by 11:59pm the day of the lecture.</li>
+<li>Generally speaking, I'll post the lectures several days ahead of time so you have a bit more flexibility in when to do them.</li>
+</ul></div>
+              
+            </td>
+            
+          </tr>
+        </table>
+      </div>
+    <br />
+      <div id="section-eecs280-w25_lec_01-s-section_01_2" class="examma-ray-section examma-ray-section-no-reference" data-section-uuid="eecs280-w25_lec_01-s-section_01_2" data-section-display-index="2">
+        <hr />
+        <table class="examma-ray-section-contents">
+          <tr>
+            <td class="examma-ray-questions-container">
+              
+      <div class="examma-ray-section-heading">
+        <div class="badge badge-primary">
+          2: Course Essentials
+        </div>
+        <span class="examma-ray-section-verifier-statuses">
+          
+        </span>
+      </div>
+    
+              <div class="examma-ray-section-description"><p>Let's take a look at the major components of EECS 280 and course resources, all accessible from our website at <a href="https://eecs280.org">eecs280.org</a>.</p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/-ONgvp2xLJc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p>
+<p>Don't worry if this all seems a bit overwhelming. There are a lot of different components to the course and a bunch of different resources to get used to. You can find everything from <a href="https://eecs280.org">eecs280.org</a>, and we'll try to keep it up-to-date with the most relevant material. I also highly encourage that you ask questions if you're feeling lost - on Ed, Discord, in office hours, in lab, etc.</p>
+<p><strong>Setup Tutorials</strong><br>
+Here's my recommended approach to getting your computer set up for C++ development (i.e. in the text bubbles below):</p>
+<div style="text-align: center;">
+  <img src="assets/tutorials.png" style="width: 600px;">
+</div>
+<p><br></p>
+<p><strong>Setup Walkthrough Videos</strong><br>
+We've posted recordings on eecs280.org of setup walkthrough sessions from last term - these take you all the way through:</p>
+<ul>
+<li>Initial Setup</li>
+<li>Using a command-line interface</li>
+<li>Using the VS Code Editor</li>
+<li>Workflow for compiling, running, testing, and debugging C++.</li>
+</ul>
+<p><br></p>
+<p><strong>Setup Support</strong><br>
+Stop by either of the regular lab sessions on the first day of classes (Tue May 6) to work through setup or ask any questions.</p>
+<ul>
+<li>10am-12pm in 1014 DOW</li>
+<li>2pm-4pm in 1014 DOW</li>
+</ul>
+<p><br>
+<br></p>
+<p><strong>Syllabus</strong><br>
+For more details, course polices, etc. - check out our course syllabus at <a href="https://eecs280.org/syllabus.html">eecs280.org/syllabus.html</a>.</p></div>
+              
+            </td>
+            
+          </tr>
+        </table>
+      </div>
+    <br />
+      <div id="section-eecs280-w25_lec_01-s-section_01_3" class="examma-ray-section examma-ray-section-no-reference" data-section-uuid="eecs280-w25_lec_01-s-section_01_3" data-section-display-index="3">
+        <hr />
+        <table class="examma-ray-section-contents">
+          <tr>
+            <td class="examma-ray-questions-container">
+              
+      <div class="examma-ray-section-heading">
+        <div class="badge badge-primary">
+          3: Evaluation and Grading
+        </div>
+        <span class="examma-ray-section-verifier-statuses">
+          
+            
+    <span class="examma-ray-verifier-status" data-question-uuid="eecs280-w25_lec_01-q-lec_intro_grading">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">3.1</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+          
+        </span>
+      </div>
+    
+              <div class="examma-ray-section-description"><p>Here's a very quick look at assignments, exams, and grading policies in EECS 280.</p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/Zda5HC44oew" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p>
+<p>We'll come back to review this and add more detail later in the term. (Although it's all there in the syllabus and grade calculator on the website if you'd like to look now.)</p>
+<p>I also want to emphasize the importance of keeping up with lectures and actively participating…</p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/mFzvKwcxnjE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p></div>
+              
+      <div id="question-eecs280-w25_lec_01-q-lec_intro_grading" data-question-uuid="eecs280-w25_lec_01-q-lec_intro_grading" data-question-display-index="3.1" class="examma-ray-question card-group">
+        <div id="question-anchor-eecs280-w25_lec_01-q-lec_intro_grading" class="examma-ray-question-anchor"></div>
+        <div class="card">
+          <div class="card-header">
+            
+      <b>3.1 Exercise: Evaluation and Grading</b>
+    
+          </div>
+          <div class="card-body">
+            <div class="examma-ray-question-description">
+              <p>Here's your first participation exercise! Fill in the blanks below.</p>
+            </div>
+            <div class="examma-ray-question-response examma-ray-question-response-fill_in_the_blank" data-response-kind="fill_in_the_blank"><p><input type="text" value="" size="29" maxlength="29" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-blank-input nohighlight"></input><span class="examma-ray-fitb-input-annotation examma-ray-fitb-blank-annotation"></span> are the only part of the grade computation that is curved.</p>
+<p>Participation in <input type="text" value="" size="18" maxlength="18" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-blank-input nohighlight"></input><span class="examma-ray-fitb-input-annotation examma-ray-fitb-blank-annotation"></span> is <em>optionally</em> graded, worth 3% if it helps you.</p>
+<p>A student scoring 89.7% overall (with 91.8% on projects, 86.8% on exams) would earn a grade of <input type="text" value="" size="3" maxlength="3" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-blank-input nohighlight"></input><span class="examma-ray-fitb-input-annotation examma-ray-fitb-blank-annotation"></span>.</p>
+<p>A student scoring 78.2% overall (with 58.1% on projects, 93.25% on exams) would earn a grade of <input type="text" value="" size="3" maxlength="3" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-blank-input nohighlight"></input><span class="examma-ray-fitb-input-annotation examma-ray-fitb-blank-annotation"></span>.</p></div>
+            <div class="examma-ray-question-postscript">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+            </td>
+            
+          </tr>
+        </table>
+      </div>
+    <br />
+      <div id="section-eecs280-w25_lec_01-s-section_01_4" class="examma-ray-section examma-ray-section-no-reference" data-section-uuid="eecs280-w25_lec_01-s-section_01_4" data-section-display-index="4">
+        <hr />
+        <table class="examma-ray-section-contents">
+          <tr>
+            <td class="examma-ray-questions-container">
+              
+      <div class="examma-ray-section-heading">
+        <div class="badge badge-primary">
+          4: Lab Groups and Exercises
+        </div>
+        <span class="examma-ray-section-verifier-statuses">
+          
+        </span>
+      </div>
+    
+              <div class="examma-ray-section-description"><p>You'll work small groups of other students to further explore and pratice the course material in lab exercises.</p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/HGJ8AgFRL-8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p>
+<p><img style="inline-block; height: 2em;" src="assets/eddie.jpg"> Pretty sure I heard a meow at the end of that video… </p></div>
+              
+            </td>
+            
+          </tr>
+        </table>
+      </div>
+    <br />
+      <div id="section-eecs280-w25_lec_01-s-section_01_5" class="examma-ray-section examma-ray-section-no-reference" data-section-uuid="eecs280-w25_lec_01-s-section_01_5" data-section-display-index="5">
+        <hr />
+        <table class="examma-ray-section-contents">
+          <tr>
+            <td class="examma-ray-questions-container">
+              
+      <div class="examma-ray-section-heading">
+        <div class="badge badge-primary">
+          5: Machine Code and Compilation
+        </div>
+        <span class="examma-ray-section-verifier-statuses">
+          
+        </span>
+      </div>
+    
+              <div class="examma-ray-section-description"><p>Let's take a break from talking about logistics and dive into our first sequence of course material! We'll start with a brief introduction to the nature of C++ as a <strong>compiled</strong> language.</p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/5I_gpGCwlGY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p></div>
+              
+            </td>
+            
+          </tr>
+        </table>
+      </div>
+    <br />
+      <div id="section-eecs280-w25_lec_01-s-section_01_6" class="examma-ray-section examma-ray-section-no-reference" data-section-uuid="eecs280-w25_lec_01-s-section_01_6" data-section-display-index="6">
+        <hr />
+        <table class="examma-ray-section-contents">
+          <tr>
+            <td class="examma-ray-questions-container">
+              
+      <div class="examma-ray-section-heading">
+        <div class="badge badge-primary">
+          6: Demo: A First Progam in C++
+        </div>
+        <span class="examma-ray-section-verifier-statuses">
+          
+        </span>
+      </div>
+    
+              <div class="examma-ray-section-description"><p>So, what does it actually look like to write a program in C++, compile it, and run it?</p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/MLCHE6cbsLY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p>
+<p>There were several commands in there, including the <code>g++ hello.cpp -o hello.exe</code> that I used to compile the program. Don't worry about memorizing any of this right now. The tutorials and C++ setup walkthrough sessions will go into some more depth on these.</p></div>
+              
+            </td>
+            
+          </tr>
+        </table>
+      </div>
+    <br />
+      <div id="section-eecs280-w25_lec_01-s-section_01_7" class="examma-ray-section examma-ray-section-no-reference" data-section-uuid="eecs280-w25_lec_01-s-section_01_7" data-section-display-index="7">
+        <hr />
+        <table class="examma-ray-section-contents">
+          <tr>
+            <td class="examma-ray-questions-container">
+              
+      <div class="examma-ray-section-heading">
+        <div class="badge badge-primary">
+          7: A Tour of C++
+        </div>
+        <span class="examma-ray-section-verifier-statuses">
+          
+            
+    <span class="examma-ray-verifier-status" data-question-uuid="eecs280-w25_lec_01-q-lec_intro_cpp_fundamentals">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">7.1</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+          
+        </span>
+      </div>
+    
+              <div class="examma-ray-section-description"><p>Now, we'll spend some time on a brief, whirlwind-style tour of some of the characteristics of C++. This is just a high-level overview, and we'll spend more time on a lot of details throughout the rest of the course.</p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/V9-WMP0mXUY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p>
+<p>It's worth looking at <strong>expressions</strong> and <strong>variables</strong> in a bit more detail, especially the way variables and their types relate to the underlying memory used in our program.</p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/b0GpOtt0fK4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p>
+<p>Understanding variables as a name for an object in memory also helps us understand what would happen if a variable were declared, but not properly initialized before we use it…</p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/ub1lkk67XME" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p>
+<p>Finally, we'll look at a few ways the compiler checks for common errors in programs before we're allowed to run them, using rules of <strong>scope</strong> and <strong>static typing</strong>.</p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/57NGk0keZLY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p></div>
+              
+      <div id="question-eecs280-w25_lec_01-q-lec_intro_cpp_fundamentals" data-question-uuid="eecs280-w25_lec_01-q-lec_intro_cpp_fundamentals" data-question-display-index="7.1" class="examma-ray-question card-group">
+        <div id="question-anchor-eecs280-w25_lec_01-q-lec_intro_cpp_fundamentals" class="examma-ray-question-anchor"></div>
+        <div class="card">
+          <div class="card-header">
+            
+      <b>7.1 Exercise: C++ Fundamentals</b>
+    
+          </div>
+          <div class="card-body">
+            <div class="examma-ray-question-description">
+              <p>Complete each of the tasks described in the comments.</p>
+            </div>
+            <div class="examma-ray-question-response examma-ray-question-response-iframe" data-response-kind="iframe">
+    <div style="text-align: center;">
+      <iframe id="iframe-response-eecs280-w25_lec_01-q-lec_intro_cpp_fundamentals-__DEFAULT-__DEFAULT" src="assets/intro_cpp_fundamentals.html" class="lobster-iframe" style="height: 850px;"></iframe>
+    </div>
+  </div>
+            <div class="examma-ray-question-postscript">
+              <p></p><hr>
+<details>
+  <summary>Sample solution…</summary><p></p>
+<pre><code class="hljs cpp language-cpp">  <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+  <span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+  <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+
+    <span class="hljs-comment">// Task 1: Define a variable called price with inital value 7.99.</span>
+    <span class="hljs-keyword">double</span> price = <span class="hljs-number">7.99</span>;
+
+    <span class="hljs-comment">// Task 2: Define a variable called quantity with initial value 4.</span>
+    <span class="hljs-comment">//         The variable&#x27;s type should only allow whole numbers.</span>
+    <span class="hljs-keyword">int</span> quantity = <span class="hljs-number">4</span>;
+
+    <span class="hljs-comment">// Task 3: Print the result of multiplying the variables to cout.</span>
+    <span class="hljs-comment">//         (Use the unqualified name cout, not std::cout.)</span>
+    cout &lt;&lt; price * quantity &lt;&lt; endl;
+  }
+</code></pre>
+<p></p></details><p></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+            </td>
+            
+          </tr>
+        </table>
+      </div>
+    <br />
+      <div id="section-eecs280-w25_lec_01-s-section_01_8" class="examma-ray-section examma-ray-section-no-reference" data-section-uuid="eecs280-w25_lec_01-s-section_01_8" data-section-display-index="8">
+        <hr />
+        <table class="examma-ray-section-contents">
+          <tr>
+            <td class="examma-ray-questions-container">
+              
+      <div class="examma-ray-section-heading">
+        <div class="badge badge-primary">
+          8: Fundamental Types and Implicit Conversions
+        </div>
+        <span class="examma-ray-section-verifier-statuses">
+          
+        </span>
+      </div>
+    
+              <div class="examma-ray-section-description"><p>Let's take a look at the set of fundamental data types built in to the C++ language, as well as the rules for implicit conversion between them.</p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/BFt_3sLGMy4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p>
+<p>I'll also point out that <strong>explicit conversions</strong> are possible, where we directly request a conversion. In some cases this may be necessary. In others, it's stylistically preferrable to make an otherwise implicit conversion more obvious. Here's a few examples:</p>
+<pre><code class="hljs cpp language-cpp"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-keyword">double</span> value = <span class="hljs-number">4.3</span>;
+
+  <span class="hljs-comment">// implicit conversion, too easy to miss</span>
+  <span class="hljs-keyword">int</span> x = value;
+
+  <span class="hljs-comment">// C-style cast, avoid doing this</span>
+  <span class="hljs-keyword">int</span> x = (<span class="hljs-keyword">int</span>)value;
+
+  <span class="hljs-comment">// C++-style cast, this is preferred</span>
+  <span class="hljs-keyword">int</span> x = <span class="hljs-keyword">static_cast</span>&lt;<span class="hljs-keyword">int</span>&gt;(value);
+}
+</code></pre>
+<p>In C++, the <code>static_cast</code> form is preferred because it involves stronger compiler checks to ensure the conversion makes sense.</p></div>
+              
+            </td>
+            
+          </tr>
+        </table>
+      </div>
+    <br />
+      <div id="section-eecs280-w25_lec_01-s-section_01_9" class="examma-ray-section examma-ray-section-no-reference" data-section-uuid="eecs280-w25_lec_01-s-section_01_9" data-section-display-index="9">
+        <hr />
+        <table class="examma-ray-section-contents">
+          <tr>
+            <td class="examma-ray-questions-container">
+              
+      <div class="examma-ray-section-heading">
+        <div class="badge badge-primary">
+          9: Projects and Autograder
+        </div>
+        <span class="examma-ray-section-verifier-statuses">
+          
+        </span>
+      </div>
+    
+              <div class="examma-ray-section-description"><p>You get to exercise the skills you learn in lecture and lab in six large-scale programming projects throughout the course, designed to solidify your understanding and give you a chance to build some neat applications with real-world appeal!</p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/Bsr_bXDhaUE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p></div>
+              
+            </td>
+            
+          </tr>
+        </table>
+      </div>
+    <br />
+      <div id="section-eecs280-w25_lec_01-s-section_01_10" class="examma-ray-section examma-ray-section-no-reference" data-section-uuid="eecs280-w25_lec_01-s-section_01_10" data-section-display-index="10">
+        <hr />
+        <table class="examma-ray-section-contents">
+          <tr>
+            <td class="examma-ray-questions-container">
+              
+      <div class="examma-ray-section-heading">
+        <div class="badge badge-primary">
+          10: Collaboration and Academic Integrity
+        </div>
+        <span class="examma-ray-section-verifier-statuses">
+          
+        </span>
+      </div>
+    
+              <div class="examma-ray-section-description"><p>We want you to learn with and from each other! Enjoying the class with others and having a network you can reach out to for help is highly encouraged. At the same time, we want to make sure everyone has an opportunity to learn for themselves and that nobody takes credit for someone else's work.</p>
+<p>It's also important to do the (sometimes challenging, sometimes frustrating!) work yourself, because otherwise you're not going to get much out of the course. This informs our Generative AI Policy. The short version - you're encouraged to use tools like ChatGPT, Copilot, etc. to help you learn, but you aren't allowed to use them to do your work for you. I recommend against using such tools for <em>any</em> code generation, no matter how small. The <a href="https://eecs280.org/syllabus.html#generative-ai-policy">full version</a> in our syllabus is also worth a read.</p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/UGL_kCo1P1Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p></div>
+              
+            </td>
+            
+          </tr>
+        </table>
+      </div>
+    <br />
+      <div id="section-eecs280-w25_lec_01-s-section_01_11" class="examma-ray-section examma-ray-section-no-reference" data-section-uuid="eecs280-w25_lec_01-s-section_01_11" data-section-display-index="11">
+        <hr />
+        <table class="examma-ray-section-contents">
+          <tr>
+            <td class="examma-ray-questions-container">
+              
+      <div class="examma-ray-section-heading">
+        <div class="badge badge-primary">
+          11: Wrapping Up
+        </div>
+        <span class="examma-ray-section-verifier-statuses">
+          
+        </span>
+      </div>
+    
+              <div class="examma-ray-section-description"><p>Just a few parting thoughts.</p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/TlsM1jxpKDQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p></div>
+              
+            </td>
+            
+          </tr>
+        </table>
+      </div>
+    
+          <div class="container examma-ray-bottom-message">
+            <div class="alert alert-success" style="margin: 2em; margin-top: 4em;">
+              You've reached the end of this lecture! Your work on any exercises will be saved if you re-open this page in the same web browser.</p>
+<p><strong>Participation Credit</strong><br>
+Make sure to sign in to the page, complete each of the exercises, and <strong>double check</strong> the participation indicator at the top left of this page to ensure you've earned credit.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+        
+      <div id="exam-saver" class="exam-saver-modal modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Answers File</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="alert alert-info"><p>Your work on exercises is <strong>automatically</strong> saved in your web browser's local storage. That means you don't need to do anything to save your work as long as:</p>
+<ul>
+<li>You use the same computer</li>
+<li>You use the same web browser</li>
+<li>You don't use incognito or private browsing (which disables local storage)</li>
+</ul>
+<p>To transfer answers between computers or browsers, use the import/export options below.</p></div>
+              <div style="text-align: center;">
+                <div id="exam-saver-download-status" style="margin-bottom: 5px;"></div>
+                <div><a id="exam-saver-download-link" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-down" viewBox="0 0 16 16">
+<path d="M8.5 6.5a.5.5 0 0 0-1 0v3.793L6.354 9.146a.5.5 0 1 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L8.5 10.293V6.5z"/>
+<path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+</svg> Download Answers</a></div>
+                <br />
+                <div style="margin-bottom: 5px;">Or, you may restore answers you previously saved to a file.<br /><b>WARNING!</b> This will overwrite ALL answers on this page.</div>
+                <div>
+                  <button id="exam-saver-load-button" class="btn btn-danger disabled" disabled><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-up" viewBox="0 0 16 16">
+<path d="M8.5 11.5a.5.5 0 0 1-1 0V7.707L6.354 8.854a.5.5 0 1 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 7.707V11.5z"/>
+<path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+</svg> Load Answers</button>
+                  <input id="exam-saver-file-input" type="file"></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  
+      <div id="exam-welcome-restored-modal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Course Introduction, Intro to C++</h5>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+              <div class="alert alert-info">This page was reloaded, and we've restored your answers from a local backup.</div>
+              <div>
+                <button class="btn btn-success" data-dismiss="modal"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
+<path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
+<path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+</svg> OK</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  
+      <div id="exam-welcome-restored-error-modal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Course Introduction, Intro to C++</h5>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+              <div class="alert alert-danger">
+                An error was encountered while attempting to restore your answers from a local backup.
+                If you are in the process of creating and previewing an exam, this may have occurred due
+                to a change to a question's type. If so, clear your browser's local storage before continuing.
+                <br />
+                If you're taking an exam, this should never happen. But, if it does, contact your instructor,
+                course staff, or proctor as soon as possible.
+              </div>
+              <div>
+                <button class="btn btn-success" data-dismiss="modal"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
+<path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
+<path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+</svg> OK</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  
+      <div id="exam-welcome-normal-modal" class="modal" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Course Introduction, Intro to C++</h5>
+            </div>
+            <div class="modal-body">
+              <div class="alert alert-info">This exam is for <b>eecs280</b>. If this is not you, please close this page.</div>
+              <div class="alert alert-info">This page shows your exam questions and gives you a place to work. <b>However, we will not grade anything here</b>. You must <b>download</b> an "answers file" and submit that to <b>Canvas</b> BEFORE the exam ends</b>.</div>
+              <div class="alert alert-warning">If something goes wrong (e.g. in case your computer crashes, you accidentally close the page, etc.), this page will attempt to restore your work when you come back. <b>Warning!</b> If you take the exam in private/incognito mode, or if you have certain privacy extensions/add-ons enabled, this won't work.</div>
+  
+              <p style="margin-left: 2em; margin-right: 2em;">
+                By taking this exam and submitting an answers file, you attest to the CoE Honor Pledge:
+              </p>
+              <p style="margin-left: 4em; margin-right: 4em;">
+                <span style="font-style: italic">I have neither given nor received unauthorized aid on this examination, nor have I concealed any violations of the Honor Code."
+              </p>
+              
+              <div style="text-align: center;">
+                <button class="btn btn-primary" data-dismiss="modal">I am <b>eecs280</b> and I understand</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  
+      <div id="exam-welcome-no-autosave-modal" class="modal" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Course Introduction, Intro to C++</h5>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+              <div class="alert alert-info">This exam is for <b>eecs280</b>. If this is not you, please close this page.</div>
+              <div class="alert alert-info">This page shows your exam questions and gives you a place to work. <b>However, we will not grade anything here</b>. You must <b>download</b> an "answers file" and submit that to <b>Canvas</b> BEFORE the exam ends</b>.</div>
+              <div class="alert alert-danger">It appears your browser will not support backing up your answers to local storage (e.g. in case your computer crashes, you accidentally close the page, etc.).<br /><br />While you may still take the exam like this, we do not recommend it. Make sure you are <b>not</b> using private/incognito mode, temporarily disable privacy add-ons/extensions, or try a different web browser to get autosave to work.</div>
+              <div>
+                <button class="btn btn-primary" data-dismiss="modal">I am <b>eecs280</b> and I understand</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div id="multiple-tabs-modal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">WARNING</h5>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+              <div class="alert alert-danger">It appears you have this page open in multiple tabs/windows. That's a bad idea. Close whichever one you just opened.</div>
+              <div>
+                <button class="btn btn-primary" data-dismiss="modal">OK</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div id="exam-sign-in-modal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-sm" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Sign In</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div style="font-size: 11pt;">
+                <p>Sign in with your @umich.edu Google account to earn participation credit for completing embedded exercises.</p>
+              </div>
+              <div style="text-align: center">
+                <div class="g_id_signin"
+                  data-type="standard"
+                  data-shape="rectangular"
+                  data-theme="outline"
+                  data-text="signin_with"
+                  data-size="large"
+                  data-logo_alignment="left"
+                  style="display: inline-block"
+                ></div>
+              </div>
+
+              <div id="g_id_onload"
+                data-client_id="444801118749-m2g9gl3gvvkh5ru959dmka0lsk94d9uq.apps.googleusercontent.com"
+                data-context="signin"
+                data-ux_mode="popup"
+                data-callback="on_google_sign_in"
+                data-auto_prompt="false"
+              ></div>
+
+              <script>
+                function on_google_sign_in(response) {
+                  window.google_sign_in_callback(response);
+                }
+              </script>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      </body>
+      </html>
+    

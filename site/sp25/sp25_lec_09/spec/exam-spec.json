@@ -1,0 +1,433 @@
+{
+  "title": "Polymorphism",
+  "mk_intructions": "\n<link rel=\"icon\" type=\"image/png\" href=\"/eecs280-async-lectures/favicon-96x96.png\" sizes=\"96x96\" />\n<link rel=\"icon\" type=\"image/svg+xml\" href=\"/eecs280-async-lectures/favicon.svg\" />\n<link rel=\"shortcut icon\" href=\"/eecs280-async-lectures/favicon.ico\" />\n<link rel=\"apple-touch-icon\" sizes=\"180x180\" href=\"/eecs280-async-lectures/apple-touch-icon.png\" />\n<meta name=\"apple-mobile-web-app-title\" content=\"Async Lecs\" />\n<link rel=\"manifest\" href=\"/eecs280-async-lectures/site.webmanifest\" />\n<div markdown=1 class=\"alert alert-info\">\n  This lecture explores **polymorphism**, which makes our code more flexible and enables even just a single line of code to potentially do many different things in different contexts or situations. It's one of the most powerful concepts in programming.\n\n  We'll specifically focus on **subtype polymorphism** today.\n  \n  <div style=\"position: absolute; bottom: 5px; right: 10px; font-weight: bold;\">Updated Spring 2025</div>\n</div>\n<style>\n  .lec-video {\n    width: 80%;\n    aspect-ratio: 16/9;\n  }\n\n  iframe.lobster-iframe {\n    border: none;\n    width: 80%;\n    height: 450px;\n    margin-left: auto;\n    margin-right: auto;\n  }\n\n</style>",
+  "mk_questions_message": "\n<div style=\"text-align: left\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-house-fill\" viewBox=\"0 0 16 16\">\n  <path d=\"M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z\"/>\n  <path d=\"m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293z\"/>\n</svg>\n<a style=\"vertical-align: middle;\" href=\"/eecs280-async-lectures\">\n  Table of Contents\n</a>\n<br />\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-file-earmark-slides\" viewBox=\"0 0 16 16\">\n  <path d=\"M5 6a.5.5 0 0 0-.496.438l-.5 4A.5.5 0 0 0 4.5 11h3v2.016c-.863.055-1.5.251-1.5.484 0 .276.895.5 2 .5s2-.224 2-.5c0-.233-.637-.429-1.5-.484V11h3a.5.5 0 0 0 .496-.562l-.5-4A.5.5 0 0 0 11 6H5zm2 3.78V7.22c0-.096.106-.156.19-.106l2.13 1.279a.125.125 0 0 1 0 .214l-2.13 1.28A.125.125 0 0 1 7 9.778z\"/>\n  <path d=\"M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z\"/>\n</svg>\n<a style=\"vertical-align: middle;\" target=\"_blank\" href=\"https://drive.google.com/drive/folders/1I4ZZc3BXyovb-nlMhIRH3tbi9lBqcV4C?usp=sharing\">\n  Slides (Powerpoint, PDF)\n</a>\n<br />\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-github\" viewBox=\"0 0 16 16\">\n<path d=\"M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z\"/>\n</svg>\n<a style=\"vertical-align: middle;\" target=\"_blank\" href=\"https://github.com/jamesjuett/eecs280-async-lectures\">\n  Report issues or make suggestions\n</a>\n</div>\n",
+  "mk_bottom_message": "You've reached the end of this lecture! Your work on any exercises will be saved if you re-open this page in the same web browser.\n\n**Participation Credit**  \nMake sure to sign in to the page, complete each of the exercises, and **double check** the participation indicator at the top left of this page to ensure you've earned credit.",
+  "mk_download_message": "Export your exercise answers to use with another computer or browser.",
+  "mk_saver_message": "Your work on exercises is **automatically** saved in your web browser's local storage. That means you don't need to do anything to save your work as long as:\n- You use the same computer\n- You use the same web browser\n- You don't use incognito or private browsing (which disables local storage)\n\nTo transfer answers between computers or browsers, use the import/export options below.",
+  "assets_dir": "/home/jjuett/eecs280/async-lectures/lectures/lecture10/assets",
+  "allow_clientside_content": true,
+  "sections": [
+    {
+      "section_id": "section_10_1",
+      "title": "Subtype Polymorphism",
+      "mk_description": "\nFirst, a brief intro to the many forms of polymorphism:\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/41PpFzEIFg8\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />\n\nTo enable subtype polymorphism specifically, we'll need a way for a single base class variable to potentially work with any object of any derived class. As usual, the answer is more pointers :).\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/wVdKXkTgrbg\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />\n",
+      "questions": [
+        {
+          "question_id": "lec10_upcasts_and_downcasts",
+          "title": "Exercise: Upcasts and Downcasts",
+          "points": 4,
+          "mk_description": "Consider the variables `a`, `b`, and `c` below, and assume the `Duck` and `Chicken` classes are both derived from the `Bird` base class.\n\n```cpp\nint main() {\n  Bird b(\"Bonnie\");\n  Chicken c(\"Carlos\");\n  Duck d(\"Dinesh\");\n}\n```\n\nConsider each of the following code snippets. Each involves upcasts or downcasts, some with pointers and some with references (note that the rules for references are the same as for pointers - upcasts are safe but downcasts are not!). If the compiler would allow the code, write \"ok\". Otherwise, write \"error\" and a brief explanation of the problem.",
+          "response": {
+            "kind": "fill_in_the_blank",
+            "content": "\n<table style=\"width: 100%; border: none;\">\n  <tr>\n    <td style=\"width: 250px; padding-right: 15px;\">\n    <div markdown=\"1\">\n      \n```cpp\nBird *bPtr = &b;\nChicken *cPtr = bPtr;\n```\n    </div>\n    </td>\n    <td>\n    <div>\n      [[BOX\n      \n      \n      ]]\n    </div>\n    </td>\n  </tr>\n  <tr>\n    <td style=\"width: 250px; padding-right: 15px;\">\n    <div markdown=\"1\">\n      \n```cpp\nBird *bPtr = &b;\nbPtr = &d;\nbPtr = &c;\n```\n    </div>\n    </td>\n    <td>\n    <div>\n      [[BOX\n      \n      \n      ]]\n    </div>\n    </td>\n  </tr>\n  <tr>\n    <td style=\"width: 250px; padding-right: 15px;\">\n    <div markdown=\"1\">\n      \n```cpp\nBird &bRef = c;\nChicken &cRef = bRef;\n```\n    </div>\n    </td>\n    <td>\n    <div>\n      [[BOX\n      \n      \n      ]]\n    </div>\n    </td>\n  </tr>\n  \n  <tr>\n    <td style=\"width: 250px; padding-right: 15px;\">\n    <div markdown=\"1\">\n      \n```cpp\nBird &bRef = d;\n```\n    </div>\n    </td>\n    <td>\n    <div>\n      [[BOX\n      \n      \n      ]]\n    </div>\n    </td>\n  </tr>\n</table>\n            ",
+            "default_grader": {
+              "grader_kind": "manual_regex_fill_in_the_blank",
+              "rubric": [
+                {
+                  "blankIndex": 1,
+                  "title": "Box 1",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "error|illegal|not.*legal|not.*allowed|wrong",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct!",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": ".",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "The conversion from `bPtr` to `cPtr` is a downcast, which is not allowed. Answer = \"error\".",
+                      "points": 0
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 2,
+                  "title": "Box 2",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "ok|allowed|legal",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct!",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": ".",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "As a `Bird*`, `bPtr` can point to any of the objects. The assignments to `&d` and `&c` are upcasts, which are allowed. Answer = \"ok\".",
+                      "points": 0
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 3,
+                  "title": "Box 3",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "error|illegal|not.*legal|not.*allowed|wrong",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct!",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": ".",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "The conversion from `bRef` to `cref` is a downcast, which is not allowed. Answer = \"error\".",
+                      "points": 0
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 4,
+                  "title": "Box 4",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "ok|allowed|legal",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct!",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": ".",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Binding a `Bird&` to a `Duck` object requires an upcast, which is allowed. In other words, a `Bird` reference is allowed to refer to a `Duck`. Answer = \"ok\".",
+                      "points": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "verifier": {
+            "verifier_kind": "full_credit"
+          },
+          "mk_postscript": "<hr />\n<details>\n  <summary>Sample solution...</summary>\n  \n  ```cpp\n  Bird *bPtr = &b;\n  Chicken *cPtr = bPtr;\n  // error - downcast from Bird* to Chicken*\n  ```\n        \n  ```cpp\n  Bird *bPtr = &b;\n  bPtr = &d;\n  bPtr = &c;\n  // ok - as a Bird*, bPtr can point to any of the objects\n  ```\n\n  ```cpp\n  Bird &bRef = c;\n  Chicken &cRef = bRef;\n  // error - downcast from Bird& to Chicken&\n  ```\n        \n  ```cpp\n  Bird &bRef = d;\n  // ok - a Bird& is allowed to refer to a Duck\n  ```\n</details>"
+        }
+      ]
+    },
+    {
+      "section_id": "section_10_2",
+      "title": "Static vs. Dynamic Binding",
+      "mk_description": "\nWe've now got a way (i.e. using pointers/references) to have a polymorphic variable that can potentially point to any type derived from a particular base, but there's still something missing.\n\nLet's say we have this code:\n\n```cpp\nBird *b_ptr;\n// some code\n// b_ptr ends up pointing at something\nb_ptr->talk();\n```\n\nHow do we ensure the correct version of `talk()` gets called, depending on the kind of bird that `b_ptr` ends up pointing at?\n\nThe answer is to use **virtual functions** to ensure **dynamic binding** of the function call.\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/otALFLY4FWI\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />\n\nA common pattern for type hierarchies is that the **base class** will define a **virtual** function with the expectation that derived classes may provide their own implementations that **override** the original behavior of that function (since dynamic binding ensures the more specific version is called).\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/tuMG7pBZyYU\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />\n",
+      "questions": [
+        {
+          "question_id": "lec10_virtual_functions",
+          "title": "Exercise: Virtual vs. Non-Virtual Functions",
+          "points": 7,
+          "mk_description": "Shown below are a hierarchy of fruit-based classes and a main function that makes member function calls on a variety of fruit objects and pointers. Note that the `f1()` function is non-virtual and the `f2()` function is virtual.\n\nWhat number is printed by each of the following lines in `main()`?",
+          "response": {
+            "kind": "fill_in_the_blank",
+            "content": "\n<table style=\"width: 100%; border: none;\">\n  <tr>\n    <td style=\"width: 275px; padding-right: 15px;\">\n    <div markdown=\"1\">\n      \n```cpp\nclass Fruit {\npublic:\n  int f1() { return 1; }\n  virtual int f2() { return 2; }\n};\n\nclass Citrus : public Fruit {\npublic:\n  int f1() { return 3; }\n  int f2() override { return 4; }\n};\n\nclass Lemon : public Citrus {\npublic:\n  int f1() { return 5; }\n  int f2() override { return 6; }\n};\n```\n    </div>\n    </td>\n    <td>\n    <div markdown=\"1\">\n      \n```cpp\nint main() {\n  Fruit fruit;\n  Citrus citrus;\n  Lemon lemon;\n  Fruit *fPtr = &lemon;\n  Citrus *cPtr = &citrus;\n\n  int result = 0;\n  cout << fruit.f2() << endl;  _BLANK______\n  cout << citrus.f1() << endl; _BLANK______\n  cout << fPtr->f1() << endl;  _BLANK______\n  cout << fPtr->f2() << endl;  _BLANK______\n  cout << cPtr->f2() << endl;  _BLANK______\n  cPtr = &lemon;\n  cout << cPtr->f1() << endl;  _BLANK______\n  cout << cPtr->f2() << endl;  _BLANK______\n}\n```\n    </div>\n    </td>\n  </tr>\n</table>\n            ",
+            "sample_solution": [
+              "2",
+              "3",
+              "1",
+              "6",
+              "4",
+              "3",
+              "6"
+            ],
+            "default_grader": {
+              "grader_kind": "manual_regex_fill_in_the_blank",
+              "rubric": [
+                {
+                  "blankIndex": 1,
+                  "title": "Box 1",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "2",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct!",
+                      "points": 1
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 2,
+                  "title": "Box 2",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "3",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct!",
+                      "points": 1
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 3,
+                  "title": "Box 3",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "1",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct!",
+                      "points": 1
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 4,
+                  "title": "Box 4",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "6",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct!",
+                      "points": 1
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 5,
+                  "title": "Box 5",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "4",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct!",
+                      "points": 1
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 6,
+                  "title": "Box 6",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "3",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct!",
+                      "points": 1
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 7,
+                  "title": "Box 7",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "6",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct!",
+                      "points": 1
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "verifier": {
+            "verifier_kind": "full_credit"
+          },
+          "mk_postscript": "\n<hr />\n<details>\n  <summary>Sample solution...</summary>\n  \n  <table style=\"width: 100%; border: none;\">\n  <tr>\n    <td style=\"width: 275px; padding-right: 15px;\">\n    <div markdown=\"1\">\n```cpp\nclass Fruit {\npublic:\n  int f1() { return 1; }\n  virtual int f2() { return 2; }\n};\n\nclass Citrus : public Fruit {\npublic:\n  int f1() { return 3; }\n  int f2() override { return 4; }\n};\n\nclass Lemon : public Citrus {\npublic:\n  int f1() { return 5; }\n  int f2() override { return 6; }\n};\n```\n    </div>\n    </td>\n    <td>\n    <div markdown=\"1\">\n```cpp\nint main() {\n  Fruit fruit;\n  Citrus citrus;\n  Lemon lemon;\n  Fruit *fPtr = &lemon;\n  Citrus *cPtr = &citrus;\n\n  int result = 0;\n  cout << fruit.f2() << endl;  // 2 - direct call on a Fruit\n  cout << citrus.f1() << endl; // 3 - direct call on a Citrus\n  cout << fPtr->f1() << endl;  // 1 - f1 non-virtual, fPtr is declared Fruit*\n  cout << fPtr->f2() << endl;  // 6 - f2 virtual, fPtr points to a Lemon\n  cout << cPtr->f2() << endl;  // 4 - f2 virtual, cPtr points to a Citrus\n  cPtr = &lemon;\n  cout << cPtr->f1() << endl;  // 3 - f1 non-virtual, cPtr is declared Citrus*\n  cout << cPtr->f2() << endl;  // 6 - f2 virtual, CPtr now points to a Lemon\n}\n```\n    </div>\n    </td>\n  </tr>\n</table>\n</details>"
+        }
+      ]
+    },
+    {
+      "section_id": "section_10_3",
+      "title": "Pure Virtual Functions",
+      "mk_description": "\nIf a \"default\" implementation doesn't make sense for the base class, we can also opt to define the function there as **pure virtual**, meaning that it doesn't have any implementation.\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/a7Bm_cfiqqY\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />",
+      "questions": []
+    },
+    {
+      "section_id": "section_10_4",
+      "title": "Interface Inheritance",
+      "mk_description": "\nIt turns out that inheriting interfaces is just as important (if not more) than inheriting implementations. Here's why:\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/9p-EvfUW6Qk\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />",
+      "questions": []
+    },
+    {
+      "section_id": "section_10_5",
+      "title": "Factory Functions",
+      "mk_description": "\nThe last piece of the puzzle for polymorphic objects is where to create them. Ideally, we don't want client code to have to deal with creating specific derived class objects, so we provide a \"factory function\" that abstracts away that process.\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/PBPDNI1eqto\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />",
+      "questions": []
+    },
+    {
+      "section_id": "section_10_6",
+      "title": "The Liskov Substitution Principle",
+      "mk_description": "\nFinally, we'll briefly describe the _Liskov Substitution Principle_, which formally qualifies whether or not a derived type is proper subtype and satifies everything expected of its base type.\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/BURIuDmEEK0\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />",
+      "questions": [
+        {
+          "question_id": "lec10_liskov_substitution_principle",
+          "title": "Exercise: Liskov Substitution Principle",
+          "points": 3,
+          "mk_description": "Consider each pair of base and derived classes below with comments that describe the behavior of a virtual/overridden function. Is the derived class a proper subtype according to the Liskov Substitution Principle? Explain your reasoning.",
+          "response": {
+            "kind": "fill_in_the_blank",
+            "content": "\n<table style=\"width: 100%; border: none;\">\n  <tr>\n    <td style=\"width: 400px; padding-right: 15px;\">\n    <div markdown=\"1\">\n      \n```cpp\nclass Player {\n  // EFFECTS: Returns a card from player's\n  // hand, following the rules of euchre.\n  virtual Card play_card();\n};\n\nclass DerivedPlayer : public Player {\n  // EFFECTS: Always returns the ace of clubs\n  Card play_card() override;\n};\n```\n    </div>\n    </td>\n    <td>\n    <div>\n      [[BOX\n      \n      \n      \n      \n      ]]\n    </div>\n    </td>\n  </tr>\n  <tr>\n    <td style=\"width: 400px; padding-right: 15px;\">\n    <div markdown=\"1\">\n      \n```cpp\nclass PPMReader {\n  // EFFECTS: Reads an image from a stream\n  // REQUIRES: The stream must contain\n  // image data in PPM format. Pixels must\n  // be separated by a single space\n  // character.\n  virtual Image read_ppm_image(istream &is);\n};\n\nclass DerivedPPMReader : public PPMReader {\n  // EFFECTS: Reads an image from a stream\n  // REQUIRES: The stream must contain\n  // image data in PPM format. Pixels may be\n  // separated by any kind of whitespace.\n  Image read_ppm_image(istream &is) override;\n};\n```\n    </div>\n    </td>\n    <td>\n    <div>\n      [[BOX\n      \n      \n      \n      \n      ]]\n    </div>\n    </td>\n  </tr>\n  <tr>\n    <td style=\"width: 400px; padding-right: 15px;\">\n    <div markdown=\"1\">\n      \n```cpp\nclass Unicorn {\n  // EFFECTS: The unicorn fires a laser.\n  // Returns the power of the laser beam,\n  // which is at least 100kw.\n  virtual double fire_laser_beam();\n};\n\nclass DerivedUnicorn : public Unicorn {\n  // EFFECTS: The unicorn fires a massive\n  // laser. Returns the power of the laser\n  // beam, which is over 9000kw.\n  double fire_laser_beam() override;\n};\n```\n    </div>\n    </td>\n    <td>\n    <div>\n      [[BOX\n      \n      \n      \n      \n      ]]\n    </div>\n    </td>\n  </tr>\n</table>\n            ",
+            "default_grader": {
+              "grader_kind": "manual_regex_fill_in_the_blank",
+              "rubric": [
+                {
+                  "blankIndex": 1,
+                  "title": "Box 1",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": ".",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "This is just graded for completion. You can use the walkthrough video to check your answer.",
+                      "points": 1
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 2,
+                  "title": "Box 2",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": ".",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "This is just graded for completion. You can use the walkthrough video to check your answer.",
+                      "points": 1
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 3,
+                  "title": "Box 3",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": ".",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "This is just graded for completion. You can use the walkthrough video to check your answer.",
+                      "points": 1
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "verifier": {
+            "verifier_kind": "full_credit"
+          },
+          "mk_postscript": "<hr />\nYou're welcome to check your solution with this **walkthrough** video:\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/sj2ZjMw6jCs\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />"
+        }
+      ]
+    }
+  ],
+  "exam_id": "sp25_lec_09",
+  "credentials_strategy": {
+    "strategy": "google_local",
+    "client_id": "444801118749-m2g9gl3gvvkh5ru959dmka0lsk94d9uq.apps.googleusercontent.com",
+    "auth_endpoint": "https://examma-ray.eecs.umich.edu/public_api/participation/auth/",
+    "message": "Sign in with your @umich.edu Google account to earn participation credit for completing embedded exercises."
+  },
+  "completion": {
+    "threshold": 1,
+    "tooltip": "",
+    "endpoints": {
+      "check": "https://examma-ray.eecs.umich.edu/public_api/participation/me/",
+      "submit": "https://examma-ray.eecs.umich.edu/public_api/participation/me/"
+    },
+    "local_deadline": {
+      "when": {
+        "examma_ray_serialized_datetime": {
+          "iso": "2025-05-21T23:59:59.000-04:00",
+          "timezone": "America/Detroit"
+        }
+      },
+      "grace_minutes": 5
+    }
+  }
+}

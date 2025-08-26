@@ -1,0 +1,1354 @@
+
+      <!DOCTYPE html>
+      <html>
+      <head>
+  <meta charset="UTF-8">
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://unpkg.com/@popperjs/core@2" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+  <script src="https://accounts.google.com/gsi/client" async></script>
+      <script src="js/frontend-doc.js"></script>
+    
+</head>
+      <body>
+        <div id="examma-ray-exam" class="container-fluid" data-uniqname="eecs280" data-name="eecs280" data-exam-id="w25_lec_05" data-exam-uuid="eecs280-w25_lec_05" data-clientside-content="yes">
+      <div class="row">
+        <div class="bg-light examma-ray-left-panel">
+          <div class="text-center pb-1 pl-4 pr-4 border-bottom">
+            <b><code>const</code>, <code>struct</code>s, and C-Style ADTs</b>
+          </div>
+          <div class="pt-1 pb-1 border-bottom">
+              <b>Participation</b> 
+      <button id="examma-ray-exam-sign-in-button" class="btn btn-primary btn-sm" style="line-height: 1;" data-toggle="modal" data-target="#exam-sign-in-modal" aria-expanded="false" aria-controls="exam-sign-in-modal">
+        <svg class="examma-ray-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+</svg> <span style="vertical-align: middle">Sign In</span>
+      </button>
+    
+              <br />
+              
+      <span id="examma-ray-exam-completion-status">
+        Loading...
+      </span>
+    
+            </div>
+          <ul class="nav er-exam-nav show-small-scrollbar" style="display: unset; flex-grow: 1; font-weight: 500; overflow-y: scroll">
+      
+        <li class="nav-item">
+          <a class="nav-link text-truncate" style="padding: 0.1rem" href="#section-eecs280-w25_lec_05-s-section_05_01">
+      <span style="float: right;">
+      
+        
+    <span class="examma-ray-verifier-status examma-ray-verifier-status-mini" data-question-uuid="eecs280-w25_lec_05-q-lec_const_basics">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">1.1</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+      
+      </span>
+     1: The <code>const</code> Keyword</a>
+        </li>
+        
+          <li id="starred-question-eecs280-w25_lec_05-q-lec_const_basics" class="nav-item examma-ray-starred-nav" data-question-uuid="eecs280-w25_lec_05-q-lec_const_basics" style="display: none">
+            <span class="badge examma-ray-score-badge btn-secondary">7 pts</span>
+            <a class="nav-link text-truncate" style="padding: 0.1rem; display: inline" href="#question-anchor-eecs280-w25_lec_05-q-lec_const_basics">
+              1.1: The <code>const</code> Keyword
+            </a>
+          </li>
+        
+      
+        <li class="nav-item">
+          <a class="nav-link text-truncate" style="padding: 0.1rem" href="#section-eecs280-w25_lec_05-s-section_05_02">
+      <span style="float: right;">
+      
+        
+    <span class="examma-ray-verifier-status examma-ray-verifier-status-mini" data-question-uuid="eecs280-w25_lec_05-q-lec_const_function_parameters">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">2.1</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+      
+      </span>
+     2: <code>const</code> Conversions</a>
+        </li>
+        
+          <li id="starred-question-eecs280-w25_lec_05-q-lec_const_function_parameters" class="nav-item examma-ray-starred-nav" data-question-uuid="eecs280-w25_lec_05-q-lec_const_function_parameters" style="display: none">
+            <span class="badge examma-ray-score-badge btn-secondary">1 pt</span>
+            <a class="nav-link text-truncate" style="padding: 0.1rem; display: inline" href="#question-anchor-eecs280-w25_lec_05-q-lec_const_function_parameters">
+              2.1: <code>const</code> in Function Parameters
+            </a>
+          </li>
+        
+      
+        <li class="nav-item">
+          <a class="nav-link text-truncate" style="padding: 0.1rem" href="#section-eecs280-w25_lec_05-s-section_05_03">
+      <span style="float: right;">
+      
+        
+    <span class="examma-ray-verifier-status examma-ray-verifier-status-mini" data-question-uuid="eecs280-w25_lec_05-q-lec_struct_practice">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">3.1</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+      
+      </span>
+     3: Intro to <code>struct</code>s</a>
+        </li>
+        
+          <li id="starred-question-eecs280-w25_lec_05-q-lec_struct_practice" class="nav-item examma-ray-starred-nav" data-question-uuid="eecs280-w25_lec_05-q-lec_struct_practice" style="display: none">
+            <span class="badge examma-ray-score-badge btn-secondary">1 pt</span>
+            <a class="nav-link text-truncate" style="padding: 0.1rem; display: inline" href="#question-anchor-eecs280-w25_lec_05-q-lec_struct_practice">
+              3.1: Exercise: Practice with <code>structs</code>
+            </a>
+          </li>
+        
+      
+        <li class="nav-item">
+          <a class="nav-link text-truncate" style="padding: 0.1rem" href="#section-eecs280-w25_lec_05-s-section_05_04">
+      <span style="float: right;">
+      
+        
+    <span class="examma-ray-verifier-status examma-ray-verifier-status-mini" data-question-uuid="eecs280-w25_lec_05-q-lec_person_birthday">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">4.1</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+      
+      </span>
+     4: <code>struct</code>s and Functions</a>
+        </li>
+        
+          <li id="starred-question-eecs280-w25_lec_05-q-lec_person_birthday" class="nav-item examma-ray-starred-nav" data-question-uuid="eecs280-w25_lec_05-q-lec_person_birthday" style="display: none">
+            <span class="badge examma-ray-score-badge btn-secondary">4 pts</span>
+            <a class="nav-link text-truncate" style="padding: 0.1rem; display: inline" href="#question-anchor-eecs280-w25_lec_05-q-lec_person_birthday">
+              4.1: Exercise: <code>struct</code>s and Functions
+            </a>
+          </li>
+        
+      
+        <li class="nav-item">
+          <a class="nav-link text-truncate" style="padding: 0.1rem" href="#section-eecs280-w25_lec_05-s-section_05_05">
+      <span style="float: right;">
+      
+        
+    <span class="examma-ray-verifier-status examma-ray-verifier-status-mini" data-question-uuid="eecs280-w25_lec_05-q-lec07_triangle_scale">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">5.1</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+      
+      </span>
+     5: C-Style ADTs</a>
+        </li>
+        
+          <li id="starred-question-eecs280-w25_lec_05-q-lec07_triangle_scale" class="nav-item examma-ray-starred-nav" data-question-uuid="eecs280-w25_lec_05-q-lec07_triangle_scale" style="display: none">
+            <span class="badge examma-ray-score-badge btn-secondary">5 pts</span>
+            <a class="nav-link text-truncate" style="padding: 0.1rem; display: inline" href="#question-anchor-eecs280-w25_lec_05-q-lec07_triangle_scale">
+              5.1: Exercise: <code>Triangle_scale()</code>
+            </a>
+          </li>
+        
+      
+        <li class="nav-item">
+          <a class="nav-link text-truncate" style="padding: 0.1rem" href="#section-eecs280-w25_lec_05-s-section_05_06">
+      <span style="float: right;">
+      
+      </span>
+     6: ADT Initialization and Representation Invariants</a>
+        </li>
+        
+      
+        <li class="nav-item">
+          <a class="nav-link text-truncate" style="padding: 0.1rem" href="#section-eecs280-w25_lec_05-s-section_05_07">
+      <span style="float: right;">
+      
+      </span>
+     7: Interfaces and Implementations</a>
+        </li>
+        
+      
+        <li class="nav-item">
+          <a class="nav-link text-truncate" style="padding: 0.1rem" href="#section-eecs280-w25_lec_05-s-section_05_08">
+      <span style="float: right;">
+      
+        
+    <span class="examma-ray-verifier-status examma-ray-verifier-status-mini" data-question-uuid="eecs280-w25_lec_05-q-lec_adts_in_project_2">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">8.1</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+      
+      </span>
+     8: Composing ADTs</a>
+        </li>
+        
+          <li id="starred-question-eecs280-w25_lec_05-q-lec_adts_in_project_2" class="nav-item examma-ray-starred-nav" data-question-uuid="eecs280-w25_lec_05-q-lec_adts_in_project_2" style="display: none">
+            <span class="badge examma-ray-score-badge btn-secondary">3 pts</span>
+            <a class="nav-link text-truncate" style="padding: 0.1rem; display: inline" href="#question-anchor-eecs280-w25_lec_05-q-lec_adts_in_project_2">
+              Question 8.1
+            </a>
+          </li>
+        
+      
+        <li class="nav-item">
+          <a class="nav-link text-truncate" style="padding: 0.1rem" href="#section-eecs280-w25_lec_05-s-section_05_09">
+      <span style="float: right;">
+      
+      </span>
+     9: Function Overloading</a>
+        </li>
+        
+      
+        <li class="nav-item">
+          <a class="nav-link text-truncate" style="padding: 0.1rem" href="#section-eecs280-w25_lec_05-s-section_05_010">
+      <span style="float: right;">
+      
+      </span>
+     10: Unit Testing ADTs</a>
+        </li>
+        
+      
+    </ul>
+          
+      <div class="examma-ray-exam-saver-status border-top">
+        <div>
+          <div style="text-align: left">
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
+  <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z"></path>
+  <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293z"></path>
+</svg>
+<a style="vertical-align: middle;" href="/eecs280-async-lectures">
+  Table of Contents
+</a>
+<br>
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-slides" viewBox="0 0 16 16">
+  <path d="M5 6a.5.5 0 0 0-.496.438l-.5 4A.5.5 0 0 0 4.5 11h3v2.016c-.863.055-1.5.251-1.5.484 0 .276.895.5 2 .5s2-.224 2-.5c0-.233-.637-.429-1.5-.484V11h3a.5.5 0 0 0 .496-.562l-.5-4A.5.5 0 0 0 11 6H5zm2 3.78V7.22c0-.096.106-.156.19-.106l2.13 1.279a.125.125 0 0 1 0 .214l-2.13 1.28A.125.125 0 0 1 7 9.778z"></path>
+  <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"></path>
+</svg>
+<a style="vertical-align: middle;" target="_blank" href="https://drive.google.com/drive/folders/1wdIk41500J4SILWprRAxB1-c4m8A2Wux">
+  Slides (Powerpoint, PDF)
+</a>
+<br>
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+<path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+</svg>
+<a style="vertical-align: middle;" target="_blank" href="https://github.com/jamesjuett/eecs280-async-lectures">
+  Report issues or make suggestions
+</a>
+</div>
+        </div>
+        <br />
+        <div><button class="examma-ray-exam-answers-file-button btn btn-primary" data-toggle="modal" data-target="#exam-saver" aria-expanded="false" aria-controls="exam-saver">Answers File</button></div>
+        <div class="examma-ray-exam-saver-status-note">Export your exercise answers to use with another computer or browser.</div>
+      </div>
+        </div>
+        <div class="examma-ray-main-panel">
+          
+      <div class="examma-ray-header">
+        <div class="text-center mb-3 border-bottom">
+          <h2><code>const</code>, <code>struct</code>s, and C-Style ADTs</h2>
+          
+        </div>
+        <div>
+          <div class="container examma-ray-instructions">
+    <p><link rel="icon" type="image/png" href="/eecs280-async-lectures/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/svg+xml" href="/eecs280-async-lectures/favicon.svg">
+<link rel="shortcut icon" href="/eecs280-async-lectures/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/eecs280-async-lectures/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="Async Lecs">
+<link rel="manifest" href="/eecs280-async-lectures/site.webmanifest"></p>
+<div markdown="1" class="alert alert-info"><p>As we start to work with larger, more complex programs, abstraction helps manage that complexity. We've already discussed <em>procedural abstraction</em>, i.e. using functions to break down the flow of our program into manageable sub-tasks.</p>
+<p>Today, we'll introduce <strong>Abstract Data Types (ADTs)</strong>, which serve as a combined abstraction for data and the functions that operate on that data.</p>
+<p>Specifically, we'll define some conventions for ADTs as they could be implemented in the C language (which is both the precursor to C++ and also a contemporary language used in lower-level systems development). We're starting here for a few reasons:</p>
+<ul>
+<li>The C style will expose more plainly some of the basic fundamentals of ADTs.</li>
+<li>More practice with pointers! (spoiler alert, we'll be using pointers)</li>
+<li>Additional language features we'll see for C++ style ADTs will naturally build on conventions we define first in the C style.</li>
+</ul>
+  <!-- terminate list -->
+<p>But first, let's take a detour to formally acknowledge the <code>const</code> keyeword, which has been showing up and will start showing up even more in the near future…</p>
+<div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Winter 2025</div></div>
+<style>
+  .lec-video {
+    width: 80%;
+    aspect-ratio: 16/9;
+  }
+
+  iframe.lobster-iframe {
+    border: none;
+    width: 80%;
+    height: 450px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+</style>
+  </div>
+          <div class="examma-ray-announcements">
+    
+  </div>
+        </div>
+      </div>
+    
+          
+      <div id="section-eecs280-w25_lec_05-s-section_05_01" class="examma-ray-section examma-ray-section-no-reference" data-section-uuid="eecs280-w25_lec_05-s-section_05_01" data-section-display-index="1">
+        <hr />
+        <table class="examma-ray-section-contents">
+          <tr>
+            <td class="examma-ray-questions-container">
+              
+      <div class="examma-ray-section-heading">
+        <div class="badge badge-primary">
+          1: The <code>const</code> Keyword
+        </div>
+        <span class="examma-ray-section-verifier-statuses">
+          
+            
+    <span class="examma-ray-verifier-status" data-question-uuid="eecs280-w25_lec_05-q-lec_const_basics">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">1.1</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+          
+        </span>
+      </div>
+    
+              <div class="examma-ray-section-description"><p>The <code>const</code> keyword is a <em>type qualifier</em> that we can add to declarations to tell the compiler that we don't intend for some value to change or be changeable. For it's part, the compiler then double checks for us that we don't accidentally try to do this and gives an error if we do!</p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/YDLOgHq68W8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p></div>
+              
+      <div id="question-eecs280-w25_lec_05-q-lec_const_basics" data-question-uuid="eecs280-w25_lec_05-q-lec_const_basics" data-question-display-index="1.1" class="examma-ray-question card-group">
+        <div id="question-anchor-eecs280-w25_lec_05-q-lec_const_basics" class="examma-ray-question-anchor"></div>
+        <div class="card">
+          <div class="card-header">
+            
+      <b>1.1 The <code>const</code> Keyword</b>
+    
+          </div>
+          <div class="card-body">
+            <div class="examma-ray-question-description">
+              
+            </div>
+            <div class="examma-ray-question-response examma-ray-question-response-fill_in_the_blank" data-response-kind="fill_in_the_blank"><p>Provided the declarations below, which of the following assignments cause a compiler error due to a violation of <code>const</code>? (Write "ok" or "error".)</p>
+<pre><code class="hljs cpp language-cpp"><span class="hljs-keyword">int</span> x = <span class="hljs-number">3</span>;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> y = x;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> * ptr1 = &amp;x;
+<span class="hljs-keyword">int</span> * <span class="hljs-keyword">const</span> ptr2 = &amp;x;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> &amp;ref = x;
+</code></pre>
+<p><input type="text" value="" size="8" maxlength="8" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-blank-input nohighlight"></input><span class="examma-ray-fitb-input-annotation examma-ray-fitb-blank-annotation"></span> <code>y = 5;</code></p>
+<p><input type="text" value="" size="8" maxlength="8" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-blank-input nohighlight"></input><span class="examma-ray-fitb-input-annotation examma-ray-fitb-blank-annotation"></span> <code>*ptr1 = 5;</code></p>
+<p><input type="text" value="" size="8" maxlength="8" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-blank-input nohighlight"></input><span class="examma-ray-fitb-input-annotation examma-ray-fitb-blank-annotation"></span> <code>ptr1 = &amp;y;</code></p>
+<p><input type="text" value="" size="8" maxlength="8" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-blank-input nohighlight"></input><span class="examma-ray-fitb-input-annotation examma-ray-fitb-blank-annotation"></span> <code>*ptr2 = 5;</code></p>
+<p><input type="text" value="" size="8" maxlength="8" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-blank-input nohighlight"></input><span class="examma-ray-fitb-input-annotation examma-ray-fitb-blank-annotation"></span> <code>ptr2 = &amp;x;</code></p>
+<p><input type="text" value="" size="8" maxlength="8" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-blank-input nohighlight"></input><span class="examma-ray-fitb-input-annotation examma-ray-fitb-blank-annotation"></span> <code>ref = 5;</code></p>
+<p><input type="text" value="" size="8" maxlength="8" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-blank-input nohighlight"></input><span class="examma-ray-fitb-input-annotation examma-ray-fitb-blank-annotation"></span> <code>x = 5;</code></p></div>
+            <div class="examma-ray-question-postscript">
+              <p></p><hr>
+You're welcome to check your solution with this <strong>walkthrough</strong> video:<p></p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/8EwC3-wOLJs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+            </td>
+            
+          </tr>
+        </table>
+      </div>
+    <br />
+      <div id="section-eecs280-w25_lec_05-s-section_05_02" class="examma-ray-section examma-ray-section-no-reference" data-section-uuid="eecs280-w25_lec_05-s-section_05_02" data-section-display-index="2">
+        <hr />
+        <table class="examma-ray-section-contents">
+          <tr>
+            <td class="examma-ray-questions-container">
+              
+      <div class="examma-ray-section-heading">
+        <div class="badge badge-primary">
+          2: <code>const</code> Conversions
+        </div>
+        <span class="examma-ray-section-verifier-statuses">
+          
+            
+    <span class="examma-ray-verifier-status" data-question-uuid="eecs280-w25_lec_05-q-lec_const_function_parameters">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">2.1</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+          
+        </span>
+      </div>
+    
+              <div class="examma-ray-section-description"><p>The compiler also needs to decide where implicit conversions involving <code>const</code> should be allowed. The motivating principle is that we should never leave the program "less safe" than it was before in terms of protecting <code>const</code> objects. Let's take a look at a few examples…</p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/1QwpORzTRYg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p>
+<p>Perhaps the most important place these rules are realized is in function call parameters as a part of interface specification. Following the rules above, the compiler will only allow a function to be called on a <code>const</code> object if the parameters also include the necessary <code>const</code> qualification to continue protecting that object. Essentially, only functions that "promise" not to change their parameters are allowed to be called on <code>const</code> objects/variables.</p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/_wM0-4zYah8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p></div>
+              
+      <div id="question-eecs280-w25_lec_05-q-lec_const_function_parameters" data-question-uuid="eecs280-w25_lec_05-q-lec_const_function_parameters" data-question-display-index="2.1" class="examma-ray-question card-group">
+        <div id="question-anchor-eecs280-w25_lec_05-q-lec_const_function_parameters" class="examma-ray-question-anchor"></div>
+        <div class="card">
+          <div class="card-header">
+            
+      <b>2.1 <code>const</code> in Function Parameters</b>
+    
+          </div>
+          <div class="card-body">
+            <div class="examma-ray-question-description">
+              
+            </div>
+            <div class="examma-ray-question-response examma-ray-question-response-fill_in_the_blank" data-response-kind="fill_in_the_blank"><p>Consider these function signatures and some variables declared in a <code>main()</code> function.</p>
+<p>One of the function calls in <code>main()</code> below is "sus" (i.e. suspicious), in that it would put potentially put <code>const</code> objects at risk if the compiler allowed it. Can you find which one?</p>
+<pre><code class="hljs cpp language-cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">teal</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> *a)</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">red</span><span class="hljs-params">(<span class="hljs-keyword">int</span> &amp;a)</span></span>;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">purple</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a)</span></span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> x = <span class="hljs-number">10</span>;
+  <span class="hljs-keyword">int</span> y = <span class="hljs-number">10</span>;
+
+  <span class="hljs-built_in">teal</span>(&amp;x);
+  <span class="hljs-built_in">red</span>(x);
+  <span class="hljs-built_in">purple</span>(x);
+
+  <span class="hljs-built_in">teal</span>(&amp;y);
+  <span class="hljs-built_in">red</span>(y);
+  <span class="hljs-built_in">purple</span>(y);
+
+}
+</code></pre>
+<p>For which function call does the compiler produce an error? Briefly explain why.</p>
+<p><div class="examma-ray-fitb-box-input-holder" style=" width: 100%;"><textarea rows="3" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-box-input nohighlight" style="resize: none; overflow: auto; width: 100%;"></textarea><span class="examma-ray-fitb-input-annotation examma-ray-fitb-box-annotation"></span></div></p></div>
+            <div class="examma-ray-question-postscript">
+              <p></p><hr>
+<details markdown="1">
+  <summary>Sample solution…</summary>
+  The compiler will prohibit the call to <code>red(x)</code> since the parameter is pass-by-reference and does not maintain the const. If the call were allowed, the implementation of red could then potentially change the value of <code>x</code>, which was supposed to be const.
+</details><p></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+            </td>
+            
+          </tr>
+        </table>
+      </div>
+    <br />
+      <div id="section-eecs280-w25_lec_05-s-section_05_03" class="examma-ray-section examma-ray-section-no-reference" data-section-uuid="eecs280-w25_lec_05-s-section_05_03" data-section-display-index="3">
+        <hr />
+        <table class="examma-ray-section-contents">
+          <tr>
+            <td class="examma-ray-questions-container">
+              
+      <div class="examma-ray-section-heading">
+        <div class="badge badge-primary">
+          3: Intro to <code>struct</code>s
+        </div>
+        <span class="examma-ray-section-verifier-statuses">
+          
+            
+    <span class="examma-ray-verifier-status" data-question-uuid="eecs280-w25_lec_05-q-lec_struct_practice">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">3.1</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+          
+        </span>
+      </div>
+    
+              <div class="examma-ray-section-description"><p>Now, back to our main event… defining and using compound objects.</p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/BiKWgQwhCjI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p>
+<p>To recap the fundamentals:</p>
+<ul>
+<li>We can define a new compound object <em>type</em> via a <strong>struct definition</strong> (e.g. <code>Person</code>).</li>
+<li>The <code>struct</code> definition contains <strong>member variable declarations</strong>. (e.g. what components does a <code>Person</code> have?)</li>
+<li>We define objects as <strong>instances</strong> of that type and use them in the program.</li>
+<li>Individual members are accessed via the <code>.</code> operator (also called the "<strong>member access operator</strong>").</li>
+</ul>
+<p>If you've got <strong>a <code>struct</code> object that is const-qualified</strong>, that forbids assignment to the struct as a whole and also forbids assignment to its individual members. That fits with the idea of <code>const</code> as "this shouldn't change".</p>
+<p>Finally, we can <strong>work with structs via pointers</strong>. If you're doing that, the syntax for member access changes. For example, assume <code>obj</code> is a <code>Person</code> object and <code>ptr</code> is a <code>Person*</code> pointer that points to that object. Then you would access the person's age as either:</p>
+<ul>
+<li><code>obj.age</code></li>
+<li><code>ptr-&gt;age</code></li>
+</ul>
+<p>Use the <code>.</code> for objects and the <code>-&gt;</code> for pointers.</p></div>
+              
+      <div id="question-eecs280-w25_lec_05-q-lec_struct_practice" data-question-uuid="eecs280-w25_lec_05-q-lec_struct_practice" data-question-display-index="3.1" class="examma-ray-question card-group">
+        <div id="question-anchor-eecs280-w25_lec_05-q-lec_struct_practice" class="examma-ray-question-anchor"></div>
+        <div class="card">
+          <div class="card-header">
+            
+      <b>3.1 Exercise: Practice with <code>structs</code></b>
+    
+          </div>
+          <div class="card-body">
+            <div class="examma-ray-question-description">
+              <p>Complete each of the tasks described in the comments.</p>
+            </div>
+            <div class="examma-ray-question-response examma-ray-question-response-iframe" data-response-kind="iframe">
+    <div style="text-align: center;">
+      <iframe id="iframe-response-eecs280-w25_lec_05-q-lec_struct_practice-__DEFAULT-__DEFAULT" src="assets/struct_basics.html" class="lobster-iframe" style="height: 850px;"></iframe>
+    </div>
+  </div>
+            <div class="examma-ray-question-postscript">
+              <p></p><hr>
+<details>
+  <summary>Sample solution…</summary><p></p>
+<pre><code class="hljs cpp language-cpp">  <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+  <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span>
+  <span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+
+  <span class="hljs-comment">// Task 1: Define a struct called &quot;Sandwich&quot; with the members listed below.</span>
+  <span class="hljs-comment">//         Use the names given and choose an appropriate type for each.</span>
+  <span class="hljs-comment">//  &quot;name&quot;    A name, e.g. &quot;Reuben&quot;, &quot;Tofu Bánh mì&quot;, &quot;Chicken Shawarma&quot;</span>
+  <span class="hljs-comment">//  &quot;is_veg&quot;  A true/false value indicating whether the sandwich is vegetarian</span>
+  <span class="hljs-comment">//  &quot;price&quot;   The cost to buy the sandiwch, e.g. 7.99</span>
+  <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Sandwich</span> {</span>
+    string name;
+    <span class="hljs-keyword">bool</span> is_veg;
+    <span class="hljs-keyword">double</span> price;
+  };
+
+  <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-comment">// Task 2: Define and initialize a Sandwich variable as described below:</span>
+    <span class="hljs-comment">// - You may name the variable whatever you like.</span>
+    <span class="hljs-comment">// - The variable should be declared as const.</span>
+    <span class="hljs-comment">// - Use the &quot;= {}&quot; notation to give each member a value.</span>
+    <span class="hljs-keyword">const</span> Sandwich s = {<span class="hljs-string">&quot;Falafel&quot;</span>, <span class="hljs-literal">true</span>, <span class="hljs-number">7.50</span>};
+
+    <span class="hljs-comment">// Task 3: Create a pointer variable pointing to that Sandwich.</span>
+    <span class="hljs-keyword">const</span> Sandwich *ptr = &amp;s;
+
+    <span class="hljs-comment">// Task 4: Use the -&gt; operator to print the name of the sandwich.</span>
+    cout &lt;&lt; ptr-&gt;name &lt;&lt; endl;
+  }
+</code></pre>
+<p></p></details><p></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+            </td>
+            
+          </tr>
+        </table>
+      </div>
+    <br />
+      <div id="section-eecs280-w25_lec_05-s-section_05_04" class="examma-ray-section examma-ray-section-no-reference" data-section-uuid="eecs280-w25_lec_05-s-section_05_04" data-section-display-index="4">
+        <hr />
+        <table class="examma-ray-section-contents">
+          <tr>
+            <td class="examma-ray-questions-container">
+              
+      <div class="examma-ray-section-heading">
+        <div class="badge badge-primary">
+          4: <code>struct</code>s and Functions
+        </div>
+        <span class="examma-ray-section-verifier-statuses">
+          
+            
+    <span class="examma-ray-verifier-status" data-question-uuid="eecs280-w25_lec_05-q-lec_person_birthday">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">4.1</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+          
+        </span>
+      </div>
+    
+              <div class="examma-ray-section-description"><p>We'll want to package up complex operations on <code>struct</code>s into functions to form abstractions. Let's take a look…</p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/IUSHt787vJc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p>
+<p>Here's a written version of the flowchart in the video, for quick reference:</p>
+<ul>
+<li>If you need to modify the original object, use <strong>pass-by-pointer</strong> or <strong>pass-by-reference</strong>.</li>
+<li>If you don't modify the original object, use <strong>pass-by-pointer-to-const</strong> or <strong>pass-by-reference-to-const</strong>. This protects against accidental modification but more importantly also ensures your function can actually be called on const objects.</li>
+<li>Only use <strong>pass-by-value</strong> for primitive objects (e.g. <code>int</code>, <code>double</code>, etc.) or very small compound objects. If the objects are large (e.g. <code>string</code>, <code>vector</code>, your own custom <code>struct</code>s, etc.), pass-by-value makes an expensive and unnecessary copy.</li>
+</ul></div>
+              
+      <div id="question-eecs280-w25_lec_05-q-lec_person_birthday" data-question-uuid="eecs280-w25_lec_05-q-lec_person_birthday" data-question-display-index="4.1" class="examma-ray-question card-group">
+        <div id="question-anchor-eecs280-w25_lec_05-q-lec_person_birthday" class="examma-ray-question-anchor"></div>
+        <div class="card">
+          <div class="card-header">
+            
+      <b>4.1 Exercise: <code>struct</code>s and Functions</b>
+    
+          </div>
+          <div class="card-body">
+            <div class="examma-ray-question-description">
+              <p>Each of the following implementations of <code>Person_birthday()</code> has a problem - some will not compile while others will run but ultimately not work as expected. Describe what the problem is and one way to fix it.</p>
+            </div>
+            <div class="examma-ray-question-response examma-ray-question-response-fill_in_the_blank" data-response-kind="fill_in_the_blank"><table style="width: 100%; border: none;">
+  <tbody><tr>
+    <td style="width: 350px; padding-right: 15px;">
+    <div markdown="1">
+<pre><code class="hljs cpp language-cpp"><span class="hljs-comment">// Version 1</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Person_birthday</span><span class="hljs-params">(<span class="hljs-keyword">const</span> Person *p)</span> </span>{
+  ++p-&gt;age;
+}
+</code></pre>
+    </div>
+    </td>
+    <td>
+    <div>
+      <div class="examma-ray-fitb-box-input-holder" style=" width: 100%;"><textarea rows="6" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-box-input nohighlight" style="resize: none; overflow: auto; width: 100%;"></textarea><span class="examma-ray-fitb-input-annotation examma-ray-fitb-box-annotation"></span></div>
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 350px; padding-right: 15px;">
+    <div markdown="1">
+<pre><code class="hljs cpp language-cpp"><span class="hljs-comment">// Version 2</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Person_birthday</span><span class="hljs-params">(Person p)</span> </span>{
+  ++p.age;
+}
+</code></pre>
+    </div>
+    </td>
+    <td>
+    <div>
+      <div class="examma-ray-fitb-box-input-holder" style=" width: 100%;"><textarea rows="6" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-box-input nohighlight" style="resize: none; overflow: auto; width: 100%;"></textarea><span class="examma-ray-fitb-input-annotation examma-ray-fitb-box-annotation"></span></div>
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 350px; padding-right: 15px;">
+    <div markdown="1">
+<pre><code class="hljs cpp language-cpp"><span class="hljs-comment">// Version 3</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Person_birthday</span><span class="hljs-params">(Person *p)</span> </span>{
+  *(p.age)++;
+}
+</code></pre>
+    </div>
+    </td>
+    <td>
+    <div>
+      <div class="examma-ray-fitb-box-input-holder" style=" width: 100%;"><textarea rows="6" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-box-input nohighlight" style="resize: none; overflow: auto; width: 100%;"></textarea><span class="examma-ray-fitb-input-annotation examma-ray-fitb-box-annotation"></span></div>
+    </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td style="width: 350px; padding-right: 15px;">
+    <div markdown="1">
+<pre><code class="hljs cpp language-cpp"><span class="hljs-comment">// Version 4</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Person_birthday</span><span class="hljs-params">(Person &amp;p)</span> </span>{
+  ++p-&gt;age;
+}
+</code></pre>
+    </div>
+    </td>
+    <td>
+    <div>
+      <div class="examma-ray-fitb-box-input-holder" style=" width: 100%;"><textarea rows="6" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-box-input nohighlight" style="resize: none; overflow: auto; width: 100%;"></textarea><span class="examma-ray-fitb-input-annotation examma-ray-fitb-box-annotation"></span></div>
+    </div>
+    </td>
+  </tr>
+</tbody></table></div>
+            <div class="examma-ray-question-postscript">
+              <p></p><hr>
+<details>
+  <summary>Sample solution…</summary><p></p>
+<pre><code class="hljs cpp language-cpp">  <span class="hljs-comment">// Version 1</span>
+  <span class="hljs-comment">// There shouldn&#x27;t be a const in the parameter,</span>
+  <span class="hljs-comment">// since this function IS intended to change</span>
+  <span class="hljs-comment">// the Person it&#x27;s called on.</span>
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Person_birthday</span><span class="hljs-params">(<span class="hljs-keyword">const</span> Person *p)</span> </span>{
+    ++p-&gt;age;
+  }
+</code></pre>
+<pre><code class="hljs cpp language-cpp">  <span class="hljs-comment">// Version 2</span>
+  <span class="hljs-comment">// The pass-by-value parameter should be pass-by-reference,</span>
+  <span class="hljs-comment">// otherwise, we can&#x27;t adjust the original Person&#x27;s age.</span>
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Person_birthday</span><span class="hljs-params">(Person p)</span> </span>{
+    ++p.age;
+  }
+</code></pre>
+<pre><code class="hljs cpp language-cpp">  <span class="hljs-comment">// Version 3</span>
+  <span class="hljs-comment">// The parentheses here are misplaced. They need to be</span>
+  <span class="hljs-comment">// placed as (*p).age++, otherwise the compiler attempts</span>
+  <span class="hljs-comment">// to do the ++ before the *, which won&#x27;t work.</span>
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Person_birthday</span><span class="hljs-params">(Person *p)</span> </span>{
+    *(p.age)++;
+  }
+</code></pre>
+<pre><code class="hljs cpp language-cpp">  <span class="hljs-comment">// Version 4</span>
+  <span class="hljs-comment">// The -&gt; operator can be used as a convenient shorthand</span>
+  <span class="hljs-comment">// for member variable access through a pointer, but not</span>
+  <span class="hljs-comment">// through a reference. For a reference, just use the .</span>
+  <span class="hljs-comment">// operator directly like: ++p.age</span>
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Person_birthday</span><span class="hljs-params">(Person &amp;p)</span> </span>{
+    ++p-&gt;age;
+  }
+</code></pre>
+<p></p></details><p></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+            </td>
+            
+          </tr>
+        </table>
+      </div>
+    <br />
+      <div id="section-eecs280-w25_lec_05-s-section_05_05" class="examma-ray-section examma-ray-section-no-reference" data-section-uuid="eecs280-w25_lec_05-s-section_05_05" data-section-display-index="5">
+        <hr />
+        <table class="examma-ray-section-contents">
+          <tr>
+            <td class="examma-ray-questions-container">
+              
+      <div class="examma-ray-section-heading">
+        <div class="badge badge-primary">
+          5: C-Style ADTs
+        </div>
+        <span class="examma-ray-section-verifier-statuses">
+          
+            
+    <span class="examma-ray-verifier-status" data-question-uuid="eecs280-w25_lec_05-q-lec07_triangle_scale">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">5.1</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+          
+        </span>
+      </div>
+    
+              <div class="examma-ray-section-description"><p>Structs form the foundation of ADTs in C, acting as a <strong>data representation</strong> that allows us to model heterogeneous real-world objects. What makes a full ADT is the introduction of associated <strong>behaviors</strong> (i.e. functions) as well as plain <strong>data</strong>. We implement these behaviors as associated functions, which operate on an ADT struct via a pointer parameter.</p>
+<p>Here's some details:</p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/tyO29QSsV3g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p></div>
+              
+      <div id="question-eecs280-w25_lec_05-q-lec07_triangle_scale" data-question-uuid="eecs280-w25_lec_05-q-lec07_triangle_scale" data-question-display-index="5.1" class="examma-ray-question card-group">
+        <div id="question-anchor-eecs280-w25_lec_05-q-lec07_triangle_scale" class="examma-ray-question-anchor"></div>
+        <div class="card">
+          <div class="card-header">
+            
+      <b>5.1 Exercise: <code>Triangle_scale()</code></b>
+    
+          </div>
+          <div class="card-body">
+            <div class="examma-ray-question-description">
+              <p>Let's say we want to add a function to scale a triangle by a given factor. Here's an example:</p>
+<pre><code class="hljs cpp language-cpp"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Triangle</span> {</span>
+  <span class="hljs-keyword">double</span> a, b, c;
+};
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+  Triangle t1 = { <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span> };
+  cout &lt;&lt; <span class="hljs-built_in">Triangle_perimeter</span>(&amp;t1) &lt;&lt; endl; <span class="hljs-comment">// prints 6</span>
+
+  <span class="hljs-built_in">Triangle_scale</span>(&amp;t1, <span class="hljs-number">2</span>); <span class="hljs-comment">// Scale up by a factor of 2</span>
+
+  cout &lt;&lt; <span class="hljs-built_in">Triangle_perimeter</span>(&amp;t1) &lt;&lt; endl; <span class="hljs-comment">// prints 12</span>
+}
+</code></pre>
+<p>Which of the implementations of <code>Triangle_scale()</code> below are correct? Write <strong>"correct"</strong> or <strong>"incorrect"</strong>. For each that is not correct, explain what's wrong with it.</p>
+            </div>
+            <div class="examma-ray-question-response examma-ray-question-response-fill_in_the_blank" data-response-kind="fill_in_the_blank"><table style="width: 100%; border: none;">
+  <tbody><tr>
+    <td style="width: 350px; padding-right: 15px;">
+    <div markdown="1">
+<pre><code class="hljs cpp language-cpp"><span class="hljs-comment">// Implementation #1</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Triangle_scale</span><span class="hljs-params">(<span class="hljs-keyword">const</span> Triangle *tri, <span class="hljs-keyword">double</span> s)</span> </span>{
+  tri-&gt;a *= s;
+  tri-&gt;b *= s;
+  tri-&gt;c *= s;
+}
+</code></pre>
+    </div>
+    </td>
+    <td>
+    <div>
+      <div class="examma-ray-fitb-box-input-holder" style=" width: 100%;"><textarea rows="6" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-box-input nohighlight" style="resize: none; overflow: auto; width: 100%;"></textarea><span class="examma-ray-fitb-input-annotation examma-ray-fitb-box-annotation"></span></div>
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 350px; padding-right: 15px;">
+    <div markdown="1">
+<pre><code class="hljs cpp language-cpp"><span class="hljs-comment">// Implementation #2</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Triangle_scale</span><span class="hljs-params">(Triangle *tri, <span class="hljs-keyword">double</span> s)</span> </span>{
+  a *= s;
+  b *= s;
+  c *= s;
+}
+</code></pre>
+    </div>
+    </td>
+    <td>
+    <div>
+      <div class="examma-ray-fitb-box-input-holder" style=" width: 100%;"><textarea rows="6" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-box-input nohighlight" style="resize: none; overflow: auto; width: 100%;"></textarea><span class="examma-ray-fitb-input-annotation examma-ray-fitb-box-annotation"></span></div>
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 350px; padding-right: 15px;">
+    <div markdown="1">
+<pre><code class="hljs cpp language-cpp"><span class="hljs-comment">// Implementation #3</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Triangle_scale</span><span class="hljs-params">(<span class="hljs-keyword">double</span> s)</span> </span>{
+  t1.a *= s;
+  t1.b *= s;
+  t1.c *= s;
+}
+</code></pre>
+    </div>
+    </td>
+    <td>
+    <div>
+      <div class="examma-ray-fitb-box-input-holder" style=" width: 100%;"><textarea rows="6" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-box-input nohighlight" style="resize: none; overflow: auto; width: 100%;"></textarea><span class="examma-ray-fitb-input-annotation examma-ray-fitb-box-annotation"></span></div>
+    </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td style="width: 350px; padding-right: 15px;">
+    <div markdown="1">
+<pre><code class="hljs cpp language-cpp"><span class="hljs-comment">// Implementation #4</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Triangle_scale</span><span class="hljs-params">(Triangle *tri, <span class="hljs-keyword">double</span> s)</span> </span>{
+  tri-&gt;a *= s;
+  tri-&gt;b *= s;
+  tri-&gt;c *= s;
+}
+</code></pre>
+    </div>
+    </td>
+    <td>
+    <div>
+      <div class="examma-ray-fitb-box-input-holder" style=" width: 100%;"><textarea rows="6" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-box-input nohighlight" style="resize: none; overflow: auto; width: 100%;"></textarea><span class="examma-ray-fitb-input-annotation examma-ray-fitb-box-annotation"></span></div>
+    </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td style="width: 350px; padding-right: 15px;">
+    <div markdown="1">
+<pre><code class="hljs cpp language-cpp"><span class="hljs-comment">// Implementation #5</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Triangle_scale</span><span class="hljs-params">(Triangle tri, <span class="hljs-keyword">double</span> s)</span> </span>{
+  tri.a *= s;
+  tri.b *= s;
+  tri.c *= s;
+}
+</code></pre>
+    </div>
+    </td>
+    <td>
+    <div>
+      <div class="examma-ray-fitb-box-input-holder" style=" width: 100%;"><textarea rows="6" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-box-input nohighlight" style="resize: none; overflow: auto; width: 100%;"></textarea><span class="examma-ray-fitb-input-annotation examma-ray-fitb-box-annotation"></span></div>
+    </div>
+    </td>
+  </tr>
+</tbody></table></div>
+            <div class="examma-ray-question-postscript">
+              <p></p><hr>
+<details>
+  <summary>Sample solution…</summary><p></p>
+<pre><code class="hljs cpp language-cpp">  <span class="hljs-comment">// Implementation #1</span>
+  <span class="hljs-comment">// **Incorrect** - there should not be a const on the Triangle</span>
+  <span class="hljs-comment">// parameter because the function needs to modify its members</span>
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Triangle_scale</span><span class="hljs-params">(<span class="hljs-keyword">const</span> Triangle *tri, <span class="hljs-keyword">double</span> s)</span> </span>{
+    tri-&gt;a *= s;
+    tri-&gt;b *= s;
+    tri-&gt;c *= s;
+  }
+</code></pre>
+<pre><code class="hljs cpp language-cpp">  <span class="hljs-comment">// Implementation #2</span>
+  <span class="hljs-comment">// **Incorrect** - the member variables a, b, and c must be</span>
+  <span class="hljs-comment">// accessed through the pointer tri, e.g. tri-&gt;a</span>
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Triangle_scale</span><span class="hljs-params">(Triangle *tri, <span class="hljs-keyword">double</span> s)</span> </span>{
+    a *= s;
+    b *= s;
+    c *= s;
+  }
+</code></pre>
+<pre><code class="hljs cpp language-cpp">  <span class="hljs-comment">// Implementation #3</span>
+  <span class="hljs-comment">// **Incorrect** - t1 is not in scope for this function.</span>
+  <span class="hljs-comment">// Instead, a pointer to the triangle to work with should</span>
+  <span class="hljs-comment">// be passed in to the function (e.g. pointing at t1).</span>
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Triangle_scale</span><span class="hljs-params">(<span class="hljs-keyword">double</span> s)</span> </span>{
+    t1.a *= s;
+    t1.b *= s;
+    t1.c *= s;
+  }
+</code></pre>
+<pre><code class="hljs cpp language-cpp">  <span class="hljs-comment">// Implementation #4</span>
+  <span class="hljs-comment">// **Correct**</span>
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Triangle_scale</span><span class="hljs-params">(Triangle *tri, <span class="hljs-keyword">double</span> s)</span> </span>{
+    tri-&gt;a *= s;
+    tri-&gt;b *= s;
+    tri-&gt;c *= s;
+  }
+</code></pre>
+<pre><code class="hljs cpp language-cpp">  <span class="hljs-comment">// Implementation #5</span>
+  <span class="hljs-comment">// **Incorrect** - because the triangle is passed by</span>
+  <span class="hljs-comment">// value, the scaling modification is made to a copy</span>
+  <span class="hljs-comment">// and the original triangle remains unchanged</span>
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Triangle_scale</span><span class="hljs-params">(Triangle tri, <span class="hljs-keyword">double</span> s)</span> </span>{
+    tri.a *= s;
+    tri.b *= s;
+    tri.c *= s;
+  }
+</code></pre>
+<p></p></details><p></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+            </td>
+            
+          </tr>
+        </table>
+      </div>
+    <br />
+      <div id="section-eecs280-w25_lec_05-s-section_05_06" class="examma-ray-section examma-ray-section-no-reference" data-section-uuid="eecs280-w25_lec_05-s-section_05_06" data-section-display-index="6">
+        <hr />
+        <table class="examma-ray-section-contents">
+          <tr>
+            <td class="examma-ray-questions-container">
+              
+      <div class="examma-ray-section-heading">
+        <div class="badge badge-primary">
+          6: ADT Initialization and Representation Invariants
+        </div>
+        <span class="examma-ray-section-verifier-statuses">
+          
+        </span>
+      </div>
+    
+              <div class="examma-ray-section-description"><p>An essential component of proper ADT design is the use of <strong>representation invariants</strong> to express conditions that differentiate valid data (e.g. a Triangle with sides 3, 4, and 5) from invalid, nonsense values (e.g. one of the side lengths is -10).</p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/cvtrJPdnZsY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p>
+<p>There are two main perspectives on representation invariants when you're implementing code:</p>
+<ol>
+<li>There's a responsibility to ensure the invariants are followed and aren't broken by bad code (e.g. don't allow creating an invalid <code>Triangle</code> with negative side lengths).</li>
+<li>You may assume the invariants are true when implementing ADT functions, kind of like an implicit <code>REQUIRES</code> clause (e.g. when implementing <code>Triangle_scale()</code> we don't need to worry about "what if the sides are negative??").</li>
+</ol>
+<p>#1 is a bit of extra work we put in so that we can rely on #2.</p></div>
+              
+            </td>
+            
+          </tr>
+        </table>
+      </div>
+    <br />
+      <div id="section-eecs280-w25_lec_05-s-section_05_07" class="examma-ray-section examma-ray-section-no-reference" data-section-uuid="eecs280-w25_lec_05-s-section_05_07" data-section-display-index="7">
+        <hr />
+        <table class="examma-ray-section-contents">
+          <tr>
+            <td class="examma-ray-questions-container">
+              
+      <div class="examma-ray-section-heading">
+        <div class="badge badge-primary">
+          7: Interfaces and Implementations
+        </div>
+        <span class="examma-ray-section-verifier-statuses">
+          
+        </span>
+      </div>
+    
+              <div class="examma-ray-section-description"><p>Just a few high level comments on the relationship between interfaces and implementations in ADT design…</p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/GSjBT7UusRU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p></div>
+              
+            </td>
+            
+          </tr>
+        </table>
+      </div>
+    <br />
+      <div id="section-eecs280-w25_lec_05-s-section_05_08" class="examma-ray-section examma-ray-section-no-reference" data-section-uuid="eecs280-w25_lec_05-s-section_05_08" data-section-display-index="8">
+        <hr />
+        <table class="examma-ray-section-contents">
+          <tr>
+            <td class="examma-ray-questions-container">
+              
+      <div class="examma-ray-section-heading">
+        <div class="badge badge-primary">
+          8: Composing ADTs
+        </div>
+        <span class="examma-ray-section-verifier-statuses">
+          
+            
+    <span class="examma-ray-verifier-status" data-question-uuid="eecs280-w25_lec_05-q-lec_adts_in_project_2">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">8.1</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+          
+        </span>
+      </div>
+    
+              <div class="examma-ray-section-description"><p>It's common to build one ADT by using another. A nice example of this is the <code>Image</code> ADT from project 2, which is composed of three <code>Matrix</code> ADTs that represent the red/green/blue color channels of an image.</p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/n6DKUrWNyec" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p></div>
+              
+      <div id="question-eecs280-w25_lec_05-q-lec_adts_in_project_2" data-question-uuid="eecs280-w25_lec_05-q-lec_adts_in_project_2" data-question-display-index="8.1" class="examma-ray-question card-group">
+        <div id="question-anchor-eecs280-w25_lec_05-q-lec_adts_in_project_2" class="examma-ray-question-anchor"></div>
+        <div class="card">
+          <div class="card-header">
+            
+      <b>8.1</b>
+    
+          </div>
+          <div class="card-body">
+            <div class="examma-ray-question-description">
+              <p>Which of the following are true about ADTs in project 2?</p>
+            </div>
+            <div class="examma-ray-question-response examma-ray-question-response-multiple_choice" data-response-kind="multiple_choice">
+    <form>
+    
+    
+      <div class="form-check" style="">
+        <input id="eecs280-w25_lec_05-q-lec_adts_in_project_2_choice_0" class="form-check-input" type="checkbox" name="eecs280-w25_lec_05-q-lec_adts_in_project_2_choice" value="0"/>
+        <label for="eecs280-w25_lec_05-q-lec_adts_in_project_2_choice_0" class="form-check-label examma-ray-mc-option"><p>The <code>Image_init()</code> function implementations should call <code>Matrix_init()</code> on each color channel member.</p></label>
+      </div>
+      <div class="form-check" style="">
+        <input id="eecs280-w25_lec_05-q-lec_adts_in_project_2_choice_1" class="form-check-input" type="checkbox" name="eecs280-w25_lec_05-q-lec_adts_in_project_2_choice" value="1"/>
+        <label for="eecs280-w25_lec_05-q-lec_adts_in_project_2_choice_1" class="form-check-label examma-ray-mc-option"><p>Code you write that is external to the <code>Matrix</code> ADT is allowed to directly access the <code>data</code> vector in the <code>Matrix</code> struct.</p></label>
+      </div>
+      <div class="form-check" style="">
+        <input id="eecs280-w25_lec_05-q-lec_adts_in_project_2_choice_2" class="form-check-input" type="checkbox" name="eecs280-w25_lec_05-q-lec_adts_in_project_2_choice" value="2"/>
+        <label for="eecs280-w25_lec_05-q-lec_adts_in_project_2_choice_2" class="form-check-label examma-ray-mc-option"><p>The <code>Matrix</code> ADT provides a 2D grid as an abstraction, built on top of an internal 1D vector.</p></label>
+      </div>
+    </form>
+  </div>
+            <div class="examma-ray-question-postscript">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    
+            </td>
+            
+          </tr>
+        </table>
+      </div>
+    <br />
+      <div id="section-eecs280-w25_lec_05-s-section_05_09" class="examma-ray-section examma-ray-section-no-reference" data-section-uuid="eecs280-w25_lec_05-s-section_05_09" data-section-display-index="9">
+        <hr />
+        <table class="examma-ray-section-contents">
+          <tr>
+            <td class="examma-ray-questions-container">
+              
+      <div class="examma-ray-section-heading">
+        <div class="badge badge-primary">
+          9: Function Overloading
+        </div>
+        <span class="examma-ray-section-verifier-statuses">
+          
+        </span>
+      </div>
+    
+              <div class="examma-ray-section-description"><p>In C++ (and some other programming languages), it's allowed to have multiple functions with the same name as long as they have different parameter types. This is called <strong>function overloading</strong>.</p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/MC6xIRR8wys" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p></div>
+              
+            </td>
+            
+          </tr>
+        </table>
+      </div>
+    <br />
+      <div id="section-eecs280-w25_lec_05-s-section_05_010" class="examma-ray-section examma-ray-section-no-reference" data-section-uuid="eecs280-w25_lec_05-s-section_05_010" data-section-display-index="10">
+        <hr />
+        <table class="examma-ray-section-contents">
+          <tr>
+            <td class="examma-ray-questions-container">
+              
+      <div class="examma-ray-section-heading">
+        <div class="badge badge-primary">
+          10: Unit Testing ADTs
+        </div>
+        <span class="examma-ray-section-verifier-statuses">
+          
+        </span>
+      </div>
+    
+              <div class="examma-ray-section-description"><p>Of course, just as we write unit tests for functions (which are the realization of procedural abstractions in our code), we should also write tests for ADTs to ensure that the behavior of their implementation matches with their specified interface.</p>
+<p>Let's take a look at this with some examples for testing the <code>Matrix</code> ADT, including some specifics for testing C-Style ADTs without breaking their interface.</p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/arLNZZsnZBc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p></div>
+              
+            </td>
+            
+          </tr>
+        </table>
+      </div>
+    
+          <div class="container examma-ray-bottom-message">
+            <div class="alert alert-success" style="margin: 2em; margin-top: 4em;">
+              You've reached the end of this lecture! Your work on any exercises will be saved if you re-open this page in the same web browser.</p>
+<p><strong>Participation Credit</strong><br>
+Make sure to sign in to the page, complete each of the exercises, and <strong>double check</strong> the participation indicator at the top left of this page to ensure you've earned credit.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+        
+      <div id="exam-saver" class="exam-saver-modal modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Answers File</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="alert alert-info"><p>Your work on exercises is <strong>automatically</strong> saved in your web browser's local storage. That means you don't need to do anything to save your work as long as:</p>
+<ul>
+<li>You use the same computer</li>
+<li>You use the same web browser</li>
+<li>You don't use incognito or private browsing (which disables local storage)</li>
+</ul>
+<p>To transfer answers between computers or browsers, use the import/export options below.</p></div>
+              <div style="text-align: center;">
+                <div id="exam-saver-download-status" style="margin-bottom: 5px;"></div>
+                <div><a id="exam-saver-download-link" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-down" viewBox="0 0 16 16">
+<path d="M8.5 6.5a.5.5 0 0 0-1 0v3.793L6.354 9.146a.5.5 0 1 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L8.5 10.293V6.5z"/>
+<path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+</svg> Download Answers</a></div>
+                <br />
+                <div style="margin-bottom: 5px;">Or, you may restore answers you previously saved to a file.<br /><b>WARNING!</b> This will overwrite ALL answers on this page.</div>
+                <div>
+                  <button id="exam-saver-load-button" class="btn btn-danger disabled" disabled><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-up" viewBox="0 0 16 16">
+<path d="M8.5 11.5a.5.5 0 0 1-1 0V7.707L6.354 8.854a.5.5 0 1 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 7.707V11.5z"/>
+<path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+</svg> Load Answers</button>
+                  <input id="exam-saver-file-input" type="file"></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  
+      <div id="exam-welcome-restored-modal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title"><code>const</code>, <code>struct</code>s, and C-Style ADTs</h5>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+              <div class="alert alert-info">This page was reloaded, and we've restored your answers from a local backup.</div>
+              <div>
+                <button class="btn btn-success" data-dismiss="modal"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
+<path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
+<path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+</svg> OK</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  
+      <div id="exam-welcome-restored-error-modal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title"><code>const</code>, <code>struct</code>s, and C-Style ADTs</h5>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+              <div class="alert alert-danger">
+                An error was encountered while attempting to restore your answers from a local backup.
+                If you are in the process of creating and previewing an exam, this may have occurred due
+                to a change to a question's type. If so, clear your browser's local storage before continuing.
+                <br />
+                If you're taking an exam, this should never happen. But, if it does, contact your instructor,
+                course staff, or proctor as soon as possible.
+              </div>
+              <div>
+                <button class="btn btn-success" data-dismiss="modal"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
+<path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
+<path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+</svg> OK</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  
+      <div id="exam-welcome-normal-modal" class="modal" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title"><code>const</code>, <code>struct</code>s, and C-Style ADTs</h5>
+            </div>
+            <div class="modal-body">
+              <div class="alert alert-info">This exam is for <b>eecs280</b>. If this is not you, please close this page.</div>
+              <div class="alert alert-info">This page shows your exam questions and gives you a place to work. <b>However, we will not grade anything here</b>. You must <b>download</b> an "answers file" and submit that to <b>Canvas</b> BEFORE the exam ends</b>.</div>
+              <div class="alert alert-warning">If something goes wrong (e.g. in case your computer crashes, you accidentally close the page, etc.), this page will attempt to restore your work when you come back. <b>Warning!</b> If you take the exam in private/incognito mode, or if you have certain privacy extensions/add-ons enabled, this won't work.</div>
+  
+              <p style="margin-left: 2em; margin-right: 2em;">
+                By taking this exam and submitting an answers file, you attest to the CoE Honor Pledge:
+              </p>
+              <p style="margin-left: 4em; margin-right: 4em;">
+                <span style="font-style: italic">I have neither given nor received unauthorized aid on this examination, nor have I concealed any violations of the Honor Code."
+              </p>
+              
+              <div style="text-align: center;">
+                <button class="btn btn-primary" data-dismiss="modal">I am <b>eecs280</b> and I understand</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  
+      <div id="exam-welcome-no-autosave-modal" class="modal" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title"><code>const</code>, <code>struct</code>s, and C-Style ADTs</h5>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+              <div class="alert alert-info">This exam is for <b>eecs280</b>. If this is not you, please close this page.</div>
+              <div class="alert alert-info">This page shows your exam questions and gives you a place to work. <b>However, we will not grade anything here</b>. You must <b>download</b> an "answers file" and submit that to <b>Canvas</b> BEFORE the exam ends</b>.</div>
+              <div class="alert alert-danger">It appears your browser will not support backing up your answers to local storage (e.g. in case your computer crashes, you accidentally close the page, etc.).<br /><br />While you may still take the exam like this, we do not recommend it. Make sure you are <b>not</b> using private/incognito mode, temporarily disable privacy add-ons/extensions, or try a different web browser to get autosave to work.</div>
+              <div>
+                <button class="btn btn-primary" data-dismiss="modal">I am <b>eecs280</b> and I understand</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div id="multiple-tabs-modal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">WARNING</h5>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+              <div class="alert alert-danger">It appears you have this page open in multiple tabs/windows. That's a bad idea. Close whichever one you just opened.</div>
+              <div>
+                <button class="btn btn-primary" data-dismiss="modal">OK</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div id="exam-sign-in-modal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-sm" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Sign In</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div style="font-size: 11pt;">
+                <p>Sign in with your @umich.edu Google account to earn participation credit for completing embedded exercises.</p>
+              </div>
+              <div style="text-align: center">
+                <div class="g_id_signin"
+                  data-type="standard"
+                  data-shape="rectangular"
+                  data-theme="outline"
+                  data-text="signin_with"
+                  data-size="large"
+                  data-logo_alignment="left"
+                  style="display: inline-block"
+                ></div>
+              </div>
+
+              <div id="g_id_onload"
+                data-client_id="444801118749-m2g9gl3gvvkh5ru959dmka0lsk94d9uq.apps.googleusercontent.com"
+                data-context="signin"
+                data-ux_mode="popup"
+                data-callback="on_google_sign_in"
+                data-auto_prompt="false"
+              ></div>
+
+              <script>
+                function on_google_sign_in(response) {
+                  window.google_sign_in_callback(response);
+                }
+              </script>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      </body>
+      </html>
+    

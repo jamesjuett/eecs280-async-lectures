@@ -1,0 +1,267 @@
+{
+  "title": "Course Introduction, Intro to C++",
+  "mk_intructions": "\n<link rel=\"icon\" type=\"image/png\" href=\"/eecs280-async-lectures/favicon-96x96.png\" sizes=\"96x96\" />\n<link rel=\"icon\" type=\"image/svg+xml\" href=\"/eecs280-async-lectures/favicon.svg\" />\n<link rel=\"shortcut icon\" href=\"/eecs280-async-lectures/favicon.ico\" />\n<link rel=\"apple-touch-icon\" sizes=\"180x180\" href=\"/eecs280-async-lectures/apple-touch-icon.png\" />\n<meta name=\"apple-mobile-web-app-title\" content=\"Async Lecs\" />\n<link rel=\"manifest\" href=\"/eecs280-async-lectures/site.webmanifest\" />\n\n<div markdown=1 class=\"alert alert-info\">\n  Welcome to **EECS 280**! This lecture presents our motivations and big-picture goals, some course logistics, and an introduction to programming in C++.\n  <div style=\"position: absolute; bottom: 5px; right: 10px; font-weight: bold;\">Updated Spring 2025</div>\n</div>\n\n<div markdown=1 class=\"alert alert-success\">\n  <b>Participation credit</b> for async lectures is automatically recorded once you complete\n  the embedded exercises. Take a look at the top left of the page. You'll need to <b>sign in</b> with\n  your @umich.edu Google account so that we know it's you.\n  \n  Completion of individual exercises is tracked in the navigation panel to the left and section headers within the page. Once all exercises are complete, you'll see a \"Completion Verified\" message.\n\n  To earn participation credit, complete the lecture by 11:59pm on the day the lecture is scheduled.\n</div>\n\n<style>\n  .lec-video {\n    width: 80%;\n    aspect-ratio: 16/9;\n  }\n\n  iframe.lobster-iframe {\n    border: none;\n    width: 80%;\n    height: 450px;\n    margin-left: auto;\n    margin-right: auto;\n  }\n\n</style>",
+  "mk_questions_message": "\n<div style=\"text-align: left\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-house-fill\" viewBox=\"0 0 16 16\">\n  <path d=\"M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z\"/>\n  <path d=\"m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293z\"/>\n</svg>\n<a style=\"vertical-align: middle;\" href=\"/eecs280-async-lectures\">\n  Table of Contents\n</a>\n<br />\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-file-earmark-slides\" viewBox=\"0 0 16 16\">\n  <path d=\"M5 6a.5.5 0 0 0-.496.438l-.5 4A.5.5 0 0 0 4.5 11h3v2.016c-.863.055-1.5.251-1.5.484 0 .276.895.5 2 .5s2-.224 2-.5c0-.233-.637-.429-1.5-.484V11h3a.5.5 0 0 0 .496-.562l-.5-4A.5.5 0 0 0 11 6H5zm2 3.78V7.22c0-.096.106-.156.19-.106l2.13 1.279a.125.125 0 0 1 0 .214l-2.13 1.28A.125.125 0 0 1 7 9.778z\"/>\n  <path d=\"M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z\"/>\n</svg>\n<a style=\"vertical-align: middle;\" target=\"_blank\" href=\"https://drive.google.com/drive/folders/1I4ZZc3BXyovb-nlMhIRH3tbi9lBqcV4C?usp=sharing\">\n  Slides (Powerpoint, PDF)\n</a>\n<br />\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-github\" viewBox=\"0 0 16 16\">\n<path d=\"M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z\"/>\n</svg>\n<a style=\"vertical-align: middle;\" target=\"_blank\" href=\"https://github.com/jamesjuett/eecs280-async-lectures\">\n  Report issues or make suggestions\n</a>\n</div>\n",
+  "mk_bottom_message": "You've reached the end of this lecture! Your work on any exercises will be saved if you re-open this page in the same web browser.\n\n**Participation Credit**  \nMake sure to sign in to the page, complete each of the exercises, and **double check** the participation indicator at the top left of this page to ensure you've earned credit.",
+  "mk_download_message": "Export your exercise answers to use with another computer or browser.",
+  "mk_saver_message": "Your work on exercises is **automatically** saved in your web browser's local storage. That means you don't need to do anything to save your work as long as:\n- You use the same computer\n- You use the same web browser\n- You don't use incognito or private browsing (which disables local storage)\n\nTo transfer answers between computers or browsers, use the import/export options below.",
+  "assets_dir": "/home/jjuett/eecs280/async-lectures/lectures/lecture01/assets",
+  "allow_clientside_content": true,
+  "sections": [
+    {
+      "section_id": "section_01_1",
+      "title": "Introductions, The Big Picture",
+      "mk_description": "Hello! Let's get started with EECS 280!\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/8vEKA0Znpzk\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />\n\nA few notes for async lectures:\n- They cover the same material as the regular lectures and are kept up-to-date with any changes for the current term.\n- It's just as important as with live lectures to keep up with the material. Async participation is due by 11:59pm the day of the lecture.\n- Generally speaking, I'll post the lectures several days ahead of time so you have a bit more flexibility in when to do them.",
+      "questions": []
+    },
+    {
+      "section_id": "section_01_2",
+      "title": "Course Essentials",
+      "mk_description": "\nLet's take a look at the major components of EECS 280 and course resources, all accessible from our website at [eecs280.org](https://eecs280.org).\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/-ONgvp2xLJc\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />\n\nDon't worry if this all seems a bit overwhelming. There are a lot of different components to the course and a bunch of different resources to get used to. You can find everything from [eecs280.org](https://eecs280.org), and we'll try to keep it up-to-date with the most relevant material. I also highly encourage that you ask questions if you're feeling lost - on Ed, Discord, in office hours, in lab, etc.\n\n**Setup Tutorials**  \nHere's my recommended approach to getting your computer set up for C++ development (i.e. in the text bubbles below):\n\n<div style=\"text-align: center;\">\n  <img src=\"assets/tutorials.png\" style=\"width: 600px;\">\n</div>\n<br />\n\n**Setup Walkthrough Videos**  \nWe've posted recordings on eecs280.org of setup walkthrough sessions from last term - these take you all the way through:\n- Initial Setup\n- Using a command-line interface\n- Using the VS Code Editor\n- Workflow for compiling, running, testing, and debugging C++.\n\n<br />\n\n**Setup Support**  \nStop by either of the regular lab sessions on the first day of classes (Tue May 6) to work through setup or ask any questions.\n- 10am-12pm in 1014 DOW\n- 2pm-4pm in 1014 DOW\n\n<br />\n\n**Syllabus**  \nFor more details, course polices, etc. - check out our course syllabus at [eecs280.org/syllabus.html](https://eecs280.org/syllabus.html).",
+      "questions": []
+    },
+    {
+      "section_id": "section_01_3",
+      "title": "Evaluation and Grading",
+      "mk_description": "Here's a very quick look at assignments, exams, and grading policies in EECS 280.\n\n<div class=\"alert alert-secondary\" role=\"alert\" markdown=\"1\">\n  <h5><span class=\"badge badge-primary\">Spring 2025</span></h5>\n  One quick difference for this term from the video below - there are no entry/exit surveys for the accelerated spring term. The 1% credit for those is added to project 1, making it worth 5% this term.\n</div>\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/Zda5HC44oew\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />\n\nWe'll come back to review this and add more detail later in the term. (Although it's all there in the syllabus and grade calculator on the website if you'd like to look now.)\n\nI also want to emphasize the importance of keeping up with lectures and actively participating...\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/mFzvKwcxnjE\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />",
+      "questions": [
+        {
+          "question_id": "lec_intro_grading",
+          "title": "Exercise: Evaluation and Grading",
+          "points": 4,
+          "mk_description": "\n  Here's your first participation exercise! Fill in the blanks below.",
+          "response": {
+            "kind": "fill_in_the_blank",
+            "content": "_______________BLANK______________ are the only part of the grade computation that is curved.\n\nParticipation in _BLANK_________________ is *optionally* graded, worth 3% if it helps you.\n\nA student scoring 89.7% overall (with 91.8% on projects, 86.8% on exams) would earn a grade of _BLANK__.\n\nA student scoring 78.2% overall (with 58.1% on projects, 93.25% on exams) would earn a grade of _BLANK__.",
+            "sample_solution": [
+              "individual exams",
+              "lectures",
+              "B+",
+              "C-"
+            ],
+            "default_grader": {
+              "grader_kind": "manual_regex_fill_in_the_blank",
+              "rubric": [
+                {
+                  "blankIndex": 1,
+                  "title": "Box 1",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "exam|test|midterm|final",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct!",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": ".",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Each individual exam is curved, but nothing else.",
+                      "points": 0
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 2,
+                  "title": "Box 2",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "lecture|participation",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct!",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": ".",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Participation in lecture is now worth an optional 3%.",
+                      "points": 0
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 3,
+                  "title": "Box 3",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "^\\s*B\\s*\\+\\s*$",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct!",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": ".",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Double check your answer, or review the grading policy in the video above and course syllabus.",
+                      "points": 0
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 4,
+                  "title": "Box 4",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "^\\s*c\\s*-\\s*$",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct!",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "^\\s*c\\s*\\+\\s*$",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "A 78.2% would normally earn a C+, however this student did not score well enough on projects with 58.1% being below the project threshold of 60%. The highest grade they may earn is C-.",
+                      "points": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "verifier": {
+            "verifier_kind": "full_credit"
+          }
+        }
+      ]
+    },
+    {
+      "section_id": "section_01_4",
+      "title": "Lab Groups and Exercises",
+      "mk_description": "\nYou'll work small groups of other students to further explore and pratice the course material in lab exercises.\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/HGJ8AgFRL-8\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />\n\n<img style=\"inline-block; height: 2em;\" src=\"assets/eddie.jpg\"> Pretty sure I heard a meow at the end of that video... ",
+      "questions": []
+    },
+    {
+      "section_id": "section_01_5",
+      "title": "Machine Code and Compilation",
+      "mk_description": "\nLet's take a break from talking about logistics and dive into our first sequence of course material! We'll start with a brief introduction to the nature of C++ as a **compiled** language.\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/5I_gpGCwlGY\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />",
+      "questions": []
+    },
+    {
+      "section_id": "section_01_6",
+      "title": "Demo: A First Progam in C++",
+      "mk_description": "\nSo, what does it actually look like to write a program in C++, compile it, and run it?\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/MLCHE6cbsLY\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />\n\nThere were several commands in there, including the `g++ hello.cpp -o hello.exe` that I used to compile the program. Don't worry about memorizing any of this right now. The tutorials and C++ setup walkthrough sessions will go into some more depth on these.",
+      "questions": []
+    },
+    {
+      "section_id": "section_01_7",
+      "title": "A Tour of C++",
+      "mk_description": "\nNow, we'll spend some time on a brief, whirlwind-style tour of some of the characteristics of C++. This is just a high-level overview, and we'll spend more time on a lot of details throughout the rest of the course.\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/V9-WMP0mXUY\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />\n\nIt's worth looking at **expressions** and **variables** in a bit more detail, especially the way variables and their types relate to the underlying memory used in our program.\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/b0GpOtt0fK4\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />\n\nUnderstanding variables as a name for an object in memory also helps us understand what would happen if a variable were declared, but not properly initialized before we use it...\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/ub1lkk67XME\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />\n\nFinally, we'll look at a few ways the compiler checks for common errors in programs before we're allowed to run them, using rules of **scope** and **static typing**.\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/57NGk0keZLY\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />",
+      "questions": [
+        {
+          "question_id": "lec_intro_cpp_fundamentals",
+          "title": "Exercise: C++ Fundamentals",
+          "points": 1,
+          "mk_description": "Complete each of the tasks described in the comments.",
+          "response": {
+            "kind": "iframe",
+            "src": "assets/intro_cpp_fundamentals.html",
+            "element_class": "lobster-iframe",
+            "element_style": "height: 850px;",
+            "default_grader": {
+              "grader_kind": "standard_iframe",
+              "rubric": [
+                {
+                  "points": 1,
+                  "description": "Exercise must be complete.",
+                  "property": "complete",
+                  "value": true
+                }
+              ]
+            }
+          },
+          "verifier": {
+            "verifier_kind": "full_credit"
+          },
+          "mk_postscript": "<hr />\n<details>\n  <summary>Sample solution...</summary>\n  ```cpp\n  #include <iostream>\n  using namespace std;\n  \n  int main() {\n  \n    // Task 1: Define a variable called price with inital value 7.99.\n    double price = 7.99;\n\n    // Task 2: Define a variable called quantity with initial value 4.\n    //         The variable's type should only allow whole numbers.\n    int quantity = 4;\n\n    // Task 3: Print the result of multiplying the variables to cout.\n    //         (Use the unqualified name cout, not std::cout.)\n    cout << price * quantity << endl;\n  }\n  ```\n</details>"
+        }
+      ]
+    },
+    {
+      "section_id": "section_01_8",
+      "title": "Fundamental Types and Implicit Conversions",
+      "mk_description": "Let's take a look at the set of fundamental data types built in to the C++ language, as well as the rules for implicit conversion between them.\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/BFt_3sLGMy4\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />\n\nI'll also point out that **explicit conversions** are possible, where we directly request a conversion. In some cases this may be necessary. In others, it's stylistically preferrable to make an otherwise implicit conversion more obvious. Here's a few examples:\n\n```cpp\nint main() {\n  double value = 4.3;\n\n  // implicit conversion, too easy to miss\n  int x = value;\n\n  // C-style cast, avoid doing this\n  int x = (int)value;\n\n  // C++-style cast, this is preferred\n  int x = static_cast<int>(value);\n}\n```\n\nIn C++, the `static_cast` form is preferred because it involves stronger compiler checks to ensure the conversion makes sense.",
+      "questions": []
+    },
+    {
+      "section_id": "section_01_9",
+      "title": "Projects and Autograder",
+      "mk_description": "You get to exercise the skills you learn in lecture and lab in six large-scale programming projects throughout the course, designed to solidify your understanding and give you a chance to build some neat applications with real-world appeal!\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/Bsr_bXDhaUE\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />\n\n<div class=\"alert alert-secondary\" role=\"alert\" markdown=\"1\">\n  <h5><span class=\"badge badge-primary\">Spring 2025</span></h5>\n  One other difference for the accelerated spring term - the project deadlines are 11:59pm rather than 8pm (as in the video). But, you're welcome to pretend they're due at 8pm to make sure you get them in with plenty of time to spare! :)\n</div>",
+      "questions": []
+    },
+    {
+      "section_id": "section_01_10",
+      "title": "Collaboration and Academic Integrity",
+      "mk_description": "We want you to learn with and from each other! Enjoying the class with others and having a network you can reach out to for help is highly encouraged. At the same time, we want to make sure everyone has an opportunity to learn for themselves and that nobody takes credit for someone else's work.\n\nIt's also important to do the (sometimes challenging, sometimes frustrating!) work yourself, because otherwise you're not going to get much out of the course. This informs our Generative AI Policy. The short version - you're encouraged to use tools like ChatGPT, Copilot, etc. to help you learn, but you aren't allowed to use them to do your work for you. I recommend against using such tools for *any* code generation, no matter how small. The [full version](https://eecs280.org/syllabus.html#generative-ai-policy) in our syllabus is also worth a read.\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/UGL_kCo1P1Y\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />",
+      "questions": []
+    },
+    {
+      "section_id": "section_01_11",
+      "title": "Wrapping Up",
+      "mk_description": "Just a few parting thoughts.\n \n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/TlsM1jxpKDQ\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />",
+      "questions": []
+    }
+  ],
+  "exam_id": "sp25_lec_01",
+  "credentials_strategy": {
+    "strategy": "google_local",
+    "client_id": "444801118749-m2g9gl3gvvkh5ru959dmka0lsk94d9uq.apps.googleusercontent.com",
+    "auth_endpoint": "https://examma-ray.eecs.umich.edu/public_api/participation/auth/",
+    "message": "Sign in with your @umich.edu Google account to earn participation credit for completing embedded exercises."
+  },
+  "completion": {
+    "threshold": 1,
+    "tooltip": "",
+    "endpoints": {
+      "check": "https://examma-ray.eecs.umich.edu/public_api/participation/me/",
+      "submit": "https://examma-ray.eecs.umich.edu/public_api/participation/me/"
+    },
+    "local_deadline": {
+      "when": {
+        "examma_ray_serialized_datetime": {
+          "iso": "2025-05-06T23:59:59.000-04:00",
+          "timezone": "America/Detroit"
+        }
+      },
+      "grace_minutes": 5
+    }
+  }
+}

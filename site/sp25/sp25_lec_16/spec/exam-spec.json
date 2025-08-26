@@ -1,0 +1,264 @@
+{
+  "title": "RAII and Growable Containers",
+  "mk_intructions": "\n<link rel=\"icon\" type=\"image/png\" href=\"/eecs280-async-lectures/favicon-96x96.png\" sizes=\"96x96\" />\n<link rel=\"icon\" type=\"image/svg+xml\" href=\"/eecs280-async-lectures/favicon.svg\" />\n<link rel=\"shortcut icon\" href=\"/eecs280-async-lectures/favicon.ico\" />\n<link rel=\"apple-touch-icon\" sizes=\"180x180\" href=\"/eecs280-async-lectures/apple-touch-icon.png\" />\n<meta name=\"apple-mobile-web-app-title\" content=\"Async Lecs\" />\n<link rel=\"manifest\" href=\"/eecs280-async-lectures/site.webmanifest\" />\n\n<div markdown=1 class=\"alert alert-info\">\n  Let's take a look at two common strategies for managing dynamic memory:\n  1. **RAII** - The use of constructors and destructors to manage dynamic resources within a class-based ADT.\n  2. **Growable Containers** - Dynamic memory enables a data structure to allocate additional space for elements as needed.\n  \n  <div style=\"position: absolute; bottom: 5px; right: 10px; font-weight: bold;\">Updated Spring 2025</div>\n</div>\n<style>\n  .lec-video {\n    width: 80%;\n    aspect-ratio: 16/9;\n  }\n\n  iframe.lobster-iframe {\n    border: none;\n    width: 80%;\n    height: 450px;\n    margin-left: auto;\n    margin-right: auto;\n  }\n\n</style>",
+  "mk_questions_message": "\n<div style=\"text-align: left\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-house-fill\" viewBox=\"0 0 16 16\">\n  <path d=\"M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z\"/>\n  <path d=\"m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293z\"/>\n</svg>\n<a style=\"vertical-align: middle;\" href=\"/eecs280-async-lectures\">\n  Table of Contents\n</a>\n<br />\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-file-earmark-slides\" viewBox=\"0 0 16 16\">\n  <path d=\"M5 6a.5.5 0 0 0-.496.438l-.5 4A.5.5 0 0 0 4.5 11h3v2.016c-.863.055-1.5.251-1.5.484 0 .276.895.5 2 .5s2-.224 2-.5c0-.233-.637-.429-1.5-.484V11h3a.5.5 0 0 0 .496-.562l-.5-4A.5.5 0 0 0 11 6H5zm2 3.78V7.22c0-.096.106-.156.19-.106l2.13 1.279a.125.125 0 0 1 0 .214l-2.13 1.28A.125.125 0 0 1 7 9.778z\"/>\n  <path d=\"M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z\"/>\n</svg>\n<a style=\"vertical-align: middle;\" target=\"_blank\" href=\"https://drive.google.com/drive/folders/1I4ZZc3BXyovb-nlMhIRH3tbi9lBqcV4C?usp=sharing\">\n  Slides (Powerpoint, PDF)\n</a>\n<br />\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-github\" viewBox=\"0 0 16 16\">\n<path d=\"M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z\"/>\n</svg>\n<a style=\"vertical-align: middle;\" target=\"_blank\" href=\"https://github.com/jamesjuett/eecs280-async-lectures\">\n  Report issues or make suggestions\n</a>\n</div>\n",
+  "mk_bottom_message": "You've reached the end of this lecture! Your work on any exercises will be saved if you re-open this page in the same web browser.\n\n**Participation Credit**  \nMake sure to sign in to the page, complete each of the exercises, and **double check** the participation indicator at the top left of this page to ensure you've earned credit.",
+  "mk_download_message": "Export your exercise answers to use with another computer or browser.",
+  "mk_saver_message": "Your work on exercises is **automatically** saved in your web browser's local storage. That means you don't need to do anything to save your work as long as:\n- You use the same computer\n- You use the same web browser\n- You don't use incognito or private browsing (which disables local storage)\n\nTo transfer answers between computers or browsers, use the import/export options below.",
+  "assets_dir": "/home/jjuett/eecs280/async-lectures/lectures/lecture15/assets",
+  "allow_clientside_content": true,
+  "sections": [
+    {
+      "section_id": "section_14_1",
+      "title": "Warm Up Exercise",
+      "mk_description": "",
+      "questions": [
+        {
+          "question_id": "lec14_warm_up",
+          "title": "Exercise: Warm Up",
+          "points": 1,
+          "mk_description": "",
+          "response": {
+            "kind": "fill_in_the_blank",
+            "content": "Let's review some of the issues we can run into with dynamic memory. What memory errors do you see in the code below?\n\n```cpp\nint *func(int x) {\n  int *y = new int(x);\n  y = new int[x];\n  return y;\n}\n\nint main() {\n  int *a = func(5);\n  int *b = a;\n  delete b;\n  cout << a[2] << endl;\n}\n```\n\nDescribe a few conceptual problems and/or specific errors in the way the code above manages dynamic memory.\n\n[[BOX\n\n\n\n]]",
+            "default_grader": {
+              "grader_kind": "manual_regex_fill_in_the_blank",
+              "rubric": [
+                {
+                  "blankIndex": 1,
+                  "title": "Box 1",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": ".{30,}",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer!",
+                      "points": 1
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "verifier": {
+            "verifier_kind": "full_credit"
+          },
+          "mk_postscript": "<hr />\nYou're welcome to check your solution with this **walkthrough** video:\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/sPqOvZb0c5A\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />"
+        }
+      ]
+    },
+    {
+      "section_id": "section_14_2",
+      "title": "RAII: A Strategy for Managing Dynamic Resources",
+      "mk_description": "\nWe've seen a few strategies for managing dynamic memory so far. Let's consider one more, which is to use constructors and destructors for a class to manage the allocation and deletion of dynamically allocated memory.\n\nThis strategy is often called **\"Resource Acquisition Is Initialization (RAII)\"**. Here's some motivation and the details:\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/tv1WyPEQV8Y\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />\n\nTo recap, the strategy is essentially:\n- **Allocate** dynamic resources in a **constructor**, as part of initializing a class object.\n- Track the dynamic memory using a **pointer** stored as a `private` member variable, provide access as desired through `public` member functions.\n- When the class object dies (e.g. goes out of scope), its **destructor** ensures the dynamically allocated resources are properly **deleted**.",
+      "questions": [
+        {
+          "question_id": "lec14_raii",
+          "title": "Exercise: RAII and Memory Management",
+          "points": 4,
+          "mk_description": "Which of these functions leak memory? Write either **\"ok\"** or **\"memory leak\"**, as well as a brief justification. You should assume the constructors and destructor for `UnsortedSet` are defined (correctly) as described above, such that the constructor and destructor take care of creating and destroying the internal array used to store set elements.",
+          "response": {
+            "kind": "fill_in_the_blank",
+            "content": "\n<table style=\"width: 100%; border: none;\">\n  <tr>\n    <td style=\"width: 350px; padding-right: 15px;\">\n    <div markdown=\"1\">\n```cpp\nvoid func() {\n  UnsortedSet<int> s1;\n  s1.insert(2);\n  s1.insert(3);\n}\n```\n    </div>\n    </td>\n    <td>\n    <div>\n      [[BOX\n      \n      ]]\n    </div>\n    </td>\n  </tr>\n  <tr>\n    <td style=\"width: 350px; padding-right: 15px;\">\n    <div markdown=\"1\">\n```cpp\nvoid func() {\n  UnsortedSet<int*> s2;\n  s2.insert(new int(2));\n  s2.insert(new int(3));\n}\n```\n    </div>\n    </td>\n    <td>\n    <div>\n      [[BOX\n      \n      ]]\n    </div>\n    </td>\n  </tr>\n  <tr>\n    <td style=\"width: 350px; padding-right: 15px;\">\n    <div markdown=\"1\">\n```cpp\nvoid func() {\n  UnsortedSet<int> *s3 = new UnsortedSet<int>;\n  s3->insert(2);\n  s3->insert(3);\n}\n```\n    </div>\n    </td>\n    <td>\n    <div>\n      [[BOX\n      \n      ]]\n    </div>\n    </td>\n  </tr>\n  \n  <tr>\n    <td style=\"width: 350px; padding-right: 15px;\">\n    <div markdown=\"1\">\n```cpp\nvoid func() {\n  UnsortedSet<int> *s4 = new UnsortedSet<int>;\n  s4->insert(2);\n  s4->insert(3);\n  delete s4;\n}\n```\n    </div>\n    </td>\n    <td>\n    <div>\n      [[BOX\n      \n      ]]\n    </div>\n    </td>\n  </tr>\n</table>\n            ",
+            "sample_solution": [
+              "ok",
+              "memory leak",
+              "memory leak",
+              "ok"
+            ],
+            "default_grader": {
+              "grader_kind": "manual_regex_fill_in_the_blank",
+              "rubric": [
+                {
+                  "blankIndex": 1,
+                  "title": "Box 1",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "ok",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "The code here does not use `new`, and we presume the `UnsortedSet` class manages its memory correctly. Answer = \"ok\".",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "memory ?-?leak",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "The code here does not use `new`, and we presume the `UnsortedSet` class manages its memory correctly. Answer = \"ok\".",
+                      "points": 0
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 2,
+                  "title": "Box 2",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "memory ?-?leak",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "The code allocates integers with `new` and stores the pointers in the set. However, the `UnsortedSet` will only clean up the memory for its internal array, not these additional integers we created. Answer = \"memory leak\".",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "ok",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "The code allocates integers with `new` and stores the pointers in the set. However, the `UnsortedSet` will only clean up the memory for its internal array, not these additional integers we created. Answer = \"memory leak\".",
+                      "points": 0
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 3,
+                  "title": "Box 3",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "memory ?-?leak",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "In this case, the `UnsortedSet` itself is allocated on the heap with `new`, but not deleted. Although `UnsortedSet` manages its internal memory correctly, the problem is the set overall is never destroyed. Answer = \"memory leak\".",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "ok",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "In this case, the `UnsortedSet` itself is allocated on the heap with `new`, but not deleted. Although `UnsortedSet` manages its internal memory correctly, the problem is the set overall is never destroyed. Answer = \"memory leak\".",
+                      "points": 0
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 4,
+                  "title": "Box 4",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "ok",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "This contrasts to the previous example by adding the appropriate `delete` operation. Answer = \"ok\".",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "memory ?-?leak",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "This contrasts to the previous example by adding the appropriate `delete` operation. Answer = \"ok\".",
+                      "points": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "verifier": {
+            "verifier_kind": "full_credit"
+          },
+          "mk_postscript": "<hr />\nYou're welcome to check your solution with this **walkthrough** video:\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/6s5tvv3aDE4\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />"
+        }
+      ]
+    },
+    {
+      "section_id": "section_14_3",
+      "title": "Growable Containers",
+      "mk_description": "\nPreviously, we implemented containers with a fixed-capacity restriction. Using dynamic memory, we can instead implement growable containers that start with a small amount of dynamic memory and allocate more as needed.\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/0bI8jDQ_Ggw\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />\n",
+      "questions": [
+        {
+          "question_id": "lec14_unsortedintset_grow",
+          "title": "Exercise: `UnsortedIntSet::grow()`",
+          "points": 1,
+          "mk_description": "Let's look at the specific steps required to implement the `grow()` function for a growable, array-based container.\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/UgEVDkbn5pI\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />\n\nFill in the code for the `grow()` function for `UnsortedIntSet` using the algorithm described in the video (it is also repeated in the comments above the function in the code below).\n\nThe `main()` function provided includes testing code to verify your implementation.",
+          "response": {
+            "kind": "iframe",
+            "src": "assets/unsortedintset_grow.html",
+            "element_class": "lobster-iframe",
+            "element_style": "height: 675px;",
+            "default_grader": {
+              "grader_kind": "standard_iframe",
+              "rubric": [
+                {
+                  "points": 1,
+                  "description": "Exercise must be complete.",
+                  "property": "complete",
+                  "value": true
+                }
+              ]
+            }
+          },
+          "verifier": {
+            "verifier_kind": "full_credit"
+          },
+          "mk_postscript": "<hr />\nYou're welcome to check your solution with this **walkthrough** video:\n\nNote that the walkthrough is for a templated class with type `T` whereas the exercise used `int` specifically. The concept is the same otherwise.\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/5li19qh2TX8\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />"
+        }
+      ]
+    },
+    {
+      "section_id": "section_14_4",
+      "title": "Dynamic Resource Invariants",
+      "mk_description": "\nLet's take just a moment to formally reason about the management of dynamic resources by an ADT and sketch out a rough strategy for proving they don't leak memory or run into other memory errors.\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/iB6QhLSM6pM\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />",
+      "questions": []
+    }
+  ],
+  "exam_id": "sp25_lec_16",
+  "credentials_strategy": {
+    "strategy": "google_local",
+    "client_id": "444801118749-m2g9gl3gvvkh5ru959dmka0lsk94d9uq.apps.googleusercontent.com",
+    "auth_endpoint": "https://examma-ray.eecs.umich.edu/public_api/participation/auth/",
+    "message": "Sign in with your @umich.edu Google account to earn participation credit for completing embedded exercises."
+  },
+  "completion": {
+    "threshold": 1,
+    "tooltip": "",
+    "endpoints": {
+      "check": "https://examma-ray.eecs.umich.edu/public_api/participation/me/",
+      "submit": "https://examma-ray.eecs.umich.edu/public_api/participation/me/"
+    },
+    "local_deadline": {
+      "when": {
+        "examma_ray_serialized_datetime": {
+          "iso": "2025-06-04T23:59:59.000-04:00",
+          "timezone": "America/Detroit"
+        }
+      },
+      "grace_minutes": 5
+    }
+  }
+}

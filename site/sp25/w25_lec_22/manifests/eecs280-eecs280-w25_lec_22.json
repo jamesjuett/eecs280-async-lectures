@@ -1,0 +1,110 @@
+{
+  "exam_id": "w25_lec_22",
+  "uuid": "eecs280-w25_lec_22",
+  "student": {
+    "name": "eecs280",
+    "uniqname": "eecs280"
+  },
+  "timestamp": 1746495629377,
+  "trusted": true,
+  "transparent": true,
+  "saverId": 0,
+  "sections": [
+    {
+      "section_id": "section_20_1",
+      "skin_id": "__DEFAULT",
+      "uuid": "eecs280-w25_lec_22-s-section_20_1",
+      "display_index": "1",
+      "questions": [
+        {
+          "question_id": "lec20_recursive_list_functions",
+          "skin_id": "__DEFAULT",
+          "uuid": "eecs280-w25_lec_22-q-lec20_recursive_list_functions",
+          "display_index": "1.1",
+          "kind": "fill_in_the_blank"
+        }
+      ]
+    },
+    {
+      "section_id": "section_20_2",
+      "skin_id": "__DEFAULT",
+      "uuid": "eecs280-w25_lec_22-s-section_20_2",
+      "display_index": "2",
+      "questions": [
+        {
+          "question_id": "lec20_list_max",
+          "skin_id": "__DEFAULT",
+          "uuid": "eecs280-w25_lec_22-q-lec20_list_max",
+          "display_index": "2.1",
+          "kind": "iframe"
+        }
+      ]
+    },
+    {
+      "section_id": "section_20_3",
+      "skin_id": "__DEFAULT",
+      "uuid": "eecs280-w25_lec_22-s-section_20_3",
+      "display_index": "3",
+      "questions": [
+        {
+          "question_id": "lec20_recursive_tree_functions",
+          "skin_id": "__DEFAULT",
+          "uuid": "eecs280-w25_lec_22-q-lec20_recursive_tree_functions",
+          "display_index": "3.1",
+          "kind": "fill_in_the_blank"
+        }
+      ]
+    },
+    {
+      "section_id": "section_20_4",
+      "skin_id": "__DEFAULT",
+      "uuid": "eecs280-w25_lec_22-s-section_20_4",
+      "display_index": "4",
+      "questions": [
+        {
+          "question_id": "lec20_tree_height",
+          "skin_id": "__DEFAULT",
+          "uuid": "eecs280-w25_lec_22-q-lec20_tree_height",
+          "display_index": "4.1",
+          "kind": "iframe"
+        }
+      ]
+    },
+    {
+      "section_id": "section_20_5",
+      "skin_id": "__DEFAULT",
+      "uuid": "eecs280-w25_lec_22-s-section_20_5",
+      "display_index": "5",
+      "questions": []
+    },
+    {
+      "section_id": "section_20_6",
+      "skin_id": "__DEFAULT",
+      "uuid": "eecs280-w25_lec_22-s-section_20_6",
+      "display_index": "6",
+      "questions": [
+        {
+          "question_id": "lec20_recursion_kinds_1",
+          "skin_id": "__DEFAULT",
+          "uuid": "eecs280-w25_lec_22-q-lec20_recursion_kinds_1",
+          "display_index": "6.1",
+          "kind": "multiple_choice"
+        },
+        {
+          "question_id": "lec20_recursion_kinds_2",
+          "skin_id": "__DEFAULT",
+          "uuid": "eecs280-w25_lec_22-q-lec20_recursion_kinds_2",
+          "display_index": "6.2",
+          "kind": "multiple_choice"
+        },
+        {
+          "question_id": "lec20_recursion_kinds_3",
+          "skin_id": "__DEFAULT",
+          "uuid": "eecs280-w25_lec_22-q-lec20_recursion_kinds_3",
+          "display_index": "6.3",
+          "kind": "multiple_choice"
+        }
+      ]
+    }
+  ]
+}

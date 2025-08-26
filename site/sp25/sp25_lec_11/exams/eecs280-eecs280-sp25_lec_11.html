@@ -1,0 +1,855 @@
+
+      <!DOCTYPE html>
+      <html>
+      <head>
+  <meta charset="UTF-8">
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://unpkg.com/@popperjs/core@2" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+  <script src="https://accounts.google.com/gsi/client" async></script>
+      <script src="js/frontend-doc.js"></script>
+    
+</head>
+      <body>
+        <div id="examma-ray-exam" class="container-fluid" data-uniqname="eecs280" data-name="eecs280" data-exam-id="sp25_lec_11" data-exam-uuid="eecs280-sp25_lec_11" data-clientside-content="yes">
+      <div class="row">
+        <div class="bg-light examma-ray-left-panel">
+          <div class="text-center pb-1 pl-4 pr-4 border-bottom">
+            <b>Array-Based Data Structures</b>
+          </div>
+          <div class="pt-1 pb-1 border-bottom">
+              <b>Participation</b> 
+      <button id="examma-ray-exam-sign-in-button" class="btn btn-primary btn-sm" style="line-height: 1;" data-toggle="modal" data-target="#exam-sign-in-modal" aria-expanded="false" aria-controls="exam-sign-in-modal">
+        <svg class="examma-ray-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+</svg> <span style="vertical-align: middle">Sign In</span>
+      </button>
+    
+              <br />
+              
+      <span id="examma-ray-exam-completion-status">
+        Loading...
+      </span>
+    
+            </div>
+          <ul class="nav er-exam-nav show-small-scrollbar" style="display: unset; flex-grow: 1; font-weight: 500; overflow-y: scroll">
+      
+        <li class="nav-item">
+          <a class="nav-link text-truncate" style="padding: 0.1rem" href="#section-eecs280-sp25_lec_11-s-section_12_1">
+      <span style="float: right;">
+      
+      </span>
+     1: Containers and Data Structures</a>
+        </li>
+        
+      
+        <li class="nav-item">
+          <a class="nav-link text-truncate" style="padding: 0.1rem" href="#section-eecs280-sp25_lec_11-s-section_12_2">
+      <span style="float: right;">
+      
+      </span>
+     2: An Array-Based Unsorted Set</a>
+        </li>
+        
+      
+        <li class="nav-item">
+          <a class="nav-link text-truncate" style="padding: 0.1rem" href="#section-eecs280-sp25_lec_11-s-section_12_3">
+      <span style="float: right;">
+      
+        
+    <span class="examma-ray-verifier-status examma-ray-verifier-status-mini" data-question-uuid="eecs280-sp25_lec_11-q-lec12_intset_insert">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">3.1</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+      
+
+        
+    <span class="examma-ray-verifier-status examma-ray-verifier-status-mini" data-question-uuid="eecs280-sp25_lec_11-q-lec12_intset_remove">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">3.2</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+      
+      </span>
+     3: IntSet Implementation</a>
+        </li>
+        
+          <li id="starred-question-eecs280-sp25_lec_11-q-lec12_intset_insert" class="nav-item examma-ray-starred-nav" data-question-uuid="eecs280-sp25_lec_11-q-lec12_intset_insert" style="display: none">
+            <span class="badge examma-ray-score-badge btn-secondary">1 pt</span>
+            <a class="nav-link text-truncate" style="padding: 0.1rem; display: inline" href="#question-anchor-eecs280-sp25_lec_11-q-lec12_intset_insert">
+              3.1: Exercise: <code>IntSet::insert()</code>
+            </a>
+          </li>
+        
+          <li id="starred-question-eecs280-sp25_lec_11-q-lec12_intset_remove" class="nav-item examma-ray-starred-nav" data-question-uuid="eecs280-sp25_lec_11-q-lec12_intset_remove" style="display: none">
+            <span class="badge examma-ray-score-badge btn-secondary">5 pts</span>
+            <a class="nav-link text-truncate" style="padding: 0.1rem; display: inline" href="#question-anchor-eecs280-sp25_lec_11-q-lec12_intset_remove">
+              3.2: Exercise: <code>IntSet::remove()</code>
+            </a>
+          </li>
+        
+      
+        <li class="nav-item">
+          <a class="nav-link text-truncate" style="padding: 0.1rem" href="#section-eecs280-sp25_lec_11-s-section_12_4">
+      <span style="float: right;">
+      
+        
+    <span class="examma-ray-verifier-status examma-ray-verifier-status-mini" data-question-uuid="eecs280-sp25_lec_11-q-lec12_time_complexity">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">4.1</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+      
+      </span>
+     4: Time Complexity</a>
+        </li>
+        
+          <li id="starred-question-eecs280-sp25_lec_11-q-lec12_time_complexity" class="nav-item examma-ray-starred-nav" data-question-uuid="eecs280-sp25_lec_11-q-lec12_time_complexity" style="display: none">
+            <span class="badge examma-ray-score-badge btn-secondary">6 pts</span>
+            <a class="nav-link text-truncate" style="padding: 0.1rem; display: inline" href="#question-anchor-eecs280-sp25_lec_11-q-lec12_time_complexity">
+              4.1: Exercise: Time Complexity
+            </a>
+          </li>
+        
+      
+    </ul>
+          
+      <div class="examma-ray-exam-saver-status border-top">
+        <div>
+          <div style="text-align: left">
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
+  <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z"></path>
+  <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293z"></path>
+</svg>
+<a style="vertical-align: middle;" href="/eecs280-async-lectures">
+  Table of Contents
+</a>
+<br>
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-slides" viewBox="0 0 16 16">
+  <path d="M5 6a.5.5 0 0 0-.496.438l-.5 4A.5.5 0 0 0 4.5 11h3v2.016c-.863.055-1.5.251-1.5.484 0 .276.895.5 2 .5s2-.224 2-.5c0-.233-.637-.429-1.5-.484V11h3a.5.5 0 0 0 .496-.562l-.5-4A.5.5 0 0 0 11 6H5zm2 3.78V7.22c0-.096.106-.156.19-.106l2.13 1.279a.125.125 0 0 1 0 .214l-2.13 1.28A.125.125 0 0 1 7 9.778z"></path>
+  <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"></path>
+</svg>
+<a style="vertical-align: middle;" target="_blank" href="https://drive.google.com/drive/folders/1I4ZZc3BXyovb-nlMhIRH3tbi9lBqcV4C?usp=sharing">
+  Slides (Powerpoint, PDF)
+</a>
+<br>
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+<path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+</svg>
+<a style="vertical-align: middle;" target="_blank" href="https://github.com/jamesjuett/eecs280-async-lectures">
+  Report issues or make suggestions
+</a>
+</div>
+        </div>
+        <br />
+        <div><button class="examma-ray-exam-answers-file-button btn btn-primary" data-toggle="modal" data-target="#exam-saver" aria-expanded="false" aria-controls="exam-saver">Answers File</button></div>
+        <div class="examma-ray-exam-saver-status-note">Export your exercise answers to use with another computer or browser.</div>
+      </div>
+        </div>
+        <div class="examma-ray-main-panel">
+          
+      <div class="examma-ray-header">
+        <div class="text-center mb-3 border-bottom">
+          <h2>Array-Based Data Structures</h2>
+          
+        </div>
+        <div>
+          <div class="container examma-ray-instructions">
+    <p><link rel="icon" type="image/png" href="/eecs280-async-lectures/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/svg+xml" href="/eecs280-async-lectures/favicon.svg">
+<link rel="shortcut icon" href="/eecs280-async-lectures/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/eecs280-async-lectures/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="Async Lecs">
+<link rel="manifest" href="/eecs280-async-lectures/site.webmanifest"></p>
+<div markdown="1" class="alert alert-info"><p>In this lecture and the next, we'll implement a <strong>set</strong> (an associative container for storing unique elements) based on an array.</p>
+<p>We'll be following our normal process for building an ADT - starting with our motivating use cases and the interface we want, followed by a fundamental data representation and invariants, and finally filling in the implementations for each member function.</p>
+<p>We'll also introduce the notion of <strong>time complexity</strong> to formally analyze the efficiency of operations on data structures.</p>
+<p>It turns out that arrays (and data structures built using them) provide very efficient access to data in a couple different ways:</p>
+<ul>
+<li><strong>Sequential Access</strong>: Iterating through a sequence of elements from start to end.</li>
+<li><strong>Random Access</strong>: Accessing an element at a particular index (i.e. position) in the sequence.</li>
+</ul>
+  <!-- Comment to end list -->
+<p>On the other hand, arrays are less efficient in cases where we need to:</p>
+<ul>
+<li><p><strong>Shift Elements</strong>: If we need to preserve the order of elements after inserting/removing from the middle of an array, we have to shift them one-by-one.</p></li>
+</ul>
+<div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Spring 2025</div></div>
+<style>
+  .lec-video {
+    width: 80%;
+    aspect-ratio: 16/9;
+  }
+
+  iframe.lobster-iframe {
+    border: none;
+    width: 80%;
+    height: 450px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+</style>
+  </div>
+          <div class="examma-ray-announcements">
+    
+  </div>
+        </div>
+      </div>
+    
+          
+      <div id="section-eecs280-sp25_lec_11-s-section_12_1" class="examma-ray-section examma-ray-section-no-reference" data-section-uuid="eecs280-sp25_lec_11-s-section_12_1" data-section-display-index="1">
+        <hr />
+        <table class="examma-ray-section-contents">
+          <tr>
+            <td class="examma-ray-questions-container">
+              
+      <div class="examma-ray-section-heading">
+        <div class="badge badge-primary">
+          1: Containers and Data Structures
+        </div>
+        <span class="examma-ray-section-verifier-statuses">
+          
+        </span>
+      </div>
+    
+              <div class="examma-ray-section-description"><p>First, a brief introduction to the big-picture idea of containers and data structures, including a roadmap to building one ourselves:</p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/9PxM1m1XGJw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p></div>
+              
+            </td>
+            
+          </tr>
+        </table>
+      </div>
+    <br />
+      <div id="section-eecs280-sp25_lec_11-s-section_12_2" class="examma-ray-section examma-ray-section-no-reference" data-section-uuid="eecs280-sp25_lec_11-s-section_12_2" data-section-display-index="2">
+        <hr />
+        <table class="examma-ray-section-contents">
+          <tr>
+            <td class="examma-ray-questions-container">
+              
+      <div class="examma-ray-section-heading">
+        <div class="badge badge-primary">
+          2: An Array-Based Unsorted Set
+        </div>
+        <span class="examma-ray-section-verifier-statuses">
+          
+        </span>
+      </div>
+    
+              <div class="examma-ray-section-description"><p>We'll start with an introduction to sets and their interfaces, as well as some motivation for why we would want to use them.</p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/GdiNmcpi_7o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p>
+<p>We haven't seen <code>static</code> member variables before. The basic idea is that the variable will be shared by all instances of the class, rather than each having their own in memory. Here's the details:</p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/7pxR9yT5CbM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p>
+<p>Our next step is to choose a data representation and invariants. This ends up as the foundation for the data structure, the implementation of its functions, and the efficiency we can achieve. Throughout the course, we'll end up looking at several different possibilities for an unsorted set. We'll start here with an unsorted array.</p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/K6eRavvlUY0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p></div>
+              
+            </td>
+            
+          </tr>
+        </table>
+      </div>
+    <br />
+      <div id="section-eecs280-sp25_lec_11-s-section_12_3" class="examma-ray-section examma-ray-section-no-reference" data-section-uuid="eecs280-sp25_lec_11-s-section_12_3" data-section-display-index="3">
+        <hr />
+        <table class="examma-ray-section-contents">
+          <tr>
+            <td class="examma-ray-questions-container">
+              
+      <div class="examma-ray-section-heading">
+        <div class="badge badge-primary">
+          3: IntSet Implementation
+        </div>
+        <span class="examma-ray-section-verifier-statuses">
+          
+            
+    <span class="examma-ray-verifier-status" data-question-uuid="eecs280-sp25_lec_11-q-lec12_intset_insert">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">3.1</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+          
+
+            
+    <span class="examma-ray-verifier-status" data-question-uuid="eecs280-sp25_lec_11-q-lec12_intset_remove">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">3.2</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+          
+        </span>
+      </div>
+    
+              <div class="examma-ray-section-description"><p>Let's get into the implementation of a default constructor and a few member functions for the array-based unsorted set.</p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/vy07Uesr0i8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p></div>
+              
+      <div id="question-eecs280-sp25_lec_11-q-lec12_intset_insert" data-question-uuid="eecs280-sp25_lec_11-q-lec12_intset_insert" data-question-display-index="3.1" class="examma-ray-question card-group">
+        <div id="question-anchor-eecs280-sp25_lec_11-q-lec12_intset_insert" class="examma-ray-question-anchor"></div>
+        <div class="card">
+          <div class="card-header">
+            
+      <b>3.1 Exercise: <code>IntSet::insert()</code></b>
+    
+          </div>
+          <div class="card-body">
+            <div class="examma-ray-question-description">
+              <p>Implement the <code>insert()</code> member function for the <code>IntSet</code> class, which adds a given value <code>v</code> to the set.</p>
+<p>First, your code should call <code>contains()</code> as a helper to check if <code>v</code> is already in the set:</p>
+<ul>
+<li>If the given value is not already in the set, it should add the value to the next available position in the <code>elts</code> array and increase <code>elts_size</code> by 1.</li>
+<li>If the value is already in the set, <code>insert()</code> does nothing.</li>
+</ul>
+<p>The <code>main()</code> function provided includes testing code to verify your implementation. Note that you should not worry about implementing <code>remove()</code> yet… save that for the next exercise below. </p>
+            </div>
+            <div class="examma-ray-question-response examma-ray-question-response-iframe" data-response-kind="iframe">
+    <div style="text-align: center;">
+      <iframe id="iframe-response-eecs280-sp25_lec_11-q-lec12_intset_insert-__DEFAULT-__DEFAULT" src="assets/intset_insert.html" class="lobster-iframe" style="height: 675px;"></iframe>
+    </div>
+  </div>
+            <div class="examma-ray-question-postscript">
+              <p></p><hr>
+You're welcome to check your solution with this <strong>walkthrough</strong> video:<p></p>
+<p><strong>Note:</strong> This walkthrough uses several different files for the code, which is different than the above, where we had everthing embedded into one file. (The solution for <code>insert()</code> is the same, though!)</p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/ajaQVu7oHKM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <br />
+      <div id="question-eecs280-sp25_lec_11-q-lec12_intset_remove" data-question-uuid="eecs280-sp25_lec_11-q-lec12_intset_remove" data-question-display-index="3.2" class="examma-ray-question card-group">
+        <div id="question-anchor-eecs280-sp25_lec_11-q-lec12_intset_remove" class="examma-ray-question-anchor"></div>
+        <div class="card">
+          <div class="card-header">
+            
+      <b>3.2 Exercise: <code>IntSet::remove()</code></b>
+    
+          </div>
+          <div class="card-body">
+            <div class="examma-ray-question-description">
+              <p>Below are some potential implementations of the <code>remove()</code> function for <code>IntSet</code>. Which ones work correctly?</p>
+<p>It may be helpful to trace through the code on this set, removing the <code>1</code>, for example:</p>
+<div style="text-align: center">
+ <img style="width: 450px;" src="assets/intset_example.png">
+</div>
+<p>Or, you might also consider pasting them into the code for the exercise above and uncommenting the additional set of tests in <code>main()</code> for the <code>remove()</code> function.</p>
+<p>Which of the implementations of <code>remove()</code> below are correct? Write <strong>"correct"</strong> or <strong>"incorrect"</strong>. For each that is not correct, explain what's wrong with it.</p>
+            </div>
+            <div class="examma-ray-question-response examma-ray-question-response-fill_in_the_blank" data-response-kind="fill_in_the_blank"><table style="width: 100%; border: none;">
+  <tbody><tr>
+    <td style="width: 350px; padding-right: 15px;">
+    <div markdown="1"><pre><code class="hljs cpp language-cpp"><span class="hljs-comment">// Potential Implementation 1</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">remove</span><span class="hljs-params">(<span class="hljs-keyword">int</span> v)</span> </span>{
+  <span class="hljs-keyword">int</span> i = <span class="hljs-built_in">indexOf</span>(v);
+  <span class="hljs-keyword">if</span> (i == <span class="hljs-number">-1</span>) { <span class="hljs-keyword">return</span>; }
+  elts[i] = elts[i+<span class="hljs-number">1</span>];
+  --elts_size;
+}
+</code></pre>
+    </div>
+    </td>
+    <td>
+    <div>
+      <div class="examma-ray-fitb-box-input-holder" style=" width: 100%;"><textarea rows="5" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-box-input nohighlight" style="resize: none; overflow: auto; width: 100%;"></textarea><span class="examma-ray-fitb-input-annotation examma-ray-fitb-box-annotation"></span></div>
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 350px; padding-right: 15px;">
+    <div markdown="1"><pre><code class="hljs cpp language-cpp"><span class="hljs-comment">// Potential Implementation 2</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">remove</span><span class="hljs-params">(<span class="hljs-keyword">int</span> v)</span> </span>{
+  <span class="hljs-keyword">int</span> i = <span class="hljs-built_in">indexOf</span>(v);
+  <span class="hljs-keyword">if</span> (i == <span class="hljs-number">-1</span>) { <span class="hljs-keyword">return</span>; }
+  elts[i] = elts[elts_size<span class="hljs-number">-1</span>];
+  --elts_size;
+}
+</code></pre>
+    </div>
+    </td>
+    <td>
+    <div>
+      <div class="examma-ray-fitb-box-input-holder" style=" width: 100%;"><textarea rows="5" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-box-input nohighlight" style="resize: none; overflow: auto; width: 100%;"></textarea><span class="examma-ray-fitb-input-annotation examma-ray-fitb-box-annotation"></span></div>
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 350px; padding-right: 15px;">
+    <div markdown="1"><pre><code class="hljs cpp language-cpp"><span class="hljs-comment">// Potential Implementation 3</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">remove</span><span class="hljs-params">(<span class="hljs-keyword">int</span> v)</span> </span>{
+  <span class="hljs-keyword">int</span> i = <span class="hljs-built_in">indexOf</span>(v);
+  <span class="hljs-keyword">if</span> (i == <span class="hljs-number">-1</span>) { <span class="hljs-keyword">return</span>; }
+  elts[i] = elts[<span class="hljs-number">0</span>];
+  ++elts;
+  --elts_size;
+}
+</code></pre>
+    </div>
+    </td>
+    <td>
+    <div>
+      <div class="examma-ray-fitb-box-input-holder" style=" width: 100%;"><textarea rows="5" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-box-input nohighlight" style="resize: none; overflow: auto; width: 100%;"></textarea><span class="examma-ray-fitb-input-annotation examma-ray-fitb-box-annotation"></span></div>
+    </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td style="width: 350px; padding-right: 15px;">
+    <div markdown="1"><pre><code class="hljs cpp language-cpp"><span class="hljs-comment">// Potential Implementation 4</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">remove</span><span class="hljs-params">(<span class="hljs-keyword">int</span> v)</span> </span>{
+  <span class="hljs-keyword">int</span> i = <span class="hljs-built_in">indexOf</span>(v);
+  <span class="hljs-keyword">if</span> (i == <span class="hljs-number">-1</span>) { <span class="hljs-keyword">return</span>; }
+  <span class="hljs-keyword">for</span>( ; i &lt; elts_size<span class="hljs-number">-1</span> ; ++i) {
+    elts[i] = elts[i+<span class="hljs-number">1</span>];
+  }
+  --elts_size;
+}
+</code></pre>
+    </div>
+    </td>
+    <td>
+    <div>
+      <div class="examma-ray-fitb-box-input-holder" style=" width: 100%;"><textarea rows="5" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-box-input nohighlight" style="resize: none; overflow: auto; width: 100%;"></textarea><span class="examma-ray-fitb-input-annotation examma-ray-fitb-box-annotation"></span></div>
+    </div>
+    </td>
+  </tr>
+</tbody></table>
+<p>Two of the implementations above for <code>remove()</code> work correctly. Which one is the most efficient for sets with lots of elements? How does this fit in with what the representation invariants require (or rather, what they don't require)?
+<div class="examma-ray-fitb-box-input-holder" style=" width: 100%;"><textarea rows="5" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-box-input nohighlight" style="resize: none; overflow: auto; width: 100%;"></textarea><span class="examma-ray-fitb-input-annotation examma-ray-fitb-box-annotation"></span></div></p></div>
+            <div class="examma-ray-question-postscript">
+              <p></p><hr>
+You're welcome to check your solution with this <strong>walkthrough</strong> video:<p></p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/u3V4L9g_x44" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p>
+<p><strong>NOTE:</strong> For completeness, I'll mention here that ultimately both implementations that work correctly end up having similar runtime <em>complexities</em> in that their runtime scales linearly with the amount of elements in the set - that's because even though the one I describe in the walkthrough video does less work to remove the element, it still needs to call <code>indexOf</code>, which has a linear runtime. We'll talk more about time complexity in the next lecture.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+            </td>
+            
+          </tr>
+        </table>
+      </div>
+    <br />
+      <div id="section-eecs280-sp25_lec_11-s-section_12_4" class="examma-ray-section examma-ray-section-no-reference" data-section-uuid="eecs280-sp25_lec_11-s-section_12_4" data-section-display-index="4">
+        <hr />
+        <table class="examma-ray-section-contents">
+          <tr>
+            <td class="examma-ray-questions-container">
+              
+      <div class="examma-ray-section-heading">
+        <div class="badge badge-primary">
+          4: Time Complexity
+        </div>
+        <span class="examma-ray-section-verifier-statuses">
+          
+            
+    <span class="examma-ray-verifier-status" data-question-uuid="eecs280-sp25_lec_11-q-lec12_time_complexity">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">4.1</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+          
+        </span>
+      </div>
+    
+              <div class="examma-ray-section-description"><p>When we're asessing the fitness of a data structure for a given task, it's helpful to determine its <strong>time complexity</strong>, which quantifies how well it performs as the size of the data we're working with scales up.</p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/hnpIondznyU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p>
+<p>In particular, let's look at the efficiency of several common operations on arrays:</p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/1LTEmFpNBew" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p></div>
+              
+      <div id="question-eecs280-sp25_lec_11-q-lec12_time_complexity" data-question-uuid="eecs280-sp25_lec_11-q-lec12_time_complexity" data-question-display-index="4.1" class="examma-ray-question card-group">
+        <div id="question-anchor-eecs280-sp25_lec_11-q-lec12_time_complexity" class="examma-ray-question-anchor"></div>
+        <div class="card">
+          <div class="card-header">
+            
+      <b>4.1 Exercise: Time Complexity</b>
+    
+          </div>
+          <div class="card-body">
+            <div class="examma-ray-question-description">
+              <p>Determine the time complexity of operations on our unsorted <code>IntSet</code>. Recall the underlying data representation based on an (unsorted) array with no duplicates:</p>
+<pre><code class="hljs cpp language-cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">IntSet</span> {</span>
+<span class="hljs-keyword">private</span>:
+  <span class="hljs-keyword">int</span> elts[ELTS_CAPACITY]; <span class="hljs-comment">// INVARIANT: No duplicates</span>
+  <span class="hljs-keyword">int</span> elts_size;
+<span class="hljs-keyword">public</span>:
+  ...
+};
+</code></pre>
+<p>Below are several (correct) implementations of <code>IntSet</code> functions. Using a worst-case analysis, determine whether each function has <em>O(1)</em> constant time complexity or <em>O(n)</em> linear time complexity. Explain your reasoning. </p>
+            </div>
+            <div class="examma-ray-question-response examma-ray-question-response-fill_in_the_blank" data-response-kind="fill_in_the_blank"><table style="width: 100%; border: none;">
+  <tbody><tr>
+    <td style="width: 350px; padding-right: 15px;">
+    <div markdown="1"><pre><code class="hljs cpp language-cpp"><span class="hljs-comment">// IntSet constructor</span>
+IntSet::<span class="hljs-built_in">IntSet</span>()
+  : <span class="hljs-built_in">elts_size</span>(<span class="hljs-number">0</span>) { }
+</code></pre>
+    </div>
+    </td>
+    <td>
+    <div>
+      <div class="examma-ray-fitb-box-input-holder" style=" width: 100%;"><textarea rows="3" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-box-input nohighlight" style="resize: none; overflow: auto; width: 100%;"></textarea><span class="examma-ray-fitb-input-annotation examma-ray-fitb-box-annotation"></span></div>
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 350px; padding-right: 15px;">
+    <div markdown="1"><pre><code class="hljs cpp language-cpp">IntSet::<span class="hljs-built_in">size</span>() {
+  <span class="hljs-keyword">return</span> elts_size;
+}
+</code></pre>
+    </div>
+    </td>
+    <td>
+    <div>
+      <div class="examma-ray-fitb-box-input-holder" style=" width: 100%;"><textarea rows="3" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-box-input nohighlight" style="resize: none; overflow: auto; width: 100%;"></textarea><span class="examma-ray-fitb-input-annotation examma-ray-fitb-box-annotation"></span></div>
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 350px; padding-right: 15px;">
+    <div markdown="1"><pre><code class="hljs cpp language-cpp"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">IntSet::indexOf</span><span class="hljs-params">(<span class="hljs-keyword">int</span> v)</span> <span class="hljs-keyword">const</span> </span>{
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; elts_size; ++i) {
+    <span class="hljs-keyword">if</span> (elts[i] == v) {
+        <span class="hljs-keyword">return</span> i;
+    }
+  }
+  <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+}
+</code></pre>
+    </div>
+    </td>
+    <td>
+    <div>
+      <div class="examma-ray-fitb-box-input-holder" style=" width: 100%;"><textarea rows="3" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-box-input nohighlight" style="resize: none; overflow: auto; width: 100%;"></textarea><span class="examma-ray-fitb-input-annotation examma-ray-fitb-box-annotation"></span></div>
+    </div>
+    </td>
+  </tr>
+  <tr>
+  <td><p><i>Hint: for the functions below, make sure to consider their calls other functions when determining their overall complexity.</i></p></td>
+  <td></td>
+  </tr>
+  <tr>
+    <td style="width: 350px; padding-right: 15px;">
+    <div markdown="1"><pre><code class="hljs cpp language-cpp"><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">IntSet::contains</span><span class="hljs-params">(<span class="hljs-keyword">int</span> v)</span> <span class="hljs-keyword">const</span> </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">indexOf</span>(v) != <span class="hljs-number">-1</span>;
+}
+</code></pre>
+    </div>
+    </td>
+    <td>
+    <div>
+      <div class="examma-ray-fitb-box-input-holder" style=" width: 100%;"><textarea rows="3" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-box-input nohighlight" style="resize: none; overflow: auto; width: 100%;"></textarea><span class="examma-ray-fitb-input-annotation examma-ray-fitb-box-annotation"></span></div>
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 350px; padding-right: 15px;">
+    <div markdown="1"><pre><code class="hljs cpp language-cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">IntSet::insert</span><span class="hljs-params">(<span class="hljs-keyword">int</span> v)</span> </span>{
+  <span class="hljs-built_in">assert</span>(<span class="hljs-built_in">size</span>() &lt; ELTS_CAPACITY);
+  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">contains</span>(v)) {
+    <span class="hljs-keyword">return</span>;
+  }
+  elts[elts_size] = v;
+  ++elts_size;
+}
+</code></pre>
+    </div>
+    </td>
+    <td>
+    <div>
+      <div class="examma-ray-fitb-box-input-holder" style=" width: 100%;"><textarea rows="3" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-box-input nohighlight" style="resize: none; overflow: auto; width: 100%;"></textarea><span class="examma-ray-fitb-input-annotation examma-ray-fitb-box-annotation"></span></div>
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 350px; padding-right: 15px;">
+    <div markdown="1"><pre><code class="hljs cpp language-cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">IntSet::remove</span><span class="hljs-params">(<span class="hljs-keyword">int</span> v)</span> </span>{
+  <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">contains</span>(v)) {
+    <span class="hljs-keyword">return</span>;
+  }
+  elts[<span class="hljs-built_in">indexOf</span>(v)] = elts[elts_size - <span class="hljs-number">1</span>];
+  --elts_size;
+}
+</code></pre>
+    </div>
+    </td>
+    <td>
+    <div>
+      <div class="examma-ray-fitb-box-input-holder" style=" width: 100%;"><textarea rows="3" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-box-input nohighlight" style="resize: none; overflow: auto; width: 100%;"></textarea><span class="examma-ray-fitb-input-annotation examma-ray-fitb-box-annotation"></span></div>
+    </div>
+    </td>
+  </tr>
+</tbody></table></div>
+            <div class="examma-ray-question-postscript">
+              <p></p><hr>
+You're welcome to check your solution with this <strong>walkthrough</strong> video:<p></p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/LU8JMGBOLBM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+            </td>
+            
+          </tr>
+        </table>
+      </div>
+    
+          <div class="container examma-ray-bottom-message">
+            <div class="alert alert-success" style="margin: 2em; margin-top: 4em;">
+              You've reached the end of this lecture! Your work on any exercises will be saved if you re-open this page in the same web browser.</p>
+<p><strong>Participation Credit</strong><br>
+Make sure to sign in to the page, complete each of the exercises, and <strong>double check</strong> the participation indicator at the top left of this page to ensure you've earned credit.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+        
+      <div id="exam-saver" class="exam-saver-modal modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Answers File</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="alert alert-info"><p>Your work on exercises is <strong>automatically</strong> saved in your web browser's local storage. That means you don't need to do anything to save your work as long as:</p>
+<ul>
+<li>You use the same computer</li>
+<li>You use the same web browser</li>
+<li>You don't use incognito or private browsing (which disables local storage)</li>
+</ul>
+<p>To transfer answers between computers or browsers, use the import/export options below.</p></div>
+              <div style="text-align: center;">
+                <div id="exam-saver-download-status" style="margin-bottom: 5px;"></div>
+                <div><a id="exam-saver-download-link" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-down" viewBox="0 0 16 16">
+<path d="M8.5 6.5a.5.5 0 0 0-1 0v3.793L6.354 9.146a.5.5 0 1 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L8.5 10.293V6.5z"/>
+<path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+</svg> Download Answers</a></div>
+                <br />
+                <div style="margin-bottom: 5px;">Or, you may restore answers you previously saved to a file.<br /><b>WARNING!</b> This will overwrite ALL answers on this page.</div>
+                <div>
+                  <button id="exam-saver-load-button" class="btn btn-danger disabled" disabled><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-up" viewBox="0 0 16 16">
+<path d="M8.5 11.5a.5.5 0 0 1-1 0V7.707L6.354 8.854a.5.5 0 1 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 7.707V11.5z"/>
+<path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+</svg> Load Answers</button>
+                  <input id="exam-saver-file-input" type="file"></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  
+      <div id="exam-welcome-restored-modal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Array-Based Data Structures</h5>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+              <div class="alert alert-info">This page was reloaded, and we've restored your answers from a local backup.</div>
+              <div>
+                <button class="btn btn-success" data-dismiss="modal"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
+<path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
+<path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+</svg> OK</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  
+      <div id="exam-welcome-restored-error-modal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Array-Based Data Structures</h5>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+              <div class="alert alert-danger">
+                An error was encountered while attempting to restore your answers from a local backup.
+                If you are in the process of creating and previewing an exam, this may have occurred due
+                to a change to a question's type. If so, clear your browser's local storage before continuing.
+                <br />
+                If you're taking an exam, this should never happen. But, if it does, contact your instructor,
+                course staff, or proctor as soon as possible.
+              </div>
+              <div>
+                <button class="btn btn-success" data-dismiss="modal"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
+<path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
+<path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+</svg> OK</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  
+      <div id="exam-welcome-normal-modal" class="modal" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Array-Based Data Structures</h5>
+            </div>
+            <div class="modal-body">
+              <div class="alert alert-info">This exam is for <b>eecs280</b>. If this is not you, please close this page.</div>
+              <div class="alert alert-info">This page shows your exam questions and gives you a place to work. <b>However, we will not grade anything here</b>. You must <b>download</b> an "answers file" and submit that to <b>Canvas</b> BEFORE the exam ends</b>.</div>
+              <div class="alert alert-warning">If something goes wrong (e.g. in case your computer crashes, you accidentally close the page, etc.), this page will attempt to restore your work when you come back. <b>Warning!</b> If you take the exam in private/incognito mode, or if you have certain privacy extensions/add-ons enabled, this won't work.</div>
+  
+              <p style="margin-left: 2em; margin-right: 2em;">
+                By taking this exam and submitting an answers file, you attest to the CoE Honor Pledge:
+              </p>
+              <p style="margin-left: 4em; margin-right: 4em;">
+                <span style="font-style: italic">I have neither given nor received unauthorized aid on this examination, nor have I concealed any violations of the Honor Code."
+              </p>
+              
+              <div style="text-align: center;">
+                <button class="btn btn-primary" data-dismiss="modal">I am <b>eecs280</b> and I understand</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  
+      <div id="exam-welcome-no-autosave-modal" class="modal" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Array-Based Data Structures</h5>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+              <div class="alert alert-info">This exam is for <b>eecs280</b>. If this is not you, please close this page.</div>
+              <div class="alert alert-info">This page shows your exam questions and gives you a place to work. <b>However, we will not grade anything here</b>. You must <b>download</b> an "answers file" and submit that to <b>Canvas</b> BEFORE the exam ends</b>.</div>
+              <div class="alert alert-danger">It appears your browser will not support backing up your answers to local storage (e.g. in case your computer crashes, you accidentally close the page, etc.).<br /><br />While you may still take the exam like this, we do not recommend it. Make sure you are <b>not</b> using private/incognito mode, temporarily disable privacy add-ons/extensions, or try a different web browser to get autosave to work.</div>
+              <div>
+                <button class="btn btn-primary" data-dismiss="modal">I am <b>eecs280</b> and I understand</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div id="multiple-tabs-modal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">WARNING</h5>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+              <div class="alert alert-danger">It appears you have this page open in multiple tabs/windows. That's a bad idea. Close whichever one you just opened.</div>
+              <div>
+                <button class="btn btn-primary" data-dismiss="modal">OK</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div id="exam-sign-in-modal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-sm" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Sign In</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div style="font-size: 11pt;">
+                <p>Sign in with your @umich.edu Google account to earn participation credit for completing embedded exercises.</p>
+              </div>
+              <div style="text-align: center">
+                <div class="g_id_signin"
+                  data-type="standard"
+                  data-shape="rectangular"
+                  data-theme="outline"
+                  data-text="signin_with"
+                  data-size="large"
+                  data-logo_alignment="left"
+                  style="display: inline-block"
+                ></div>
+              </div>
+
+              <div id="g_id_onload"
+                data-client_id="444801118749-m2g9gl3gvvkh5ru959dmka0lsk94d9uq.apps.googleusercontent.com"
+                data-context="signin"
+                data-ux_mode="popup"
+                data-callback="on_google_sign_in"
+                data-auto_prompt="false"
+              ></div>
+
+              <script>
+                function on_google_sign_in(response) {
+                  window.google_sign_in_callback(response);
+                }
+              </script>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      </body>
+      </html>
+    

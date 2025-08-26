@@ -1,0 +1,165 @@
+{
+  "title": "Operator Overloading and Inheritance",
+  "mk_intructions": "\n<link rel=\"icon\" type=\"image/png\" href=\"/eecs280-async-lectures/favicon-96x96.png\" sizes=\"96x96\" />\n<link rel=\"icon\" type=\"image/svg+xml\" href=\"/eecs280-async-lectures/favicon.svg\" />\n<link rel=\"shortcut icon\" href=\"/eecs280-async-lectures/favicon.ico\" />\n<link rel=\"apple-touch-icon\" sizes=\"180x180\" href=\"/eecs280-async-lectures/apple-touch-icon.png\" />\n<meta name=\"apple-mobile-web-app-title\" content=\"Async Lecs\" />\n<link rel=\"manifest\" href=\"/eecs280-async-lectures/site.webmanifest\" />\n<div markdown=1 class=\"alert alert-info\">\n  We'll start by covering **function overloading** and **operator overloading**, two mechanisms in C++ (and many other langugages) that allow the use of single names (or operators) to correspond to potentially many different function implementations depending on the types they are used with.\n\n  Next, we'll introduce **inheritance**, which allows us to derive one `class` from another, such that the **derived class** automatically \"inherits\" member variables and functions from its **base class**. This is helpful both to save us work (i.e. we avoid duplicating common implementation details by putting them in a base class) and to set up the foundation for meaningful hierarchies of ADTs (more on this in the next lecture).\n  \n  <div style=\"position: absolute; bottom: 5px; right: 10px; font-weight: bold;\">Updated Spring 2025</div>\n</div>\n<style>\n  .lec-video {\n    width: 80%;\n    aspect-ratio: 16/9;\n  }\n\n  iframe.lobster-iframe {\n    border: none;\n    width: 80%;\n    height: 450px;\n    margin-left: auto;\n    margin-right: auto;\n  }\n\n</style>",
+  "mk_questions_message": "\n<div style=\"text-align: left\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-house-fill\" viewBox=\"0 0 16 16\">\n  <path d=\"M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z\"/>\n  <path d=\"m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293z\"/>\n</svg>\n<a style=\"vertical-align: middle;\" href=\"/eecs280-async-lectures\">\n  Table of Contents\n</a>\n<br />\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-file-earmark-slides\" viewBox=\"0 0 16 16\">\n  <path d=\"M5 6a.5.5 0 0 0-.496.438l-.5 4A.5.5 0 0 0 4.5 11h3v2.016c-.863.055-1.5.251-1.5.484 0 .276.895.5 2 .5s2-.224 2-.5c0-.233-.637-.429-1.5-.484V11h3a.5.5 0 0 0 .496-.562l-.5-4A.5.5 0 0 0 11 6H5zm2 3.78V7.22c0-.096.106-.156.19-.106l2.13 1.279a.125.125 0 0 1 0 .214l-2.13 1.28A.125.125 0 0 1 7 9.778z\"/>\n  <path d=\"M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z\"/>\n</svg>\n<a style=\"vertical-align: middle;\" target=\"_blank\" href=\"https://drive.google.com/drive/folders/1I4ZZc3BXyovb-nlMhIRH3tbi9lBqcV4C?usp=sharing\">\n  Slides (Powerpoint, PDF)\n</a>\n<br />\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-github\" viewBox=\"0 0 16 16\">\n<path d=\"M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z\"/>\n</svg>\n<a style=\"vertical-align: middle;\" target=\"_blank\" href=\"https://github.com/jamesjuett/eecs280-async-lectures\">\n  Report issues or make suggestions\n</a>\n</div>\n",
+  "mk_bottom_message": "You've reached the end of this lecture! Your work on any exercises will be saved if you re-open this page in the same web browser.\n\n**Participation Credit**  \nMake sure to sign in to the page, complete each of the exercises, and **double check** the participation indicator at the top left of this page to ensure you've earned credit.",
+  "mk_download_message": "Export your exercise answers to use with another computer or browser.",
+  "mk_saver_message": "Your work on exercises is **automatically** saved in your web browser's local storage. That means you don't need to do anything to save your work as long as:\n- You use the same computer\n- You use the same web browser\n- You don't use incognito or private browsing (which disables local storage)\n\nTo transfer answers between computers or browsers, use the import/export options below.",
+  "assets_dir": "/home/jjuett/eecs280/async-lectures/lectures/lecture09/assets",
+  "allow_clientside_content": true,
+  "sections": [
+    {
+      "section_id": "section_9_1",
+      "title": "Function Overloading",
+      "mk_description": "In C++, multiple functions are allowed to have the same name, even within the same scope, as long as they have different parameter types and can be distinguished by the compiler (and presumably by human programmers, too!). This is called **function overloading**.\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/HoQWM3GfFcA\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />",
+      "questions": []
+    },
+    {
+      "section_id": "section_9_2",
+      "title": "Operator Overloading",
+      "mk_description": "We can also apply the concept of overloading to *operators* as well. For example, the `+` operator means one thing when it's used on `int`, something else when it's used on `string`, and yet another thing when it's used for pointer arithmetic!\n\nIn C++, we can also define what an operator should do if used on our own custom classes. Take a look:\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/4ETw1p8brbc\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />",
+      "questions": [
+        {
+          "question_id": "lec9_pixel_operator_overloads",
+          "title": "Exercise: `Pixel` Operator Overloads",
+          "points": 1,
+          "mk_description": "Let's upgrade `Pixel` from project 2 to a `class` and add some overloaded operators:\n\n- An overloaded `<<` operator that prints a pixel in the format `rgb(R,G,B)`\n- An overloaded `-` operator that computes the squared difference of two pixels\n\nImplement each operator (as a non-member function) so that the code in main works correctly.",
+          "response": {
+            "kind": "iframe",
+            "src": "assets/pixel_operator_overloads.html",
+            "element_class": "lobster-iframe",
+            "element_style": "height: 675px;",
+            "default_grader": {
+              "grader_kind": "standard_iframe",
+              "rubric": [
+                {
+                  "points": 1,
+                  "description": "Exercise must be complete.",
+                  "property": "complete",
+                  "value": true
+                }
+              ]
+            }
+          },
+          "verifier": {
+            "verifier_kind": "full_credit"
+          },
+          "mk_postscript": "<hr />\n<details>\n  <summary>Sample solution...</summary>\n  \n  ```cpp\n  #include <iostream>\n  using namespace std;\n  \n  class Pixel {\n  public:\n    const int r;\n    const int g;\n    const int b;\n    \n    Pixel(int r, int g, int b)\n      : r(r), g(g), b(b) { }\n    \n  };\n  \n  int squared_difference(const Pixel &p1, const Pixel &p2);\n  \n  // TASK 1: Add an overloaded operator- that\n  // returns the squared difference between two\n  // pixels (you can just call squared_difference\n  // in your implementation)\n  \n  int operator-(const Pixel &p1, const Pixel &p2) {\n    return squared_difference(p1, p2);\n  }\n  \n  // TASK 2: Add an overloaded operator<< that\n  // prints out the pixel in this format:\n  //   rgb({R},{G},{B})\n  ostream &operator<<(ostream &os, const Pixel &p) {\n    cout << \"rgb(\" << p.r << \", \" << p.g\n          << \", \" << p.b << \")\";\n    return os;\n  }\n    \n  int main() {\n    Pixel p1(174, 129, 255);\n    Pixel p2(166, 226, 46);\n    \n    cout << \"p1: \" << p1 << endl; // p1: rgb(174,129,255)\n    cout << \"p2: \" << p2 << endl; // p2: rgb(166,226,46)\n    \n    cout << \"sq diff: \" << p2 - p1 << endl; // sq diff: 531\n  }\n  \n  // From processing.cpp in P2 starter code\n  int squared_difference(const Pixel &p1, const Pixel &p2) {\n    int dr = p2.r - p1.r;\n    int dg = p2.g - p1.g;\n    int db = p2.b - p1.b;\n    // Divide by 100 is to avoid possible overflows\n    // later on in the algorithm.\n    return (dr*dr + dg*dg + db*db) / 100;\n  }\n  ```\n</details>"
+        }
+      ]
+    },
+    {
+      "section_id": "section_9_3",
+      "title": "Delegating Constructors",
+      "mk_description": "Before moving on to inheritance, here's a quick miscellaneous topic that we didn't get to last time. **Delegating constructors** allow one constructor to call another to promote code reuse and overall elegant design.\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/3ZjP0D6J4K4\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />",
+      "questions": [
+        {
+          "question_id": "lec09_rectangle",
+          "title": "Exercise: `Rectangle` Constructors",
+          "points": 1,
+          "mk_description": "Add two additional constructors to the `Rectangle` class. They should use delegation to call the constructor already provided in the starter code.\n- A default constructor that takes no arguments and initializes a `1`x`1` rectangle.\n- A constructor that takes in one side length `s` and then creates an `s`x`s` rectangle.",
+          "response": {
+            "kind": "iframe",
+            "src": "assets/rectangle.html",
+            "element_class": "lobster-iframe",
+            "element_style": "height: 675px;",
+            "default_grader": {
+              "grader_kind": "standard_iframe",
+              "rubric": [
+                {
+                  "points": 1,
+                  "description": "Exercise must be complete.",
+                  "property": "complete",
+                  "value": true
+                }
+              ]
+            }
+          },
+          "verifier": {
+            "verifier_kind": "full_credit"
+          },
+          "mk_postscript": "<hr />\n<details>\n  <summary>Sample solution...</summary>\n  \n  ```cpp\n  #include <iostream>\n  using namespace std;\n\n  class Rectangle {\n  private:\n    double width;\n    double height;\n    \n  public:\n    Rectangle(double w, double h)\n    : width(w), height(h) { }\n    \n    Rectangle(double s) : Rectangle(s,s) { }\n    \n    Rectangle() : Rectangle(1,1) { }\n\n    double area() const { return width * height; }\n    double perimeter() const { return 2 * (width + height); }\n    void scale(double s) { width *= s; height *= s; }\n  };\n  ```\n</details>"
+        }
+      ]
+    },
+    {
+      "section_id": "section_9_4",
+      "title": "Introduction to Inheritance",
+      "mk_description": "Let's start with a bit of motivation for **inheritance** and a brief introduction to the way it's available as a fundamental language feature in C++.\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/fMMKT-LlREA\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />\n\nTo recap:\n- A derived class contains the **member variables** from the base class and may define additional ones.\n- You can call **member functions** of the base class on any derived class instances.\n- A derived class may **\"hide\"** a member function from the base class by defining its own version with the same signature.\n- A **derived class constructor** must call some version of the base class constructor in its constructor-initializer-list. (Unless there's a default constructor for the base class.)\n\nLet's return to apply inheritance to our `Bird`, `Chicken`, and `Duck` classes as well...\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/J75zMbO3eV0\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />",
+      "questions": []
+    },
+    {
+      "section_id": "section_9_5",
+      "title": "Inheritance Details",
+      "mk_description": "\nFinally, let's investigate some \"behind-the-scenes\" details on how inheritance works.\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/8jULLGraPN0\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />\n",
+      "questions": [
+        {
+          "question_id": "lec09_inheritance_details_multiple_choice",
+          "points": 4,
+          "mk_description": "Which of the following are true?",
+          "response": {
+            "kind": "multiple_choice",
+            "choices": [
+              "Both constructors and destructors generally run in a \"top-down\" ordering.",
+              "If member name lookup finds a function in the derived class with a matching name but invalid parameter types, the base class will be checked as well.",
+              "The `::` operator may be used to call the base class version of a function, even in a context where the derived class version would normally be found first.",
+              "Generally, it is good practice to make member variables in a base class protected to ensure derived classes have full access to implementation details."
+            ],
+            "multiple": true,
+            "sample_solution": [
+              2
+            ],
+            "default_grader": {
+              "grader_kind": "summation_multiple_choice",
+              "rubric": [
+                {
+                  "points": 1,
+                  "selected": false
+                },
+                {
+                  "points": 1,
+                  "selected": false
+                },
+                {
+                  "points": 1,
+                  "selected": true
+                },
+                {
+                  "points": 1,
+                  "selected": false
+                }
+              ]
+            }
+          },
+          "verifier": {
+            "verifier_kind": "full_credit"
+          }
+        }
+      ]
+    }
+  ],
+  "exam_id": "sp25_lec_08",
+  "credentials_strategy": {
+    "strategy": "google_local",
+    "client_id": "444801118749-m2g9gl3gvvkh5ru959dmka0lsk94d9uq.apps.googleusercontent.com",
+    "auth_endpoint": "https://examma-ray.eecs.umich.edu/public_api/participation/auth/",
+    "message": "Sign in with your @umich.edu Google account to earn participation credit for completing embedded exercises."
+  },
+  "completion": {
+    "threshold": 1,
+    "tooltip": "",
+    "endpoints": {
+      "check": "https://examma-ray.eecs.umich.edu/public_api/participation/me/",
+      "submit": "https://examma-ray.eecs.umich.edu/public_api/participation/me/"
+    },
+    "local_deadline": {
+      "when": {
+        "examma_ray_serialized_datetime": {
+          "iso": "2025-05-20T23:59:59.000-04:00",
+          "timezone": "America/Detroit"
+        }
+      },
+      "grace_minutes": 5
+    }
+  }
+}
