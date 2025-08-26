@@ -1,0 +1,959 @@
+
+      <!DOCTYPE html>
+      <html>
+      <head>
+  <meta charset="UTF-8">
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://unpkg.com/@popperjs/core@2" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+  <script src="https://accounts.google.com/gsi/client" async></script>
+      <script src="js/frontend-doc.js"></script>
+    
+</head>
+      <body>
+        <div id="examma-ray-exam" class="container-fluid" data-uniqname="eecs280" data-name="eecs280" data-exam-id="w25_lec_03" data-exam-uuid="eecs280-w25_lec_03" data-clientside-content="yes">
+      <div class="row">
+        <div class="bg-light examma-ray-left-panel">
+          <div class="text-center pb-1 pl-4 pr-4 border-bottom">
+            <b>Machine Model, Part 1</b>
+          </div>
+          <div class="pt-1 pb-1 border-bottom">
+              <b>Participation</b> 
+      <button id="examma-ray-exam-sign-in-button" class="btn btn-primary btn-sm" style="line-height: 1;" data-toggle="modal" data-target="#exam-sign-in-modal" aria-expanded="false" aria-controls="exam-sign-in-modal">
+        <svg class="examma-ray-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+</svg> <span style="vertical-align: middle">Sign In</span>
+      </button>
+    
+              <br />
+              
+      <span id="examma-ray-exam-completion-status">
+        Loading...
+      </span>
+    
+            </div>
+          <ul class="nav er-exam-nav show-small-scrollbar" style="display: unset; flex-grow: 1; font-weight: 500; overflow-y: scroll">
+      
+        <li class="nav-item">
+          <a class="nav-link text-truncate" style="padding: 0.1rem" href="#section-eecs280-w25_lec_03-s-section_03_1">
+      <span style="float: right;">
+      
+      </span>
+     1: Default Initialization</a>
+        </li>
+        
+      
+        <li class="nav-item">
+          <a class="nav-link text-truncate" style="padding: 0.1rem" href="#section-eecs280-w25_lec_03-s-section_03_2">
+      <span style="float: right;">
+      
+        
+    <span class="examma-ray-verifier-status examma-ray-verifier-status-mini" data-question-uuid="eecs280-w25_lec_03-q-lec_modular_arithmetic">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">2.1</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+      
+      </span>
+     2: Arithmetic Operations</a>
+        </li>
+        
+          <li id="starred-question-eecs280-w25_lec_03-q-lec_modular_arithmetic" class="nav-item examma-ray-starred-nav" data-question-uuid="eecs280-w25_lec_03-q-lec_modular_arithmetic" style="display: none">
+            <span class="badge examma-ray-score-badge btn-secondary">3 pts</span>
+            <a class="nav-link text-truncate" style="padding: 0.1rem; display: inline" href="#question-anchor-eecs280-w25_lec_03-q-lec_modular_arithmetic">
+              2.1: Exercise: Modular Arithmetic
+            </a>
+          </li>
+        
+      
+        <li class="nav-item">
+          <a class="nav-link text-truncate" style="padding: 0.1rem" href="#section-eecs280-w25_lec_03-s-section_03_3">
+      <span style="float: right;">
+      
+      </span>
+     3: Relational Operations and Floating-Point Precision</a>
+        </li>
+        
+      
+        <li class="nav-item">
+          <a class="nav-link text-truncate" style="padding: 0.1rem" href="#section-eecs280-w25_lec_03-s-section_03_4">
+      <span style="float: right;">
+      
+        
+    <span class="examma-ray-verifier-status examma-ray-verifier-status-mini" data-question-uuid="eecs280-w25_lec_03-q-lec03_value_semantics_addresses_references">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">4.1</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+      
+      </span>
+     4: Value Semantics, Addresses, and References</a>
+        </li>
+        
+          <li id="starred-question-eecs280-w25_lec_03-q-lec03_value_semantics_addresses_references" class="nav-item examma-ray-starred-nav" data-question-uuid="eecs280-w25_lec_03-q-lec03_value_semantics_addresses_references" style="display: none">
+            <span class="badge examma-ray-score-badge btn-secondary">5 pts</span>
+            <a class="nav-link text-truncate" style="padding: 0.1rem; display: inline" href="#question-anchor-eecs280-w25_lec_03-q-lec03_value_semantics_addresses_references">
+              Question 4.1
+            </a>
+          </li>
+        
+      
+        <li class="nav-item">
+          <a class="nav-link text-truncate" style="padding: 0.1rem" href="#section-eecs280-w25_lec_03-s-section_03_5">
+      <span style="float: right;">
+      
+        
+    <span class="examma-ray-verifier-status examma-ray-verifier-status-mini" data-question-uuid="eecs280-w25_lec_03-q-lec03_addresses_and_pointers">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">5.1</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+      
+
+        
+    <span class="examma-ray-verifier-status examma-ray-verifier-status-mini" data-question-uuid="eecs280-w25_lec_03-q-lec03_using_pointers">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">5.2</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+      
+      </span>
+     5: Intro to Pointers</a>
+        </li>
+        
+          <li id="starred-question-eecs280-w25_lec_03-q-lec03_addresses_and_pointers" class="nav-item examma-ray-starred-nav" data-question-uuid="eecs280-w25_lec_03-q-lec03_addresses_and_pointers" style="display: none">
+            <span class="badge examma-ray-score-badge btn-secondary">4 pts</span>
+            <a class="nav-link text-truncate" style="padding: 0.1rem; display: inline" href="#question-anchor-eecs280-w25_lec_03-q-lec03_addresses_and_pointers">
+              5.1: Exercise: Pointer Fundamentals
+            </a>
+          </li>
+        
+          <li id="starred-question-eecs280-w25_lec_03-q-lec03_using_pointers" class="nav-item examma-ray-starred-nav" data-question-uuid="eecs280-w25_lec_03-q-lec03_using_pointers" style="display: none">
+            <span class="badge examma-ray-score-badge btn-secondary">8 pts</span>
+            <a class="nav-link text-truncate" style="padding: 0.1rem; display: inline" href="#question-anchor-eecs280-w25_lec_03-q-lec03_using_pointers">
+              5.2: Exercise: Using Pointers
+            </a>
+          </li>
+        
+      
+        <li class="nav-item">
+          <a class="nav-link text-truncate" style="padding: 0.1rem" href="#section-eecs280-w25_lec_03-s-section_03_6">
+      <span style="float: right;">
+      
+      </span>
+     6: Pointer Debrief</a>
+        </li>
+        
+      
+        <li class="nav-item">
+          <a class="nav-link text-truncate" style="padding: 0.1rem" href="#section-eecs280-w25_lec_03-s-section_03_9">
+      <span style="float: right;">
+      
+        
+    <span class="examma-ray-verifier-status examma-ray-verifier-status-mini" data-question-uuid="eecs280-w25_lec_03-q-lec03_value_categories">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">7.1</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+      
+      </span>
+     7: Expression Value Categories</a>
+        </li>
+        
+          <li id="starred-question-eecs280-w25_lec_03-q-lec03_value_categories" class="nav-item examma-ray-starred-nav" data-question-uuid="eecs280-w25_lec_03-q-lec03_value_categories" style="display: none">
+            <span class="badge examma-ray-score-badge btn-secondary">5 pts</span>
+            <a class="nav-link text-truncate" style="padding: 0.1rem; display: inline" href="#question-anchor-eecs280-w25_lec_03-q-lec03_value_categories">
+              Question 7.1
+            </a>
+          </li>
+        
+      
+    </ul>
+          
+      <div class="examma-ray-exam-saver-status border-top">
+        <div>
+          <div style="text-align: left">
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
+  <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z"></path>
+  <path d="m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293z"></path>
+</svg>
+<a style="vertical-align: middle;" href="/eecs280-async-lectures">
+  Table of Contents
+</a>
+<br>
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-slides" viewBox="0 0 16 16">
+  <path d="M5 6a.5.5 0 0 0-.496.438l-.5 4A.5.5 0 0 0 4.5 11h3v2.016c-.863.055-1.5.251-1.5.484 0 .276.895.5 2 .5s2-.224 2-.5c0-.233-.637-.429-1.5-.484V11h3a.5.5 0 0 0 .496-.562l-.5-4A.5.5 0 0 0 11 6H5zm2 3.78V7.22c0-.096.106-.156.19-.106l2.13 1.279a.125.125 0 0 1 0 .214l-2.13 1.28A.125.125 0 0 1 7 9.778z"></path>
+  <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"></path>
+</svg>
+<a style="vertical-align: middle;" target="_blank" href="https://drive.google.com/drive/folders/1wdIk41500J4SILWprRAxB1-c4m8A2Wux">
+  Slides (Powerpoint, PDF)
+</a>
+<br>
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+<path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"></path>
+</svg>
+<a style="vertical-align: middle;" target="_blank" href="https://github.com/jamesjuett/eecs280-async-lectures">
+  Report issues or make suggestions
+</a>
+</div>
+        </div>
+        <br />
+        <div><button class="examma-ray-exam-answers-file-button btn btn-primary" data-toggle="modal" data-target="#exam-saver" aria-expanded="false" aria-controls="exam-saver">Answers File</button></div>
+        <div class="examma-ray-exam-saver-status-note">Export your exercise answers to use with another computer or browser.</div>
+      </div>
+        </div>
+        <div class="examma-ray-main-panel">
+          
+      <div class="examma-ray-header">
+        <div class="text-center mb-3 border-bottom">
+          <h2>Machine Model, Part 1</h2>
+          
+        </div>
+        <div>
+          <div class="container examma-ray-instructions">
+    <p><link rel="icon" type="image/png" href="/eecs280-async-lectures/favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/svg+xml" href="/eecs280-async-lectures/favicon.svg">
+<link rel="shortcut icon" href="/eecs280-async-lectures/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/eecs280-async-lectures/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="Async Lecs">
+<link rel="manifest" href="/eecs280-async-lectures/site.webmanifest"></p>
+<div markdown="1" class="alert alert-info"><p>Today's lecture starts a two-part sequence where we'll consider a conceptual model of the underlying machine, with particular attention to objects in memory, their addresses, and the values they hold. We'll also introduce <strong>references</strong> and <strong>pointers</strong>, two fundamental tools for working with objects <em>indirectly</em>.</p>
+<p>Why do we need to work with objects indirectly in programming? It turns out we often work/think indirectly in real life, but may not realize it. For example, an address book refers indirectly to the places that people live, but it doesn't literally contain those places! (That wouldn't even make sense.)</p>
+<p>Likewise, in a program we might want several different parts of our code to refer to the same data structure, but we don't want them all to literally have a local copy of that data. It would be better to use a pointer to store the address of the data and just go look it up when we need to.</p>
+<div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Winter 2025</div></div>
+<div markdown="1" class="alert"><p>We're sharing an announcement on behalf of the RenewCS tutoring and mentoring program.</p>
+  <hr>
+<div style="text-align: center;">
+    <img src="assets/RenewCS.jpg" style="width: 650px;">
+  </div></div>
+<style>
+  .lec-video {
+    width: 80%;
+    aspect-ratio: 16/9;
+  }
+
+  iframe.lobster-iframe {
+    border: none;
+    width: 80%;
+    height: 450px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+</style>
+  </div>
+          <div class="examma-ray-announcements">
+    
+  </div>
+        </div>
+      </div>
+    
+          
+      <div id="section-eecs280-w25_lec_03-s-section_03_1" class="examma-ray-section examma-ray-section-no-reference" data-section-uuid="eecs280-w25_lec_03-s-section_03_1" data-section-display-index="1">
+        <hr />
+        <table class="examma-ray-section-contents">
+          <tr>
+            <td class="examma-ray-questions-container">
+              
+      <div class="examma-ray-section-heading">
+        <div class="badge badge-primary">
+          1: Default Initialization
+        </div>
+        <span class="examma-ray-section-verifier-statuses">
+          
+        </span>
+      </div>
+    
+              <div class="examma-ray-section-description"><div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/s4x5ZwI7WLA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p></div>
+              
+            </td>
+            
+          </tr>
+        </table>
+      </div>
+    <br />
+      <div id="section-eecs280-w25_lec_03-s-section_03_2" class="examma-ray-section examma-ray-section-no-reference" data-section-uuid="eecs280-w25_lec_03-s-section_03_2" data-section-display-index="2">
+        <hr />
+        <table class="examma-ray-section-contents">
+          <tr>
+            <td class="examma-ray-questions-container">
+              
+      <div class="examma-ray-section-heading">
+        <div class="badge badge-primary">
+          2: Arithmetic Operations
+        </div>
+        <span class="examma-ray-section-verifier-statuses">
+          
+            
+    <span class="examma-ray-verifier-status" data-question-uuid="eecs280-w25_lec_03-q-lec_modular_arithmetic">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">2.1</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+          
+        </span>
+      </div>
+    
+              <div class="examma-ray-section-description"><div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/bNxrwSV2LEE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p></div>
+              
+      <div id="question-eecs280-w25_lec_03-q-lec_modular_arithmetic" data-question-uuid="eecs280-w25_lec_03-q-lec_modular_arithmetic" data-question-display-index="2.1" class="examma-ray-question card-group">
+        <div id="question-anchor-eecs280-w25_lec_03-q-lec_modular_arithmetic" class="examma-ray-question-anchor"></div>
+        <div class="card">
+          <div class="card-header">
+            
+      <b>2.1 Exercise: Modular Arithmetic</b>
+    
+          </div>
+          <div class="card-body">
+            <div class="examma-ray-question-description">
+              
+            </div>
+            <div class="examma-ray-question-response examma-ray-question-response-fill_in_the_blank" data-response-kind="fill_in_the_blank"><p>Say you have a Matrix of width W and height H, and that each cell in the matrix is labeled with an index. For example, a matrix with width 5 and height 3 would look like this:</p>
+<div style="text-align: center;">
+  <img src="assets/modular_arithmetic_ex_matrix.png" style="width: 300px; border: solid 1px gray;">
+</div>
+<p>You can use <code>/</code> and <code>%</code> to compute the row and column based on the index. Fill in the appropriate operator and variable in each box below.</p>
+<pre><code class="hljs cpp language-cpp"><span class="hljs-keyword">int</span> width = <span class="hljs-number">5</span>;
+<span class="hljs-keyword">int</span> height = <span class="hljs-number">3</span>;
+<span class="hljs-keyword">int</span> index = <span class="hljs-number">13</span>;
+<span class="hljs-keyword">int</span> row = <input type="text" value="" size="25" maxlength="25" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-blank-input nohighlight"></input><span class="examma-ray-fitb-input-annotation examma-ray-fitb-blank-annotation"></span>; <span class="hljs-comment">// compute row, e.g. index 13 has row 2</span>
+<span class="hljs-keyword">int</span> col = <input type="text" value="" size="25" maxlength="25" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-blank-input nohighlight"></input><span class="examma-ray-fitb-input-annotation examma-ray-fitb-blank-annotation"></span>; <span class="hljs-comment">// compute col, e.g. index 13 has col 3</span>
+</code></pre>
+<p>Consider also tracking the current player in a turn-taking game. For example, if you're playing the card game Uno, you might have a circle of 6 players numbered 0-5:</p>
+<div style="text-align: center;">
+  <img src="assets/modular_arithmetic_ex_uno_circle.png" style="width: 200px; border: solid 1px gray;">
+</div>
+<p>Complete the line of code below to update the <code>current</code> index to the next player. For example, if <code>current</code> was <code>3</code>, it should be updated to <code>4</code>. But, if <code>current</code> was <code>5</code>, it should be updated and wrap back around to 0. You can use <code>%</code> to help implement this.</p>
+<pre><code class="hljs cpp language-cpp"><span class="hljs-keyword">int</span> num_players = <span class="hljs-number">6</span>;
+<span class="hljs-keyword">int</span> current = ??;
+
+<span class="hljs-comment">// update current player</span>
+current = (current + <span class="hljs-number">1</span>) <input type="text" value="" size="21" maxlength="21" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-blank-input nohighlight"></input><span class="examma-ray-fitb-input-annotation examma-ray-fitb-blank-annotation"></span>;
+</code></pre></div>
+            <div class="examma-ray-question-postscript">
+              <p></p><hr>
+You're welcome to check your solution with this <strong>walkthrough</strong> video:<p></p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/_MaKsAQ47nM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+            </td>
+            
+          </tr>
+        </table>
+      </div>
+    <br />
+      <div id="section-eecs280-w25_lec_03-s-section_03_3" class="examma-ray-section examma-ray-section-no-reference" data-section-uuid="eecs280-w25_lec_03-s-section_03_3" data-section-display-index="3">
+        <hr />
+        <table class="examma-ray-section-contents">
+          <tr>
+            <td class="examma-ray-questions-container">
+              
+      <div class="examma-ray-section-heading">
+        <div class="badge badge-primary">
+          3: Relational Operations and Floating-Point Precision
+        </div>
+        <span class="examma-ray-section-verifier-statuses">
+          
+        </span>
+      </div>
+    
+              <div class="examma-ray-section-description"><div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/UYJ9ipegmNA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p></div>
+              
+            </td>
+            
+          </tr>
+        </table>
+      </div>
+    <br />
+      <div id="section-eecs280-w25_lec_03-s-section_03_4" class="examma-ray-section examma-ray-section-no-reference" data-section-uuid="eecs280-w25_lec_03-s-section_03_4" data-section-display-index="4">
+        <hr />
+        <table class="examma-ray-section-contents">
+          <tr>
+            <td class="examma-ray-questions-container">
+              
+      <div class="examma-ray-section-heading">
+        <div class="badge badge-primary">
+          4: Value Semantics, Addresses, and References
+        </div>
+        <span class="examma-ray-section-verifier-statuses">
+          
+            
+    <span class="examma-ray-verifier-status" data-question-uuid="eecs280-w25_lec_03-q-lec03_value_semantics_addresses_references">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">4.1</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+          
+        </span>
+      </div>
+    
+              <div class="examma-ray-section-description"><div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/BsSHTi6uJF8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p></div>
+              
+      <div id="question-eecs280-w25_lec_03-q-lec03_value_semantics_addresses_references" data-question-uuid="eecs280-w25_lec_03-q-lec03_value_semantics_addresses_references" data-question-display-index="4.1" class="examma-ray-question card-group">
+        <div id="question-anchor-eecs280-w25_lec_03-q-lec03_value_semantics_addresses_references" class="examma-ray-question-anchor"></div>
+        <div class="card">
+          <div class="card-header">
+            
+      <b>4.1</b>
+    
+          </div>
+          <div class="card-body">
+            <div class="examma-ray-question-description">
+              <p>Consider the following code:</p>
+<pre><code class="hljs cpp language-cpp"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-keyword">int</span> x = <span class="hljs-number">3</span>;
+  <span class="hljs-keyword">int</span> y = x;
+  <span class="hljs-keyword">int</span> &amp;z = x;
+  x = <span class="hljs-number">10</span>;
+  <span class="hljs-comment">// consider the state of the program at this point</span>
+}
+</code></pre>
+<p>Which of the following are true?</p>
+            </div>
+            <div class="examma-ray-question-response examma-ray-question-response-multiple_choice" data-response-kind="multiple_choice">
+    <form>
+    
+    
+      <div class="form-check" style="">
+        <input id="eecs280-w25_lec_03-q-lec03_value_semantics_addresses_references_choice_0" class="form-check-input" type="checkbox" name="eecs280-w25_lec_03-q-lec03_value_semantics_addresses_references_choice" value="0"/>
+        <label for="eecs280-w25_lec_03-q-lec03_value_semantics_addresses_references_choice_0" class="form-check-label examma-ray-mc-option"><p>The value of <code>x</code> is 10.</p></label>
+      </div>
+      <div class="form-check" style="">
+        <input id="eecs280-w25_lec_03-q-lec03_value_semantics_addresses_references_choice_1" class="form-check-input" type="checkbox" name="eecs280-w25_lec_03-q-lec03_value_semantics_addresses_references_choice" value="1"/>
+        <label for="eecs280-w25_lec_03-q-lec03_value_semantics_addresses_references_choice_1" class="form-check-label examma-ray-mc-option"><p>The value of <code>y</code> is 10.</p></label>
+      </div>
+      <div class="form-check" style="">
+        <input id="eecs280-w25_lec_03-q-lec03_value_semantics_addresses_references_choice_2" class="form-check-input" type="checkbox" name="eecs280-w25_lec_03-q-lec03_value_semantics_addresses_references_choice" value="2"/>
+        <label for="eecs280-w25_lec_03-q-lec03_value_semantics_addresses_references_choice_2" class="form-check-label examma-ray-mc-option"><p>The value of <code>z</code> is 10.</p></label>
+      </div>
+      <div class="form-check" style="">
+        <input id="eecs280-w25_lec_03-q-lec03_value_semantics_addresses_references_choice_3" class="form-check-input" type="checkbox" name="eecs280-w25_lec_03-q-lec03_value_semantics_addresses_references_choice" value="3"/>
+        <label for="eecs280-w25_lec_03-q-lec03_value_semantics_addresses_references_choice_3" class="form-check-label examma-ray-mc-option"><p>The expression &amp;x == &amp;z will always yield true.</p></label>
+      </div>
+      <div class="form-check" style="">
+        <input id="eecs280-w25_lec_03-q-lec03_value_semantics_addresses_references_choice_4" class="form-check-input" type="checkbox" name="eecs280-w25_lec_03-q-lec03_value_semantics_addresses_references_choice" value="4"/>
+        <label for="eecs280-w25_lec_03-q-lec03_value_semantics_addresses_references_choice_4" class="form-check-label examma-ray-mc-option"><p>If the line <code>z = y</code> is run, z will now refer to <code>y</code> instead of <code>x</code>.</p></label>
+      </div>
+    </form>
+  </div>
+            <div class="examma-ray-question-postscript">
+              <p></p><details>
+  <summary>Sample solution…</summary><p></p>
+<p><input type="text" size="8" value="true" readonly<="" input=""> The value of <code>x</code> is 10.</p>
+<p><input type="text" size="8" value="false" readonly<="" input=""> The value of <code>y</code> is 10.</p>
+<p><input type="text" size="8" value="true" readonly<="" input=""> The value of <code>z</code> is 10.</p>
+<p><input type="text" size="8" value="true" readonly<="" input=""> The expression &amp;x == &amp;z will always yield true.</p>
+<p><input type="text" size="8" value="false" readonly<="" input=""> If the line <code>z = y</code> is run, z will now refer to <code>y</code> instead of <code>x</code>.
+</p></details><p></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+            </td>
+            
+          </tr>
+        </table>
+      </div>
+    <br />
+      <div id="section-eecs280-w25_lec_03-s-section_03_5" class="examma-ray-section examma-ray-section-no-reference" data-section-uuid="eecs280-w25_lec_03-s-section_03_5" data-section-display-index="5">
+        <hr />
+        <table class="examma-ray-section-contents">
+          <tr>
+            <td class="examma-ray-questions-container">
+              
+      <div class="examma-ray-section-heading">
+        <div class="badge badge-primary">
+          5: Intro to Pointers
+        </div>
+        <span class="examma-ray-section-verifier-statuses">
+          
+            
+    <span class="examma-ray-verifier-status" data-question-uuid="eecs280-w25_lec_03-q-lec03_addresses_and_pointers">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">5.1</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+          
+
+            
+    <span class="examma-ray-verifier-status" data-question-uuid="eecs280-w25_lec_03-q-lec03_using_pointers">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">5.2</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+          
+        </span>
+      </div>
+    
+              <div class="examma-ray-section-description"><div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/BWikvpCnH7Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p></div>
+              
+      <div id="question-eecs280-w25_lec_03-q-lec03_addresses_and_pointers" data-question-uuid="eecs280-w25_lec_03-q-lec03_addresses_and_pointers" data-question-display-index="5.1" class="examma-ray-question card-group">
+        <div id="question-anchor-eecs280-w25_lec_03-q-lec03_addresses_and_pointers" class="examma-ray-question-anchor"></div>
+        <div class="card">
+          <div class="card-header">
+            
+      <b>5.1 Exercise: Pointer Fundamentals</b>
+    
+          </div>
+          <div class="card-body">
+            <div class="examma-ray-question-description">
+              
+            </div>
+            <div class="examma-ray-question-response examma-ray-question-response-fill_in_the_blank" data-response-kind="fill_in_the_blank"><table style="border: none;">
+  <tbody><tr>
+    <td style="width: 250px; padding-right: 15px;">
+    <div markdown="1">
+      Consider the program below and answer a few questions.
+<pre><code class="hljs cpp language-cpp"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-keyword">int</span> x = <span class="hljs-number">4</span>;
+  <span class="hljs-keyword">int</span> y = <span class="hljs-number">7</span>;
+  <span class="hljs-keyword">double</span> z = <span class="hljs-number">1.5</span>;
+
+  <span class="hljs-keyword">int</span> *ptr1 = &amp;x;
+  <span class="hljs-keyword">int</span> *ptr2 = &amp;y;
+}
+</code></pre>
+    </div>
+    </td>
+    <td>
+    <div>
+      If you added the line <code>cout &lt;&lt; ptr2 &lt;&lt; endl;</code> to the end of <code>main()</code>, what would be printed?
+
+      <div class="examma-ray-fitb-box-input-holder" style=" width: 100%;"><textarea rows="4" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-box-input nohighlight" style="resize: none; overflow: auto; width: 100%;"></textarea><span class="examma-ray-fitb-input-annotation examma-ray-fitb-box-annotation"></span></div>
+
+      Suppose you added the line <code>ptr1 = &amp;ptr2;</code> to the end of <code>main()</code>. Would the compiler allow this? If so, what would the effect of that line be?
+
+      <div class="examma-ray-fitb-box-input-holder" style=" width: 100%;"><textarea rows="4" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-box-input nohighlight" style="resize: none; overflow: auto; width: 100%;"></textarea><span class="examma-ray-fitb-input-annotation examma-ray-fitb-box-annotation"></span></div>
+
+      Suppose you added the line <code>ptr1 = ptr2;</code> to the end of <code>main()</code>. Would the compiler allow this? If so, what would the effect of that line be?
+
+      <div class="examma-ray-fitb-box-input-holder" style=" width: 100%;"><textarea rows="4" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-box-input nohighlight" style="resize: none; overflow: auto; width: 100%;"></textarea><span class="examma-ray-fitb-input-annotation examma-ray-fitb-box-annotation"></span></div>
+
+      Would it be possible to change the value of <code>z</code> using either of the two pointers declared in <code>main()</code>? If so, how? If not, why not?
+
+      <div class="examma-ray-fitb-box-input-holder" style=" width: 100%;"><textarea rows="4" autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-box-input nohighlight" style="resize: none; overflow: auto; width: 100%;"></textarea><span class="examma-ray-fitb-input-annotation examma-ray-fitb-box-annotation"></span></div>
+
+    </div>
+    </td>
+  </tr>
+</tbody></table></div>
+            <div class="examma-ray-question-postscript">
+              <p></p><hr>
+You're welcome to check your solution with this <strong>walkthrough</strong> video:<p></p>
+<div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/1isxB18kdlY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <br />
+      <div id="question-eecs280-w25_lec_03-q-lec03_using_pointers" data-question-uuid="eecs280-w25_lec_03-q-lec03_using_pointers" data-question-display-index="5.2" class="examma-ray-question card-group">
+        <div id="question-anchor-eecs280-w25_lec_03-q-lec03_using_pointers" class="examma-ray-question-anchor"></div>
+        <div class="card">
+          <div class="card-header">
+            
+      <b>5.2 Exercise: Using Pointers</b>
+    
+          </div>
+          <div class="card-body">
+            <div class="examma-ray-question-description">
+              <div class="alert alert-info">
+  <strong>Tip</strong>: Drawing memory diagrams is a great way to reason about code. Let's get some practice in now! You'll thank yourself later on some of the more complex projects, and it's also a great way to prep for exams.
+  </div>
+<p>Mentally trace this code and draw a memory diagram as you go. Once you're finished, use your diagram to answer the question below. You could click "Simulate" to walk step-by-step through the program and verify your work matches the visual simulation.</p>
+<div style="text-align: center;">
+    <iframe class="lobster-iframe" style="height: 725px;" src="assets/using_pointers.html"></iframe>
+  </div>
+            </div>
+            <div class="examma-ray-question-response examma-ray-question-response-fill_in_the_blank" data-response-kind="fill_in_the_blank"><p>What values are printed for each of the expressions sent to <code>cout</code> at the end of the program?</p>
+<p><code>x</code> <input type="text" value="" size="7" maxlength="7" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-blank-input nohighlight"></input><span class="examma-ray-fitb-input-annotation examma-ray-fitb-blank-annotation"></span> &nbsp;&nbsp;&nbsp;&nbsp;  <code>ptr</code> <input type="text" value="" size="7" maxlength="7" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-blank-input nohighlight"></input><span class="examma-ray-fitb-input-annotation examma-ray-fitb-blank-annotation"></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <code>&amp;x</code> <input type="text" value="" size="7" maxlength="7" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-blank-input nohighlight"></input><span class="examma-ray-fitb-input-annotation examma-ray-fitb-blank-annotation"></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <code>*&amp;x</code> <input type="text" value="" size="7" maxlength="7" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-blank-input nohighlight"></input><span class="examma-ray-fitb-input-annotation examma-ray-fitb-blank-annotation"></span> &nbsp;&nbsp;&nbsp;</p>
+<p><code>y</code> <input type="text" value="" size="7" maxlength="7" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-blank-input nohighlight"></input><span class="examma-ray-fitb-input-annotation examma-ray-fitb-blank-annotation"></span> &nbsp;&nbsp;&nbsp;  <code>*ptr</code> <input type="text" value="" size="7" maxlength="7" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-blank-input nohighlight"></input><span class="examma-ray-fitb-input-annotation examma-ray-fitb-blank-annotation"></span> &nbsp;&nbsp;&nbsp;  <code>&amp;ptr</code> <input type="text" value="" size="7" maxlength="7" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-blank-input nohighlight"></input><span class="examma-ray-fitb-input-annotation examma-ray-fitb-blank-annotation"></span> &nbsp;&nbsp;&nbsp;  <code>&amp;*ptr</code> <input type="text" value="" size="7" maxlength="7" autocomplete="off" autocorrect="off" spellcheck="false" class="examma-ray-fitb-blank-input nohighlight"></input><span class="examma-ray-fitb-input-annotation examma-ray-fitb-blank-annotation"></span> &nbsp;&nbsp;&nbsp;</p></div>
+            <div class="examma-ray-question-postscript">
+              <p></p><details>
+  <summary>Sample solution…</summary>
+  <code>x</code> <input type="text" size="5" value="3" readonly<="" input=""> &nbsp;&nbsp;&nbsp;&nbsp;  <code>ptr</code> <input type="text" size="5" value="0x2714" readonly<="" input=""> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <code>&amp;x</code> <input type="text" size="5" value="0x2710" readonly<="" input=""> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <code>*&amp;x</code> <input type="text" size="5" value="3" readonly<="" input=""> &nbsp;&nbsp;&nbsp;<p></p>
+<p><code>y</code> <input type="text" size="5" value="4" readonly<="" input=""> &nbsp;&nbsp;&nbsp;  <code>*ptr</code> <input type="text" size="5" value="4" readonly<="" input=""> &nbsp;&nbsp;&nbsp;  <code>&amp;ptr</code> <input type="text" size="5" value="0x2718" readonly<="" input=""> &nbsp;&nbsp;&nbsp;  <code>&amp;*ptr</code> <input type="text" size="5" value="0x2714" readonly<="" input=""> &nbsp;&nbsp;&nbsp;
+</p></details><p></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+            </td>
+            
+          </tr>
+        </table>
+      </div>
+    <br />
+      <div id="section-eecs280-w25_lec_03-s-section_03_6" class="examma-ray-section examma-ray-section-no-reference" data-section-uuid="eecs280-w25_lec_03-s-section_03_6" data-section-display-index="6">
+        <hr />
+        <table class="examma-ray-section-contents">
+          <tr>
+            <td class="examma-ray-questions-container">
+              
+      <div class="examma-ray-section-heading">
+        <div class="badge badge-primary">
+          6: Pointer Debrief
+        </div>
+        <span class="examma-ray-section-verifier-statuses">
+          
+        </span>
+      </div>
+    
+              <div class="examma-ray-section-description"><div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/tZvFm_4y674" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p></div>
+              
+            </td>
+            
+          </tr>
+        </table>
+      </div>
+    <br />
+      <div id="section-eecs280-w25_lec_03-s-section_03_9" class="examma-ray-section examma-ray-section-no-reference" data-section-uuid="eecs280-w25_lec_03-s-section_03_9" data-section-display-index="7">
+        <hr />
+        <table class="examma-ray-section-contents">
+          <tr>
+            <td class="examma-ray-questions-container">
+              
+      <div class="examma-ray-section-heading">
+        <div class="badge badge-primary">
+          7: Expression Value Categories
+        </div>
+        <span class="examma-ray-section-verifier-statuses">
+          
+            
+    <span class="examma-ray-verifier-status" data-question-uuid="eecs280-w25_lec_03-q-lec03_value_categories">
+      
+      <span class="badge badge-secondary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-square" viewBox="0 0 16 16">
+<path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+</svg> <span class="examma-ray-verifier-status-display-index" style="vertical-align: middle;">7.1</span> <span class="examma-ray-verifier-status-message" style="vertical-align: middle;">Not Started</span></span>
+    
+    </span>
+  
+          
+        </span>
+      </div>
+    
+              <div class="examma-ray-section-description"><div style="text-align: center;">
+  <iframe class="lec-video" src="https://www.youtube.com/embed/csA_EDJ1sEo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+</div>
+<p><br></p></div>
+              
+      <div id="question-eecs280-w25_lec_03-q-lec03_value_categories" data-question-uuid="eecs280-w25_lec_03-q-lec03_value_categories" data-question-display-index="7.1" class="examma-ray-question card-group">
+        <div id="question-anchor-eecs280-w25_lec_03-q-lec03_value_categories" class="examma-ray-question-anchor"></div>
+        <div class="card">
+          <div class="card-header">
+            
+      <b>7.1</b>
+    
+          </div>
+          <div class="card-body">
+            <div class="examma-ray-question-description">
+              <p>Which of the following are true about <strong>expression value categories</strong> in C++?</p>
+            </div>
+            <div class="examma-ray-question-response examma-ray-question-response-multiple_choice" data-response-kind="multiple_choice">
+    <form>
+    
+    
+      <div class="form-check" style="">
+        <input id="eecs280-w25_lec_03-q-lec03_value_categories_choice_0" class="form-check-input" type="checkbox" name="eecs280-w25_lec_03-q-lec03_value_categories_choice" value="0"/>
+        <label for="eecs280-w25_lec_03-q-lec03_value_categories_choice_0" class="form-check-label examma-ray-mc-option"><p>An lvalue is an expression that yields an object at some memory location.</p></label>
+      </div>
+      <div class="form-check" style="">
+        <input id="eecs280-w25_lec_03-q-lec03_value_categories_choice_1" class="form-check-input" type="checkbox" name="eecs280-w25_lec_03-q-lec03_value_categories_choice" value="1"/>
+        <label for="eecs280-w25_lec_03-q-lec03_value_categories_choice_1" class="form-check-label examma-ray-mc-option"><p>An lvalue may appear on the left hand side of an assignment.</p></label>
+      </div>
+      <div class="form-check" style="">
+        <input id="eecs280-w25_lec_03-q-lec03_value_categories_choice_2" class="form-check-input" type="checkbox" name="eecs280-w25_lec_03-q-lec03_value_categories_choice" value="2"/>
+        <label for="eecs280-w25_lec_03-q-lec03_value_categories_choice_2" class="form-check-label examma-ray-mc-option"><p>An lvalue may appear on the right hand side of an assignment.</p></label>
+      </div>
+      <div class="form-check" style="">
+        <input id="eecs280-w25_lec_03-q-lec03_value_categories_choice_3" class="form-check-input" type="checkbox" name="eecs280-w25_lec_03-q-lec03_value_categories_choice" value="3"/>
+        <label for="eecs280-w25_lec_03-q-lec03_value_categories_choice_3" class="form-check-label examma-ray-mc-option"><p>An rvalue may appear on the left hand side of an assignment.</p></label>
+      </div>
+      <div class="form-check" style="">
+        <input id="eecs280-w25_lec_03-q-lec03_value_categories_choice_4" class="form-check-input" type="checkbox" name="eecs280-w25_lec_03-q-lec03_value_categories_choice" value="4"/>
+        <label for="eecs280-w25_lec_03-q-lec03_value_categories_choice_4" class="form-check-label examma-ray-mc-option"><p>An rvalue may appear on the right hand side of an assignment.</p></label>
+      </div>
+    </form>
+  </div>
+            <div class="examma-ray-question-postscript">
+              <p></p><details>
+  <summary>Sample solution…</summary><p></p>
+<p><input type="text" size="8" value="true" readonly<="" input=""> An lvalue is an expression that yields an object at some memory location.</p>
+<p><input type="text" size="8" value="true" readonly<="" input=""> An lvalue may appear on the left hand side of an assignment.</p>
+<p><input type="text" size="8" value="true" readonly<="" input=""> An lvalue may appear on the right hand side of an assignment.</p>
+<p><input type="text" size="8" value="false" readonly<="" input=""> An rvalue may appear on the left hand side of an assignment.</p>
+<p><input type="text" size="8" value="true" readonly<="" input=""> An rvalue may appear on the right hand side of an assignment.
+</p></details><p></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+            </td>
+            
+          </tr>
+        </table>
+      </div>
+    
+          <div class="container examma-ray-bottom-message">
+            <div class="alert alert-success" style="margin: 2em; margin-top: 4em;">
+              You've reached the end of this lecture! Your work on any exercises will be saved if you re-open this page in the same web browser.</p>
+<p><strong>Participation Credit</strong><br>
+Make sure to sign in to the page, complete each of the exercises, and <strong>double check</strong> the participation indicator at the top left of this page to ensure you've earned credit.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+        
+      <div id="exam-saver" class="exam-saver-modal modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Answers File</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="alert alert-info"><p>Your work on exercises is <strong>automatically</strong> saved in your web browser's local storage. That means you don't need to do anything to save your work as long as:</p>
+<ul>
+<li>You use the same computer</li>
+<li>You use the same web browser</li>
+<li>You don't use incognito or private browsing (which disables local storage)</li>
+</ul>
+<p>To transfer answers between computers or browsers, use the import/export options below.</p></div>
+              <div style="text-align: center;">
+                <div id="exam-saver-download-status" style="margin-bottom: 5px;"></div>
+                <div><a id="exam-saver-download-link" class="btn btn-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-down" viewBox="0 0 16 16">
+<path d="M8.5 6.5a.5.5 0 0 0-1 0v3.793L6.354 9.146a.5.5 0 1 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L8.5 10.293V6.5z"/>
+<path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+</svg> Download Answers</a></div>
+                <br />
+                <div style="margin-bottom: 5px;">Or, you may restore answers you previously saved to a file.<br /><b>WARNING!</b> This will overwrite ALL answers on this page.</div>
+                <div>
+                  <button id="exam-saver-load-button" class="btn btn-danger disabled" disabled><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-up" viewBox="0 0 16 16">
+<path d="M8.5 11.5a.5.5 0 0 1-1 0V7.707L6.354 8.854a.5.5 0 1 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 7.707V11.5z"/>
+<path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+</svg> Load Answers</button>
+                  <input id="exam-saver-file-input" type="file"></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  
+      <div id="exam-welcome-restored-modal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Machine Model, Part 1</h5>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+              <div class="alert alert-info">This page was reloaded, and we've restored your answers from a local backup.</div>
+              <div>
+                <button class="btn btn-success" data-dismiss="modal"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
+<path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
+<path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+</svg> OK</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  
+      <div id="exam-welcome-restored-error-modal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Machine Model, Part 1</h5>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+              <div class="alert alert-danger">
+                An error was encountered while attempting to restore your answers from a local backup.
+                If you are in the process of creating and previewing an exam, this may have occurred due
+                to a change to a question's type. If so, clear your browser's local storage before continuing.
+                <br />
+                If you're taking an exam, this should never happen. But, if it does, contact your instructor,
+                course staff, or proctor as soon as possible.
+              </div>
+              <div>
+                <button class="btn btn-success" data-dismiss="modal"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-check" viewBox="0 0 16 16">
+<path d="M10.854 7.854a.5.5 0 0 0-.708-.708L7.5 9.793 6.354 8.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0l3-3z"/>
+<path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+</svg> OK</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  
+      <div id="exam-welcome-normal-modal" class="modal" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Machine Model, Part 1</h5>
+            </div>
+            <div class="modal-body">
+              <div class="alert alert-info">This exam is for <b>eecs280</b>. If this is not you, please close this page.</div>
+              <div class="alert alert-info">This page shows your exam questions and gives you a place to work. <b>However, we will not grade anything here</b>. You must <b>download</b> an "answers file" and submit that to <b>Canvas</b> BEFORE the exam ends</b>.</div>
+              <div class="alert alert-warning">If something goes wrong (e.g. in case your computer crashes, you accidentally close the page, etc.), this page will attempt to restore your work when you come back. <b>Warning!</b> If you take the exam in private/incognito mode, or if you have certain privacy extensions/add-ons enabled, this won't work.</div>
+  
+              <p style="margin-left: 2em; margin-right: 2em;">
+                By taking this exam and submitting an answers file, you attest to the CoE Honor Pledge:
+              </p>
+              <p style="margin-left: 4em; margin-right: 4em;">
+                <span style="font-style: italic">I have neither given nor received unauthorized aid on this examination, nor have I concealed any violations of the Honor Code."
+              </p>
+              
+              <div style="text-align: center;">
+                <button class="btn btn-primary" data-dismiss="modal">I am <b>eecs280</b> and I understand</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  
+      <div id="exam-welcome-no-autosave-modal" class="modal" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Machine Model, Part 1</h5>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+              <div class="alert alert-info">This exam is for <b>eecs280</b>. If this is not you, please close this page.</div>
+              <div class="alert alert-info">This page shows your exam questions and gives you a place to work. <b>However, we will not grade anything here</b>. You must <b>download</b> an "answers file" and submit that to <b>Canvas</b> BEFORE the exam ends</b>.</div>
+              <div class="alert alert-danger">It appears your browser will not support backing up your answers to local storage (e.g. in case your computer crashes, you accidentally close the page, etc.).<br /><br />While you may still take the exam like this, we do not recommend it. Make sure you are <b>not</b> using private/incognito mode, temporarily disable privacy add-ons/extensions, or try a different web browser to get autosave to work.</div>
+              <div>
+                <button class="btn btn-primary" data-dismiss="modal">I am <b>eecs280</b> and I understand</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      
+      <div id="multiple-tabs-modal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">WARNING</h5>
+            </div>
+            <div class="modal-body" style="text-align: center;">
+              <div class="alert alert-danger">It appears you have this page open in multiple tabs/windows. That's a bad idea. Close whichever one you just opened.</div>
+              <div>
+                <button class="btn btn-primary" data-dismiss="modal">OK</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div id="exam-sign-in-modal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-sm" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Sign In</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div style="font-size: 11pt;">
+                <p>Sign in with your @umich.edu Google account to earn participation credit for completing embedded exercises.</p>
+              </div>
+              <div style="text-align: center">
+                <div class="g_id_signin"
+                  data-type="standard"
+                  data-shape="rectangular"
+                  data-theme="outline"
+                  data-text="signin_with"
+                  data-size="large"
+                  data-logo_alignment="left"
+                  style="display: inline-block"
+                ></div>
+              </div>
+
+              <div id="g_id_onload"
+                data-client_id="444801118749-m2g9gl3gvvkh5ru959dmka0lsk94d9uq.apps.googleusercontent.com"
+                data-context="signin"
+                data-ux_mode="popup"
+                data-callback="on_google_sign_in"
+                data-auto_prompt="false"
+              ></div>
+
+              <script>
+                function on_google_sign_in(response) {
+                  window.google_sign_in_callback(response);
+                }
+              </script>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      </body>
+      </html>
+    

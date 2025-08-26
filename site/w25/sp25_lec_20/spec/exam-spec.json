@@ -1,0 +1,421 @@
+{
+  "title": "Functors and Impostor Syndrome",
+  "mk_intructions": "\n<link rel=\"icon\" type=\"image/png\" href=\"/eecs280-async-lectures/favicon-96x96.png\" sizes=\"96x96\" />\n<link rel=\"icon\" type=\"image/svg+xml\" href=\"/eecs280-async-lectures/favicon.svg\" />\n<link rel=\"shortcut icon\" href=\"/eecs280-async-lectures/favicon.ico\" />\n<link rel=\"apple-touch-icon\" sizes=\"180x180\" href=\"/eecs280-async-lectures/apple-touch-icon.png\" />\n<meta name=\"apple-mobile-web-app-title\" content=\"Async Lecs\" />\n<link rel=\"manifest\" href=\"/eecs280-async-lectures/site.webmanifest\" />\n\n<div markdown=1 class=\"alert alert-info\">\nThis lecture covers **functors** in C++, including their use in **higher-order functions** as **predicates** and **comparators**.\n\nFinally, we cover **impostor syndrome** - a concept not directly related to programming but that is nevertheless relevant for many in our community.\n<div style=\"position: absolute; bottom: 5px; right: 10px; font-weight: bold;\">Updated Spring 2025</div>\n</div>\n\n<style>\n  .lec-video {\n    width: 80%;\n    aspect-ratio: 16/9;\n  }\n\n  iframe.lobster-iframe {\n    border: none;\n    width: 80%;\n    height: 450px;\n    margin-left: auto;\n    margin-right: auto;\n  }\n\n</style>\n  ",
+  "mk_questions_message": "\n<div style=\"text-align: left\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-house-fill\" viewBox=\"0 0 16 16\">\n  <path d=\"M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z\"/>\n  <path d=\"m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293z\"/>\n</svg>\n<a style=\"vertical-align: middle;\" href=\"/eecs280-async-lectures\">\n  Table of Contents\n</a>\n<br />\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-file-earmark-slides\" viewBox=\"0 0 16 16\">\n  <path d=\"M5 6a.5.5 0 0 0-.496.438l-.5 4A.5.5 0 0 0 4.5 11h3v2.016c-.863.055-1.5.251-1.5.484 0 .276.895.5 2 .5s2-.224 2-.5c0-.233-.637-.429-1.5-.484V11h3a.5.5 0 0 0 .496-.562l-.5-4A.5.5 0 0 0 11 6H5zm2 3.78V7.22c0-.096.106-.156.19-.106l2.13 1.279a.125.125 0 0 1 0 .214l-2.13 1.28A.125.125 0 0 1 7 9.778z\"/>\n  <path d=\"M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z\"/>\n</svg>\n<a style=\"vertical-align: middle;\" target=\"_blank\" href=\"https://drive.google.com/drive/folders/1I4ZZc3BXyovb-nlMhIRH3tbi9lBqcV4C?usp=sharing\">\n  Slides (Powerpoint, PDF)\n</a>\n<br />\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-github\" viewBox=\"0 0 16 16\">\n<path d=\"M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z\"/>\n</svg>\n<a style=\"vertical-align: middle;\" target=\"_blank\" href=\"https://github.com/jamesjuett/eecs280-async-lectures\">\n  Report issues or make suggestions\n</a>\n</div>\n",
+  "mk_bottom_message": "You've reached the end of this lecture! Your work on any exercises will be saved if you re-open this page in the same web browser.\n\n**Participation Credit**  \nMake sure to sign in to the page, complete each of the exercises, and **double check** the participation indicator at the top left of this page to ensure you've earned credit.",
+  "mk_download_message": "Export your exercise answers to use with another computer or browser.",
+  "mk_saver_message": "Your work on exercises is **automatically** saved in your web browser's local storage. That means you don't need to do anything to save your work as long as:\n- You use the same computer\n- You use the same web browser\n- You don't use incognito or private browsing (which disables local storage)\n\nTo transfer answers between computers or browsers, use the import/export options below.",
+  "assets_dir": "/home/jjuett/eecs280/async-lectures/lectures/lecture19/assets",
+  "allow_clientside_content": true,
+  "sections": [
+    {
+      "section_id": "section_18_1",
+      "title": "Iterator Review, Motivating Example",
+      "mk_description": "We'll start by briefly reviewing iterators and setting up the motivation for the main content of today's lecture.\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/zLEsU8Ja5PM\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />",
+      "questions": [
+        {
+          "question_id": "lec18_any_of_even",
+          "title": "Exercise: `any_of_even()`",
+          "points": 5,
+          "mk_description": "Consider the function template `any_of_odd()` below, which takes in two iterators (of any kind) and determines whether any of the elements in the range they define are odd-valued.\n\n```cpp\n  template <typename Iter_type>\n  bool any_of_odd(Iter_type begin, Iter_type end) {\n    while(begin != end) {\n      if (*begin % 2 != 0) {\n        return true;\n      }\n      ++begin;\n    }\n    return false;\n  }\n  ```\n\n  Which of the following would need to change in order to implement a similar function `any_of_even()` that determines whether any of the elements in the range are even-valued?",
+          "response": {
+            "kind": "multiple_choice",
+            "choices": [
+              "The template parameter `Iter_type` would need to change to a different type.",
+              "The function name would need to change to `any_of_even()`.",
+              "The loop condition or increment would need to change.",
+              "The condition in the `if` statement would need to change.",
+              "The `return true;` and `return false;` statements would need to be swapped."
+            ],
+            "multiple": true,
+            "sample_solution": [
+              1,
+              3
+            ],
+            "default_grader": {
+              "grader_kind": "summation_multiple_choice",
+              "rubric": [
+                {
+                  "points": 1,
+                  "selected": false
+                },
+                {
+                  "points": 1,
+                  "selected": true
+                },
+                {
+                  "points": 1,
+                  "selected": false
+                },
+                {
+                  "points": 1,
+                  "selected": true
+                },
+                {
+                  "points": 1,
+                  "selected": false
+                }
+              ]
+            }
+          },
+          "verifier": {
+            "verifier_kind": "full_credit"
+          },
+          "mk_postscript": "<hr />\n<details>\n  <summary>Explanation...</summary>\n  \n  Beyond changing the function name, the only thing that needs to change is the condition in the `if` statement. Instead of checking for odd numbers, we would check for even numbers with `*begin % 2 == 0`.\n\n  The idea of swapping the return statements seems viable at first glace, but on closer inspection, this doesn't change the function to check for evens instead of odds. Rather, it would change the function from \"any of\" to \"none of\".\n</details>"
+        }
+      ]
+    },
+    {
+      "section_id": "section_18_2",
+      "title": "Function Pointers",
+      "mk_description": "Building on the previous section and exercise - what if we wanted to check for other criteria besides even and odd numbers? How about prime numbers, or numbers that are greater than a certain threshold?\n\nInstead of writing mostly the same code over and over again, let's come up with a generic `any_of()` function and just tell it what we're looking for when we use it.\n\nThere are a few different approaches to specify \"what we're looking for\" - we'll first try using **function pointers**, which are not quite the right answer in C++, but are a reasonable place to start.\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/TCVBwKOqLvo\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />\n\nSo, we can use a function pointer to specify which function (e.g. `is_prime()`)should act as a **predicate** for a **higher-order function** like `any_of()`, telling it what to look for. But, there are some limitations to this approach...\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/6Y9bRkjPjlI\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />",
+      "questions": [
+        {
+          "question_id": "lec18_function_pointer_ideas",
+          "title": "Exercise: Function Pointer Limitations",
+          "points": 3,
+          "mk_description": "Here's a copy of the slide with the question from the video:\n\n<div style=\"text-align: center\">\n  <img src=\"assets/function_pointer_exercise.png\" style=\"width: 700px;\">\n</div>\n<br />",
+          "response": {
+            "kind": "fill_in_the_blank",
+            "content": "\nWhat do you think? Are any of these good ideas? For each, write \"good idea\" or \"bad idea\" in the blank provided. In your own words, justify your answer.\n\nMake a single `greater` function that uses a global variable to store the threshold.\n[[BOX\n\n\n]]\n<br />\n<br />\n\nMake a single `greater` function with an extra parameter to pass in the threshold.\n[[BOX\n\n\n]]\n<br />\n<br />\n\nAdd an extra parameter to the `any_of` function to pass in the threshold.\n[[BOX\n\n\n]]",
+            "default_grader": {
+              "grader_kind": "manual_regex_fill_in_the_blank",
+              "rubric": [
+                {
+                  "blankIndex": 1,
+                  "title": "Box 1",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "bad idea(.|\\n){10,}",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct - this is a bad idea. Make sure to check the walkthrough if you're not sure about your justification.",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "(.|\\n){10,}bad idea",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct - this is a bad idea. Make sure to check the walkthrough if you're not sure about your justification.",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "good ?idea",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "This idea won't end up working. Answer = \"bad idea\". Check the walkthrough for an explanation.",
+                      "points": 0
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 2,
+                  "title": "Box 2",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "bad idea(.|\\n){10,}",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct - this is a bad idea. Make sure to check the walkthrough if you're not sure about your justification.",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "(.|\\n){10,}bad idea",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct - this is a bad idea. Make sure to check the walkthrough if you're not sure about your justification.",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "good ?idea",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "This idea won't end up working. Answer = \"bad idea\". Check the walkthrough for an explanation.",
+                      "points": 0
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 3,
+                  "title": "Box 3",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "bad idea(.|\\n){10,}",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct - this is a bad idea. Make sure to check the walkthrough if you're not sure about your justification.",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "(.|\\n){10,}bad idea",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct - this is a bad idea. Make sure to check the walkthrough if you're not sure about your justification.",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "good ?idea",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "This idea won't end up working. Answer = \"bad idea\". Check the walkthrough for an explanation.",
+                      "points": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "verifier": {
+            "verifier_kind": "full_credit"
+          },
+          "mk_postscript": "<hr />\n<details>\n  <summary>Sample solution...</summary>\n  \n  It turns out none of these will work correctly.\n\n  Option A might work, but would be a bit clunky and error prone. We generally try to avoid global variables. We'll see better options soon...\n\n  Option B doesn't work, because the implementation `any_of()` function would need to pass in this extra parameter, but that wouldn't make sense if it was used with other predicates that don't expect a random extra parameter.\n\n  Option C follows from option B, but is flawed for the same reason. A higher-order function like `any_of()` should simply take in a predicate that is self-contained and does not require juggling extra parameters.\n\n  If only we could create customized `greater()` functions as we needed them, plugging in the specific threshold value we want... see the next section for details!\n</details>"
+        }
+      ]
+    },
+    {
+      "section_id": "section_18_3",
+      "title": "Functors",
+      "mk_description": "\nRegular functions in C++ are not \"first-class objects\" - they cannot be created and customized at runtime. This inherently restricts the use of functions and function pointers for generic coding.\n\nHowever, we can do something just as good - we can make a regular class-type object act like a function by overloading its `()` operator. These \"function objects\" are often called **functors**. Because functors are also regular C++ objects, they can be created at runtime, can be customized however we want, and can even store data in member variables!\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/FJ_EbApHZyg\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />",
+      "questions": [
+        {
+          "question_id": "lec18_in_range",
+          "title": "Exercise: `InRange` Predicate Functor",
+          "points": 8,
+          "mk_description": "",
+          "response": {
+            "kind": "fill_in_the_blank",
+            "content": "Fill in the implementation of the `InRange` functor, which is constructed with two thresholds for lower and upper bounds of a range. Its function call operator takes in a value and returns true if that value is within the range (inclusive). Assume the numbers in question are doubles.\n\n```cpp\nclass InRange {\npublic:\n\n  // Constructor\n  [[BOX_______________________________________________________________\n  \n  \n  \n  ]]\n  \n  // Function Call Operator\n  [[BOX_______________________________________________________________\n  \n  \n  \n  ]]\n  \nprivate:\n  // Member Variables\n  [[BOX_______________________________________________________________\n  \n  \n  \n  ]]\n};\n```\n\nFill in the blanks to complete the implementation of `count_if()`.\n\n```cpp\n// REQUIRES: 'begin' is before or equal to 'end'\n// EFFECTS:  Returns the number of elements in the sequence that satisfy 'pred'.\ntemplate <typename IterType, _BLANK__________________________>\nint count_if(IterType begin, IterType end, _BLANK_________________ pred) {\n  [[BOX_______________________________________________________________\n  \n  \n  \n  \n  \n  \n  \n  \n  ]]\n\n}\n```\n\nAdd code to the `main()` function below that uses `InRange` and `count_if()` to determine the number of elements between 5 and 15, inclusive, in the vector `vec`. Some comments are provided to guide you.\n\n```cpp\nint main() {\n\n  vector<int> vec = {1, 6, 2, 8, 17, 23, 12};\n\n  // Create an InRange functor with the appropriate thresholds\n  [[BOX_______________________________________________________________\n  \n  \n  ]]\n\n\n  // Call count_if with begin/end iterators from the vector\n  // and the InRange functor you created above. (Make sure\n  // that you don't call the functor here, just pass it in!)\n  [[BOX_______________________________________________________________\n  \n  \n  ]]\n}\n```",
+            "default_grader": {
+              "grader_kind": "manual_regex_fill_in_the_blank",
+              "rubric": [
+                {
+                  "blankIndex": 1,
+                  "title": "Box 1",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": ".",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "This is just graded for completion. Make sure to check the sample solution if you're not sure about your answer.",
+                      "points": 1
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 2,
+                  "title": "Box 2",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": ".",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "This is just graded for completion. Make sure to check the sample solution if you're not sure about your answer.",
+                      "points": 1
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 3,
+                  "title": "Box 3",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": ".",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "This is just graded for completion. Make sure to check the sample solution if you're not sure about your answer.",
+                      "points": 1
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 4,
+                  "title": "Box 4",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": ".",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "This is just graded for completion. Make sure to check the sample solution if you're not sure about your answer.",
+                      "points": 1
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 5,
+                  "title": "Box 5",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": ".",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "This is just graded for completion. Make sure to check the sample solution if you're not sure about your answer.",
+                      "points": 1
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 6,
+                  "title": "Box 6",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": ".",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "This is just graded for completion. Make sure to check the sample solution if you're not sure about your answer.",
+                      "points": 1
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 7,
+                  "title": "Box 7",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": ".",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "This is just graded for completion. Make sure to check the sample solution if you're not sure about your answer.",
+                      "points": 1
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 8,
+                  "title": "Box 8",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": ".",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "This is just graded for completion. Make sure to check the sample solution if you're not sure about your answer.",
+                      "points": 1
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "verifier": {
+            "verifier_kind": "full_credit"
+          },
+          "mk_postscript": "<hr />\n<details>\n  <summary>Sample solution...</summary>\n  \n  ```cpp\n  class InRange {\n  public:\n  \n    // Constructor\n    InRange(double lower_in, double upper_in)\n     : lower(lower_in), upper(upper_in) { }\n    \n    // Function Call Operator\n    bool operator()(double val) const {\n      return lower <= val && val <= upper;\n    }\n    \n  private:\n    // Member Variables\n    double lower;\n    double upper;\n  };\n  ```\n\n  Fill in the blanks to complete the implementation of `count_if()`.\n\n  ```cpp\n  // REQUIRES: 'begin' is before or equal to 'end'\n  // EFFECTS:  Returns the number of elements in the sequence that satisfy 'pred'.\n  template <typename IterType, typename Predicate>\n  int count_if(IterType begin, IterType end, Predicate pred) {\n    int count = 0;\n    while(begin != end) {\n      if (pred(*begin)) {\n        ++count;\n      }\n      ++begin;\n    }\n    return count;\n\n  }\n  ```\n\n  Add code to the `main()` function below that uses `InRange` and `count_if()` to determine the number of elements between 5 and 15, inclusive, in the vector `vec`. Some comments are provided to guide you.\n\n  ```cpp\n  int main() {\n\n    vector<int> vec = {1, 6, 2, 8, 17, 23, 12};\n\n    // Create an InRange functor with the appropriate thresholds\n    InRange in_range(5, 15);\n\n\n    // Call count_if with begin/end iterators from the vector\n    // and the InRange functor you created above. (Make sure\n    // that you don't call the functor here, just pass it in!)\n    int n = count_if(vec.begin(), vec.end(), in_range);\n  }\n  ```\n</details>"
+        }
+      ]
+    },
+    {
+      "section_id": "section_18_4",
+      "title": "Comparators",
+      "mk_description": "Another common use for functors is to define multiple different ways of comparing objects. The functor overloads the `()` to take in two objects, compare them, and return true if the first is less than the second (\"less than\" is the conventional direction of comparison, at least). Such a functor is called a **comparator**.\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/v2ZhdD3DBTU\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />\n\nComparators have many uses! Higher-order functions can take in a comparator to determine how they search for the smallest element, sort a particular sequence, or any process that depends on ordering. Or, a data structure like a binary search tree could also allow a custom comparator to be used to determine the ordering of elements it contains. \n",
+      "questions": []
+    },
+    {
+      "section_id": "section_18_5",
+      "title": "for_each()",
+      "mk_description": "Here's one more example of a higher-order function for you to consider. \n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/FzIGCJir_J4\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />\n\nThe `for_each()` function essentially provides a high-level abstraction for using iterators and functors to perform the same tasks we might regularly write out with more verbose code using a loop.\n\n<br />\n",
+      "questions": []
+    },
+    {
+      "section_id": "section_18_6",
+      "title": "Impostor Syndrome",
+      "mk_description": "Let's take a break from functors to discuss something just as important...\n\nImpostor syndrome is the name given to a feeling of self-doubt, often accompanied by a difficulty accepting one's own accomplishments or a fear of being exposed as a fraud.\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/guTZo28LC6E\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />\n\nI mentioned a poll in the video above - here's a set of results from a previous term.\n\nWe asked, _\"Have you felt like an impostor in your classes here at the University of Michigan?\"_\n\n<div style=\"text-align: center\">\n  <img src=\"assets/impostor_syndrome_poll.png\" style=\"width: 400px;\">\n</div>\n<br />",
+      "questions": []
+    }
+  ],
+  "exam_id": "sp25_lec_20",
+  "credentials_strategy": {
+    "strategy": "google_local",
+    "client_id": "444801118749-m2g9gl3gvvkh5ru959dmka0lsk94d9uq.apps.googleusercontent.com",
+    "auth_endpoint": "https://examma-ray.eecs.umich.edu/public_api/participation/auth/",
+    "message": "Sign in with your @umich.edu Google account to earn participation credit for completing embedded exercises."
+  },
+  "completion": {
+    "threshold": 1,
+    "tooltip": "",
+    "endpoints": {
+      "check": "https://examma-ray.eecs.umich.edu/public_api/participation/me/",
+      "submit": "https://examma-ray.eecs.umich.edu/public_api/participation/me/"
+    },
+    "local_deadline": {
+      "when": {
+        "examma_ray_serialized_datetime": {
+          "iso": "2025-06-11T23:59:59.000-04:00",
+          "timezone": "America/Detroit"
+        }
+      },
+      "grace_minutes": 5
+    }
+  }
+}

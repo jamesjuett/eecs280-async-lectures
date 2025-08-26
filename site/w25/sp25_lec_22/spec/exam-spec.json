@@ -1,0 +1,482 @@
+{
+  "title": "Structural Recursion",
+  "mk_intructions": "\n<link rel=\"icon\" type=\"image/png\" href=\"/eecs280-async-lectures/favicon-96x96.png\" sizes=\"96x96\" />\n<link rel=\"icon\" type=\"image/svg+xml\" href=\"/eecs280-async-lectures/favicon.svg\" />\n<link rel=\"shortcut icon\" href=\"/eecs280-async-lectures/favicon.ico\" />\n<link rel=\"apple-touch-icon\" sizes=\"180x180\" href=\"/eecs280-async-lectures/apple-touch-icon.png\" />\n<meta name=\"apple-mobile-web-app-title\" content=\"Async Lecs\" />\n<link rel=\"manifest\" href=\"/eecs280-async-lectures/site.webmanifest\" />\n\n<div markdown=1 class=\"alert alert-info\">\nRecursion is well-suited for problems that have an intrinsic **recursive structure**. This also applies directly for many data structures, including **linked lists** (which we've seen before) and **trees** (which we introduce today). It will also turn out that for some operations, a recursive approach is natural while an iterative approach requires significant additional work.\n\n<div style=\"position: absolute; bottom: 5px; right: 10px; font-weight: bold;\">Updated Spring 2025</div>\n</div>\n</div>\n\n<div>\n<p>\nBefore we get started, I want to share with all of you some thoughts on recent changes to U of M programs and policies. Below is a brief video from a lecture near the end of the Winter 2025 term. The content is still relevant, and I hope may take a moment to reflect and consider your own values and perspective.\n<div style=\"text-align: center;\">\n<iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/18Da82iITr0\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />\n</div>\n\n<style>\n  .lec-video {\n    width: 80%;\n    aspect-ratio: 16/9;\n  }\n\n  iframe.lobster-iframe {\n    border: none;\n    width: 80%;\n    height: 450px;\n    margin-left: auto;\n    margin-right: auto;\n  }\n\n</style>\n  ",
+  "mk_questions_message": "\n<div style=\"text-align: left\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-house-fill\" viewBox=\"0 0 16 16\">\n  <path d=\"M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z\"/>\n  <path d=\"m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293z\"/>\n</svg>\n<a style=\"vertical-align: middle;\" href=\"/eecs280-async-lectures\">\n  Table of Contents\n</a>\n<br />\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-file-earmark-slides\" viewBox=\"0 0 16 16\">\n  <path d=\"M5 6a.5.5 0 0 0-.496.438l-.5 4A.5.5 0 0 0 4.5 11h3v2.016c-.863.055-1.5.251-1.5.484 0 .276.895.5 2 .5s2-.224 2-.5c0-.233-.637-.429-1.5-.484V11h3a.5.5 0 0 0 .496-.562l-.5-4A.5.5 0 0 0 11 6H5zm2 3.78V7.22c0-.096.106-.156.19-.106l2.13 1.279a.125.125 0 0 1 0 .214l-2.13 1.28A.125.125 0 0 1 7 9.778z\"/>\n  <path d=\"M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z\"/>\n</svg>\n<a style=\"vertical-align: middle;\" target=\"_blank\" href=\"https://drive.google.com/drive/folders/1I4ZZc3BXyovb-nlMhIRH3tbi9lBqcV4C?usp=sharing\">\n  Slides (Powerpoint, PDF)\n</a>\n<br />\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-github\" viewBox=\"0 0 16 16\">\n<path d=\"M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z\"/>\n</svg>\n<a style=\"vertical-align: middle;\" target=\"_blank\" href=\"https://github.com/jamesjuett/eecs280-async-lectures\">\n  Report issues or make suggestions\n</a>\n</div>\n",
+  "mk_bottom_message": "You've reached the end of this lecture! Your work on any exercises will be saved if you re-open this page in the same web browser.\n\n**Participation Credit**  \nMake sure to sign in to the page, complete each of the exercises, and **double check** the participation indicator at the top left of this page to ensure you've earned credit.",
+  "mk_download_message": "Export your exercise answers to use with another computer or browser.",
+  "mk_saver_message": "Your work on exercises is **automatically** saved in your web browser's local storage. That means you don't need to do anything to save your work as long as:\n- You use the same computer\n- You use the same web browser\n- You don't use incognito or private browsing (which disables local storage)\n\nTo transfer answers between computers or browsers, use the import/export options below.",
+  "assets_dir": "/home/jjuett/eecs280/async-lectures/lectures/lecture21/assets",
+  "allow_clientside_content": true,
+  "sections": [
+    {
+      "section_id": "section_20_1",
+      "title": "Recursion on Linked Lists",
+      "mk_description": "\nAs an initial example, let's consider the recursive structure implicit in a linked list as well as strategies for recursively processing the data stored in the list.\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/_nb3TaK3grk\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />",
+      "questions": [
+        {
+          "question_id": "lec20_recursive_list_functions",
+          "title": "Exercise: Recursive List Functions",
+          "points": 7,
+          "mk_description": "\n<table class=\"table w-auto\">\n  <tr>\n    <td style=\"border: none;\">\n      Determine base cases and recurrence relations for the list functions below. Some portions are already given to help you get started. Use the abstract terms in the picture at right, but don't worry too much about precise notation.\n      <br />\n      <br />\n      This exercise is challenging! Recursion is a totally different kind of thinking than we use in our normal lives. We promise it gets easier. If you get stuck, check the walkthrough video.\n    </td>\n    <td style=\"border: none;\">\n      <img src=\"assets/list_abstract.png\" style=\"width: 200px;\">\n    </td>\n  </tr>\n</table>",
+          "response": {
+            "kind": "fill_in_the_blank",
+            "content": "**`length(list)`**  \nFinds the number of elements in `list`.\n\n<table style=\"width: 100%; border: none;\">\n  <tr>\n    <td style=\"width: 175px; text-align: right;\">\n      <b>Base Case</b>\n    </td>\n    <td>\n      <div style=\"height: 5em; border: solid 1px #ccc; width: 100%; margin: 2px 3px; padding: 0.25em; font-family: monospace; color: #333;\">\n        if empty, length(list) = 0\n      </div>\n    </td>\n  </tr>\n  <tr>\n    <td style=\"width: 175px; text-align: right;\">\n      <b>Recurrence Relation</b>\n    </td>\n    <td>\n      <div style=\"height: 5em; border: solid 1px #ccc; width: 100%; margin: 2px 3px; padding: 0.25em; font-family: monospace; color: #333;\">\n        length(list) = 1 + length(rest)\n      </div>\n    </td>\n  </tr>\n</table>\n\n<br />\n**`sum(list)`**  \nFinds the sum of element values in `list`.\n\n<table style=\"width: 100%; border: none;\">\n  <tr>\n    <td style=\"width: 175px; text-align: right;\">\n      <b>Base Case</b>\n    </td>\n    <td>\n      [[BOX\n      \n      \n      \n      ]]\n    </td>\n  </tr>\n  <tr>\n    <td style=\"width: 175px; text-align: right;\">\n      <b>Recurrence Relation</b>\n    </td>\n    <td>\n      [[BOX\n      \n      \n      \n      ]]\n    </td>\n  </tr>\n</table>\n\n<br />\n**`last(list)`**  \nFinds the last element in `list`.<br />\n`REQUIRES:` `list` is not empty\n\n<table style=\"width: 100%; border: none;\">\n  <tr>\n    <td style=\"width: 175px; text-align: right;\">\n      <b>Base Case</b>\n    </td>\n    <td>\n      <div style=\"height: 5em; border: solid 1px #ccc; width: 100%; margin: 2px 3px; padding: 0.25em; font-family: monospace; color: #333;\">\n        if rest is empty, last(list) = x<br />\n        (Base case is a single element list)\n      </div>\n    </td>\n  </tr>\n  <tr>\n    <td style=\"width: 175px; text-align: right;\">\n      <b>Recurrence Relation</b>\n    </td>\n    <td>\n      [[BOX\n      \n      \n      \n      ]]\n    </td>\n  </tr>\n</table>\n\n<br />\n**`count(list, n)`**  \nFinds the number of times `n` appears in `list`.\n\n<table style=\"width: 100%; border: none;\">\n  <tr>\n    <td style=\"width: 175px; text-align: right;\">\n      <b>Base Case</b>\n    </td>\n    <td>\n      [[BOX\n      \n      \n      \n      ]]\n    </td>\n  </tr>\n  <tr>\n    <td style=\"width: 175px; text-align: right;\">\n      <b>Recurrence Relation</b><br />\n      <span style=\"font-style: italic;\">Hint: Use an if-else here!</span>\n    </td>\n    <td>\n      [[BOX\n      \n      \n      \n      ]]\n    </td>\n  </tr>\n</table>\n\n<br />\n**`max(list)`**  \nFinds the largest value in `list`.<br />\n`REQUIRES:` `list` is not empty<br />\n<span style=\"font-style: italic;\">Hint: Use a helper function `max(int,int)`</span>\n\n\n<table style=\"width: 100%; border: none;\">\n  <tr>\n    <td style=\"width: 175px; text-align: right;\">\n      <b>Base Case</b>\n    </td>\n    <td>\n      [[BOX\n      \n      \n      \n      ]]\n    </td>\n  </tr>\n  <tr>\n    <td style=\"width: 175px; text-align: right;\">\n      <b>Recurrence Relation</b>\n    </td>\n    <td>\n      [[BOX\n      \n      \n      \n      ]]\n    </td>\n  </tr>\n</table>",
+            "default_grader": {
+              "grader_kind": "manual_regex_fill_in_the_blank",
+              "rubric": [
+                {
+                  "blankIndex": 1,
+                  "title": "Box 1",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "(.|\\n){5,}",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer.",
+                      "points": 1
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 2,
+                  "title": "Box 2",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "(.|\\n){5,}",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer.",
+                      "points": 1
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 3,
+                  "title": "Box 3",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "(.|\\n){5,}",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer.",
+                      "points": 1
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 4,
+                  "title": "Box 4",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "(.|\\n){5,}",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer.",
+                      "points": 1
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 5,
+                  "title": "Box 5",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "(.|\\n){5,}",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer.",
+                      "points": 1
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 6,
+                  "title": "Box 6",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "(.|\\n){5,}",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer.",
+                      "points": 1
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 7,
+                  "title": "Box 7",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "(.|\\n){5,}",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer.",
+                      "points": 1
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "verifier": {
+            "verifier_kind": "full_credit"
+          },
+          "mk_postscript": "<hr />\nYou're welcome to check your solution with this **walkthrough** video.\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/9liMsgq0OfU\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />"
+        },
+        {
+          "question_id": "lec20_list_max",
+          "title": "Exercise: Coding `list_max()`",
+          "points": 1,
+          "mk_description": "Implement the `list_max()` function based on the base case and recurrence relation from earlier.",
+          "response": {
+            "kind": "iframe",
+            "src": "assets/list_max.html",
+            "element_class": "lobster-iframe",
+            "element_style": "height: 675px;",
+            "default_grader": {
+              "grader_kind": "standard_iframe",
+              "rubric": [
+                {
+                  "points": 1,
+                  "description": "Exercise must be complete.",
+                  "property": "complete",
+                  "value": true
+                }
+              ]
+            }
+          },
+          "verifier": {
+            "verifier_kind": "full_credit"
+          },
+          "mk_postscript": "<hr />\n\n<details>\n  <summary>Sample solution...</summary>\n  ```cpp\n  // REQUIRES: 'node' must not be null (i.e. the list\n  //           starting at 'node' may not be empty)\n  // EFFECTS:  Returns the largest element in the list.\n  int list_max(Node *node) {\n    // (1) base case - hint: take a second look at REQUIRES clause\n    if(!node->next) {\n      return node->datum;\n    }\n    // (2) recursive case\n    else {\n      return max(node->datum, list_max(node->next));\n    }\n  }\n  ```\n</details>"
+        }
+      ]
+    },
+    {
+      "section_id": "section_20_3",
+      "title": "Recursion on Trees",
+      "mk_description": "\nNow, let's take a look at a new data structure, the binary tree. It turns out that binary trees underly many of the most efficient implementations of a variety of data structures, including sets and maps, which we'll talk about next time.\n\nBecause trees are also a naturally recursive data structure, we'll apply recursion here as well.\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/OyeEIGJTX80\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/-AG9nsVV4P4\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />",
+      "questions": [
+        {
+          "question_id": "lec20_recursive_tree_functions",
+          "title": "Exercise: Recursive Tree Functions",
+          "points": 7,
+          "mk_description": "\n<table class=\"table w-auto\">\n  <tr>\n    <td style=\"border: none;\">\n      Determine base cases and recurrence relations for the tree functions below. Some portions are already given to help you get started. Use the abstract terms in the picture at right, but don't worry too much about precise notation.\n      <br />\n      <br />\n      This exercise is challenging! Recursion is a totally different kind of thinking than we use in our normal lives. We promise it gets easier. If you get stuck, check the walkthrough video.\n    </td>\n    <td style=\"border: none;\">\n      <img src=\"assets/tree_abstract.png\" style=\"width: 200px;\">\n    </td>\n  </tr>\n</table>",
+          "response": {
+            "kind": "fill_in_the_blank",
+            "content": "**`size(tree)`**  \nFinds the number of elements in `tree`.\n\n<table style=\"width: 100%; border: none;\">\n  <tr>\n    <td style=\"width: 175px; text-align: right;\">\n      <b>Base Case</b>\n    </td>\n    <td>\n      <div style=\"height: 5em; border: solid 1px #ccc; width: 100%; margin: 2px 3px; padding: 0.25em; font-family: monospace; color: #333;\">\n        if empty, size(tree) = 0\n      </div>\n    </td>\n  </tr>\n  <tr>\n    <td style=\"width: 175px; text-align: right;\">\n      <b>Recurrence Relation</b>\n    </td>\n    <td>\n      <div style=\"height: 5em; border: solid 1px #ccc; width: 100%; margin: 2px 3px; padding: 0.25em; font-family: monospace; color: #333;\">\n        size(tree) = 1 + size(left) + size(right)\n      </div>\n    </td>\n  </tr>\n</table>\n\n<br />\n**`height(tree)`**  \nFinds the height of `tree`.<br />\n<span style=\"font-style: italic;\">Hint: Use a helper function `max(int,int)`</span>\n\n<table style=\"width: 100%; border: none;\">\n  <tr>\n    <td style=\"width: 175px; text-align: right;\">\n      <b>Base Case</b>\n    </td>\n    <td>\n      [[BOX\n      \n      \n      \n      ]]\n    </td>\n  </tr>\n  <tr>\n    <td style=\"width: 175px; text-align: right;\">\n      <b>Recurrence Relation</b>\n    </td>\n    <td>\n      [[BOX\n      \n      \n      \n      ]]\n    </td>\n  </tr>\n</table>\n\n<br />\n**`sum(tree)`**  \nFinds the sum of element values in `tree`.\n\n<table style=\"width: 100%; border: none;\">\n  <tr>\n    <td style=\"width: 175px; text-align: right;\">\n      <b>Base Case</b>\n    </td>\n    <td>\n      [[BOX\n      \n      \n      \n      ]]\n    </td>\n  </tr>\n  <tr>\n    <td style=\"width: 175px; text-align: right;\">\n      <b>Recurrence Relation</b>\n    </td>\n    <td>\n      [[BOX\n      \n      \n      \n      ]]\n    </td>\n  </tr>\n</table>\n\n<br />\n**`num_leaves(tree)`**  \nFinds the number of leaf nodes in `tree`.\n\n<table style=\"width: 100%; border: none;\">\n  <tr>\n    <td style=\"width: 175px; text-align: right;\">\n      <b>Base Case</b><br />\n      <span style=\"font-style: italic;\">Hint: there are two base cases here!</span>\n    </td>\n    <td>\n      [[BOX\n      \n      \n      \n      ]]\n    </td>\n  </tr>\n  <tr>\n    <td style=\"width: 175px; text-align: right;\">\n      <b>Recurrence Relation</b>\n    </td>\n    <td>\n      <div style=\"height: 5em; border: solid 1px #ccc; width: 100%; margin: 2px 3px; padding: 0.25em; font-family: monospace; color: #333;\">\n        num_leaves(tree) = num_leaves(left) + num_leaves(right)\n      </div>\n    </td>\n  </tr>\n</table>\n\n<br />\n**`contains(tree, n)`**  \nReturns true if `tree` contains the value `n`, and false otherwise.\n\n<table style=\"width: 100%; border: none;\">\n  <tr>\n    <td style=\"width: 175px; text-align: right;\">\n      <b>Base Case</b><br />\n      <span style=\"font-style: italic;\">Hint: there are two base cases here!</span>\n    </td>\n    <td>\n      [[BOX\n      \n      \n      \n      ]]\n    </td>\n  </tr>\n  <tr>\n    <td style=\"width: 175px; text-align: right;\">\n      <b>Recurrence Relation</b>\n    </td>\n    <td>\n      [[BOX\n      \n      \n      \n      ]]\n    </td>\n  </tr>\n</table>",
+            "default_grader": {
+              "grader_kind": "manual_regex_fill_in_the_blank",
+              "rubric": [
+                {
+                  "blankIndex": 1,
+                  "title": "Box 1",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "(.|\\n){5,}",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer.",
+                      "points": 1
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 2,
+                  "title": "Box 2",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "(.|\\n){5,}",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer.",
+                      "points": 1
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 3,
+                  "title": "Box 3",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "(.|\\n){5,}",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer.",
+                      "points": 1
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 4,
+                  "title": "Box 4",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "(.|\\n){5,}",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer.",
+                      "points": 1
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 5,
+                  "title": "Box 5",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "(.|\\n){5,}",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer.",
+                      "points": 1
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 6,
+                  "title": "Box 6",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "(.|\\n){5,}",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer.",
+                      "points": 1
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 7,
+                  "title": "Box 7",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "(.|\\n){5,}",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "This is just graded for completion. Make sure to check the walkthrough video if you're not sure about your answer.",
+                      "points": 1
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "verifier": {
+            "verifier_kind": "full_credit"
+          },
+          "mk_postscript": "<hr />\nYou're welcome to check your solution with this **walkthrough** video.\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/5vfT6JSnWNw\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />"
+        },
+        {
+          "question_id": "lec20_tree_height",
+          "title": "Exercise: Coding `tree_height()`",
+          "points": 1,
+          "mk_description": "Implement the `tree_height()` function based on the base case and recurrence relation from earlier. Note that `max()` helper function provided.",
+          "response": {
+            "kind": "iframe",
+            "src": "assets/tree_height.html",
+            "element_class": "lobster-iframe",
+            "element_style": "height: 675px;",
+            "default_grader": {
+              "grader_kind": "standard_iframe",
+              "rubric": [
+                {
+                  "points": 1,
+                  "description": "Exercise must be complete.",
+                  "property": "complete",
+                  "value": true
+                }
+              ]
+            }
+          },
+          "verifier": {
+            "verifier_kind": "full_credit"
+          },
+          "mk_postscript": "<hr />\n\n<details>\n  <summary>Sample solution...</summary>\n  ```cpp\n  // REQUIRES: 'node' must be a binary search tree\n  // EFFECTS: Returns the height of the tree rooted at 'node'.\n  int tree_height(Node *node) {\n    if(!node) {\n      return 0;\n    }\n    return 1 + max(tree_height(node->left), tree_height(node->right));\n  }\n  ```\n</details>"
+        }
+      ]
+    },
+    {
+      "section_id": "section_20_5",
+      "title": "Tree Traversals",
+      "mk_description": "To traverse and process each element in the tree, there are several possible orderings. (Contrast this to a linear data structure like a linked list where there is only one straightforward traversal.)\n\nLet's take a look at each:\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/7bd-YBzEj7o\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />\n\nHere's a copy of the slide with all the traversals:\n\n<div style=\"text-align: center\">\n  <img src=\"assets/tree_traversals.png\" style=\"width: 600px;\">\n</div>\n<br />\n",
+      "questions": []
+    },
+    {
+      "section_id": "section_20_6",
+      "title": "Types of Recursion",
+      "mk_description": "Finally, let's take a look at several qualitatively different kinds of recursion we've seen so far. Generally, the distinguishing factors are the number and placement of the recursive calls.\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/veFwW_oDpd8\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />\n",
+      "questions": [
+        {
+          "question_id": "lec20_recursion_kinds_1",
+          "points": 1,
+          "mk_description": "Consider this function. What kind of recursion does it use?\n\n```cpp\nint sum(int n) {\n  if (n == 0) {\n    return 0;\n  }\n  return n + sum(n - 1);\n}\n```",
+          "response": {
+            "kind": "multiple_choice",
+            "choices": [
+              "Tail recursive",
+              "Linear recursive (but not tail recursive)",
+              "Tree recursive",
+              "Not recursive at all"
+            ],
+            "multiple": false,
+            "sample_solution": [
+              1
+            ],
+            "default_grader": {
+              "grader_kind": "simple_multiple_choice",
+              "correct_index": 1
+            }
+          },
+          "verifier": {
+            "verifier_kind": "full_credit"
+          }
+        },
+        {
+          "question_id": "lec20_recursion_kinds_2",
+          "points": 1,
+          "mk_description": "Consider this function. What kind of recursion does it use?\n\n```cpp\nvoid print_list(Node* n) {\n  if (!n) {\n    return;\n  }\n  cout << n->datum << endl;\n  print_list(n->next);\n}\n\n```",
+          "response": {
+            "kind": "multiple_choice",
+            "choices": [
+              "Tail recursive",
+              "Linear recursive (but not tail recursive)",
+              "Tree recursive",
+              "Not recursive at all"
+            ],
+            "multiple": false,
+            "sample_solution": [
+              0
+            ],
+            "default_grader": {
+              "grader_kind": "simple_multiple_choice",
+              "correct_index": 0
+            }
+          },
+          "verifier": {
+            "verifier_kind": "full_credit"
+          }
+        },
+        {
+          "question_id": "lec20_recursion_kinds_3",
+          "points": 1,
+          "mk_description": "Consider this function. What kind of recursion does it use?\n\n```cpp\nint fibonacci(int n) {\n  if (n <= 1) {\n    return n;\n  }\n  return fibonacci(n - 1) + fibonacci(n - 2);\n}\n```",
+          "response": {
+            "kind": "multiple_choice",
+            "choices": [
+              "Tail recursive",
+              "Linear recursive (but not tail recursive)",
+              "Tree recursive",
+              "Not recursive at all"
+            ],
+            "multiple": false,
+            "sample_solution": [
+              2
+            ],
+            "default_grader": {
+              "grader_kind": "simple_multiple_choice",
+              "correct_index": 2
+            }
+          },
+          "verifier": {
+            "verifier_kind": "full_credit"
+          }
+        }
+      ]
+    }
+  ],
+  "exam_id": "sp25_lec_22",
+  "credentials_strategy": {
+    "strategy": "google_local",
+    "client_id": "444801118749-m2g9gl3gvvkh5ru959dmka0lsk94d9uq.apps.googleusercontent.com",
+    "auth_endpoint": "https://examma-ray.eecs.umich.edu/public_api/participation/auth/",
+    "message": "Sign in with your @umich.edu Google account to earn participation credit for completing embedded exercises."
+  },
+  "completion": {
+    "threshold": 1,
+    "tooltip": "",
+    "endpoints": {
+      "check": "https://examma-ray.eecs.umich.edu/public_api/participation/me/",
+      "submit": "https://examma-ray.eecs.umich.edu/public_api/participation/me/"
+    },
+    "local_deadline": {
+      "when": {
+        "examma_ray_serialized_datetime": {
+          "iso": "2025-06-16T23:59:59.000-04:00",
+          "timezone": "America/Detroit"
+        }
+      },
+      "grace_minutes": 5
+    }
+  }
+}

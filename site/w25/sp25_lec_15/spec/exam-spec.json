@@ -1,0 +1,674 @@
+{
+  "title": "Dynamic Memory",
+  "mk_intructions": "\n<link rel=\"icon\" type=\"image/png\" href=\"/eecs280-async-lectures/favicon-96x96.png\" sizes=\"96x96\" />\n<link rel=\"icon\" type=\"image/svg+xml\" href=\"/eecs280-async-lectures/favicon.svg\" />\n<link rel=\"shortcut icon\" href=\"/eecs280-async-lectures/favicon.ico\" />\n<link rel=\"apple-touch-icon\" sizes=\"180x180\" href=\"/eecs280-async-lectures/apple-touch-icon.png\" />\n<meta name=\"apple-mobile-web-app-title\" content=\"Async Lecs\" />\n<link rel=\"manifest\" href=\"/eecs280-async-lectures/site.webmanifest\" />\n\n<div markdown=1 class=\"alert alert-info\">\n  In today's lecture, we'll consider the lifetimes we need for different objects in our program, how lifetime corresponds to the way objects are managed in memory, and how we as the programmer can use a new technique - **dynamic memory** to have more precise control of all this when we need it.\n  \n  <div style=\"position: absolute; bottom: 5px; right: 10px; font-weight: bold;\">Updated Spring 2025</div>\n</div>\n<style>\n  .lec-video {\n    width: 80%;\n    aspect-ratio: 16/9;\n  }\n\n  iframe.lobster-iframe {\n    border: none;\n    width: 80%;\n    height: 450px;\n    margin-left: auto;\n    margin-right: auto;\n  }\n\n</style>",
+  "mk_questions_message": "\n<div style=\"text-align: left\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-house-fill\" viewBox=\"0 0 16 16\">\n  <path d=\"M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z\"/>\n  <path d=\"m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293z\"/>\n</svg>\n<a style=\"vertical-align: middle;\" href=\"/eecs280-async-lectures\">\n  Table of Contents\n</a>\n<br />\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-file-earmark-slides\" viewBox=\"0 0 16 16\">\n  <path d=\"M5 6a.5.5 0 0 0-.496.438l-.5 4A.5.5 0 0 0 4.5 11h3v2.016c-.863.055-1.5.251-1.5.484 0 .276.895.5 2 .5s2-.224 2-.5c0-.233-.637-.429-1.5-.484V11h3a.5.5 0 0 0 .496-.562l-.5-4A.5.5 0 0 0 11 6H5zm2 3.78V7.22c0-.096.106-.156.19-.106l2.13 1.279a.125.125 0 0 1 0 .214l-2.13 1.28A.125.125 0 0 1 7 9.778z\"/>\n  <path d=\"M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z\"/>\n</svg>\n<a style=\"vertical-align: middle;\" target=\"_blank\" href=\"https://drive.google.com/drive/folders/1I4ZZc3BXyovb-nlMhIRH3tbi9lBqcV4C?usp=sharing\">\n  Slides (Powerpoint, PDF)\n</a>\n<br />\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-github\" viewBox=\"0 0 16 16\">\n<path d=\"M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z\"/>\n</svg>\n<a style=\"vertical-align: middle;\" target=\"_blank\" href=\"https://github.com/jamesjuett/eecs280-async-lectures\">\n  Report issues or make suggestions\n</a>\n</div>\n",
+  "mk_bottom_message": "You've reached the end of this lecture! Your work on any exercises will be saved if you re-open this page in the same web browser.\n\n**Participation Credit**  \nMake sure to sign in to the page, complete each of the exercises, and **double check** the participation indicator at the top left of this page to ensure you've earned credit.",
+  "mk_download_message": "Export your exercise answers to use with another computer or browser.",
+  "mk_saver_message": "Your work on exercises is **automatically** saved in your web browser's local storage. That means you don't need to do anything to save your work as long as:\n- You use the same computer\n- You use the same web browser\n- You don't use incognito or private browsing (which disables local storage)\n\nTo transfer answers between computers or browsers, use the import/export options below.",
+  "assets_dir": "/home/jjuett/eecs280/async-lectures/lectures/lecture14/assets",
+  "allow_clientside_content": true,
+  "sections": [
+    {
+      "section_id": "section_13_1",
+      "title": "Memory Model and The Heap",
+      "mk_description": "\nWhen we define a variable in C++, the lifetime of the corresponding object and the memory it uses at runtime are all managed automatically for us. This specifically applies for both global and local variables, although in different ways.\n\nTo start, consider the `Bird` class and code in `main()` below. `Bird` defines a custom constructor (`Bird()`) and destructor (`~Bird()`) that print out a message when they run. Recall that constructors and destructors are special functions that run at the start/end of an object's lifetime...that means thinking about when these functions run (and print their messages!) is a helpful exercise in thinking precisely about their lifetimes in our code.\n\nTake a moment to mentally trace through the code and predict what you think will be printed. You can use the simulation to check.\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lobster-iframe\" style=\"height: 600px;\" src=\"assets/object_lifetimes.html\"></iframe>\n</div>\n\n<br />\n\nIn the video below, I'll walk through the example above and introduce **dynamic memory**, which allows direct control over object lifetimes.\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/t7pidvzGGoY\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />\n\nTo recap:\n - **Global variables** correspond to objects with static storage duration - their lifetime that extends throughout the entire program.\n - **Local variables** correspond to objects with automatic storage duration - their lifetime is limited to the block (i.e. a set of `{` `}`) in which they are defined and are automatically cleaned up when they go out of scope.\n - **Dynamically allocated objects** are stored in a separate section of memory called the **heap**. The lifetime of such objects is controlled directly by the `new` and `delete` expressions in the code we write (and not automatically managed).",
+      "questions": []
+    },
+    {
+      "section_id": "section_13_2",
+      "title": "Using `new` and `delete`",
+      "mk_description": "\nThe general workflow for using dynamic memory is something like this:\n1. Use the `new` operator to **create** a dynamically allocated object on the heap.\n2. **Keep track of that object's address using a pointer**. The object isn't restricted to any scope and can be used throughout our program.\n3. Once we're finished with the object, give its address (i.e. the pointer we're using to track it) to the `delete` operator, which **destroys** the object and **frees its memory** to be used for something else.\n\nHere's the details:\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/3yre1os6dg0\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />\n",
+      "questions": [
+        {
+          "question_id": "lec13_mole_lifetimes",
+          "title": "Exercise: Dynamic Object Lifetimes",
+          "points": 6,
+          "mk_description": "Let's add dynamic memory with `new` and `delete` to another example like the warm up exercise from earlier. Here, we're working with a `Mole` class rather than `Bird`, since the objects popping in and out of existence in dynamic memory remind me of the old \"Whac-a-Mole\" arcade game.\n\nFor each commented line in the `main()` function below, write in the blank the number of `Mole` objects are currently alive in memory (i.e. their constructor has run, but their destructor has not run yet).",
+          "response": {
+            "kind": "fill_in_the_blank",
+            "content": "\n<table style=\"width: 100%; border: none;\">\n  <tr>\n    <td style=\"width: 275px; padding-right: 15px;\">\n    <div markdown=\"1\">\n      \n```cpp\nclass Mole {\npublic:\n  Mole(int id_in)\n    : id(id_in) {\n    cout << \"Mole ctor: \" << id << endl;\n  }\n\n  ~Mole() {\n    cout << \"Mole dtor: \" << id << endl;\n  }\n\nprivate:\n  int id;\n};\n\nMole * func() {\n  Mole m(123);\n  return new Mole(456);\n}\n```\n    </div>\n    </td>\n    <td>\n    <div markdown=\"1\">\n```cpp\nint main() {\n  Mole m1(1);\n  Mole *mPtr;\n  // Line 1 _BLANK____\n  mPtr = func();\n  // Line 2 _BLANK____\n  delete mPtr;\n  // Line 3 _BLANK____\n  mPtr = new Mole(2);\n  func();\n  // Line 4 _BLANK____\n  delete mPtr;\n  // Line 5 _BLANK____\n  cout << \"all done!\" << endl;\n}\n// Line 6 - after main returns _BLANK____\n```\n    </div>\n    </td>\n  </tr>\n</table>\n            ",
+            "default_grader": {
+              "grader_kind": "manual_regex_fill_in_the_blank",
+              "rubric": [
+                {
+                  "blankIndex": 1,
+                  "title": "Box 1",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "1",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct!",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": ".",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Incorrect. If you get stuck, check the sample solution below.",
+                      "points": 0
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 2,
+                  "title": "Box 2",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "2",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct!",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": ".",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Incorrect. If you get stuck, check the sample solution below.",
+                      "points": 0
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 3,
+                  "title": "Box 3",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "1",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct!",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": ".",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Incorrect. If you get stuck, check the sample solution below.",
+                      "points": 0
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 4,
+                  "title": "Box 4",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "3",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct!",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": ".",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Incorrect. If you get stuck, check the sample solution below.",
+                      "points": 0
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 5,
+                  "title": "Box 5",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "2",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct!",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": ".",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Incorrect. If you get stuck, check the sample solution below.",
+                      "points": 0
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 6,
+                  "title": "Box 6",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "1",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct!",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": ".",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Incorrect. If you get stuck, check the sample solution below.",
+                      "points": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "verifier": {
+            "verifier_kind": "full_credit"
+          },
+          "mk_postscript": "<hr />\n\n<details markdown=\"1\">\n  <summary>Sample solution...</summary>\n  **Line 1**  \n  1 Mole alive. Only `m1` exists at this point. Note that `mPtr` is not an actual `Mole`, it's just a pointer.  \n  \n  **Line 2**  \n  2 Moles alive. The `func()` function created a local `Mole` (with ID 123), but it is destroyed when the function returns. However, it also allocated a new `Mole` (with ID 456) on the heap, which persists and is now pointed to by `mPtr`.\n  \n  **Line 3**  \n  1 Mole alive. We've just deleted the `Mole` with ID 456.\n  \n  **Line 4**  \n  3 Moles alive. We've reassigned `mPtr` to point at a new dynamically allocated `Mole` (with ID 2). We also called `func()` again, which has the side effect of creating another 456 `Mole` on the heap. However, we don't do anything with the returned address from `func()`, and that is ultimately going to cause problems - there's now no way to ever clean up that `Mole`, since we didn't store its address anywhere.\n  \n  **Line 5**  \n  2 Moles alive. We've just deleted the `Mole` with ID 2.\n  \n  **Line 6**  \n  1 Mole alive. The local variable `m1` went out of scope at the end of main and was destroyed. The 456 `Mole` on the heap was never freed. :(\n</details>\n\n<br />"
+        }
+      ]
+    },
+    {
+      "section_id": "section_13_3",
+      "title": "Memory Leaks",
+      "mk_description": "\nA memory leak occurs if we allocate an object with `new` but neglect to release it with `delete`. Why is that problematic? And, how do memory leaks generally show up in code? Let's see...\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/cNaN3R8HLJw\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />\n",
+      "questions": [
+        {
+          "question_id": "lec13_memory_leaks",
+          "title": "Exercise: Memory Leaks",
+          "points": 5,
+          "mk_description": "Which of the following programs run out of memory and crash? Assume the program has 8KB of stack space and 4MB of heap space. Assume each `int` takes up 4 bytes. If the program runs out of memory and crashes, write **\"crash\"** in the box. If the program runs successfully, write **\"ok\"** in the box. Additionally, justify your answer with a desciption of the memory use of the program. ",
+          "response": {
+            "kind": "fill_in_the_blank",
+            "content": "\n<table style=\"width: 100%; border: none;\">\n  <tr>\n    <td style=\"width: 350px; padding-right: 15px;\">\n    <div markdown=\"1\">\n```cpp\nint main() {\n  int *ptr;\n  for (int i = 0; i < 1000000000; ++i) {\n    ptr = new int(i);\n  }\n  delete ptr;\n}\n```\n    </div>\n    </td>\n    <td>\n    <div>\n      [[BOX\n      \n      ]]\n    </div>\n    </td>\n  </tr>\n  <tr>\n    <td style=\"width: 350px; padding-right: 15px;\">\n    <div markdown=\"1\">\n```cpp\nint main() {\n  int x = 10000;\n  for (int i = 0; i < 10000; ++i) {\n    x = i;\n  }\n}\n```\n    </div>\n    </td>\n    <td>\n    <div>\n      [[BOX\n      \n      ]]\n    </div>\n    </td>\n  </tr>\n  <tr>\n    <td style=\"width: 350px; padding-right: 15px;\">\n    <div markdown=\"1\">\n```cpp\nint main() {\n  int arr[10000];\n  for (int i = 0; i < 10000; ++i) {\n    arr[i] = i;\n  }\n}\n```\n    </div>\n    </td>\n    <td>\n    <div>\n      [[BOX\n      \n      ]]\n    </div>\n    </td>\n  </tr>\n  \n  <tr>\n    <td style=\"width: 350px; padding-right: 15px;\">\n    <div markdown=\"1\">\n```cpp\nvoid helper() {\n  int *ptr = new int(10);\n  ptr = new int(20);\n  delete ptr;\n}\n\nint main() {\n  for (int i = 0; i < 1000000000; ++i) {\n    helper();\n  }\n}\n```\n    </div>\n    </td>\n    <td>\n    <div>\n      [[BOX\n      \n      ]]\n    </div>\n    </td>\n  </tr>\n  <tr>\n    <td style=\"width: 350px; padding-right: 15px;\">\n    <div markdown=\"1\">\n```cpp\nint main() {\n  int *arr = new int[10000];\n  for (int i = 0; i < 10000; ++i) {\n    arr[i] = i;\n  }\n  delete[] arr;\n}\n```\n    </div>\n    </td>\n    <td>\n    <div>\n      [[BOX\n      \n      ]]\n    </div>\n    </td>\n  </tr>\n</table>\n            ",
+            "sample_solution": [
+              "crash",
+              "ok",
+              "crash",
+              "crash",
+              "ok"
+            ],
+            "default_grader": {
+              "grader_kind": "manual_regex_fill_in_the_blank",
+              "rubric": [
+                {
+                  "blankIndex": 1,
+                  "title": "Box 1",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "crash|error|memory leak|out of memory",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "The program runs out of heap space. Answer = \"crash\".",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "ok",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "The program runs out of heap space. Answer = \"crash\".",
+                      "points": 0
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 2,
+                  "title": "Box 2",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "ok",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Although the program runs 10,000 iterations of a loop, each iteration reuses the same variables and memory space as the last. Answer = \"ok\".",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "crash|error|memory leak|out of memory",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Although the program runs 10,000 iterations of a loop, each iteration reuses the same variables and memory space as the last. Answer = \"ok\".",
+                      "points": 0
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 3,
+                  "title": "Box 3",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "crash|error|memory leak|out of memory",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "The program runs out of stack space. Answer = \"crash\".",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "ok",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "The program runs out of stack space. Answer = \"crash\".",
+                      "points": 0
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 4,
+                  "title": "Box 4",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "crash|error|memory leak|out of memory",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "The program runs out of heap space. Answer = \"crash\".",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "ok",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "The program runs out of heap space. Answer = \"crash\".",
+                      "points": 0
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 5,
+                  "title": "Box 5",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "ok",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "The program allocates a large array, but the amount of heap space is sufficient. Answer = \"ok\".",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "crash|error|memory leak|out of memory",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "The program allocates a large array, but the amount of heap space is sufficient. Answer = \"ok\".",
+                      "points": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "verifier": {
+            "verifier_kind": "full_credit"
+          },
+          "mk_postscript": "<hr />\nYou're welcome to check your solution with this **walkthrough** video:\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/Fov74Y7KQfA\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />"
+        }
+      ]
+    },
+    {
+      "section_id": "section_13_4",
+      "title": "Double Frees and Improper Deletes",
+      "mk_description": "\nWhile we have to make sure we clean up all the memory that we create with `new` by cleaning it up using `delete`, we also have to watch out for a few potential errors:\n\n- Deleting an object twice usually results in a crash.\n- Deleting a non-heap object usually results in a crash.\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/qdUyIM2I2lI\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />\n\nOne minor fact that's not covered in the video - if a null pointer is given to `delete`, nothing happens (i.e. it doesn't crash or do anything bad!). This is reasonable, if we consider that the behavior of `delete` could be specified as \"destroy the object **(if any)** that this pointer points to\" and that a null pointer indicates that a pointer \"isn't pointing at anything right now\".",
+      "questions": [
+        {
+          "question_id": "lec13_double_free",
+          "title": "Exercise: Double Frees and Improper Deletes",
+          "points": 6,
+          "mk_description": "Which of the following programs run out of memory and crash? Assume the program has 8KB of stack space and 4MB of heap space. Assume each `int` takes up 4 bytes. Describe the memory use of the program and any problems in the box provided.\n\nWhich of the following programs will likely crash due to one of the two `delete` errors mentioned above? If the program contains such an error, write **\"crash\"** in the box and a description of the problem. If the program runs successfully, write **\"ok\"** in the box.",
+          "response": {
+            "kind": "fill_in_the_blank",
+            "content": "\n<table style=\"width: 100%; border: none;\">\n  <tr>\n    <td style=\"width: 350px; padding-right: 15px;\">\n    <div markdown=\"1\">\n```cpp\nint main() {\n  int *ptr1 = new int(1);\n  delete ptr1;\n  ptr1 = new int(2);\n  delete ptr1;\n}\n```\n    </div>\n    </td>\n    <td>\n    <div>\n      [[BOX\n      \n      ]]\n    </div>\n    </td>\n  </tr>\n  <tr>\n    <td style=\"width: 350px; padding-right: 15px;\">\n    <div markdown=\"1\">\n```cpp\nint main() {\n  int *ptr1 = new int(1);\n  ptr1 = new int(2);\n  delete ptr1;\n  delete ptr1;\n}\n```\n    </div>\n    </td>\n    <td>\n    <div>\n      [[BOX\n      \n      ]]\n    </div>\n    </td>\n  </tr>\n  <tr>\n    <td style=\"width: 350px; padding-right: 15px;\">\n    <div markdown=\"1\">\n```cpp\nint main() {\n  int x = 0;\n  int *ptr1 = &x;\n  delete ptr1;\n}\n```\n    </div>\n    </td>\n    <td>\n    <div>\n      [[BOX\n      \n      ]]\n    </div>\n    </td>\n  </tr>\n  \n  <tr>\n    <td style=\"width: 350px; padding-right: 15px;\">\n    <div markdown=\"1\">\n```cpp\nint main() {\n  int *ptr1 = new int(1);\n  delete &ptr1;\n}\n```\n    </div>\n    </td>\n    <td>\n    <div>\n      [[BOX\n      \n      ]]\n    </div>\n    </td>\n  </tr>\n  <tr>\n    <td style=\"width: 350px; padding-right: 15px;\">\n    <div markdown=\"1\">\n```cpp\nint main() {\n  int *ptr1 = new int(1);\n  int *ptr2 = ptr1;\n  delete ptr1;\n  delete ptr2;\n}\n```\n    </div>\n    </td>\n    <td>\n    <div>\n      [[BOX\n      \n      ]]\n    </div>\n    </td>\n  </tr>\n  <tr>\n    <td style=\"width: 350px; padding-right: 15px;\">\n    <div markdown=\"1\">\n```cpp\nint main() {\n  int *ptr;\n  for (int i = 0; i < 10; ++i) {\n    ptr = new int(i);\n  }\n  for (int i = 0; i < 10; ++i) {\n    delete ptr;\n  }\n}\n```\n    </div>\n    </td>\n    <td>\n    <div>\n      [[BOX\n      \n      ]]\n    </div>\n    </td>\n  </tr>\n</table>\n            ",
+            "sample_solution": [
+              "ok",
+              "crash",
+              "crash",
+              "crash",
+              "crash",
+              "crash"
+            ],
+            "default_grader": {
+              "grader_kind": "manual_regex_fill_in_the_blank",
+              "rubric": [
+                {
+                  "blankIndex": 1,
+                  "title": "Box 1",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "ok",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct!",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "crash|error|memory leak|out of memory",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Although delete is used on `ptr1` twice, it is pointing at different objects each time and they are appropriately freed. Answer = \"ok\".",
+                      "points": 0
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 2,
+                  "title": "Box 2",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "crash|error|memory leak|out of memory",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct!",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "ok",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "The program crashes due to a double free. Answer = \"crash\".",
+                      "points": 0
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 3,
+                  "title": "Box 3",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "crash|error|memory leak|out of memory",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct!",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "ok",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "The program crashes due to an attempt to delete `x`, which is not on the heap. Answer = \"crash\".",
+                      "points": 0
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 4,
+                  "title": "Box 4",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "crash|error|memory leak|out of memory",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct!",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "ok",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "The `&` should generally not be used with `delete`. In this case, the program crashes due to an attept to delete `ptr1` itself. Answer = \"crash\".",
+                      "points": 0
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 5,
+                  "title": "Box 5",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "crash|error|memory leak|out of memory",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct!",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "ok",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "The program crashes due to a double free. Answer = \"crash\".",
+                      "points": 0
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 6,
+                  "title": "Box 6",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "crash|error|memory leak|out of memory",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct!",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "ok",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "The program crashes due to a double free. Answer = \"crash\".",
+                      "points": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "verifier": {
+            "verifier_kind": "full_credit"
+          },
+          "mk_postscript": "<hr />\nYou're welcome to check your solution with this **walkthrough** video:\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/sPudJ2qluCM\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />"
+        }
+      ]
+    },
+    {
+      "section_id": "section_13_5",
+      "title": "Dangling Pointers",
+      "mk_description": "We've encountered **dangling pointers** before, but only in relatively unlikely contexts, like returning the address of a local variable. For example:\n\n```cpp\nint * func() {\n  int x = 2;\n  return &x; // bad idea!\n}\n\nint main() {\n  int *ptr = func();\n  // ptr ends up pointing at the dead object left after x went out of scope\n}\n```\n\nHowever, dangling pointers naturally arise any time we `delete` dynamic memory, and we have to be careful not to accidentally use them. This turns out to be somewhat complex.\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/orIlmEIltYo\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />",
+      "questions": [
+        {
+          "question_id": "lec_dangling_pointers_mc",
+          "points": 5,
+          "mk_description": "Which of the following are true about dangling pointers?",
+          "response": {
+            "kind": "multiple_choice",
+            "choices": [
+              "A dangling pointer points to an object whose lifetime has ended (e.g. a local object gone out of scope or dynamic object that has been deleted).",
+              "In some cases, limiting the scope of a pointer variable can reduce the likelihood of accidentally dereferencing a dangling pointer.",
+              "Setting a pointer to `nullptr` after deleting the object it points to can prevent all memory/lifetime related errors.",
+              "After deleting an object through a pointer, it would be safe to re-point that pointer at some other object.",
+              "Potential memory access through dangling pointers and the resulting undefined behavior can lead to security vulnerabilities in a program."
+            ],
+            "multiple": true,
+            "sample_solution": [
+              0,
+              1,
+              3,
+              4
+            ],
+            "default_grader": {
+              "grader_kind": "summation_multiple_choice",
+              "rubric": [
+                {
+                  "points": 1,
+                  "selected": true
+                },
+                {
+                  "points": 1,
+                  "selected": true
+                },
+                {
+                  "points": 1,
+                  "selected": false
+                },
+                {
+                  "points": 1,
+                  "selected": true
+                },
+                {
+                  "points": 1,
+                  "selected": true
+                }
+              ]
+            }
+          },
+          "verifier": {
+            "verifier_kind": "full_credit"
+          }
+        }
+      ]
+    },
+    {
+      "section_id": "section_13_6",
+      "title": "Uses for Dynamic Memory",
+      "mk_description": "Finally, let's briefly discuss some of the many uses of dynamic memory.\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/s8vXcgRCrW0\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />",
+      "questions": []
+    }
+  ],
+  "exam_id": "sp25_lec_15",
+  "credentials_strategy": {
+    "strategy": "google_local",
+    "client_id": "444801118749-m2g9gl3gvvkh5ru959dmka0lsk94d9uq.apps.googleusercontent.com",
+    "auth_endpoint": "https://examma-ray.eecs.umich.edu/public_api/participation/auth/",
+    "message": "Sign in with your @umich.edu Google account to earn participation credit for completing embedded exercises."
+  },
+  "completion": {
+    "threshold": 1,
+    "tooltip": "",
+    "endpoints": {
+      "check": "https://examma-ray.eecs.umich.edu/public_api/participation/me/",
+      "submit": "https://examma-ray.eecs.umich.edu/public_api/participation/me/"
+    },
+    "local_deadline": {
+      "when": {
+        "examma_ray_serialized_datetime": {
+          "iso": "2025-06-03T23:59:59.000-04:00",
+          "timezone": "America/Detroit"
+        }
+      },
+      "grace_minutes": 5
+    }
+  }
+}

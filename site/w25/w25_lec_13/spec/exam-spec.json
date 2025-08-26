@@ -1,0 +1,460 @@
+{
+  "title": "Sorted Data Structures, Templates",
+  "mk_intructions": "\n<link rel=\"icon\" type=\"image/png\" href=\"/eecs280-async-lectures/favicon-96x96.png\" sizes=\"96x96\" />\n<link rel=\"icon\" type=\"image/svg+xml\" href=\"/eecs280-async-lectures/favicon.svg\" />\n<link rel=\"shortcut icon\" href=\"/eecs280-async-lectures/favicon.ico\" />\n<link rel=\"apple-touch-icon\" sizes=\"180x180\" href=\"/eecs280-async-lectures/apple-touch-icon.png\" />\n<meta name=\"apple-mobile-web-app-title\" content=\"Async Lecs\" />\n<link rel=\"manifest\" href=\"/eecs280-async-lectures/site.webmanifest\" />\n<div markdown=1 class=\"alert alert-info\">\n  Continuing from last time, we'll consider another potential implementation of a set, this time based on an underlying array that is kept in sorted order. The addition of a sorting invariant means some of our functions are more complicated (i.e. you can't just put elements wherever), but searching for elements in the array can be done much more efficiently.\n\n  We'll also introduce **templates**, which are a C++ mechanism for compile-time parametric polymorphism and can be used to implement generic containers with flexible element types (e.g. `set<int>` or `set<string>`).\n\n  But first, we'll cover a few miscellaneous topics that didn't fit in the last lecture:  \n  - The difference between the prefix and postfix versions of the `++` and `--` operators.  \n  - Overloading operators with member functions (as opposed to regular, non-member functions).\n  <br />\n  <br />\n  <div style=\"position: absolute; bottom: 5px; right: 10px; font-weight: bold;\">Updated Winter 2025</div>\n</div>\n<style>\n  .lec-video {\n    width: 80%;\n    aspect-ratio: 16/9;\n  }\n\n  iframe.lobster-iframe {\n    border: none;\n    width: 80%;\n    height: 450px;\n    margin-left: auto;\n    margin-right: auto;\n  }\n\n</style>",
+  "mk_questions_message": "\n<div style=\"text-align: left\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-house-fill\" viewBox=\"0 0 16 16\">\n  <path d=\"M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z\"/>\n  <path d=\"m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293z\"/>\n</svg>\n<a style=\"vertical-align: middle;\" href=\"/eecs280-async-lectures\">\n  Table of Contents\n</a>\n<br />\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-file-earmark-slides\" viewBox=\"0 0 16 16\">\n  <path d=\"M5 6a.5.5 0 0 0-.496.438l-.5 4A.5.5 0 0 0 4.5 11h3v2.016c-.863.055-1.5.251-1.5.484 0 .276.895.5 2 .5s2-.224 2-.5c0-.233-.637-.429-1.5-.484V11h3a.5.5 0 0 0 .496-.562l-.5-4A.5.5 0 0 0 11 6H5zm2 3.78V7.22c0-.096.106-.156.19-.106l2.13 1.279a.125.125 0 0 1 0 .214l-2.13 1.28A.125.125 0 0 1 7 9.778z\"/>\n  <path d=\"M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z\"/>\n</svg>\n<a style=\"vertical-align: middle;\" target=\"_blank\" href=\"https://drive.google.com/drive/folders/1wdIk41500J4SILWprRAxB1-c4m8A2Wux\">\n  Slides (Powerpoint, PDF)\n</a>\n<br />\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-github\" viewBox=\"0 0 16 16\">\n<path d=\"M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z\"/>\n</svg>\n<a style=\"vertical-align: middle;\" target=\"_blank\" href=\"https://github.com/jamesjuett/eecs280-async-lectures\">\n  Report issues or make suggestions\n</a>\n</div>\n",
+  "mk_bottom_message": "You've reached the end of this lecture! Your work on any exercises will be saved if you re-open this page in the same web browser.\n\n**Participation Credit**  \nMake sure to sign in to the page, complete each of the exercises, and **double check** the participation indicator at the top left of this page to ensure you've earned credit.",
+  "mk_download_message": "Export your exercise answers to use with another computer or browser.",
+  "mk_saver_message": "Your work on exercises is **automatically** saved in your web browser's local storage. That means you don't need to do anything to save your work as long as:\n- You use the same computer\n- You use the same web browser\n- You don't use incognito or private browsing (which disables local storage)\n\nTo transfer answers between computers or browsers, use the import/export options below.",
+  "assets_dir": "/home/jjuett/eecs280/async-lectures/lectures/lecture13/assets",
+  "allow_clientside_content": true,
+  "sections": [
+    {
+      "section_id": "section_12_1",
+      "title": "Prefix `++` vs. Postfix `++`",
+      "mk_description": "\nEver wanted to know the difference between `++i` and `i++`? Here's the scoop:\n\n        <div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/gY3jOra3kZo\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />\n",
+      "questions": []
+    },
+    {
+      "section_id": "section_12_2",
+      "title": "Member vs. Non-Member Operator Overloads",
+      "mk_description": "\nYou know the only thing cooler than a set ADT? A set ADT with custom operators!\n\nWe'll look at two different examples:\n- `operator<<`, which is implemented as a **non-member** function operator overload.\n- `operator[]`, which is implemented as a **member** function operator overload.\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/8z7QnyRcK0s\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />\n",
+      "questions": [
+        {
+          "question_id": "lec11_intset_operator_plus_equals",
+          "title": "Exercise: Overloading `+=` on `IntSet`",
+          "points": 5,
+          "mk_description": "Let's add a `+=` operator to our `IntSet` class, which allows a nice syntax for adding elements to the set. Here's an example of how we might use it:\n\n```cpp\nclass IntSet {\n  // operator+= overload\n};\nint main() {\n  IntSet set;\n  set += 3;\n  set += 5;\n  cout << set; // {3, 5}\n}\n```\n\nThe `+=` operator can be implemented either as a member function overload or a non-member function overload. Consider each of the potential implementations of `+=` below. For each, indicate how the `operator+=` overload function is being defined (write **\"member\"** or **\"non-member\"**) and whether or not it is implemented correctly (write **\"correct\"** or **\"incorrect\"**).",
+          "response": {
+            "kind": "fill_in_the_blank",
+            "content": "\n<table style=\"width: 100%; border: none;\">\n  <tr>\n    <td style=\"width: 350px; padding-right: 15px;\">\n    <div markdown=\"1\">\n      \n```cpp\n// Version 1\nvoid operator+=(IntSet &s, int v) {\n  s.insert(v);\n}\n```\n    </div>\n    </td>\n    <td>\n    <div>\n      [[BOX\n      \n      \n      ]]\n    </div>\n    </td>\n  </tr>\n  <tr>\n    <td style=\"width: 350px; padding-right: 15px;\">\n    <div markdown=\"1\">\n      \n```cpp\n// Version 2\nvoid IntSet::operator+=(int v) {\n  this->insert(v);\n}\n```\n    </div>\n    </td>\n    <td>\n    <div>\n      [[BOX\n      \n      \n      ]]\n    </div>\n    </td>\n  </tr>\n  <tr>\n    <td style=\"width: 350px; padding-right: 15px;\">\n    <div markdown=\"1\">\n      \n```cpp\n// Version 3\nvoid IntSet::operator+=(IntSet &s, int v) {\n  s.insert(v);\n}\n```\n    </div>\n    </td>\n    <td>\n    <div>\n      [[BOX\n      \n      \n      ]]\n    </div>\n    </td>\n  </tr>\n  \n  <tr>\n    <td style=\"width: 350px; padding-right: 15px;\">\n    <div markdown=\"1\">\n      \n```cpp\n// Version 4\nvoid operator+=(IntSet &s, int v) {\n  this->insert(v);\n}\n```\n    </div>\n    </td>\n    <td>\n    <div>\n      [[BOX\n      \n      \n      ]]\n    </div>\n    </td>\n  </tr>\n  <tr>\n    <td style=\"width: 350px; padding-right: 15px;\">\n    <div markdown=\"1\">\n      \n```cpp\n// Version 5\nvoid IntSet::operator+=(int v) {\n  insert(v);\n}\n```\n    </div>\n    </td>\n    <td>\n    <div>\n      [[BOX\n      \n      \n      ]]\n    </div>\n    </td>\n  </tr>\n</table>\n            ",
+            "default_grader": {
+              "grader_kind": "manual_regex_fill_in_the_blank",
+              "rubric": [
+                {
+                  "blankIndex": 1,
+                  "title": "Box 1",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "incorrect",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "`operator+=` is being implemented as a non-member function. The implementation is correct.",
+                      "points": 0
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "non\\s*-?\\s*member.*correct|correct.*non\\s*-?\\s*member",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "`operator+=` is being implemented as a non-member function. The implementation is correct.",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": ".{12,}",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "`operator+=` is being implemented as a non-member function. The implementation is correct.",
+                      "points": 0
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 2,
+                  "title": "Box 2",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "non\\s*-?\\s*member|incorrect",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "`operator+=` is being implemented as a member function. The implementation is correct.",
+                      "points": 0
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "member.*correct|correct.*member",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "`operator+=` is being implemented as a member function. The implementation is correct.",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": ".{12,}",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "`operator+=` is being implemented as a member function. The implementation is correct.",
+                      "points": 0
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 3,
+                  "title": "Box 3",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "non\\s*-?\\s*member",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "`operator+=` is being implemented as a member function. The implementation is incorrect.",
+                      "points": 0
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "member.*incorrect|incorrect.*member",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "`operator+=` is being implemented as a member function. The implementation is incorrect.",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": ".{12,}",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "`operator+=` is being implemented as a member function. The implementation is incorrect.",
+                      "points": 0
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 4,
+                  "title": "Box 4",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "non\\s*-?\\s*member.*incorrect|incorrect.*non\\s*-?\\s*member",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "`operator+=` is being implemented as a non-member function. The implementation is incorrect.",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": ".{12,}",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "`operator+=` is being implemented as a non-member function. The implementation is incorrect.",
+                      "points": 0
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 5,
+                  "title": "Box 5",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "non\\s*-?\\s*member|incorrect",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "`operator+=` is being implemented as a member function. The implementation is correct.",
+                      "points": 0
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "member.*correct|correct.*member",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "`operator+=` is being implemented as a member function. The implementation is correct.",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": ".{12,}",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "`operator+=` is being implemented as a member function. The implementation is correct.",
+                      "points": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "verifier": {
+            "verifier_kind": "full_credit"
+          },
+          "mk_postscript": "<hr />\nYou're welcome to check your solution with this **walkthrough** video:\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/Z4FmzZ4ppQQ\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />"
+        }
+      ]
+    },
+    {
+      "section_id": "section_12_3",
+      "title": "A Sorted `IntSet`",
+      "mk_description": "\nLet's make a key change to the fundamental strategy and data representation for our set - keeping all the elements in sorted order - and see if we can improve the performance of the data structure...\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/-ljA2Ecmn74\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />\n",
+      "questions": [
+        {
+          "question_id": "lec12_sortedintset_insert",
+          "title": "Exercise: `SortedIntSet::insert()`",
+          "points": 1,
+          "mk_description": "Implement the `insert()` member function for the `SortedIntSet` class. If the given value is not already in the set, it should be inserted into the `elts` array at the appropriate position to maintain the sorting invariant. Elements greater than the inserted value will need to be shifted to the right to create the space to insert the element. `elts_size` should also increase by 1. However, if the value is already in the array, `insert()` does nothing.\n\nThe `main()` function provided includes testing code to verify your implementation.",
+          "response": {
+            "kind": "iframe",
+            "src": "assets/sortedintset_insert.html",
+            "element_class": "lobster-iframe",
+            "element_style": "height: 675px;",
+            "default_grader": {
+              "grader_kind": "standard_iframe",
+              "rubric": [
+                {
+                  "points": 1,
+                  "description": "Exercise must be complete.",
+                  "property": "complete",
+                  "value": true
+                }
+              ]
+            }
+          },
+          "verifier": {
+            "verifier_kind": "full_credit"
+          },
+          "mk_postscript": "<hr />\nYou're welcome to check your solution with this **walkthrough** video:\n\n**Note:** This walkthrough uses several different files for the code, which is different than the above, where we had everthing embedded into one file. (The solution for `insert()` is the same, though!)\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/TR4nYlsL74g\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />"
+        }
+      ]
+    },
+    {
+      "section_id": "section_12_4",
+      "title": "Templates",
+      "mk_description": "\nFinally, let's use **templates** to implement a generic set container with a flexible element type.\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/vQRn75mtf0w\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />\n",
+      "questions": [
+        {
+          "question_id": "lec12_fillFromArray",
+          "title": "Exercise: `fillFromArray()` Function Template",
+          "points": 4,
+          "mk_description": "Fill in the blanks to make the function work as intended (the `main` function shows examples).",
+          "response": {
+            "kind": "fill_in_the_blank",
+            "content": "```cpp\ntemplate <_BLANK_______________________________>\nvoid fillFromArray(_BLANK_______________________________ set, _BLANK_______________________ arr, int n) {\n  for (int i = 0; i < n; ++i) {\n    _BLANK_______________________________\n  }\n}\nint main() {\n  UnsortedSet<int> set1;\n  int arr1[4] = { 1, 2, 3, 2 };\n  fillFromArray(set1, arr1, 4); // set1 now contains 1, 2, 3\n  UnsortedSet<char> set2;\n  char arr2[3] = { 'a', 'b', 'a' };\n  fillFromArray(set2, arr2, 3); // set2 now contains 'a', 'b'\n}\n```",
+            "default_grader": {
+              "grader_kind": "manual_regex_fill_in_the_blank",
+              "rubric": [
+                {
+                  "blankIndex": 1,
+                  "title": "Box 1",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "^\\s*(typename|class)\\s+[a-zA-Z0-9_]+\\s*$",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct!",
+                      "points": 1
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 2,
+                  "title": "Box 2",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "int",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Make sure not to hardcode `<int>` on the `UnsortedSet`. Instead, plug in the type from your template parameter.",
+                      "points": 0
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "^\\s*UnsortedSet\\s*<\\s*[a-zA-Z0-9_]+\\s*>\\s*&\\s*$",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct!",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "^\\s*UnsortedSet\\s*&\\s*<\\s*[a-zA-Z0-9_]+\\s*>\\s*$",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Almost! Your `&` is misplaced.",
+                      "points": 0
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "^\\s*UnsortedSet\\s*<\\s*[a-zA-Z0-9_]+\\s*>\\s*$",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Make sure to pass the `UnsortedSet` by reference to ensure elements are actually added to the original (not just to a local copy).",
+                      "points": 0
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "^\\s*UnsortedSet\\s*$",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "The UnsortedSet parameter will need to specify the element type as well, i.e. `UnsortedSet<____>` with the `____` replaced by your template parameter.",
+                      "points": 0
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 3,
+                  "title": "Box 3",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "int",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Make sure not to hardcode `int` as the element type of the array. Instead, use the type from your template parameter.",
+                      "points": 0
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "^\\s*const\\s*[a-zA-Z0-9_]+\\s*\\*\\s*$",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct!",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "^\\s*[a-zA-Z0-9_]+\\s*const\\s*\\*\\s*$",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct!",
+                      "points": 1
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "^\\s*[a-zA-Z0-9_]+\\s*\\*\\s*$",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "The element type should be const qualified here since the function does not modify the source array.",
+                      "points": 0
+                    },
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": "\\[.*\\]",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Given the placement of the fill-in-the-blank boxes, you'll need to pass the array parameter by pointer (recall that all arrays are ultimately passed this way due to array decay).",
+                      "points": 0
+                    }
+                  ]
+                },
+                {
+                  "blankIndex": 4,
+                  "title": "Box 4",
+                  "points": 1,
+                  "description": "",
+                  "patterns": [
+                    {
+                      "pattern": {
+                        "examma_ray_serialized_regex": {
+                          "source": ".*insert.*arr.*i",
+                          "flags": "i"
+                        }
+                      },
+                      "explanation": "Correct!",
+                      "points": 1
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "verifier": {
+            "verifier_kind": "full_credit"
+          },
+          "mk_postscript": "<hr />\nYou're welcome to check your solution with this **walkthrough** video:\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/7tyRQjYejw0\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />"
+        }
+      ]
+    }
+  ],
+  "exam_id": "w25_lec_13",
+  "credentials_strategy": {
+    "strategy": "google_local",
+    "client_id": "444801118749-m2g9gl3gvvkh5ru959dmka0lsk94d9uq.apps.googleusercontent.com",
+    "auth_endpoint": "https://examma-ray.eecs.umich.edu/public_api/participation/auth/",
+    "message": "Sign in with your @umich.edu Google account to earn participation credit for completing embedded exercises."
+  },
+  "completion": {
+    "threshold": 1,
+    "tooltip": "",
+    "endpoints": {
+      "check": "https://examma-ray.eecs.umich.edu/public_api/participation/me/",
+      "submit": "https://examma-ray.eecs.umich.edu/public_api/participation/me/"
+    },
+    "local_deadline": {
+      "when": {
+        "examma_ray_serialized_datetime": {
+          "iso": "2025-02-24T23:59:59.000-05:00",
+          "timezone": "America/Detroit"
+        }
+      },
+      "grace_minutes": 5
+    }
+  }
+}

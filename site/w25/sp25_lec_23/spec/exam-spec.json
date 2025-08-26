@@ -1,0 +1,100 @@
+{
+  "title": "Binary Search Trees, Sets, and Maps",
+  "mk_intructions": "\n<link rel=\"icon\" type=\"image/png\" href=\"/eecs280-async-lectures/favicon-96x96.png\" sizes=\"96x96\" />\n<link rel=\"icon\" type=\"image/svg+xml\" href=\"/eecs280-async-lectures/favicon.svg\" />\n<link rel=\"shortcut icon\" href=\"/eecs280-async-lectures/favicon.ico\" />\n<link rel=\"apple-touch-icon\" sizes=\"180x180\" href=\"/eecs280-async-lectures/apple-touch-icon.png\" />\n<meta name=\"apple-mobile-web-app-title\" content=\"Async Lecs\" />\n<link rel=\"manifest\" href=\"/eecs280-async-lectures/site.webmanifest\" />\n\n<div markdown=1 class=\"alert alert-info\">\nThis lecture covers **Binary Search Trees (BSTs)**, which are a special kind of binary tree that maintains a sorting invariant on its elements. It combines the advantages of a sorted array (i.e. fast lookup with binary search) with the flexibility of a linked list (i.e. efficient insert/remove operations anywhere in the data structure).\n\nBSTs are the foundation of \"industry-strength\" implementations of several application-oriented data structures, including sets and maps. We'll particularly focus on maps, since we haven't discussed them previously and they are a key part of project 6 in EECS 280.\n<div style=\"position: absolute; bottom: 5px; right: 10px; font-weight: bold;\">Updated Spring 2025</div>\n</div>\n</div>\n<div class=\"alert alert-secondary\" role=\"alert\" markdown=\"1\">\n<h5><span class=\"badge badge-success\">Spring 2025</span></h5>\nIn some of the videos for this lecture, I might refer to implementing a binary search tree or map in project 5. That's project 6 this term.\n</div>\n<style>\n  .lec-video {\n    width: 80%;\n    aspect-ratio: 16/9;\n  }\n\n  iframe.lobster-iframe {\n    border: none;\n    width: 80%;\n    height: 450px;\n    margin-left: auto;\n    margin-right: auto;\n  }\n\n</style>\n  ",
+  "mk_questions_message": "\n<div style=\"text-align: left\">\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-house-fill\" viewBox=\"0 0 16 16\">\n  <path d=\"M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z\"/>\n  <path d=\"m8 3.293 6 6V13.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 13.5V9.293z\"/>\n</svg>\n<a style=\"vertical-align: middle;\" href=\"/eecs280-async-lectures\">\n  Table of Contents\n</a>\n<br />\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-file-earmark-slides\" viewBox=\"0 0 16 16\">\n  <path d=\"M5 6a.5.5 0 0 0-.496.438l-.5 4A.5.5 0 0 0 4.5 11h3v2.016c-.863.055-1.5.251-1.5.484 0 .276.895.5 2 .5s2-.224 2-.5c0-.233-.637-.429-1.5-.484V11h3a.5.5 0 0 0 .496-.562l-.5-4A.5.5 0 0 0 11 6H5zm2 3.78V7.22c0-.096.106-.156.19-.106l2.13 1.279a.125.125 0 0 1 0 .214l-2.13 1.28A.125.125 0 0 1 7 9.778z\"/>\n  <path d=\"M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z\"/>\n</svg>\n<a style=\"vertical-align: middle;\" target=\"_blank\" href=\"https://drive.google.com/drive/folders/1I4ZZc3BXyovb-nlMhIRH3tbi9lBqcV4C?usp=sharing\">\n  Slides (Powerpoint, PDF)\n</a>\n<br />\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-github\" viewBox=\"0 0 16 16\">\n<path d=\"M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z\"/>\n</svg>\n<a style=\"vertical-align: middle;\" target=\"_blank\" href=\"https://github.com/jamesjuett/eecs280-async-lectures\">\n  Report issues or make suggestions\n</a>\n</div>\n",
+  "mk_bottom_message": "You've reached the end of this lecture! Your work on any exercises will be saved if you re-open this page in the same web browser.\n\n**Participation Credit**  \nMake sure to sign in to the page, complete each of the exercises, and **double check** the participation indicator at the top left of this page to ensure you've earned credit.",
+  "mk_download_message": "Export your exercise answers to use with another computer or browser.",
+  "mk_saver_message": "Your work on exercises is **automatically** saved in your web browser's local storage. That means you don't need to do anything to save your work as long as:\n- You use the same computer\n- You use the same web browser\n- You don't use incognito or private browsing (which disables local storage)\n\nTo transfer answers between computers or browsers, use the import/export options below.",
+  "assets_dir": "/home/jjuett/eecs280/async-lectures/lectures/lecture22/assets",
+  "allow_clientside_content": true,
+  "sections": [
+    {
+      "section_id": "section_21_1",
+      "title": "Intro to Binary Search Trees",
+      "mk_description": "\nIn essence, a binary search tree is a regular binary tree where each node's left subtree contains lower values and right subtree contains higher values. Let's take a look at some specifics as well as the reason this leads to efficient performance.\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/8w_0IkymhhY\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />",
+      "questions": []
+    },
+    {
+      "section_id": "section_21_2",
+      "title": "Recursive Functions on BSTs",
+      "mk_description": "\nWe can work with binary search trees using a similar recursive approach to regular binary trees, except that we can make an informed decision about which subtree to explore based on the sorting invariant.\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/dBZQHTba1Ps\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />\n",
+      "questions": [
+        {
+          "question_id": "lec21_bst_contains",
+          "title": "Exercise: `bst_contains()`",
+          "points": 1,
+          "mk_description": "Implement the `bst_contains()` function, introduced at the end of the video above.",
+          "response": {
+            "kind": "iframe",
+            "src": "assets/bst_contains.html",
+            "element_class": "lobster-iframe",
+            "element_style": "height: 675px;",
+            "default_grader": {
+              "grader_kind": "standard_iframe",
+              "rubric": [
+                {
+                  "points": 1,
+                  "description": "Exercise must be complete.",
+                  "property": "complete",
+                  "value": true
+                }
+              ]
+            }
+          },
+          "verifier": {
+            "verifier_kind": "full_credit"
+          },
+          "mk_postscript": "<hr />\nYou're welcome to check your solution with this **walkthrough** video.\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/KH2OQcbJAoM\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />"
+        }
+      ]
+    },
+    {
+      "section_id": "section_21_3",
+      "title": "BST Implementation on Project 6",
+      "mk_description": "\nIt's also worth a bit of time to take a look at how a binary search tree could be realized as a C++ class, including some of the specifics for the implementation you'll work with in EECS 280 project 6. (This video was recorded in a previous term, when it was project 5.)\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/T-RWJ_-Mt6E\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />",
+      "questions": []
+    },
+    {
+      "section_id": "section_21_4",
+      "title": "Building a Set on a BST",
+      "mk_description": "Now, let's turn to some useful data structures implemented via a binary search tree.\nFirst, we'll consider a BST-based set, which will outperform the other array-based implementations we've seen previously. (Please ignore the references to the classifier application where you use a map... you've already done that this term in project 4.)\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/8wehWSpAM6I\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />\n",
+      "questions": []
+    },
+    {
+      "section_id": "section_21_5",
+      "title": "Building a Map on a BST",
+      "mk_description": "<div class=\"alert alert-secondary\" role=\"alert\" markdown=\"1\">\n<h5><span class=\"badge badge-success\">Spring 2025</span></h5>\nWe've covered the general idea of a map and its interface earlier this term. The video below contains a brief re-introduction to maps, but also new material on implementing a map using a BST (if you want to skip the review, jump to ~3 minutes).\n</div>\n\nIn this video, we'll introduce the idea of a map as an associative container where we can store and retrieve *values* according to a particular *key*. Then we'll look at the fundamental approach we could use to implement a map with a BST.\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/8cdFFouBjvs\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />",
+      "questions": []
+    },
+    {
+      "section_id": "section_21_6",
+      "title": "`Map` Implementation",
+      "mk_description": "Finally, a few practical tips and tricks for `Map.h` in project 6.\n\nLet's take a tour of each component in the `Map` class, including the BST member variable (i.e. the \"has-a\" pattern), the template parameters, and a custom comparator to compare key-value pairs in the BST based on the keys only.\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/Feou0OEHEPQ\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />\n\n\nHere's also an example of implementing a `Map` function based on the underlying `BinarySearchTree`.\n\n<div style=\"text-align: center;\">\n  <iframe class=\"lec-video\" src=\"https://www.youtube.com/embed/7NWye5g4syU\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n</div>\n<br />",
+      "questions": []
+    }
+  ],
+  "exam_id": "sp25_lec_23",
+  "credentials_strategy": {
+    "strategy": "google_local",
+    "client_id": "444801118749-m2g9gl3gvvkh5ru959dmka0lsk94d9uq.apps.googleusercontent.com",
+    "auth_endpoint": "https://examma-ray.eecs.umich.edu/public_api/participation/auth/",
+    "message": "Sign in with your @umich.edu Google account to earn participation credit for completing embedded exercises."
+  },
+  "completion": {
+    "threshold": 1,
+    "tooltip": "",
+    "endpoints": {
+      "check": "https://examma-ray.eecs.umich.edu/public_api/participation/me/",
+      "submit": "https://examma-ray.eecs.umich.edu/public_api/participation/me/"
+    },
+    "local_deadline": {
+      "when": {
+        "examma_ray_serialized_datetime": {
+          "iso": "2025-06-17T23:59:59.000-04:00",
+          "timezone": "America/Detroit"
+        }
+      },
+      "grace_minutes": 5
+    }
+  }
+}

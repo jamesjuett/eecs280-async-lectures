@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="EECS 280 Async Lectures" />
+  <title>EECS 280 Async Lectures</title>
+  
+  <link rel="icon" type="image/png" href="/eecs280-async-lectures/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/eecs280-async-lectures/favicon.svg" />
+  <link rel="shortcut icon" href="/eecs280-async-lectures/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/eecs280-async-lectures/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="Async Lecs" />
+  <link rel="manifest" href="/eecs280-async-lectures/site.webmanifest" />
+
+  <!-- Fomantic UI CSS library
+       https://fomantic-ui.com/introduction/getting-started.html#using-a-cdn-provider -->
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.2/dist/semantic.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.2/dist/semantic.min.css" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://accounts.google.com/gsi/client" async></script>
+  
+
+  <style>
+    ui.list > .item > i.icon {
+      font-family: unset;
+    } 
+  </style>
+
+  <script>
+
+    const PARTICIPATION_TOKEN_LOCAL_STORAGE_KEY = "examma-ray-participation-token";
+
+    async function updateUser(participation_token) {
+
+      // const lec_ids = [
+      //   "f24_lec_01",
+      //   "lec_02_procedural_abstraction_and_the_call_stack",
+      //   "lec_03_pointers",
+      //   "lec_04_arrays",
+      //   "lec_05_const_structs_c_style_adts",
+      //   "lec_06_streams_and_io",
+      //   "lec_07_cstrings",
+      //   "lec_08_adts_in_cpp",
+      //   "lec_09_inheritance",
+      //   "lec_10_polymorphism",
+      //   "lec_11_containers_1",
+      //   "lec_12_containers_2",
+      //   "lec_13_dynamic_memory",
+      //   "lec_14_raii_growable_containers",
+      //   "lec_15_deep_copies_and_the_big_three",
+      //   "lec_16_linked_lists",
+      //   "lec_17_iterators",
+      //   "lec_18_functors",
+      //   "lec_19_recursion_and_tail_recursion",
+      //   "lec_20_structural_recursion",
+      //   "lec_21_bsts_sets_and_maps",
+      //   "lec_22_error_handling_and_exceptions",
+      // ];
+
+      // lec_ids.forEach(lec_id => {
+      //   const storage_key = `${lec_id}-eecs280-eecs280-${lec_id}`;
+      //   const submission = localStorage.getItem(storage_key);
+      //   if (!submission) {
+      //     return;
+      //   }
+      //   axios({
+      //     url: `https://examma-ray.eecs.umich.edu/public_api/participation/me/${lec_id}/submission`,
+      //     method: "PUT",
+      //     data: {
+      //       submission: JSON.stringify(submission, null, 2)
+      //     },
+      //     headers: {
+      //       "Authorization": participation_token
+      //     }
+      //   });
+      // });
+
+      const participation_response = await axios({
+        url: "https://examma-ray.eecs.umich.edu/public_api/participation/me/",
+        method: "GET",
+        headers: {
+          'Authorization': participation_token
+        }
+      });
+
+      const participation = participation_response.data;
+
+      if (Array.isArray(participation)) {
+        participation.forEach(lec => {
+          $(`#participation-icon-${lec.exam_id}`).css("visibility", "visible");
+        })
+      }
+    }
+
+    async function on_google_sign_in(response) {
+      const email = JSON.parse(atob(response.credential.split(".")[1])).email;
+      const auth_response = await axios({
+        url: "https://examma-ray.eecs.umich.edu/public_api/participation/auth/",
+        method: "POST",
+        headers: {
+          'Authorization': response.credential
+        }
+      });
+
+      if (auth_response.status === 201) {
+        const participation_token = auth_response.data.participation_token;
+        if (participation_token && participation_token !== "") {
+          localStorage.setItem(PARTICIPATION_TOKEN_LOCAL_STORAGE_KEY, participation_token);
+          updateUser(participation_token);
+        }
+      }
+    }
+
+    const participation_token = localStorage.getItem(PARTICIPATION_TOKEN_LOCAL_STORAGE_KEY);
+    if (participation_token && participation_token !== "") {
+      updateUser(participation_token);
+    }
+    
+  </script>
+
+</head>
+
+
+<body>
+  <br />
+  <div class="ui text container">
+
+    <!-- Header and description -->
+    <h1>
+      EECS 280 Asynchronous Lectures
+      <div
+        class="g_id_signin"
+        style="display: inline-block; vertical-align: middle;"
+        data-type="standard"
+        data-shape="rectangular"
+        data-theme="outline"
+        data-text="signin_with"
+        data-size="large"
+        data-logo_alignment="left"
+      >
+      </div>
+      <div id="g_id_onload"
+        data-client_id="444801118749-m2g9gl3gvvkh5ru959dmka0lsk94d9uq.apps.googleusercontent.com"
+        data-context="signin"
+        data-ux_mode="popup"
+        data-callback="on_google_sign_in"
+        data-auto_prompt="false"
+      ></div>
+    </h1>
+
+    
+    <div class="inline">
+      <i>James Juett, The University of Michigan</i>
+    </div>
+    <br />
+
+    
+
+   <div class="ui info icon message" style="font-size: 11pt;">
+      <i class="info circle icon"></i>
+      <div class="content">
+        <div class="header">Winter 2025 Archive</div>
+        <p>
+          This is an archive of the Winter 2025 async lectures. You're welcome to use them for reference. If you're a new Winter 2025 student, don't use these.
+        </p>
+      </div>
+    </div>
+    <p><b>EECS 280 Winter 2025 Async Lectures Archive</b></p>
+    <table>
+      <tr>
+        <td style="width: 6em;">
+          <span id="participation-icon-w25_lec_01" class="ui green icon label" style="visibility: hidden;" data-tooltip="You've earned participation credit for this lecture.">
+            <i class="ui check square outline icon"></i>
+          </span>
+          <span class="ui blue label" data-tooltip="This lecture has been updated for Winter 2025">W25</span>
+        </td>
+        <td style="width: 7em;">Wed Jan 8</td>
+        <td>
+          <!-- <span style="color: #888">1 Course Introduction, Intro to C++</span> -->
+          <a href="w25/w25_lec_01/exams/eecs280-eecs280-w25_lec_01.html">1 Course Introduction, Intro to C++</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 6em;">
+          <span id="participation-icon-w25_lec_02" class="ui green icon label" style="visibility: hidden;" data-tooltip="You've earned participation credit for this lecture.">
+            <i class="ui check square outline icon"></i>
+          </span>
+          <span class="ui blue label" data-tooltip="This lecture has been updated for Winter 2025">W25</span>
+        </td>
+        <td style="width: 7em;">Mon Jan 13</td>
+        <td>
+          <!-- <span style="color: #888">2 Types, Control Structures, and Procedural Abstraction</span> -->
+          <a href="w25/w25_lec_02/exams/eecs280-eecs280-w25_lec_02.html">2 Types, Control Structures, and Procedural Abstraction</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 6em;">
+          <span id="participation-icon-w25_lec_03" class="ui green icon label" style="visibility: hidden;" data-tooltip="You've earned participation credit for this lecture.">
+            <i class="ui check square outline icon"></i>
+          </span>
+          <span class="ui blue label" data-tooltip="This lecture has been updated for Winter 2025">W25</span>
+        </td>
+        <td style="width: 7em;">Wed Jan 15</td>
+        <td>
+          <!-- <span style="color: #888">4 Machine Model, Part 1</span> -->
+          <a href="w25/w25_lec_03/exams/eecs280-eecs280-w25_lec_03.html">3 Machine Model, Part 1</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 6em;">
+          <span id="participation-icon-w25_lec_04" class="ui green icon label" style="visibility: hidden;" data-tooltip="You've earned participation credit for this lecture.">
+            <i class="ui check square outline icon"></i>
+          </span>
+          <span class="ui blue label" data-tooltip="This lecture has been updated for Winter 2025">W25</span>
+        </td>
+        <td style="width: 7em;">Wed Jan 22</td>
+        <td>
+          <!-- <span style="color: #888">4 Machine Model, Part 2</span> -->
+          <a href="w25/w25_lec_04/exams/eecs280-eecs280-w25_lec_04.html">4 Machine Model, Part 2</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 6em;">
+          <span id="participation-icon-w25_lec_05" class="ui green icon label" style="visibility: hidden;" data-tooltip="You've earned participation credit for this lecture.">
+            <i class="ui check square outline icon"></i>
+          </span>
+          <span class="ui blue label" data-tooltip="This lecture has been updated for Winter 2025">W25</span>
+        </td>
+        <td style="width: 7em;">Mon Jan 27</td>
+        <td>
+          <!-- <span style="color: #888">5 const, Structs, and C-Style ADTs</span> -->
+          <a href="w25/w25_lec_05/exams/eecs280-eecs280-w25_lec_05.html">5 const, Structs, and C-Style ADTs</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 6em;">
+          <span id="participation-icon-w25_lec_06" class="ui green icon label" style="visibility: hidden;" data-tooltip="You've earned participation credit for this lecture.">
+            <i class="ui check square outline icon"></i>
+          </span>
+          <span class="ui blue label" data-tooltip="This lecture has been updated for Winter 2025">W25</span>
+        </td>
+        <td style="width: 7em;">Wed Jan 29</td>
+        <td>
+          <!-- <span style="color: #888">6 Streams and I/O</span> -->
+          <a href="w25/w25_lec_06/exams/eecs280-eecs280-w25_lec_06.html">6 Streams and I/O</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 6em;">
+          <span id="participation-icon-w25_lec_07" class="ui green icon label" style="visibility: hidden;" data-tooltip="You've earned participation credit for this lecture.">
+            <i class="ui check square outline icon"></i>
+          </span>
+          <span class="ui blue label" data-tooltip="This lecture has been updated for Winter 2025">W25</span>
+        </td>
+        <td style="width: 7em;">Mon Feb 3</td>
+        <td>
+          <!-- <span style="color: #888">7 Program Design and Debugging</span> -->
+          <a href="w25/w25_lec_07/exams/eecs280-eecs280-w25_lec_07.html">7 Program Design and Debugging</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 6em;">
+          <span id="participation-icon-w25_lec_08" class="ui green icon label" style="visibility: hidden;" data-tooltip="You've earned participation credit for this lecture.">
+            <i class="ui check square outline icon"></i>
+          </span>
+          <span class="ui blue label" data-tooltip="This lecture has been updated for Winter 2025">W25</span>
+        </td>
+        <td style="width: 7em;">Wed Feb 5</td>
+        <td>
+          <!-- <span style="color: #888">8 Abstract Data Types in C++</span> -->
+          <a href="w25/w25_lec_08/exams/eecs280-eecs280-w25_lec_08.html">8 Abstract Data Types in C++</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 6em;">
+          <span id="participation-icon-w25_lec_09" class="ui green icon label" style="visibility: hidden;" data-tooltip="You've earned participation credit for this lecture.">
+            <i class="ui check square outline icon"></i>
+          </span>
+          <span class="ui blue label" data-tooltip="This lecture has been updated for Winter 2025">W25</span>
+        </td>
+        <td style="width: 7em;">Mon Feb 10</td>
+        <td>
+          <!-- <span style="color: #888">9 Operator Overloading and Inheritance</span> -->
+          <a href="w25/w25_lec_09/exams/eecs280-eecs280-w25_lec_09.html">9 Operator Overloading and Inheritance</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 6em;">
+          <span id="participation-icon-w25_lec_10" class="ui green icon label" style="visibility: hidden;" data-tooltip="You've earned participation credit for this lecture.">
+            <i class="ui check square outline icon"></i>
+          </span>
+          <span class="ui blue label" data-tooltip="This lecture has been updated for Winter 2025">W25</span>
+        </td>
+        <td style="width: 7em;">Wed Feb 12</td>
+        <td>
+          <!-- <span style="color: #888">10 Polymorphism</span> -->
+          <a href="w25/w25_lec_10/exams/eecs280-eecs280-w25_lec_10.html">10 Polymorphism</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 6em;">
+          <span id="participation-icon-w25_lec_11" class="ui green icon label" style="visibility: hidden;" data-tooltip="You've earned participation credit for this lecture.">
+            <i class="ui check square outline icon"></i>
+          </span>
+          <span class="ui blue label" data-tooltip="This lecture has been updated for Winter 2025">W25</span>
+        </td>
+        <td style="width: 7em;">Mon Feb 17</td>
+        <td>
+          <!-- <span style="color: #888">11 Arrays, Pointer Arithmetic, and C-Style Strings </span> -->
+          <a href="w25/w25_lec_11/exams/eecs280-eecs280-w25_lec_11.html">11 Arrays, Pointer Arithmetic, and C-Style Strings</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 6em;">
+          <span id="participation-icon-w25_lec_12" class="ui green icon label" style="visibility: hidden;" data-tooltip="You've earned participation credit for this lecture.">
+            <i class="ui check square outline icon"></i>
+          </span>
+          <span class="ui blue label" data-tooltip="This lecture has been updated for Winter 2025">W25</span>
+        </td>
+        <td style="width: 7em;">Wed Feb 19</td>
+        <td>
+          <!-- <span style="color: #888">12 Array-Based Data Structures, Time Complexity</span> -->
+          <a href="w25/w25_lec_12/exams/eecs280-eecs280-w25_lec_12.html">12 Array-Based Data Structures, Time Complexity</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 6em;">
+          <span id="participation-icon-w25_lec_13" class="ui green icon label" style="visibility: hidden;" data-tooltip="You've earned participation credit for this lecture.">
+            <i class="ui check square outline icon"></i>
+          </span>
+          <span class="ui blue label" data-tooltip="This lecture has been updated for Winter 2025">W25</span>
+        </td>
+        <td style="width: 7em;">Mon Feb 24</td>
+        <td>
+          <!-- <span style="color: #888">13 Sorted Data Structures, Templates</span> -->
+          <a href="w25/w25_lec_13/exams/eecs280-eecs280-w25_lec_13.html">13 Sorted Data Structures, Templates</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 6em;">
+          <span id="participation-icon-w25_lec_14" class="ui green icon label" style="visibility: hidden;" data-tooltip="You've earned participation credit for this lecture.">
+            <i class="ui check square outline icon"></i>
+          </span>
+          <span class="ui blue label" data-tooltip="This lecture has been updated for Winter 2025">W25</span>
+        </td>
+        <td style="width: 7em;">Wed Feb 26</td>
+        <td>
+          <!-- <span style="color: #888">14 Containers and Iterators</span> -->
+          <a href="w25/w25_lec_14/exams/eecs280-eecs280-w25_lec_14.html">14 Containers and Iterators</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 6em;">
+          <span id="participation-icon-w25_lec_15" class="ui green icon label" style="visibility: hidden;" data-tooltip="You've earned participation credit for this lecture.">
+            <i class="ui check square outline icon"></i>
+          </span>
+          <span class="ui blue label" data-tooltip="This lecture has been updated for Winter 2025">W25</span>
+        </td>
+        <td style="width: 7em;">Mon Mar 10</td>
+        <td>
+          <!-- <span style="color: #888">15 Memory Models and Dynamic Memory</span> -->
+          <a href="w25/w25_lec_15/exams/eecs280-eecs280-w25_lec_15.html">15 Memory Models and Dynamic Memory</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 6em;">
+          <span id="participation-icon-w25_lec_16" class="ui green icon label" style="visibility: hidden;" data-tooltip="You've earned participation credit for this lecture.">
+            <i class="ui check square outline icon"></i>
+          </span>
+          <span class="ui blue label" data-tooltip="This lecture has been updated for Winter 2025">W25</span>
+        </td>
+        <td style="width: 7em;">Wed Mar 12</td>
+        <td>
+          <!-- <span style="color: #888">16 RAII and Growable Containers</span> -->
+          <a href="w25/w25_lec_16/exams/eecs280-eecs280-w25_lec_16.html">16 RAII and Growable Containers</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 6em;">
+          <span id="participation-icon-w25_lec_17" class="ui green icon label" style="visibility: hidden;" data-tooltip="You've earned participation credit for this lecture.">
+            <i class="ui check square outline icon"></i>
+          </span>
+          <span class="ui blue label" data-tooltip="This lecture has been updated for Winter 2025">W25</span>
+        </td>
+        <td style="width: 7em;">Wed Mar 19</td>
+        <td>
+          <!-- <span style="color: #888">17 Deep Copies and The Big Three</span> -->
+          <a href="w25/w25_lec_17/exams/eecs280-eecs280-w25_lec_17.html">17 Deep Copies and The Big Three</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 6em;">
+          <span id="participation-icon-w25_lec_18" class="ui green icon label" style="visibility: hidden;" data-tooltip="You've earned participation credit for this lecture.">
+            <i class="ui check square outline icon"></i>
+          </span>
+          <span class="ui blue label" data-tooltip="This lecture has been updated for Winter 2025">W25</span>
+        </td>
+        <td style="width: 7em;">Mon Mar 24</td>
+        <td>
+          <!-- <span style="color: #888">18 Linked Lists</span> -->
+          <a href="w25/w25_lec_18/exams/eecs280-eecs280-w25_lec_18.html">18 Linked Lists</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 6em;">
+          <span id="participation-icon-w25_lec_19" class="ui green icon label" style="visibility: hidden;" data-tooltip="You've earned participation credit for this lecture.">
+            <i class="ui check square outline icon"></i>
+          </span>
+          <span class="ui blue label" data-tooltip="This lecture has been updated for Winter 2025">W25</span>
+        </td>
+        <td style="width: 7em;">Wed Mar 26</td>
+        <td>
+          <!-- <span style="color: #888">19 Iterators</span> -->
+          <a href="w25/w25_lec_19/exams/eecs280-eecs280-w25_lec_19.html">19 Iterators</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 6em;">
+          <span id="participation-icon-w25_lec_20" class="ui green icon label" style="visibility: hidden;" data-tooltip="You've earned participation credit for this lecture.">
+            <i class="ui check square outline icon"></i>
+          </span>
+          <span class="ui blue label" data-tooltip="This lecture has been updated for Winter 2025">W25</span>
+        </td>
+        <td style="width: 7em;">Mon Mar 31</td>
+        <td>
+          <!-- <span style="color: #888">20 Functors and Impostor Syndrome</span> -->
+          <a href="w25/w25_lec_20/exams/eecs280-eecs280-w25_lec_20.html">20 Functors and Impostor Syndrome</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 6em;">
+          <span id="participation-icon-w25_lec_21" class="ui green icon label" style="visibility: hidden;" data-tooltip="You've earned participation credit for this lecture.">
+            <i class="ui check square outline icon"></i>
+          </span>
+          <span class="ui blue label" data-tooltip="This lecture has been updated for Winter 2025">W25</span>
+        </td>
+        <td style="width: 7em;">Wed Apr 2</td>
+        <td>
+          <!-- <span style="color: #888">21 Recursion and Tail Recursion</span> -->
+          <a href="w25/w25_lec_21/exams/eecs280-eecs280-w25_lec_21.html">21 Recursion and Tail Recursion</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 6em;">
+          <span id="participation-icon-w25_lec_22" class="ui green icon label" style="visibility: hidden;" data-tooltip="You've earned participation credit for this lecture.">
+            <i class="ui check square outline icon"></i>
+          </span>
+          <span class="ui blue label" data-tooltip="This lecture has been updated for Winter 2025">W25</span>
+        </td>
+        <td style="width: 7em;">Mon Apr 7</td>
+        <td>
+          <!-- <span style="color: #888">22 Structural Recursion</span> -->
+          <a href="w25/w25_lec_22/exams/eecs280-eecs280-w25_lec_22.html">22 Structural Recursion</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 6em;">
+          <span id="participation-icon-w25_lec_23" class="ui green icon label" style="visibility: hidden;" data-tooltip="You've earned participation credit for this lecture.">
+            <i class="ui check square outline icon"></i>
+          </span>
+          <span class="ui blue label" data-tooltip="This lecture has been updated for Winter 2025">W25</span>
+        </td>
+        <td style="width: 7em;">Wed Apr 9</td>
+        <td>
+          <!-- <span style="color: #888">23 Binary Search trees, Sets, and Maps</span> -->
+          <a href="w25/w25_lec_23/exams/eecs280-eecs280-w25_lec_23.html">23 Binary Search trees, Sets, and Maps</a> <span>(Due Sat Apr 12)</span>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 6em;">
+          <span id="participation-icon-w25_lec_24" class="ui green icon label" style="visibility: hidden;" data-tooltip="You've earned participation credit for this lecture.">
+            <i class="ui check square outline icon"></i>
+          </span>
+          <span class="ui blue label" data-tooltip="This lecture has been updated for Winter 2025">W25</span>
+        </td>
+        <td style="width: 7em;">Mon Apr 14</td>
+        <td>
+          <!-- <span style="color: #888">24 Error Handling and Exceptions</span> -->
+          <a href="w25/w25_lec_24/exams/eecs280-eecs280-w25_lec_24.html">24 Error Handling and Exceptions</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 6em;">
+          <span class="ui green icon label" style="visibility: hidden;">
+            <i class="ui check square outline icon"></i>
+          </span>
+          <span class="ui blue label" style="visibility: hidden;">W25</span>
+        </td>
+        <td style="width: 7em;">Wed Apr 16</td>
+        <td>
+          <span>No Class</span>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 6em;">
+          <span class="ui green icon label" style="visibility: hidden;">
+            <i class="ui check square outline icon"></i>
+          </span>
+          <span class="ui blue label" style="visibility: hidden;">W25</span>
+        </td>
+        <td style="width: 7em;">Mon Apr 21</td>
+        <td>
+          <span>No Class</span>
+        </td>
+      </tr>
+    </table>
+
+  </div><!-- /ui text container -->
+
+  <br />
+  <br />
+
+  <!-- Footer -->
+  <footer class="ui vertical footer segment">
+  </footer>
+
+</body>
+
+</html>
