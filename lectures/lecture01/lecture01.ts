@@ -15,7 +15,7 @@ export const INTRO : Omit<ExamSpecification, "exam_id"> = {
     
     <div markdown=1 class="alert alert-info">
       Welcome to **EECS 280**! This lecture presents our motivations and big-picture goals, some course logistics, and an introduction to programming in C++.
-      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Spring 2025</div>
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2025</div>
     </div>
 
     <div markdown=1 class="alert alert-success">

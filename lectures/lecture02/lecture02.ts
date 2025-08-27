@@ -22,7 +22,7 @@ export const TYPES_CONTROL_STRUCTURES_AND_PROCEDURAL_ABSTRACTION : Omit<ExamSpec
       
       <!-- end list -->
 
-      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Spring 2025</div>
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2025</div>
     </div>
     <style>
       .lec-video {
