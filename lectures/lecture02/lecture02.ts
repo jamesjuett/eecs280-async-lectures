@@ -446,7 +446,7 @@ export const TYPES_CONTROL_STRUCTURES_AND_PROCEDURAL_ABSTRACTION : Omit<ExamSpec
       mk_description: dedent`
         Finally, let's take a bit of time to talk about unit testing. We need to make sure the code we write actually works.
         
-        In particular, we'll look at **unit testing** as a strategy for making sure that the implementation we write for a function actually works according to the interface we've decided for it to have. We'll look at some examples and general strateiges for writing good tests.
+        In particular, we'll look at **unit testing** as a strategy for making sure that the implementation we write for a function actually works according to the interface we've decided for it to have. We'll look at some examples and general strategies for writing good tests.
         
         <div style="text-align: center;">
           <iframe class="lec-video" src="https://www.youtube.com/embed/mpmqISAUacI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
