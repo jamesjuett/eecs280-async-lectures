@@ -27,6 +27,7 @@ import { BINARY_SEARCH_TREES } from "./lecture22/lec";
 import { EXCEPTIONS } from "./lecture23/lec";
 import dedent from "ts-dedent";
 import { MK_BOTTOM_MESSAGE, MK_DOWNLOAD_MESSAGE, MK_QUESTIONS_MESSAGE, MK_SAVER_MESSAGE } from "../common/messages";
+import { CATCH_UP_F25 } from "./lecture02_5/lecture02_5";
 
 function addW24Warning(spec: ExamSpecification) {
   return CUSTOMIZE(spec, {
@@ -50,12 +51,12 @@ const FAVICON_LINKS = `
 export const LECTURE_SPECS = [
   { spec: INTRO                                                 , updated: true, deadline: DateTime.fromISO("2025-08-25", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   { spec: TYPES_CONTROL_STRUCTURES_AND_PROCEDURAL_ABSTRACTION   , updated: true, deadline: DateTime.fromISO("2025-08-27", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: MACHINE_MODEL_PART_1                                  , updated: true, deadline: DateTime.fromISO("2025-09-03", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: MACHINE_MODEL_PART_2                                  , updated: true, deadline: DateTime.fromISO("2025-09-08", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: CONST_STRUCTS_AND_C_STYLE_ADTS                        , updated: true, deadline: DateTime.fromISO("2025-09-10", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: STREAMS_AND_IO                                        , updated: true, deadline: DateTime.fromISO("2025-09-15", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: ADTS_IN_CPP                                           , updated: true, deadline: DateTime.fromISO("2025-09-17", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: PROGRAM_DESIGN_AND_DEBUGGING                          , updated: true, deadline: DateTime.fromISO("2025-09-22", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: CATCH_UP_F25                                          , updated: true, deadline: DateTime.fromISO("2025-09-03", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: MACHINE_MODEL_PART_1                                  , updated: true, deadline: DateTime.fromISO("2025-09-08", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: MACHINE_MODEL_PART_2                                  , updated: true, deadline: DateTime.fromISO("2025-09-10", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  // { spec: CONST_STRUCTS_AND_C_STYLE_ADTS                        , updated: true, deadline: DateTime.fromISO("2025-09-15", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  // { spec: STREAMS_AND_IO                                        , updated: true, deadline: DateTime.fromISO("2025-09-17", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  // { spec: ADTS_IN_CPP                                           , updated: true, deadline: DateTime.fromISO("2025-09-22", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   // { spec: OPERATOR_OVERLOADING_AND_INHERITANCE                  , updated: true, deadline: DateTime.fromISO("2025-09-24", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   // { spec: POLYMORPHISM                                          , updated: true, deadline: DateTime.fromISO("2025-09-29", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   // { spec: ARRAYS_POINTER_ARITHMETIC_C_STRINGS                   , updated: true, deadline: DateTime.fromISO("2025-10-01", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },

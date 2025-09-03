@@ -16,18 +16,7 @@ export const MACHINE_MODEL_PART_2 : Omit<ExamSpecification, "exam_id"> = {
     <div markdown=1 class="alert alert-info">
       This is part two of our exploration of the underlying machine model. A primary focus will be on the way local objects and their underlying memory is managed by the function call stack. We'll also cover different mechanisms for parameter passing and returned results from functions.
       
-      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Spring 2025</div>
-    </div>
-    
-    <div markdown=1 class="alert alert-warning">
-      <p>
-      <b>Switching over from live lecture?</b><br />
-      Live lectures are running a bit behind (which is typical for the first few lectures). If you're switching to async for lecture 4, but attended live lecture 3, make sure to check these sections from previous async lectures to make sure you don't miss anything.
-      </p>
-      <ul>
-        <li>Section 5 from async lecture 3<br >(We covered the first ~6 minutes of the video in lecture, but it's probably useful review to rewatch the whole thing.)</li>
-        <li>Sections 6-7 from async lecture 3 (These are fairly short.)</li>
-      </ul>
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2025</div>
     </div>
 
     <style>

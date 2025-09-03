@@ -19,19 +19,7 @@ export const MACHINE_MODEL_PART_1 : Omit<ExamSpecification, "exam_id"> = {
       
       Likewise, in a program we might want several different parts of our code to refer to the same data structure, but we don't want them all to literally have a local copy of that data. It would be better to use a pointer to store the address of the data and just go look it up when we need to.
 
-      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Spring 2025</div>
-    </div>
-
-    <div markdown=1 class="alert alert-warning">
-      <p>
-      <b>Switching over from live lecture?</b><br />
-      Live lectures are running a bit behind (which is typical for the first few lectures). If you're switching to async for lecture 3, make sure to check these sections from previous async lectures to make sure you don't miss anything.
-      </p>
-      <ul>
-        <li>Sections 5-6 from async lecture 2</li>
-        <li>Section 8 from async lecture 2 (the 2nd video on makefiles)</li>
-        <li>Sections 9-10 from async lecture 2</li>
-      </ul>
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2025</div>
     </div>
 
     <style>
