@@ -25,7 +25,7 @@ export const ADTS_IN_CPP : Omit<ExamSpecification, "exam_id"> = {
          Use constructors to ensure ADTs are *always* initialized (rather than having to remember to separately call an \`_Init()\` function).  
 
       
-      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Spring 2025</div>
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2025</div>
     </div>
     <style>
       .lec-video {

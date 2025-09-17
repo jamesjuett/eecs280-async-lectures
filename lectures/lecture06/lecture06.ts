@@ -20,7 +20,7 @@ export const STREAMS_AND_IO : Omit<ExamSpecification, "exam_id"> = {
 
       We'll cover these as well as a number of miscellaneous topics related to programs and the command-line environment from which they run, including exit codes, input/output redirection, and pipelining.
       
-      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Spring 2025</div>
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2025</div>
       
     </div>
     <style>
@@ -46,6 +46,52 @@ export const STREAMS_AND_IO : Omit<ExamSpecification, "exam_id"> = {
   assets_dir: __dirname + `/assets`,
   allow_clientside_content: true,
   sections: [
+    {
+      section_id: "section_06_0",
+      title: "Generative AI in EECS 280",
+      mk_description: dedent`
+        First, a miscellaneous but important topic - the use of generative AI toos to write project code in EECS 280. The quick version: don't do it - you won't learn as much and your grades may reflect this.
+        
+        But, the long version is worth hearing. And we've been hard at work collecting some pretty fascinating data to back it up.
+
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/KTO_4RVXkpg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
+
+        
+      `,
+      questions: [
+        {
+          question_id: "lec_gen_ai_usage_on_projects",
+          points: 3,
+          mk_description: dedent`
+            Which of the following appear to be plausibly true based on our data + analysis of genrative AI usage in EECS 280 projects?
+          `,
+          response: {
+            kind: "multiple_choice",
+            choices: [
+              "Approximately 25-30% of students appear to use generative AI tools to write significant portions of their project code.",
+              "Generative AI usage is associated with significantly lower exam scores and increased likelihood of falling below the exam threshold grade.",
+              "Nearly 40% of students who use generative AI tools to write significant portions of project code will end up withdrawing or failing to pass the course."
+            ],
+            multiple: true,
+            sample_solution: [0,1,2],
+            default_grader: {
+              grader_kind: "summation_multiple_choice",
+              rubric: [
+                {points: 1, selected: true},
+                {points: 1, selected: true},
+                {points: 1, selected: true},
+              ]
+            },
+          },
+          verifier: {
+            verifier_kind: "full_credit",
+          },
+        }
+      ],
+    },
     {
       section_id: "section_06_1",
       title: "Standard Input and Output",
@@ -156,7 +202,7 @@ export const STREAMS_AND_IO : Omit<ExamSpecification, "exam_id"> = {
         The video below covers both in more detail.
 
         <div class="alert alert-secondary" role="alert" markdown="1">
-          <h5><span class="badge badge-primary">Spring 2025</span></h5>
+          <h5><span class="badge badge-primary">Fall 2025</span></h5>
           Please disregard the use of the \`new\` and \`delete\` operators in the video below. We've recently modified project 2 such so that you do not need to (and should not) use them.
         </div>
 
