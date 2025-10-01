@@ -22,7 +22,7 @@ export const ARRAYS_POINTER_ARITHMETIC_C_STRINGS : Omit<ExamSpecification, "exam
 
       For today, we'll consider one of the fundamental approaches to representing a sequential container in memory - to simply store elements next to each other in memory within a large, contiguous allocation. In C++, an **array** (not to be confused with \`std::array\` from the C++ standard library), provides a low-level abstraction over a sequence of objects stored within a larger block of memory. It's customary to work with arrays via pointers, including by using **pointer arithmetic** to compute addresses of individual elements, so we'll cover that too.
       
-      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Spring 2025</div>
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2025</div>
     </div>
     <style>
       .lec-video {
