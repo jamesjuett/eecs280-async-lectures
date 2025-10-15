@@ -25,7 +25,7 @@ export const CONTAINERS_AND_ITERATORS : Omit<ExamSpecification, "exam_id"> = {
 
       We'll also take a look at the way the standard library uses **iterators** as the abstraction for locating and traversing through elements.
       
-      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Spring 2025</div>
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2025</div>
     </div>
     <style>
       .lec-video {
