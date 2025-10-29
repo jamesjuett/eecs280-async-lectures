@@ -65,7 +65,7 @@ export const LECTURE_SPECS = [
   { spec: CONTAINERS_AND_ITERATORS                              , updated: true, deadline: DateTime.fromISO("2025-10-15", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   { spec: DYNAMIC_MEMORY                                        , updated: true, deadline: DateTime.fromISO("2025-10-20", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   { spec: RAII_AND_GROWABLE_CONTAINERS                          , updated: true, deadline: DateTime.fromISO("2025-10-22", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: DEEP_COPIES_AND_THE_BIG_THREE                         , updated: true, deadline: DateTime.fromISO("2025-10-29", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: DEEP_COPIES_AND_THE_BIG_THREE                         , updated: true, deadline: DateTime.fromISO("2025-10-29", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   // { spec: LINKED_LISTS                                          , updated: true, deadline: DateTime.fromISO("2025-11-03", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   // { spec: LINKED_LIST_ITERATORS                                 , updated: true, deadline: DateTime.fromISO("2025-11-05", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   // { spec: FUNCTORS_AND_IMPOSTOR_SYNDROME                        , updated: true, deadline: DateTime.fromISO("2025-11-10", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
