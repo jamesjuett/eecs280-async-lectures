@@ -74,7 +74,7 @@ We've previously covered the contiguous memory approach. In this lecture, we'll 
         </div>
         <br />
 
-        So, to recap:
+        To recap:
 
         **Array-Based**: efficient $$O(1)$$ indexing, but insert/erase in middle is $$O(N)$$ due to shifting elements. Other advantages including better performance via memory caching and lower memory overhead. It turns out this is the superior approach for most applications.
 
