@@ -20,12 +20,7 @@ Most any data structure uses one of two fundamental approaches in its underlying
 - **Linked structures**: store elements separately from each other, connected together via pointers
 
 We've previously covered the contiguous memory approach. In this lecture, we'll begin to explore linked structures. As an initial example, we'll implement a **linked list**.
-<div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Spring 2025</div>
-</div>
-
-<div class="alert alert-secondary" role="alert" markdown="1">
-<h5><span class="badge badge-success">Spring 2025</span></h5>
-In some of the videos for this lecture, I might refer to implementing a linked list on project 4. That's project 5 this term.
+<div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2025</div>
 </div>
 
 <style>
@@ -55,7 +50,7 @@ In some of the videos for this lecture, I might refer to implementing a linked l
       section_id: "section_16_1",
       title: "Sequential Containers and Data Structures",
       mk_description: dedent`
-        First, let's acknowledge the kinds of **sequential containers** we'd like to build and the applications they're used for.
+        First, let's briefly review the kinds of **sequential containers** we'd like to build and the applications they're used for.
 
         <div style="text-align: center;">
           <iframe class="lec-video" src="https://www.youtube.com/embed/ImchR43lyN8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -68,7 +63,13 @@ In some of the videos for this lecture, I might refer to implementing a linked l
       section_id: "section_16_2",
       title: "Arrays vs. Linked Lists",
       mk_description: dedent`
-        The underlying data structures for these containers must either use **contiguous memory** or **linked structures**. Let's take a close look at each approach and compare/contrast the efficiency of several common operations.
+        Data structures generally fall into one of two fundamental for these containers generally use one of two fundamental approaches:
+
+        Option 1 - **Contiguous Memory**: We've covered this throughout the last several lectures on **array-based** data structures and growable containers. The use of a contiguous block of memory allows for efficient $$O(1)$$ indexing, but insert/erase operations in the middle of the array incur a linear $$O(N)$$ complexity due to the need to shift elements (assuming we're dealing with an ordered container where we must preserve the relative ordering of elements).
+
+        Option 2 - **Linked Structures**: An ordered container could also be implemented as a **linked-list**, where each element is stored invididually along with pointers to the next (and possibly previous) elements in the sequence.
+        
+        Let's assess the efficiency of operations on a linked-list and consider the pros/cons of each of these two approaches.
 
         <div style="text-align: center;">
           <iframe class="lec-video" src="https://www.youtube.com/embed/ZRhqG8pmYWM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -149,6 +150,12 @@ In some of the videos for this lecture, I might refer to implementing a linked l
       section_id: "section_16_3",
       title: "Intro to Linked Lists",
       mk_description: dedent`
+
+        <div class="alert alert-secondary" role="alert" markdown="1">
+        <h5><span class="badge badge-primary">Fall 2025</span></h5>
+        In some of the videos below, I might refer to implementing a linked list on project 4. That's project 5 this term.
+        </div>
+      
         Here we'll consider building an ADT for a linked **Linked List**, which is the simplest linked data structure. The key idea is that we implement a sequential container by storing several nodes (each individually allocated in dynamic memory) that contain element values and a pointer to the next node in the sequence. There's no requirement that the nodes are contiguous in memory.
 
         Specifically, we'll start with a "singly-linked, single-ended" list, which we'll call \`ForwardList\` (since we can only traverse it in a forward direction).
@@ -419,7 +426,7 @@ In some of the videos for this lecture, I might refer to implementing a linked l
       title: "The Big Three",
       mk_description: dedent`
 
-        One more thing - since our class manages dynamically allocated nodes, we'll need custom implementations of "the big three".
+        One more thing - since our class manages dynamically allocated nodes, we'll need custom implementations of "the big three". (Don't be tempted to skip this video - it includes implementations that are directly relevant to the linked list you implement in the project, including a few places with subtle pitfalls!)
 
         <div style="text-align: center;">
           <iframe class="lec-video" src="https://www.youtube.com/embed/QYjqEOEuSes" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
