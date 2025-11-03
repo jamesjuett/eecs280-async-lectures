@@ -73,12 +73,6 @@ We've previously covered the contiguous memory approach. In this lecture, we'll 
           <iframe class="lec-video" src="https://www.youtube.com/embed/ZRhqG8pmYWM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
-
-        To recap:
-
-        **Array-Based**: efficient $$O(1)$$ indexing, but insert/erase in middle is $$O(N)$$ due to shifting elements. Other advantages including better performance via memory caching and lower memory overhead. It turns out this is the superior approach for most applications.
-
-        **Linked Lists**: inefficient $$O(N)$$ indexing (must traverse nodes), but insert/erase anywhere is $$O(1)$$ if we already have a pointer to the insert/erase location. Linked lists are useful in particular applications where frequent insert/erase operations are required from an existing pointer/iterator and where indexing is not needed at all. From a pedagogical perspective, linked lists are also an introduction to linked structures in general.
       `,
       questions: [
         {
@@ -149,6 +143,30 @@ We've previously covered the contiguous memory approach. In this lecture, we'll 
           `
         }
       ],
+    },
+    {
+      section_id: "section_16_2_5",
+      title: "Pros/Cons Recap",
+      mk_description: dedent`
+        This section provides a brief summary of the pros/cons of arrays vs. linked lists, which are discussed at length in the previous section and its video.
+
+        **Array-Based Ordered Container**:
+        - Efficient $$O(1)$$ indexing.
+        - Efficient $$O(1)$$ push/pop from either end (assuming a circular buffer if you need to work from both ends).*
+        - Costly $$O(N)$$ insert/erase in middle, since elements must be shifted to preserve ordering.*
+        - Other advantages including better performance via memory caching and low memory overhead.
+        - It turns out this is the superior approach for most applications.
+
+        *The complexity for operations that push or insert an element technically have $$O(N)$$ worst-case complexity - this occurs when the array is currently full and data must be copied to a new array with 2x capacit. However, this amounts to an amortized $$O(1)$$ if considered over the next N operations that don't require growing the array.
+
+        **Linked List**:
+        - Costly $$O(N)$$ indexing (must traverse N nodes).
+        - Efficient $$O(1)$$ push/pop from either end.
+        - Efficient $$O(1)$$ insert/erase anywhere, assuming you already have a pointer to the insert/erase location.
+        - For operations with the same complexity (e.g. sequential traversal), linked lists are generally slower. Larger memory overhead with extra pointers.
+        - Useful in particular applications where the advantages of a linked list align precisely with what is needed (and where slow indexing is acceptable).
+      `,
+      questions: [],
     },
     {
       section_id: "section_16_3",
