@@ -67,14 +67,18 @@ We've previously covered the contiguous memory approach. In this lecture, we'll 
 
         Option 1 - **Contiguous Memory**: We've covered this throughout the last several lectures on **array-based** data structures and growable containers. The use of a contiguous block of memory allows for efficient $$O(1)$$ indexing, but insert/erase operations in the middle of the array incur a linear $$O(N)$$ complexity due to the need to shift elements (assuming we're dealing with an ordered container where we must preserve the relative ordering of elements).
 
-        Option 2 - **Linked Structures**: An ordered container could also be implemented as a **linked-list**, where each element is stored invididually along with pointers to the next (and possibly previous) elements in the sequence.
-        
-        Let's assess the efficiency of operations on a linked-list and consider the pros/cons of each of these two approaches.
+        Option 2 - **Linked Structures**: The video below introduces the general idea of a **linked-list** as the alternative approach, gives a preliminary look at its data representation, and compares/contrasts the efficiency of various operations on linked-lists vs. arrays.
 
         <div style="text-align: center;">
           <iframe class="lec-video" src="https://www.youtube.com/embed/ZRhqG8pmYWM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
+
+        So, to recap:
+
+        **Array-Based**: efficient $$O(1)$$ indexing, but insert/erase in middle is $$O(N)$$ due to shifting elements. Other advantages including better performance via memory caching and lower memory overhead. It turns out this is the superior approach for most applications.
+
+        **Linked Lists**: inefficient $$O(N)$$ indexing (must traverse nodes), but insert/erase anywhere is $$O(1)$$ if we already have a pointer to the insert/erase location. Linked lists are useful in particular applications where frequent insert/erase operations are required from an existing pointer/iterator and where indexing is not needed at all. From a pedagogical perspective, linked lists are also an introduction to linked structures in general.
       `,
       questions: [
         {
