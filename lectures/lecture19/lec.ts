@@ -16,7 +16,7 @@ export const FUNCTORS_AND_IMPOSTOR_SYNDROME : Omit<ExamSpecification, "exam_id">
 This lecture covers **functors** in C++, including their use in **higher-order functions** as **predicates** and **comparators**.
 
 Finally, we cover **impostor syndrome** - a concept not directly related to programming but that is nevertheless relevant for many in our community.
-<div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Spring 2025</div>
+<div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2025</div>
 </div>
 
 <style>
@@ -62,19 +62,19 @@ Finally, we cover **impostor syndrome** - a concept not directly related to prog
             Consider the function template \`any_of_odd()\` below, which takes in two iterators (of any kind) and determines whether any of the elements in the range they define are odd-valued.
 
             \`\`\`cpp
-              template <typename Iter_type>
-              bool any_of_odd(Iter_type begin, Iter_type end) {
-                while(begin != end) {
-                  if (*begin % 2 != 0) {
-                    return true;
-                  }
-                  ++begin;
+            template <typename Iter_type>
+            bool any_of_odd(Iter_type begin, Iter_type end) {
+              while(begin != end) {
+                if (*begin % 2 != 0) {
+                  return true;
                 }
-                return false;
+                ++begin;
               }
-              \`\`\`
+              return false;
+            }
+            \`\`\`
 
-              Which of the following would need to change in order to implement a similar function \`any_of_even()\` that determines whether any of the elements in the range are even-valued?
+            Which of the following would need to change in order to implement a similar function \`any_of_even()\` that determines whether any of the elements in the range are even-valued?
           `,
           
           response: {

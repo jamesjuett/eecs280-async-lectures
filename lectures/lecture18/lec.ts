@@ -16,12 +16,10 @@ export const LINKED_LIST_ITERATORS : Omit<ExamSpecification, "exam_id"> = {
 Abstraction is quite likely the most powerful tool in programming. We've seen it applied as "procedural abstraction" (i.e. functions) and in "abstract data types" (i.e. classes), and we'll add another today - abstracting the process of "iteration" or "traversal" over a sequence or a container.
 
 To do this, we'll first define a common *interface* for iteration. But not all containers will naturally conform to this interface - traversing over an array looks a whole lot different than traversing over a linked list. So, we'll define custom objects called "**iterators**" for each different kind of sequence or container that act as the "tour guide" that conforms to our common interface but handles the container-specific details behind the scenes.
-<div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Spring 2025</div>
+<div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2025</div>
 </div>
 <div class="alert alert-secondary" role="alert" markdown="1">
-<h5><span class="badge badge-success">Spring 2025</span></h5>
-<p>We briefly covered the use of iterators from the standard library in a previous lecture. We hadn't done that in previous terms, so in some of the older videos here it will seem like I'm introducing them for the first time. That said, it's been a while, and the review is probably useful anyway. Plus, much of the material here is new, since it concerns actually implementing our own iterators, not just using provided ones. 
-</p>
+<h5><span class="badge badge-success">Fall 2025</span></h5>
 <p>In some of the videos, I might refer to implementing a linked list and its iterators on project 4. That's project 5 this term.</p>
 </div>
 <style>
@@ -65,26 +63,27 @@ To do this, we'll first define a common *interface* for iteration. But not all c
               <table style="border: none; margin-left: auto; margin-right: auto;">
               <tr>
               <td markdown="1">
-              \`\`\`cpp
-              // Array traversal by pointer
-              void print(int *begin, int size) {
-                int *end = begin + size;
-                for (int *p = begin; p != end; ++p) {
-                  cout << *p;
-                }
+            \`\`\`cpp
+            // Array traversal by pointer
+            void print(int *begin, int size) {
+              int *end = begin + size;
+              for (int *p = begin; p != end; ++p) {
+                cout << *p;
               }
-              \`\`\`
+            }
+            \`\`\`
               </td>
               <td style="width: 15px;"></td>
               <td>
-              \`\`\`cpp
-              // Linked list traversal via next pointers
-              void print (Node *begin) {
-                for (Node *p = begin; p; p = p->next) {
-                   cout << p->datum;
-                }
+            \`\`\`cpp
+            // Linked list traversal via next pointers
+            void print (Node *begin) {
+
+              for (Node *p = begin; p != nullptr; p = p->next) {
+                  cout << p->datum;
               }
-              \`\`\`
+            }
+            \`\`\`
               </td>
               </tr>
               </table>
@@ -197,46 +196,10 @@ To do this, we'll first define a common *interface* for iteration. But not all c
       ],
     },
     {
-      section_id: "section_17_2",
-      title: "Iterators: The Big Idea",
-      mk_description: dedent`
-        It would be nicer if we could write a **single** version of \`print()\` that could operate on both arrays and linked lists (and vectors and sets and other containers!). As we alluded to above - we'll need a common abstraction for iteration, which can be used by \`print()\` regardless of the container type. As a preview, here's what that function will look like:
-
-        \`\`\`cpp
-        template <typename IterType>
-        void print(IterType begin, IterType end) {
-          for (IterType it = begin; it != end; ++it) {
-            cout << *it;
-          }
-        }
-        \`\`\`
-
-        What is this doing? At a high level, we've got a function template that can be flexible to accommodate different \`IterType\` types. When used with a specific container, \`IterType\` will match to the type of **iterator** that container provides. Recall that an iterator is supposed to act like a "tour guide" for a container. With that in mind, we can roughly interpret the rest of the code - we've peforming different operations on the iterator, expecting it to take us through the container's elements. \`*it\` should give us access to the current element. \`++it\` should move the iterator onward to the next one.
-
-        The last piece of the puzzle is how we get the \`begin\` and \`end\` iterators to pass into the function. Basically, we ask the container to provide them for us by calling member functions. Here's an example using STL containers, which define these and iterator types, combined with the \`print()\` function defined above:
-
-        \`\`\`cpp
-        int main() {
-          std::vector<int> vec;
-          std::list<double> list;
-          std::set<string> set;
-
-          // Assume some elements are added to the containers above.
-          // The code below will then print out the elements for each!
-          print(vec.begin(), vec.end());
-          print(list.begin(), list.end());
-          print(set.begin(), set.end());
-        }
-        \`\`\`
-
-        In essence, we presume that containers have objects called **iterators** that we can get by calling \`.begin()\` and \`.end()\` functions, and that those iterators will support operations like \`*\`, \`++\`, etc. to take us on a tour through the element's containers.
-      `,
-      questions: [],
-    },
-    {
       section_id: "section_17_3",
       title: "Linked List Iterators",
       mk_description: dedent`
+        It would be nicer if we could write a **single** version of \`print()\` that could operate on both arrays and linked lists (and vectors and sets and other containers!). In order to do that, we need a common interface for traversing a container's elements that abstracts away the details of navigating its underlying data structure. We've seen previously that the C++ standard library containers provide such an interface via **iterators**. Let's review the iterator interface and implement this interface for our own linked list class...
 
         Let's fill in some more details and work through an example of actually creating an iterator for our linked list class...
 
@@ -389,16 +352,40 @@ To do this, we'll first define a common *interface* for iteration. But not all c
     },
     {
       section_id: "section_17_4",
-      title: "Generalizable Function Templates Using Iterators",
+      title: "Generic Function Templates Using Iterators",
       mk_description: dedent`
 
-        Finally, we'll take a look back at our original goal - write flexible functions that treat iteration via iterators as an abstraction so that they aren't fixed to work with only a single kind of container.
+        Finally, we'll take a look back at our original goal - write flexible functions that treat iteration via iterators as an abstraction so that they aren't fixed to work with only a single kind of container. For example, following from the introduction to this lecture, we would like to write a single \`print()\` function template that works with iterators from any container:
+
+        \`\`\`cpp
+        template <typename IterType>
+        void print(IterType begin, IterType end) {
+          for (IterType it = begin; it != end; ++it) {
+            cout << *it;
+          }
+        }
+        
+        int main() {
+          std::vector<int> vec;
+          std::set<string> set;
+          std::list<double> list;
+          List<double> our_list; // the List class we implemented a bit ago
+
+          // Assume some elements are added to the containers above.
+          // The code below will then print out the elements for each!
+          print(vec.begin(), vec.end());
+          print(set.begin(), set.end());
+          print(list.begin(), list.end());
+          print(our_list.begin(), our_list.end());
+        }
+        \`\`\`
+
+        The general idea is that the \`IterType\` template parameter allows the function to be instantiated for each type of iterator/container it is used with. Let's take a look at this in more detail...
 
         <div style="text-align: center;">
           <iframe class="lec-video" src="https://www.youtube.com/embed/nhJD-ilWD-o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
-
       `,
       questions: [
         {
