@@ -19,7 +19,7 @@ Recursion occurs when a function that calls itself. It's a bit hard to describe 
 
 - Recursion offers a different approach to "repetition" in code without using loops. Perhaps surprisingly, this can be more intuitive for some problems.
 - Recursion allows us to model the self-similar structure that naturally exists in many interesting problems and data structures.
-<div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Spring 2025</div>
+<div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2025</div>
 </div>
 <style>
   .lec-video {
@@ -69,16 +69,6 @@ Recursion occurs when a function that calls itself. It's a bit hard to describe 
           <iframe class="lec-video" src="https://www.youtube.com/embed/mc16okENpfs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
-
-        Funny story... I recorded this video a couple years ago and in the background of that video you can clearly hear (e.g. @ 0:20) my son running around downstairs playing with this:
-
-        <div style="text-align: center">
-          <img src="assets/duck.png" style="width: 200px;">
-        </div>
-        <br />
-
-        Oh well, at least it's somewhat related to the duck exercise.
-
       `,
       questions: [
         {
