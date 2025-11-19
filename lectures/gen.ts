@@ -71,8 +71,8 @@ export const LECTURE_SPECS = [
   { spec: FUNCTORS_AND_IMPOSTOR_SYNDROME                        , updated: true, deadline: DateTime.fromISO("2025-11-10", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   { spec: RECURSION                                             , updated: true, deadline: DateTime.fromISO("2025-11-12", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   { spec: STRUCTURAL_RECURSION                                  , updated: true, deadline: DateTime.fromISO("2025-11-17", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: BINARY_SEARCH_TREES                                   , updated: true, deadline: DateTime.fromISO("2025-11-19", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: EXCEPTIONS                                            , updated: true, deadline: DateTime.fromISO("2025-11-24", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: BINARY_SEARCH_TREES                                   , updated: true, deadline: DateTime.fromISO("2025-11-19", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: EXCEPTIONS                                            , updated: true, deadline: DateTime.fromISO("2025-11-24", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
 ].map((lec, i) => {
   let spec = CUSTOMIZE(lec.spec, {
     // mk_intructions: dedent`
