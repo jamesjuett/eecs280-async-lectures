@@ -6,12 +6,22 @@ Please feel free to report typos, bugs, etc. via the issue tracker.
 
 Or, if you have a suggestion for improving these lectures, I'd like to hear about that too!
 
-## Manually Bundling Lobster Exercises
+## Local Preview
+Run `npm install` in the top level directory (first time only).
 
-For example:
+Run `npm run build` in the top level directory.
+
+Then, run a local web server in `lectures/out`, e.g.:
 
 ```console
-npx webpack ./src/intset_insert.ts --config ../../lobster/webpack.config.js
+cd lectures/out
+python3 -m http.server 8000
 ```
 
-Then, manually rename `main.html` and `main.js` to e.g. `intset_insert.html` and `intset_insert.js`. Change the source include at the top of `intset_insert.html` appropriately.
+## Manually Bundling Lobster Exercises
+
+If you make changes to the Lobster exercises, rerun the script to bundle them:
+
+```console
+./make_embedded.sh
+```
