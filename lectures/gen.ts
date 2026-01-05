@@ -27,7 +27,6 @@ import { BINARY_SEARCH_TREES } from "./lecture22/lec";
 import { EXCEPTIONS } from "./lecture23/lec";
 import dedent from "ts-dedent";
 import { MK_BOTTOM_MESSAGE, MK_DOWNLOAD_MESSAGE, MK_QUESTIONS_MESSAGE, MK_SAVER_MESSAGE } from "../common/messages";
-import { CATCH_UP_F25 } from "./lecture02_5/lecture02_5";
 
 function addW24Warning(spec: ExamSpecification) {
   return CUSTOMIZE(spec, {
@@ -49,9 +48,9 @@ const FAVICON_LINKS = `
 `;
 
 export const LECTURE_SPECS = [
-  { spec: INTRO                                                 , updated: true, deadline: DateTime.fromISO("2025-08-25", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: INTRO                                                 , updated: true, deadline: DateTime.fromISO("2026-01-06", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   { spec: TYPES_CONTROL_STRUCTURES_AND_PROCEDURAL_ABSTRACTION   , updated: true, deadline: DateTime.fromISO("2025-08-27", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  { spec: CATCH_UP_F25                                          , updated: true, deadline: DateTime.fromISO("2025-09-03", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  // { spec: PROCEDURAL_ABSTRACTION                                , updated: true, deadline: DateTime.fromISO("2025-09-03", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   { spec: MACHINE_MODEL_PART_1                                  , updated: true, deadline: DateTime.fromISO("2025-09-08", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   { spec: MACHINE_MODEL_PART_2                                  , updated: true, deadline: DateTime.fromISO("2025-09-10", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   { spec: CONST_STRUCTS_AND_C_STYLE_ADTS                        , updated: true, deadline: DateTime.fromISO("2025-09-15", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
@@ -75,12 +74,7 @@ export const LECTURE_SPECS = [
   { spec: EXCEPTIONS                                            , updated: true, deadline: DateTime.fromISO("2025-11-24", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
 ].map((lec, i) => {
   let spec = CUSTOMIZE(lec.spec, {
-    // mk_intructions: dedent`
-    //   <div markdown="1" class="alert alert-danger">
-    //     <p>Due to electrical work affecting a North Campus server room, the participation server is temporarily down. Once it comes back up you'll be able to see your participation credit again.</p>
-    //   </div>` +
-    //   lec.spec.mk_intructions,
-    exam_id: `f25_lec_${String(i + 1).padStart(2, "0")}`,
+    exam_id: `w26_lec_${String(i + 1).padStart(2, "0")}`,
     mk_intructions: FAVICON_LINKS + lec.spec.mk_intructions,
     mk_questions_message: MK_QUESTIONS_MESSAGE,
     mk_bottom_message: MK_BOTTOM_MESSAGE,
