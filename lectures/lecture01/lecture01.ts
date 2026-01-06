@@ -25,7 +25,7 @@ export const INTRO : Omit<ExamSpecification, "exam_id"> = {
       
       Completion of individual exercises is tracked in the navigation panel to the left and section headers within the page. Once all exercises are complete, you'll see a "Completion Verified" message.
 
-      To earn participation credit, complete the lecture by 11:59pm on the day the lecture is scheduled.
+      To earn participation credit, complete the lecture by 11:59pm on the day <b>before</b> lecture is scheduled. This first lecture is an exception. It is due the day before Lecture 2.
     </div>
 
     <style>
