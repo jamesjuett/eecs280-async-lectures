@@ -51,7 +51,7 @@ export const LECTURE_SPECS = [
   { spec: INTRO                                                 , updated: true, deadline: DateTime.fromISO("2026-01-11", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   { spec: TYPES_CONTROL_STRUCTURES_AND_PROCEDURAL_ABSTRACTION   , updated: true, deadline: DateTime.fromISO("2026-01-11", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   // { spec: PROCEDURAL_ABSTRACTION                                , updated: true, deadline: DateTime.fromISO("2025-09-03", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  { spec: MACHINE_MODEL_PART_1                                  , updated: true, deadline: DateTime.fromISO("2026-01-18", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: MACHINE_MODEL_PART_1                                  , updated: true, deadline: DateTime.fromISO("2026-01-20", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   // { spec: MACHINE_MODEL_PART_2                                  , updated: true, deadline: DateTime.fromISO("2025-09-10", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   // { spec: CONST_STRUCTS_AND_C_STYLE_ADTS                        , updated: true, deadline: DateTime.fromISO("2025-09-15", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   // { spec: STREAMS_AND_IO                                        , updated: true, deadline: DateTime.fromISO("2025-09-17", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
