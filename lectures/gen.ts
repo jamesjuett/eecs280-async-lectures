@@ -55,7 +55,7 @@ export const LECTURE_SPECS = [
   { spec: MACHINE_MODEL_PART_2                                  , updated: true, deadline: DateTime.fromISO("2026-01-25", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   { spec: CONST_STRUCTS_AND_C_STYLE_ADTS                        , updated: true, deadline: DateTime.fromISO("2026-01-27", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   { spec: STREAMS_AND_IO                                        , updated: true, deadline: DateTime.fromISO("2026-02-01", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  { spec: ADTS_IN_CPP                                           , updated: true, deadline: DateTime.fromISO("2025-02-03", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: ADTS_IN_CPP                                           , updated: true, deadline: DateTime.fromISO("2026-02-03", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   // { spec: OPERATOR_OVERLOADING_AND_INHERITANCE                  , updated: true, deadline: DateTime.fromISO("2025-09-24", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   // { spec: POLYMORPHISM                                          , updated: true, deadline: DateTime.fromISO("2025-09-29", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   // { spec: ARRAYS_POINTER_ARITHMETIC_C_STRINGS                   , updated: true, deadline: DateTime.fromISO("2025-10-01", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
