@@ -62,16 +62,16 @@ export const LECTURE_SPECS = [
   { spec: ARRAY_BASED_DATA_STRUCTURES                           , updated: true, deadline: DateTime.fromISO("2026-02-17", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   { spec: SORTED_VS_UNSORTED_DATA_STRUCTURES                    , updated: true, deadline: DateTime.fromISO("2026-02-22", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   { spec: CONTAINERS_AND_ITERATORS                              , updated: true, deadline: DateTime.fromISO("2026-02-24", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: DYNAMIC_MEMORY                                        , updated: true, deadline: DateTime.fromISO("2025-10-20", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: RAII_AND_GROWABLE_CONTAINERS                          , updated: true, deadline: DateTime.fromISO("2025-10-22", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: DEEP_COPIES_AND_THE_BIG_THREE                         , updated: true, deadline: DateTime.fromISO("2025-10-29", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: LINKED_LISTS                                          , updated: true, deadline: DateTime.fromISO("2025-11-03", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: LINKED_LIST_ITERATORS                                 , updated: true, deadline: DateTime.fromISO("2025-11-05", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: FUNCTORS_AND_IMPOSTOR_SYNDROME                        , updated: true, deadline: DateTime.fromISO("2025-11-10", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: RECURSION                                             , updated: true, deadline: DateTime.fromISO("2025-11-12", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: STRUCTURAL_RECURSION                                  , updated: true, deadline: DateTime.fromISO("2025-11-17", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: BINARY_SEARCH_TREES                                   , updated: true, deadline: DateTime.fromISO("2025-11-19", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: EXCEPTIONS                                            , updated: true, deadline: DateTime.fromISO("2025-11-24", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: DYNAMIC_MEMORY                                        , updated: true, deadline: DateTime.fromISO("2026-03-16", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: RAII_AND_GROWABLE_CONTAINERS                          , updated: true, deadline: DateTime.fromISO("2026-03-18", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: DEEP_COPIES_AND_THE_BIG_THREE                         , updated: true, deadline: DateTime.fromISO("2026-03-22", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: LINKED_LISTS                                          , updated: true, deadline: DateTime.fromISO("2026-03-24", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: LINKED_LIST_ITERATORS                                 , updated: true, deadline: DateTime.fromISO("2026-03-29", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: FUNCTORS_AND_IMPOSTOR_SYNDROME                        , updated: true, deadline: DateTime.fromISO("2026-03-31", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: RECURSION                                             , updated: true, deadline: DateTime.fromISO("2026-04-05", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: STRUCTURAL_RECURSION                                  , updated: true, deadline: DateTime.fromISO("2026-04-07", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: BINARY_SEARCH_TREES                                   , updated: true, deadline: DateTime.fromISO("2026-04-12", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: EXCEPTIONS                                            , updated: true, deadline: DateTime.fromISO("2026-04-14", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
 ].map((lec, i) => {
   let spec = CUSTOMIZE(lec.spec, {
     exam_id: `w26_lec_${String(i + 1).padStart(2, "0")}`,
@@ -122,7 +122,7 @@ LECTURE_SPECS.forEach(lec => {
   const generator = new ExamGenerator(Exam.create(lec), {
     uuid_strategy: "plain",
   });
-  
+
   generator.assignExams([
     {name: "eecs280", uniqname: "eecs280"}
   ]),
