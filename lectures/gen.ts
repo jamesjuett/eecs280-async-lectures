@@ -75,7 +75,7 @@ export const LECTURE_SPECS = [
   // { spec: EXCEPTIONS                                            , transfer: false, deadline: DateTime.fromISO("2025-11-24", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
 ].map((lec, i) => {
   let spec = CUSTOMIZE(lec.spec, {
-    exam_id: lec.transfer ? `f26_lec_${String(i + 1).padStart(2, "0")}` : `f26_lec_${String(i + 1).padStart(2, "0")}_transfer`,
+    exam_id: lec.transfer ? `f26_lec_${String(i + 1).padStart(2, "0")}_transfer` : `f26_lec_${String(i + 1).padStart(2, "0")}`,
     mk_intructions: FAVICON_LINKS + lec.spec.mk_intructions,
     mk_questions_message: MK_QUESTIONS_MESSAGE,
     mk_bottom_message: MK_BOTTOM_MESSAGE,
