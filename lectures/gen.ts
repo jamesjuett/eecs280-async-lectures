@@ -48,33 +48,34 @@ const FAVICON_LINKS = `
 `;
 
 export const LECTURE_SPECS = [
-  { spec: INTRO                                                 , updated: true, deadline: DateTime.fromISO("2026-08-31", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  { spec: TYPES_AND_CONTROL_STRUCTURES   , updated: true, deadline: DateTime.fromISO("2025-08-27", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: PROCEDURAL_ABSTRACTION                                , updated: true, deadline: DateTime.fromISO("2025-09-03", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: MACHINE_MODEL_PART_1                                  , updated: true, deadline: DateTime.fromISO("2025-09-08", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: MACHINE_MODEL_PART_2                                  , updated: true, deadline: DateTime.fromISO("2025-09-10", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: CONST_STRUCTS_AND_C_STYLE_ADTS                        , updated: true, deadline: DateTime.fromISO("2025-09-15", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: STREAMS_AND_IO                                        , updated: true, deadline: DateTime.fromISO("2025-09-17", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: ADTS_IN_CPP                                           , updated: true, deadline: DateTime.fromISO("2025-09-22", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: OPERATOR_OVERLOADING_AND_INHERITANCE                  , updated: true, deadline: DateTime.fromISO("2025-09-24", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: POLYMORPHISM                                          , updated: true, deadline: DateTime.fromISO("2025-09-29", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: ARRAYS_POINTER_ARITHMETIC_C_STRINGS                   , updated: true, deadline: DateTime.fromISO("2025-10-01", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: ARRAY_BASED_DATA_STRUCTURES                           , updated: true, deadline: DateTime.fromISO("2025-10-06", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: SORTED_VS_UNSORTED_DATA_STRUCTURES                    , updated: true, deadline: DateTime.fromISO("2025-10-08", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: CONTAINERS_AND_ITERATORS                              , updated: true, deadline: DateTime.fromISO("2025-10-15", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: DYNAMIC_MEMORY                                        , updated: true, deadline: DateTime.fromISO("2025-10-20", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: RAII_AND_GROWABLE_CONTAINERS                          , updated: true, deadline: DateTime.fromISO("2025-10-22", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: DEEP_COPIES_AND_THE_BIG_THREE                         , updated: true, deadline: DateTime.fromISO("2025-10-29", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: LINKED_LISTS                                          , updated: true, deadline: DateTime.fromISO("2025-11-03", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: LINKED_LIST_ITERATORS                                 , updated: true, deadline: DateTime.fromISO("2025-11-05", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: FUNCTORS_AND_IMPOSTOR_SYNDROME                        , updated: true, deadline: DateTime.fromISO("2025-11-10", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: RECURSION                                             , updated: true, deadline: DateTime.fromISO("2025-11-12", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: STRUCTURAL_RECURSION                                  , updated: true, deadline: DateTime.fromISO("2025-11-17", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: BINARY_SEARCH_TREES                                   , updated: true, deadline: DateTime.fromISO("2025-11-19", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: EXCEPTIONS                                            , updated: true, deadline: DateTime.fromISO("2025-11-24", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: INTRO                                                 , transfer: false, deadline: DateTime.fromISO("2026-08-31", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: TYPES_AND_CONTROL_STRUCTURES                          , transfer: false, deadline: DateTime.fromISO("2026-09-02", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: TYPES_AND_CONTROL_STRUCTURES                          , transfer: true, deadline: DateTime.fromISO("2026-09-02", {zone: "America/Detroit"}).plus({hours: 12, minutes: 0, seconds: 0}) },
+  // { spec: PROCEDURAL_ABSTRACTION                                , transfer: false, deadline: DateTime.fromISO("2025-09-03", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  // { spec: MACHINE_MODEL_PART_1                                  , transfer: false, deadline: DateTime.fromISO("2025-09-08", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  // { spec: MACHINE_MODEL_PART_2                                  , transfer: false, deadline: DateTime.fromISO("2025-09-10", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  // { spec: CONST_STRUCTS_AND_C_STYLE_ADTS                        , transfer: false, deadline: DateTime.fromISO("2025-09-15", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  // { spec: STREAMS_AND_IO                                        , transfer: false, deadline: DateTime.fromISO("2025-09-17", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  // { spec: ADTS_IN_CPP                                           , transfer: false, deadline: DateTime.fromISO("2025-09-22", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  // { spec: OPERATOR_OVERLOADING_AND_INHERITANCE                  , transfer: false, deadline: DateTime.fromISO("2025-09-24", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  // { spec: POLYMORPHISM                                          , transfer: false, deadline: DateTime.fromISO("2025-09-29", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  // { spec: ARRAYS_POINTER_ARITHMETIC_C_STRINGS                   , transfer: false, deadline: DateTime.fromISO("2025-10-01", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  // { spec: ARRAY_BASED_DATA_STRUCTURES                           , transfer: false, deadline: DateTime.fromISO("2025-10-06", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  // { spec: SORTED_VS_UNSORTED_DATA_STRUCTURES                    , transfer: false, deadline: DateTime.fromISO("2025-10-08", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  // { spec: CONTAINERS_AND_ITERATORS                              , transfer: false, deadline: DateTime.fromISO("2025-10-15", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  // { spec: DYNAMIC_MEMORY                                        , transfer: false, deadline: DateTime.fromISO("2025-10-20", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  // { spec: RAII_AND_GROWABLE_CONTAINERS                          , transfer: false, deadline: DateTime.fromISO("2025-10-22", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  // { spec: DEEP_COPIES_AND_THE_BIG_THREE                         , transfer: false, deadline: DateTime.fromISO("2025-10-29", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  // { spec: LINKED_LISTS                                          , transfer: false, deadline: DateTime.fromISO("2025-11-03", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  // { spec: LINKED_LIST_ITERATORS                                 , transfer: false, deadline: DateTime.fromISO("2025-11-05", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  // { spec: FUNCTORS_AND_IMPOSTOR_SYNDROME                        , transfer: false, deadline: DateTime.fromISO("2025-11-10", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  // { spec: RECURSION                                             , transfer: false, deadline: DateTime.fromISO("2025-11-12", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  // { spec: STRUCTURAL_RECURSION                                  , transfer: false, deadline: DateTime.fromISO("2025-11-17", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  // { spec: BINARY_SEARCH_TREES                                   , transfer: false, deadline: DateTime.fromISO("2025-11-19", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  // { spec: EXCEPTIONS                                            , transfer: false, deadline: DateTime.fromISO("2025-11-24", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
 ].map((lec, i) => {
   let spec = CUSTOMIZE(lec.spec, {
-    exam_id: `f26_lec_${String(i + 1).padStart(2, "0")}`,
+    exam_id: lec.transfer ? `f26_lec_${String(i + 1).padStart(2, "0")}` : `f26_lec_${String(i + 1).padStart(2, "0")}_transfer`,
     mk_intructions: FAVICON_LINKS + lec.spec.mk_intructions,
     mk_questions_message: MK_QUESTIONS_MESSAGE,
     mk_bottom_message: MK_BOTTOM_MESSAGE,
@@ -83,35 +84,29 @@ export const LECTURE_SPECS = [
     allow_clientside_content: true,
   });
 
-  if (lec.updated) {
-    spec = CUSTOMIZE(spec, {
-      credentials_strategy: {
-        strategy: "google_local",
-        client_id: "444801118749-m2g9gl3gvvkh5ru959dmka0lsk94d9uq.apps.googleusercontent.com",
-        // client_id: "444801118749-099920plmkl1s5n5u563pbmu71lo4bot.apps.googleusercontent.com",
-        auth_endpoint: "https://examma-ray.eecs.umich.edu/public_api/participation/auth/",
-        message: "Sign in with your @umich.edu Google account to earn participation credit for completing embedded exercises."
+  spec = CUSTOMIZE(spec, {
+    credentials_strategy: {
+      strategy: "google_local",
+      client_id: "444801118749-m2g9gl3gvvkh5ru959dmka0lsk94d9uq.apps.googleusercontent.com",
+      // client_id: "444801118749-099920plmkl1s5n5u563pbmu71lo4bot.apps.googleusercontent.com",
+      auth_endpoint: "https://examma-ray.eecs.umich.edu/public_api/participation/auth/",
+      message: "Sign in with your @umich.edu Google account to earn participation credit for completing embedded exercises."
+    },
+    completion: {
+      threshold: 1,
+      tooltip: "",
+      endpoints: {
+        check: "https://examma-ray.eecs.umich.edu/public_api/participation/me/",
+        submit: "https://examma-ray.eecs.umich.edu/public_api/participation/me/",
+        // check: "https://localhost/public_api/participation/me/",
+        // submit: "https://localhost/public_api/participation/me/",
       },
-      completion: {
-        threshold: 1,
-        tooltip: "",
-        endpoints: {
-          check: "https://examma-ray.eecs.umich.edu/public_api/participation/me/",
-          submit: "https://examma-ray.eecs.umich.edu/public_api/participation/me/",
-          // check: "https://localhost/public_api/participation/me/",
-          // submit: "https://localhost/public_api/participation/me/",
-        },
-        local_deadline: lec.deadline && {
-          when: lec.deadline,
-          grace_minutes: 5
-        }
+      local_deadline: lec.deadline && {
+        when: lec.deadline,
+        grace_minutes: 5
       }
-    });
-  }
-  else {
-    spec = addW24Warning(spec);
-  }
-
+    }
+  });
 
   return spec;
 });
