@@ -2,7 +2,7 @@ import { CUSTOMIZE, DocRenderer, Exam, ExamSpecification } from "examma-ray";
 import { ExamGenerator } from "examma-ray/dist/ExamGenerator";
 import { DateTime } from "luxon";
 import { INTRO } from "./lecture01/lecture01";
-import { TYPES_CONTROL_STRUCTURES_AND_PROCEDURAL_ABSTRACTION } from "./lecture02/lecture02";
+import { TYPES_AND_CONTROL_STRUCTURES } from "./lecture02/lecture02";
 import { MACHINE_MODEL_PART_1 } from "./lecture03/lecture03";
 import { MACHINE_MODEL_PART_2 } from "./lecture04/lecture04";
 import { CONST_STRUCTS_AND_C_STYLE_ADTS } from "./lecture05/lecture05";
@@ -49,7 +49,7 @@ const FAVICON_LINKS = `
 
 export const LECTURE_SPECS = [
   { spec: INTRO                                                 , updated: true, deadline: DateTime.fromISO("2026-08-31", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: TYPES_CONTROL_STRUCTURES_AND_PROCEDURAL_ABSTRACTION   , updated: true, deadline: DateTime.fromISO("2025-08-27", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: TYPES_AND_CONTROL_STRUCTURES   , updated: true, deadline: DateTime.fromISO("2025-08-27", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   // { spec: PROCEDURAL_ABSTRACTION                                , updated: true, deadline: DateTime.fromISO("2025-09-03", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   // { spec: MACHINE_MODEL_PART_1                                  , updated: true, deadline: DateTime.fromISO("2025-09-08", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   // { spec: MACHINE_MODEL_PART_2                                  , updated: true, deadline: DateTime.fromISO("2025-09-10", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },

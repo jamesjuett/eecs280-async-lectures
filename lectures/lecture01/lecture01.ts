@@ -232,6 +232,11 @@ export const INTRO : Omit<ExamSpecification, "exam_id"> = {
                       explanation: "A 78.2% would normally earn a C+, however this student did not score well enough on projects with 58.1% being below the project threshold of 60%. The highest grade they may earn is C-.",
                       points: 0
                     },
+                    {
+                      pattern: /./i,
+                      explanation: "Double check your answer, or review the grading policy in the video above and course syllabus.",
+                      points: 0
+                    },
                   ]
                 },
               ]
