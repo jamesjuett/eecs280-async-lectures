@@ -120,6 +120,12 @@
       updateUser(participation_token);
     }
     
+    $(function() {
+      $('.menu .item').tab({
+        autoTabActivation: false
+      });
+    })
+
   </script>
 
 </head>
@@ -178,8 +184,6 @@
 
     <p>The lectures are broken down into short videos with interactive exercises for you to practice and confirm your understanding. You can set your own pace and reread/rewatch any part you like. Make sure to engage in the active learning opportunities by working through the embedded exercises - this will also check and solidify your understanding.</p>
 
-    <p>Complete the embedded exercises by 11:59pm on the day of the lecture to earn participation credit.</p>
-
     <p><b>EECS 280 Async Lectures</b></p>
     <!-- <div class="ui info icon message" style="font-size: 11pt;">
       <i class="info circle icon"></i>
@@ -190,47 +194,124 @@
         </p>
       </div>
     </div> -->
-    <table>
-      <tr>
-        <td style="width: 6em;">
-          <span id="participation-icon-f26_lec_01" class="ui green icon label" style="visibility: hidden;" data-tooltip="You've earned participation credit for this lecture.">
-            <i class="ui check square outline icon"></i>
-          </span>
-          <span class="ui brown label" data-tooltip="This lecture has been updated for Fall 2026">F26</span>
-        </td>
-        <td style="width: 7em;">Mon Aug 31</td>
-        <td>
-          <!-- <span style="color: #888">1 Course Introduction, Intro to C++</span> -->
-          <a href="f26_lec_01/exams/eecs280-eecs280-f26_lec_01.html">1 Course Introduction, Intro to C++</a>
-        </td>
-      </tr>
-      <tr>
-        <td style="width: 6em;">
-          <span id="participation-icon-f26_lec_02" class="ui green icon label" style="visibility: hidden;" data-tooltip="You've earned participation credit for this lecture.">
-            <i class="ui check square outline icon"></i>
-          </span>
-          <span class="ui brown label" data-tooltip="This lecture has been updated for Fall 2026">F26</span>
-        </td>
-        <td style="width: 7em;">Wed Sep 2</td>
-        <td>
-          <!-- <span style="color: #888">2 Types and Control Structures</span> -->
-          <a href="f26_lec_02/exams/eecs280-eecs280-f26_lec_02.html">[Sections 001-004, Profs. Juett/Kamil] 2 Types and Control Structures</a>
-        </td>
-      </tr>
-      <tr>
-        <td style="width: 6em;">
-          <span id="participation-icon-f26_lec_02_transfer" class="ui green icon label" style="visibility: hidden;" data-tooltip="You've earned participation credit for this lecture.">
-            <i class="ui check square outline icon"></i>
-          </span>
-          <span class="ui brown label" data-tooltip="This lecture has been updated for Fall 2026">F26</span>
-        </td>
-        <td style="width: 7em;">Wed Sep 2</td>
-        <td>
-          <!-- <span style="color: #888">2 Types and Control Structures</span> -->
-          <a href="f26_lec_02_transfer/exams/eecs280-eecs280-f26_lec_02_transfer.html">[Section 005, Prof. Kloosterman] 2 Types and Control Structures</a>
-        </td>
-      </tr>
-    </table>
+
+    <div class="ui info icon message" style="font-size: 11pt;">
+      <i class="info circle icon"></i>
+      <div class="content">
+        <div class="header">Heads up!</div>
+        <p>
+          The asynchronous lectures will be moving to a different page in the near future, likely for lecture 4. You'll notice the URL change, and you'll need to log in again next time.
+        </p>
+      </div>
+    </div>
+
+    <div class="ui top attached tabular menu">
+      <div class="item" data-tab="one"><button class="ui blue button">Sections 001-004 (Profs. Juett/Kamil)</button></div>
+      <div class="item" data-tab="two"><button class="ui blue button">Section 005 (Prof. Kloosterman)</button></div>
+    </div>
+    <div class="ui bottom attached tab segment active" data-tab="default">
+      <p style="font-size: 24pt; text-align: center;">
+        <svg style="vertical-align: middle;" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-arrow-up-circle-fill" viewBox="0 0 16 16">
+          <path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0m-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707z"/>
+        </svg>
+        <span style="display: inline-block; vertical-align: middle;">Choose your section to get started.</span>
+      </p>
+    </div>
+    <div class="ui bottom attached tab segment" data-tab="one">
+      <p style="text-align: center;">
+        These links are for students registered in sections 001-004.
+      </p>
+      <p>Complete the embedded exercises by 11:59pm on the day of the lecture to earn participation credit.</p>
+      <table id="sections001to004">
+        <tr>
+          <td style="width: 6em;">
+            <span id="participation-icon-f26_lec_01" class="ui green icon label" style="visibility: hidden;" data-tooltip="You've earned participation credit for this lecture.">
+              <i class="ui check square outline icon"></i>
+            </span>
+            <span class="ui brown label" data-tooltip="This lecture has been updated for Fall 2026">F26</span>
+          </td>
+          <td style="width: 7em;">Mon Aug 31</td>
+          <td>
+            <!-- <span style="color: #888">1 Course Introduction, Intro to C++</span> -->
+            <a href="f26_lec_01/exams/eecs280-eecs280-f26_lec_01.html">1 Course Introduction, Intro to C++</a>
+          </td>
+        </tr>
+        <tr>
+          <td style="width: 6em;">
+            <span id="participation-icon-f26_lec_02" class="ui green icon label" style="visibility: hidden;" data-tooltip="You've earned participation credit for this lecture.">
+              <i class="ui check square outline icon"></i>
+            </span>
+            <span class="ui brown label" data-tooltip="This lecture has been updated for Fall 2026">F26</span>
+          </td>
+          <td style="width: 7em;">Wed Sep 2</td>
+          <td>
+            <!-- <span style="color: #888">2 Types and Control Structures</span> -->
+            <a href="f26_lec_02/exams/eecs280-eecs280-f26_lec_02.html"> 2 Types and Control Structures</a>
+          </td>
+        </tr>
+        <tr>
+          <td style="width: 6em;">
+            <span id="participation-icon-f26_lec_03" class="ui green icon label" style="visibility: hidden;" data-tooltip="You've earned participation credit for this lecture.">
+              <i class="ui check square outline icon"></i>
+            </span>
+            <span class="ui brown label" data-tooltip="This lecture has been updated for Fall 2026">F26</span>
+          </td>
+          <td style="width: 7em;">Wed Sep 9</td>
+          <td>
+            <!-- <span style="color: #888">3 Procedural Abstraction</span> -->
+            <a href="f26_lec_03/exams/eecs280-eecs280-f26_lec_03.html"> 3 Procedural Abstraction</a>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="ui bottom attached tab segment" data-tab="two">
+      <p style="text-align: center;">
+        These links are for students registered in section 005 (transfer student section).
+      </p>
+      <p>Complete the embedded exercises by 12:00pm noon on the day of the lecture to earn participation credit.</p>
+      <table id="section005">
+        <tr>
+          <td style="width: 6em;">
+            <span id="participation-icon-f26_lec_01" class="ui green icon label" style="visibility: hidden;" data-tooltip="You've earned participation credit for this lecture.">
+              <i class="ui check square outline icon"></i>
+            </span>
+            <span class="ui brown label" data-tooltip="This lecture has been updated for Fall 2026">F26</span>
+          </td>
+          <td style="width: 7em;">Mon Aug 31</td>
+          <td>
+            <!-- <span style="color: #888">1 Course Introduction, Intro to C++</span> -->
+            <a href="f26_lec_01/exams/eecs280-eecs280-f26_lec_01.html">1 Course Introduction, Intro to C++</a>
+          </td>
+        </tr>
+        <tr>
+          <td style="width: 6em;">
+            <span id="participation-icon-f26_lec_02_transfer" class="ui green icon label" style="visibility: hidden;" data-tooltip="You've earned participation credit for this lecture.">
+              <i class="ui check square outline icon"></i>
+            </span>
+            <span class="ui brown label" data-tooltip="This lecture has been updated for Fall 2026">F26</span>
+          </td>
+          <td style="width: 7em;">Wed Sep 2</td>
+          <td>
+            <!-- <span style="color: #888">2 Types and Control Structures</span> -->
+            <a href="f26_lec_02_transfer/exams/eecs280-eecs280-f26_lec_02_transfer.html">2 Types and Control Structures</a>
+          </td>
+        </tr>
+        <tr>
+          <td style="width: 6em;">
+            <span id="participation-icon-f26_lec_03_transfer" class="ui green icon label" style="visibility: hidden;" data-tooltip="You've earned participation credit for this lecture.">
+              <i class="ui check square outline icon"></i>
+            </span>
+            <span class="ui brown label" data-tooltip="This lecture has been updated for Fall 2026">F26</span>
+          </td>
+          <td style="width: 7em;">Wed Sep 9</td>
+          <td>
+            <!-- <span style="color: #888">3 Procedural Abstraction</span> -->
+            <a href="f26_lec_03_transfer/exams/eecs280-eecs280-f26_lec_03_transfer.html"> 3 Procedural Abstraction</a>
+          </td>
+        </tr>
+      </table>
+    </div>
+    
     <br />
     <br />
 

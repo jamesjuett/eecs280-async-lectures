@@ -27,6 +27,7 @@ import { BINARY_SEARCH_TREES } from "./lecture22/lec";
 import { EXCEPTIONS } from "./lecture23/lec";
 import dedent from "ts-dedent";
 import { MK_BOTTOM_MESSAGE, MK_DOWNLOAD_MESSAGE, MK_QUESTIONS_MESSAGE, MK_SAVER_MESSAGE } from "../common/messages";
+import { PROCEDURAL_ABSTRACTION } from "./lecture02_5/lecture02_5";
 
 function addW24Warning(spec: ExamSpecification) {
   return CUSTOMIZE(spec, {
@@ -51,6 +52,8 @@ export const LECTURE_SPECS = [
   { spec: INTRO                                    , id: "f26_lec_01"            , deadline: DateTime.fromISO("2026-08-31", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   { spec: TYPES_AND_CONTROL_STRUCTURES             , id: "f26_lec_02"            , deadline: DateTime.fromISO("2026-09-02", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   { spec: TYPES_AND_CONTROL_STRUCTURES             , id: "f26_lec_02_transfer"   , deadline: DateTime.fromISO("2026-09-02", {zone: "America/Detroit"}).plus({hours: 12, minutes: 0, seconds: 0}) },
+  { spec: PROCEDURAL_ABSTRACTION                   , id: "f26_lec_03"            , deadline: DateTime.fromISO("2026-09-09", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: PROCEDURAL_ABSTRACTION                   , id: "f26_lec_03_transfer"   , deadline: DateTime.fromISO("2026-09-09", {zone: "America/Detroit"}).plus({hours: 12, minutes: 0, seconds: 0}) },
   // { spec: PROCEDURAL_ABSTRACTION                                , deadline: DateTime.fromISO("2025-09-03", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   // { spec: MACHINE_MODEL_PART_1                                  , deadline: DateTime.fromISO("2025-09-08", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   // { spec: MACHINE_MODEL_PART_2                                  , deadline: DateTime.fromISO("2025-09-10", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
