@@ -295,7 +295,7 @@ export const PROCEDURAL_ABSTRACTION : Omit<ExamSpecification, "exam_id"> = {
       questions: [
         {
           question_id: "lec_gen_ai_usage_on_projects",
-          points: 3,
+          points: 4,
           mk_description: dedent`
             Which of the following appear to be plausibly true based on our data + analysis of generative AI usage in EECS 280 projects?
           `,
