@@ -20,7 +20,7 @@ export const PROCEDURAL_ABSTRACTION : Omit<ExamSpecification, "exam_id"> = {
       
       <!-- end list -->
 
-      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2025</div>
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2026</div>
     </div>
     <style>
       .lec-video {

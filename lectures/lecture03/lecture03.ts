@@ -13,13 +13,13 @@ export const MACHINE_MODEL_PART_1 : Omit<ExamSpecification, "exam_id"> = {
   title: "Machine Model, Part 1",
   mk_intructions: dedent`
     <div markdown=1 class="alert alert-info">
-      Today's lecture starts a two-part sequence where we'll consider a conceptual model of the underlying machine, with particular attention to objects in memory, their addresses, and the values they hold. We'll also introduce **references** and **pointers**, two fundamental tools for working with objects *indirectly*.
+      Today's lecture starts a two-part sequence where we'll consider a **conceptual model of the underlying machine**, with particular attention to objects in memory, their addresses, and the values they hold. We'll also introduce **references** and **pointers**, two fundamental tools for working with objects *indirectly*.
 
       Why do we need to work with objects indirectly in programming? It turns out we often work/think indirectly in real life, but may not realize it. For example, an address book refers indirectly to the places that people live, but it doesn't literally contain those places! (That wouldn't even make sense.)
       
       Likewise, in a program we might want several different parts of our code to refer to the same data structure, but we don't want them all to literally have a local copy of that data. It would be better to use a pointer to store the address of the data and just go look it up when we need to.
 
-      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2025</div>
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2026</div>
     </div>
 
     <style>
