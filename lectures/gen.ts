@@ -56,7 +56,7 @@ export const LECTURE_SPECS = [
   { spec: PROCEDURAL_ABSTRACTION                   , id: "f26_lec_03_transfer"   , deadline: DateTime.fromISO("2026-09-09", {zone: "America/Detroit"}).plus({hours: 12, minutes: 0, seconds: 0}) },
   { spec: MACHINE_MODEL_PART_1                     , id: "f26_lec_04"            , deadline: DateTime.fromISO("2026-09-14", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   { spec: MACHINE_MODEL_PART_1                     , id: "f26_lec_04_transfer"   , deadline: DateTime.fromISO("2026-09-14", {zone: "America/Detroit"}).plus({hours: 12, minutes: 0, seconds: 0}) },
-  // { spec: MACHINE_MODEL_PART_2                     , id: "f26_lec_05"             , deadline: DateTime.fromISO("2025-09-10", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: MACHINE_MODEL_PART_2                     , id: "f26_lec_05"            , deadline: DateTime.fromISO("2026-09-16", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   { spec: MACHINE_MODEL_PART_2                     , id: "f26_lec_05_transfer"   , deadline: DateTime.fromISO("2026-09-16", {zone: "America/Detroit"}).plus({hours: 12, minutes: 0, seconds: 0}) },
   // { spec: PROCEDURAL_ABSTRACTION                                , deadline: DateTime.fromISO("2025-09-03", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   // { spec: MACHINE_MODEL_PART_1                                  , deadline: DateTime.fromISO("2025-09-08", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
