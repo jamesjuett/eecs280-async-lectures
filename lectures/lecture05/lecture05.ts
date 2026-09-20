@@ -27,7 +27,7 @@ export const CONST_STRUCTS_AND_C_STYLE_ADTS : Omit<ExamSpecification, "exam_id">
 
       But first, let's take a detour to formally acknowledge the \`const\` keyeword, which has been showing up and will start showing up even more in the near future...
       
-      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2025</div>
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2026</div>
     </div>
     <style>
       .lec-video {
