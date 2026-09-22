@@ -20,7 +20,7 @@ export const STREAMS_AND_IO : Omit<ExamSpecification, "exam_id"> = {
 
       We'll cover these as well as a number of miscellaneous topics related to programs and the command-line environment from which they run, including exit codes, input/output redirection, and pipelining.
       
-      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2025</div>
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2026</div>
       
     </div>
     <style>
