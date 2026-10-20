@@ -25,7 +25,7 @@ export const CONTAINERS_AND_ITERATORS : Omit<ExamSpecification, "exam_id"> = {
 
       We'll also take a look at the way the standard library uses **iterators** as the abstraction for locating and traversing through elements.
       
-      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2025</div>
+      <div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2026</div>
     </div>
     <style>
       .lec-video {
@@ -76,7 +76,7 @@ export const CONTAINERS_AND_ITERATORS : Omit<ExamSpecification, "exam_id"> = {
         T & operator[](size_t index);
 
         // EFFECTS: Returns (by reference) the element at the given index,
-        // unless the index is out of bounds, in which casea std::out_of_range
+        // unless the index is out of bounds, in which case a std::out_of_range
         // exception is thrown.
         T & at(size_t index);
         \`\`\`
@@ -93,6 +93,7 @@ export const CONTAINERS_AND_ITERATORS : Omit<ExamSpecification, "exam_id"> = {
         #include <iostream>
         #include <vector>
         #include <stdexcept>
+        using namespace std;
         int main() {
           std::vector<int> vec = {1, 2, 3};
           try {
@@ -458,35 +459,268 @@ export const CONTAINERS_AND_ITERATORS : Omit<ExamSpecification, "exam_id"> = {
       section_id: "section_11_9",
       title: "Sets and Maps",
       mk_description: dedent`
-                
+        The other main category of containers are associative containers, which include sets and maps.
+
         <div style="text-align: center;">
-          <iframe class="lec-video" src="https://www.youtube.com/embed/gzHPz0BzP5U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="lec-video" src="https://www.youtube.com/embed/-fRR_xOjZIg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br />
+
+        Let's take a look at \`std::map\` from the C++ standard library in more detail:
+
+        <div style="text-align: center;">
+          <iframe class="lec-video" src="https://www.youtube.com/embed/p6Qkc5KRocA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br />
       `,
       questions: [
         {
-          question_id: "lec11_participation_freebie",
-          points: 1,
+          question_id: "lec14_drive_thru_map_interface",
+          title: "Exercise: \`Drive Thru with std::map\`",
+          points: 4,
           mk_description: dedent`
-            Select the item below for participation credit.
+            Copied below are the \`std::map\` interfaces for \`find\` and \`operator[]\`:
+
+            \`\`\`cpp
+            // EFFECTS : Returns an iterator to the entry in this map with the given
+            //           key, if one exists. Otherwise, returns an end Iterator.
+            iterator find(const Key_type& k) const;
+
+            // EFFECTS : Returns a reference to the mapped value for the given key.
+            //           Case 1: Existing Entry
+            //           If the map contains an entry for the given key, returns a 
+            //           reference to its corresponding value.
+            //           Case 2: Auto-create Placeholder Entry
+            //           If the map does not already contain an entry for the given
+            //           key, inserts a new entry for it with a "value-initialized"
+            //           placeholder value. Returns a reference to that value.
+            //           Note: value-initialization for numeric types guarantees the
+            //           placeholder value will be 0 (rather than memory junk).
+            Value_type& operator[](const Key_type& k);
+            \`\`\`
+
+            Consider the following class that allows looking up the price for a menu item at a drive-thru restaurant. Its internal data representation is a map where the keys are menu item names and the values are their corresponding prices.
+
+            \`\`\`cpp
+            
+            class DriveThru {
+            public:
+              // REQUIRES: Nothing
+              // EFFECTS:  Returns the price for the item or -1
+              //           if no such item exists.
+              double getPrice(const string &item) const {
+                // IMPLEMENTATION GOES HERE
+              }
+
+            private:
+              // A map from item names to their prices
+              std::map<string, double> menu;
+            };
+            \`\`\`
+
+            Which of the implementations of \`getPrice()\` below are correct? Write **"correct"** or **"incorrect"**. For each that is not correct, explain what's wrong with it.
           `,
           response: {
-            kind: "multiple_choice",
-            choices: [
-              "Select this for participation credit.",
-            ],
-            multiple: false,
-            sample_solution: [0],
+            kind: "fill_in_the_blank",
+            content: `
+<table style="width: 100%; border: none;">
+  <tr>
+    <td style="width: 350px; padding-right: 15px;">
+    <div markdown="1">
+\`\`\`cpp
+// Potential Implementation 1
+double getPrice(const string &item) const {
+  auto it = menu.find(item); 
+  if (it != menu.end()) {
+    return it->second;
+  }
+  else { return -1; }
+}
+\`\`\`
+    </div>
+    </td>
+    <td>
+    <div>
+      [[BOX
+      
+      
+      
+      ]]
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 350px; padding-right: 15px;">
+    <div markdown="1">
+\`\`\`cpp
+// Potential Implementation 2
+double getPrice(const string &item) const {
+  auto it = menu.find(item); 
+  if (it) {
+    return it->second;
+  }
+  else { return -1; }
+}
+\`\`\`
+    </div>
+    </td>
+    <td>
+    <div>
+      [[BOX
+      
+      
+      
+      ]]
+    </div>
+    </td>
+  </tr>
+  <tr>
+    <td style="width: 350px; padding-right: 15px;">
+    <div markdown="1">
+\`\`\`cpp
+// Potential Implementation 3
+double getPrice(const string &item) const {
+  // If a real item exists, it will block this
+  auto insert_result = menu.insert({item, -1});
+
+  // Either the real price or the -1
+  return insert_result.first->second;
+}
+\`\`\`
+    </div>
+    </td>
+    <td>
+    <div>
+      [[BOX
+      
+      
+      
+      ]]
+    </div>
+    </td>
+  </tr>
+  
+  <tr>
+    <td style="width: 350px; padding-right: 15px;">
+    <div markdown="1">
+\`\`\`cpp
+// Potential Implementation 4
+double getPrice(const string &item) const {
+  if (menu.find(item) != menu.end()) {
+    return menu[item];
+  }
+  else { return -1; }
+}
+\`\`\`
+    </div>
+    </td>
+    <td>
+    <div>
+      [[BOX
+      
+      
+      
+      ]]
+    </div>
+    </td>
+  </tr>
+</table>
+            `,
             default_grader: {
-              grader_kind: "freebie",
-              points: 1,
-              allow_blanks: false
+              grader_kind: "manual_regex_fill_in_the_blank",
+              rubric: [
+                {
+                  blankIndex: 1,
+                  title: "Box 1",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /incorrect|not\s*correct/i,
+                      explanation: "The implementation is correct. Check the sample solution below for more details.",
+                      points: 0
+                    },
+                    {
+                      pattern: /correct/i,
+                      explanation: "The implementation is correct. Check the sample solution below for more details.",
+                      points: 1
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 2,
+                  title: "Box 2",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /incorrect|not\s*correct/i,
+                      explanation: "The implementation is incorrect. The problem is the if condition. Check the sample solution below for more details.",
+                      points: 1
+                    },
+                    {
+                      pattern: /correct/i,
+                      explanation: "The implementation is incorrect. The problem is the if condition. Check the sample solution below for more details.",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 3,
+                  title: "Box 3",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /incorrect|not\s*correct/i,
+                      explanation: "The implementation is incorrect. The problem is modification of the underlying map. Check the sample solution below for more details.",
+                      points: 1
+                    },
+                    {
+                      pattern: /correct/i,
+                      explanation: "The implementation is incorrect. The problem is modification of the underlying map. Check the sample solution below for more details.",
+                      points: 0
+                    },
+                  ]
+                },
+                {
+                  blankIndex: 4,
+                  title: "Box 4",
+                  points: 1,
+                  description: "",
+                  patterns: [
+                    {
+                      pattern: /incorrect|not\s*correct/i,
+                      explanation: "The implementation is incorrect. The problem is a compile issue due to const correctness. Check the sample solution below for more details.",
+                      points: 1
+                    },
+                    {
+                      pattern: /correct/i,
+                      explanation: "The implementation is incorrect. The problem is a compile issue due to const correctness. Check the sample solution below for more details.",
+                      points: 0
+                    },
+                  ]
+                },
+              ]
             },
           },
           verifier: {
             verifier_kind: "full_credit",
           },
+          mk_postscript: dedent`
+            <hr />
+            <details>
+              <summary>Sample solution...</summary>
+              
+              Implementation 1: Correct. The code obtains an iterator, checks against \`.end()\` from the same container, and returns the appropriate value accessed via \`it->second\`.
+
+              Implementation 2: Incorrect. An iterator cannot be implicitly converted to a boolean value. Instead, it must be specifically compared against an end iterator from the same container (obtained via calling \`.end()\`). The reason for this is that an iterator cannot necessarily tell on its own whether it is at the "one-past-the-end" position - for example, it may internally be implemented using a pointer, but would need to compare that pointer against the actual one-past-the-end address of the container.
+
+              Implementation 3: Incorrect. This implementation is pretty careless with the underlying representation - it's generally problematic to pollute the underlying map with the \`-1\` values, and changing the map is also a violation of the const qualification on \`getPrice()\`.
+
+              Implementation 4: Incorrect. There's some nuance to this one. At first glance, the algorithm seems fine, because we are only accessing the value if we have already determined that an entry is present for the given key. This would also prevent the case where a default placeholder 0 is added to the map for an absent key, since we avoid using \`[]\` in these cases. However, the compiler doesn't consider this control flow when determining whether we are allowed to call \`operator[]\` in a const-qualified context. Because \`operator[]\` isn't const-qualified, the compiler still prohibits calling it from \`getPrice()\`, which is const-qualified. The takeaway is that we really can't ever use \`[]\` on const maps (or in a context where they're treated as const).
+            </details>
+          `
         }
       ],
     },
