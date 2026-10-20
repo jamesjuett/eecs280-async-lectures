@@ -479,18 +479,28 @@ export const CONTAINERS_AND_ITERATORS : Omit<ExamSpecification, "exam_id"> = {
           title: "Exercise: \`Drive Thru with std::map\`",
           points: 4,
           mk_description: dedent`
-            Copied below are the \`std::map\` interfaces for \`find\` and \`operator[]\`:
+            Copied below are the \`std::map\` interfaces for \`find\`, \`insert\`, and \`operator[]\`:
 
             \`\`\`cpp
-            // EFFECTS : Returns an iterator to the entry in this map with the given
+            // EFFECTS: Returns an iterator to the entry in this map with the given
             //           key, if one exists. Otherwise, returns an end Iterator.
             iterator find(const Key_type& k) const;
 
-            // EFFECTS : Returns a reference to the mapped value for the given key.
-            //           Case 1: Existing Entry
+            // EFFECTS: Attempts to insert given element into this Map.
+            //          Case 1: Successful Insert
+            //           If the map does not already contain an entry for the
+            //           given key, creates a new entry with the given key/value
+            //           and returns an iterator to it, paired with true.
+            //          Case 2: Blocked Insert
+            //           If the map already contains an entry for the given key,
+            //           returns an iterator to the existing entry, paired with false.
+            std::pair<iterator, bool> insert(const std::pair<Key_type, Value_type> &val);
+
+            // EFFECTS: Returns a reference to the mapped value for the given key.
+            //          Case 1: Existing Entry
             //           If the map contains an entry for the given key, returns a 
             //           reference to its corresponding value.
-            //           Case 2: Auto-create Placeholder Entry
+            //          Case 2: Auto-create Placeholder Entry
             //           If the map does not already contain an entry for the given
             //           key, inserts a new entry for it with a "value-initialized"
             //           placeholder value. Returns a reference to that value.
