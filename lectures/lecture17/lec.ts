@@ -20,7 +20,7 @@ Most any data structure uses one of two fundamental approaches in its underlying
 - **Linked structures**: store elements separately from each other, connected together via pointers
 
 We've previously covered the contiguous memory approach. In this lecture, we'll begin to explore linked structures. As an initial example, we'll implement a **linked list**.
-<div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2025</div>
+<div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2026</div>
 </div>
 
 <style>
@@ -174,7 +174,7 @@ We've previously covered the contiguous memory approach. In this lecture, we'll 
       mk_description: dedent`
 
         <div class="alert alert-secondary" role="alert" markdown="1">
-        <h5><span class="badge badge-primary">Fall 2025</span></h5>
+        <h5><span class="badge badge-primary">Fall 2026</span></h5>
         In some of the videos below, I might refer to implementing a linked list on project 4. That's project 5 this term.
         </div>
       
