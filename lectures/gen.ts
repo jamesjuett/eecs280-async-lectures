@@ -82,7 +82,7 @@ export const LECTURE_SPECS = [
   { spec: DYNAMIC_MEMORY                                        , id: "f26_lec_15_transfer"   , deadline: DateTime.fromISO("2026-10-26", {zone: "America/Detroit"}).plus({hours: 12, minutes: 0, seconds: 0}) },
   { spec: RAII_AND_GROWABLE_CONTAINERS                          , id: "f26_lec_16"            , deadline: DateTime.fromISO("2026-10-28", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   { spec: RAII_AND_GROWABLE_CONTAINERS                          , id: "f26_lec_16_transfer"   , deadline: DateTime.fromISO("2026-10-28", {zone: "America/Detroit"}).plus({hours: 12, minutes: 0, seconds: 0}) },
-  { spec: DEEP_COPIES_AND_THE_BIG_THREE                         , id: "f26_lec_17"            , deadline: DateTime.fromISO("2026-11-04", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: DEEP_COPIES_AND_THE_BIG_THREE                         , id: "f26_lec_17"            , deadline: DateTime.fromISO("2026-11-05", {zone: "America/Detroit"}).plus({hours: 1, minutes: 59, seconds: 59}) },
   { spec: DEEP_COPIES_AND_THE_BIG_THREE                         , id: "f26_lec_17_transfer"   , deadline: DateTime.fromISO("2026-11-04", {zone: "America/Detroit"}).plus({hours: 12, minutes: 0, seconds: 0}) },
   { spec: LINKED_LISTS                                          , id: "f26_lec_18"            , deadline: DateTime.fromISO("2026-11-09", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   { spec: LINKED_LISTS                                          , id: "f26_lec_18_transfer"   , deadline: DateTime.fromISO("2026-11-09", {zone: "America/Detroit"}).plus({hours: 12, minutes: 0, seconds: 0}) },
