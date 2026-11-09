@@ -16,10 +16,10 @@ export const LINKED_LIST_ITERATORS : Omit<ExamSpecification, "exam_id"> = {
 Abstraction is quite likely the most powerful tool in programming. We've seen it applied as "procedural abstraction" (i.e. functions) and in "abstract data types" (i.e. classes), and we'll add another today - abstracting the process of "iteration" or "traversal" over a sequence or a container.
 
 To do this, we'll first define a common *interface* for iteration. But not all containers will naturally conform to this interface - traversing over an array looks a whole lot different than traversing over a linked list. So, we'll define custom objects called "**iterators**" for each different kind of sequence or container that act as the "tour guide" that conforms to our common interface but handles the container-specific details behind the scenes.
-<div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2025</div>
+<div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2026</div>
 </div>
 <div class="alert alert-secondary" role="alert" markdown="1">
-<h5><span class="badge badge-success">Fall 2025</span></h5>
+<h5><span class="badge badge-success">Fall 2026</span></h5>
 <p>In some of the videos, I might refer to implementing a linked list and its iterators on project 4. That's project 5 this term.</p>
 </div>
 <style>
