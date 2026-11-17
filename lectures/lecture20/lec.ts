@@ -10,7 +10,7 @@ import { MK_DOWNLOAD_MESSAGE, MK_BOTTOM_MESSAGE, MK_SAVER_MESSAGE, MK_QUESTIONS_
 
 
 export const RECURSION : Omit<ExamSpecification, "exam_id"> = {
-  title: "Recursion and Tail Recursion",
+  title: "Introduction to Recursion",
   mk_intructions: `
 <div markdown=1 class="alert alert-info">
 Today, we'll look at a fundamentally new way of developing algorithms and writing code using **recursion**.
@@ -19,7 +19,7 @@ Recursion occurs when a function that calls itself. It's a bit hard to describe 
 
 - Recursion offers a different approach to "repetition" in code without using loops. Perhaps surprisingly, this can be more intuitive for some problems.
 - Recursion allows us to model the self-similar structure that naturally exists in many interesting problems and data structures.
-<div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2025</div>
+<div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2026</div>
 </div>
 <style>
   .lec-video {
