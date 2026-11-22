@@ -15,7 +15,7 @@ export const STRUCTURAL_RECURSION : Omit<ExamSpecification, "exam_id"> = {
 <div markdown=1 class="alert alert-info">
 Recursion is well-suited for problems that have an intrinsic **recursive structure**. This also applies directly for many data structures, including **linked lists** (which we've seen before) and **trees** (which we introduce today). It will also turn out that for some operations, a recursive approach is natural while an iterative approach requires significant additional work.
 
-<div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2025</div>
+<div style="position: absolute; bottom: 5px; right: 10px; font-weight: bold;">Updated Fall 2026</div>
 </div>
 </div>
 

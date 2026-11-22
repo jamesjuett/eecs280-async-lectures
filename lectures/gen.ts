@@ -92,8 +92,10 @@ export const LECTURE_SPECS = [
   { spec: FUNCTORS_AND_IMPOSTOR_SYNDROME                        , id: "f26_lec_20_transfer"   , deadline: DateTime.fromISO("2026-11-16", {zone: "America/Detroit"}).plus({hours: 12, minutes: 0, seconds: 0}) },
   { spec: RECURSION                                             , id: "f26_lec_21"            , deadline: DateTime.fromISO("2026-11-18", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
   { spec: RECURSION                                             , id: "f26_lec_21_transfer"   , deadline: DateTime.fromISO("2026-11-18", {zone: "America/Detroit"}).plus({hours: 12, minutes: 0, seconds: 0}) },
-  // { spec: STRUCTURAL_RECURSION                                  , deadline: DateTime.fromISO("2025-11-17", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
-  // { spec: BINARY_SEARCH_TREES                                   , deadline: DateTime.fromISO("2025-11-19", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: STRUCTURAL_RECURSION                                  , id: "f26_lec_22"            , deadline: DateTime.fromISO("2026-11-23", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: STRUCTURAL_RECURSION                                  , id: "f26_lec_22_transfer"   , deadline: DateTime.fromISO("2026-11-23", {zone: "America/Detroit"}).plus({hours: 12, minutes: 0, seconds: 0}) },
+  { spec: BINARY_SEARCH_TREES                                   , id: "f26_lec_23"            , deadline: DateTime.fromISO("2026-11-30", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
+  { spec: BINARY_SEARCH_TREES                                   , id: "f26_lec_23_transfer"   , deadline: DateTime.fromISO("2026-11-30", {zone: "America/Detroit"}).plus({hours: 12, minutes: 0, seconds: 0}) },
   // { spec: EXCEPTIONS                                            , deadline: DateTime.fromISO("2025-11-24", {zone: "America/Detroit"}).plus({hours: 23, minutes: 59, seconds: 59}) },
 ].map((lec, i) => {
   let spec = CUSTOMIZE(lec.spec, {
